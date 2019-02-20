@@ -78863,9 +78863,8 @@ function (_Component) {
       var _this$props$products$ = this.props.products[0],
           id = _this$props$products$.id,
           title = _this$props$products$.title;
-      console.log(title);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "content__main"
+        className: "content__main test"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header_Header__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "main",
         className: "site__main"
@@ -78964,8 +78963,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default;
-  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default; //global.$ = global.jQuery = require('jquery');
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 } catch (e) {}
@@ -79968,38 +79966,6 @@ var footerMenuItems = [{
 
 /***/ }),
 
-/***/ "./resources/js/components/database/header-menu-data.js":
-/*!**************************************************************!*\
-  !*** ./resources/js/components/database/header-menu-data.js ***!
-  \**************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var headerMenuItems = [{
-  'title': 'О косметике',
-  'link': '/about-cosmetics'
-}, {
-  'title': 'Ассортимент',
-  'link': '/shop'
-}, {
-  'title': 'Видеосоветы',
-  'link': '/videotip'
-}, {
-  'title': 'Акции',
-  'link': '/stock'
-}, {
-  'title': 'А вы знали ?',
-  'link': '/doyouknow'
-}, {
-  'title': 'Контакты',
-  'link': '/contacts'
-}];
-/* harmony default export */ __webpack_exports__["default"] = (headerMenuItems);
-
-/***/ }),
-
 /***/ "./resources/js/components/database/howitwork-data.js":
 /*!************************************************************!*\
   !*** ./resources/js/components/database/howitwork-data.js ***!
@@ -80654,7 +80620,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _HeaderBottomMenuItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HeaderBottomMenuItem */ "./resources/js/components/header/headerBottom/headerBottomMenu/HeaderBottomMenuItem.jsx");
 /* harmony import */ var react_html_id__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-html-id */ "./node_modules/react-html-id/index.js");
 /* harmony import */ var react_html_id__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_html_id__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _database_header_menu_data__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../database/header-menu-data */ "./resources/js/components/database/header-menu-data.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -80679,8 +80644,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
-
+ //import headerMenuItems from '../../../database/header-menu-data';
 
 var HeaderBottomMenu =
 /*#__PURE__*/
@@ -80694,19 +80658,30 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(HeaderBottomMenu).call(this));
 
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      menuItems: _database_header_menu_data__WEBPACK_IMPORTED_MODULE_3__["default"]
-    });
-
     _defineProperty(_assertThisInitialized(_this), "onClickAlert", function (title) {
       console.log(title);
     });
 
     react_html_id__WEBPACK_IMPORTED_MODULE_2___default.a.enableUniqueIds(_assertThisInitialized(_this));
+    _this.state = {
+      menuItems: []
+    };
     return _this;
   }
 
   _createClass(HeaderBottomMenu, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var $this = this;
+      axios.get('/api/pages').then(function (response) {
+        $this.setState({
+          menuItems: response.data
+        });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -80717,9 +80692,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "headerBottom__menuList"
       }, this.state.menuItems.map(function (headerMenuItem) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HeaderBottomMenuItem__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
-          key: _this2.nextUniqueId('menu-item')
-        }, headerMenuItem, {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HeaderBottomMenuItem__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({}, headerMenuItem, {
           onHandler: _this2.onClickAlert
         }));
       })));
@@ -80783,12 +80756,12 @@ function (_Component) {
       var _this = this;
 
       var _this$props = this.props,
-          link = _this$props.link,
+          slug = _this$props.slug,
           title = _this$props.title;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "headerBottom__menuItem"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-        to: link,
+        to: slug,
         className: "headerBottom__menuItemLink",
         activeClassName: "active",
         onClick: function onClick() {

@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom';
 
 class HeaderBottomMenuItem extends Component {
     render(){
-        const { link, title } = this.props;
+        const { slug, title } = this.props;
 
         return (
             <li className="headerBottom__menuItem">
-                <NavLink to={ link }
+                <NavLink to={ slug }
                          className="headerBottom__menuItemLink"
                          activeClassName="active"
                          onClick={ () => this.props.onHandler( title) }

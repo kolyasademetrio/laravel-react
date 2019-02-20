@@ -16,5 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::middleware('auth:api')->get('/pages', function (Request $request) {
+    return $request->pages();
+});
 
 Route::resource('users', 'Api\UserController');
+Route::resource('pages', 'Api\PagesController');
+Route::resource('menu', 'Api\MenuController');

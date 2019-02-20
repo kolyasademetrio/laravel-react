@@ -22,11 +22,9 @@ class Main extends Component {
 
         const { id, title } = this.props.products[0];
 
-        console.log( title );
-
         return (
             <div>
-                <div className="content__main">
+                <div className="content__main test">
                     <Header/>
                     <div id="main" className="site__main">
                         <Switch>

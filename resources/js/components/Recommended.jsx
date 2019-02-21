@@ -3,13 +3,25 @@ import ProductSingle from '../components/products/ProductSingle';
 import recomendedProducts from './database/recomended-products-data';
 import Slider from 'react-slick';
 
+import * as productsActions from './../actions/products';
+
+console.log( productsActions );
+
+import { connect } from 'react-redux';
+
 class Recommended extends Component {
 
     state = {
         products: recomendedProducts,
     }
 
+    componentWillMount(){
+        console.log( this.props.fetchProducts() );
+    }
+
     render(){
+
+        //const {products} = this.props.productsList;
 
         return (
             <div className="recommended">
@@ -133,4 +145,9 @@ function SamplePrevArrow(props) {
     );
 }
 
-export default Recommended;
+function mapStateToProps(state) {
+    return {
+        productsList:state.products.productsList,
+    }
+}
+export default connect(mapStateToProps, productsActions)(Recommended);

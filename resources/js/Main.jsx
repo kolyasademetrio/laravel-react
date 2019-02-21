@@ -20,7 +20,7 @@ import TermsCooperationPage from './components/pages/TermsCooperationPage';
 class Main extends Component {
     render() {
 
-        const { id, title } = this.props.products[0];
+        // const { id, title } = this.props.products[0];
 
         return (
             <div>
@@ -49,7 +49,8 @@ class Main extends Component {
 }
 
 const mapState = state => ({
-    products: state.products.state
+    products: state.products.state,
+    cart: state.cart.state,
 });
 
 export default connect(mapState)(Main);

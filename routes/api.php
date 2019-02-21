@@ -23,3 +23,4 @@ Route::middleware('auth:api')->get('/pages', function (Request $request) {
 Route::resource('users', 'Api\UserController');
 Route::resource('pages', 'Api\PagesController');
 Route::resource('menu', 'Api\MenuController');
+Route::resource('products', 'Api\ProductsController');

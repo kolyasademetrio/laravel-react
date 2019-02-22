@@ -1,6 +1,4 @@
-export { FETCH_PRODUCTS, FETCH_PRODUCTS_SUCCESS } from './types';
-
-const ROOT_URL = 'http://localhost:8000';
+import { FETCH_PRODUCTS, FETCH_PRODUCTS_SUCCESS } from './types';
 
 export function fetchProducts(){
     return dispatch => {

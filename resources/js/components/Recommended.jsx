@@ -1,28 +1,21 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import ProductSingle from '../components/products/ProductSingle';
 import recomendedProducts from './database/recomended-products-data';
 import Slider from 'react-slick';
-
 import * as productsActions from './../actions/products';
 
-console.log( productsActions );
-
-import { connect } from 'react-redux';
 
 class Recommended extends Component {
 
-    state = {
-        products: recomendedProducts,
-    }
-
     componentWillMount(){
-        console.log( this.props.fetchProducts() );
+        this.props.fetchProducts();
     }
 
     render(){
 
-        //const {products} = this.props.productsList;
-
+        const {products} = this.props.productsList;
+        
         return (
             <div className="recommended">
                 <div className="container recommendedTitle__container">
@@ -52,7 +45,7 @@ class Recommended extends Component {
                                     <div className="recommended__categoryWrapper">
                                         <Slider {...settings}>
                                         {
-                                            this.state.products.map( ( productData ) => (
+                                            products.map( ( productData ) => (
                                                 <ProductSingle key={productData.id} {...productData} />
                                             ))
                                         }

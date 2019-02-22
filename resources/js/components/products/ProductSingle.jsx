@@ -5,23 +5,25 @@ class ProductSingle extends Component {
 
     render(){
 
-        const { img, title, exerpt, descrTitle, descrText, price, currency, id } = this.props;
+        const { image, title, excerpt, descrtitle, descrtext, price, currency, id } = this.props;
+        
+        console.log( this.props );
 
         return (
             <div className="good__item">
                 <div className="good__itemInner">
                     <div className="good__itemContent">
                         <div className="good__itemHeader">
-                            <img className="good__itemImage" src={ img } data-id={ id } alt=""/>
+                            <img className="good__itemImage" src={ image } data-id={ id } alt=""/>
                         </div>
 
                         <div className="good__itemTitle">{ ReactHtmlParser(title) }</div>
 
-                        <div className="good__itemExcerpt">{ ReactHtmlParser(exerpt) }</div>
+                        <div className="good__itemExcerpt">{ ReactHtmlParser(excerpt) }</div>
 
                         <div className="good__itemDescr">
-                            <a href="/" className="good__itemDescrTitle">{ ReactHtmlParser(descrTitle) }</a>
-                            <a href="/" className="good__itemDescrText">{ ReactHtmlParser(descrText) }</a>
+                            <a href="/" className="good__itemDescrTitle">{ ReactHtmlParser(descrtitle) }</a>
+                            <a href="/" className="good__itemDescrText">{ ReactHtmlParser(descrtext) }</a>
                         </div>
                         <div className="good__itemPrices">
                             <span className="good__itemRegularPrice">

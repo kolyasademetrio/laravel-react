@@ -36,7 +36,7 @@ class HeaderBottomMenu extends Component {
                 <ul className="headerBottom__menuList">
                     {
                         this.state.menuItems.map( headerMenuItem => (
-                            <HeaderBottomMenuItem {...headerMenuItem}
+                            <HeaderBottomMenuItem key={this.nextUniqueId()} {...headerMenuItem}
                                                   onHandler={this.onClickAlert}
                             />
                         ))

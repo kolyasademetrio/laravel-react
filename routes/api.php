@@ -24,3 +24,5 @@ Route::resource('users', 'Api\UserController');
 Route::resource('pages', 'Api\PagesController');
 Route::resource('menu', 'Api\MenuController');
 Route::resource('products', 'Api\ProductsController');
+//Route::resource('/products/reccomended', 'Api\ProductsController@reccomended');
+

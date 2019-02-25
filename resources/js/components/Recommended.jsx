@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import ProductSingle from '../components/products/ProductSingle';
-import recomendedProducts from './database/recomended-products-data';
 import Slider from 'react-slick';
 import * as productsActions from './../actions/products';
+import {fetchProducts} from "./../actions/products";
 
 
 class Recommended extends Component {
@@ -13,9 +13,10 @@ class Recommended extends Component {
     }
 
     render(){
-
-        const {products} = this.props.productsList;
         
+        const { allproducts } = this.props;
+        const productsReccomeended = allproducts.filter(product => product.is_reccomended == 1);
+
         return (
             <div className="recommended">
                 <div className="container recommendedTitle__container">
@@ -45,7 +46,7 @@ class Recommended extends Component {
                                     <div className="recommended__categoryWrapper">
                                         <Slider {...settings}>
                                         {
-                                            products.map( ( productData ) => (
+                                            productsReccomeended.map( ( productData ) => (
                                                 <ProductSingle key={productData.id} {...productData} />
                                             ))
                                         }
@@ -77,7 +78,7 @@ const settings = {
     arrows: true,
     prevArrow: <SamplePrevArrow/>,
     nextArrow: <SampleNextArrow/>,
-    centerMode: true,
+    centerMode: false,
     focusOnSelect: false,
     autoplay: false,
     centerPadding: 0,
@@ -140,7 +141,7 @@ function SamplePrevArrow(props) {
 
 function mapStateToProps(state) {
     return {
-        productsList:state.products.productsList,
+        allproducts: state.products.productsList.products,
     }
 }
 export default connect(mapStateToProps, productsActions)(Recommended);

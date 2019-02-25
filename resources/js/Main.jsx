@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
@@ -48,9 +48,9 @@ class Main extends Component {
     }
 }
 
-const mapState = state => ({
+/*const mapState = state => ({
     products: state.products.state,
     cart: state.cart.state,
-});
+});*/
 
-export default connect(mapState)(Main);
+export default /*connect(mapState)(Main)*/Main;

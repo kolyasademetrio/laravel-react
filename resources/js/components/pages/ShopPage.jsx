@@ -1,14 +1,34 @@
 import React, { Component } from 'react';
 import ProductSingle from '../products/ProductSingle';
+import { connect } from 'react-redux';
+import * as productsActions from '../../actions/products';
+
 import allProductsData from '../database/all-products-data';
+import {fetchProducts} from "../../actions/products";
 
 class ShopPage extends Component {
 
     state = {
         allProductsData: allProductsData,
+        allProductsDataAxios: [],
+    }
+
+    componentWillMount() {
+        this.props.fetchProducts();
+        // const { products } = this.props.products;
+        //
+        //
+        // this.setState({
+        //     allProductsDataAxios: this.products
+        // });
     }
 
     render(){
+        
+        //console.log( 'edwewe', this.state );
+
+        const { products } = this.props.products;
+
         return (
             <div className="container woocomm__container">
                 <div className="row woocomm__row">
@@ -77,7 +97,7 @@ class ShopPage extends Component {
                                     </div>
                                     <div className="products__list">
                                         {
-                                            this.state.allProductsData.map( ( productData ) => (
+                                            products.map( ( productData ) => (
                                                 <ProductSingle key={productData.id} {...productData} />
                                             ))
                                         }
@@ -105,4 +125,6 @@ class ShopPage extends Component {
     }
 }
 
-export default ShopPage;
+const mapStateToProps = state => ({ products: state.products.productsList });
+
+export default connect(mapStateToProps, productsActions)(ShopPage);

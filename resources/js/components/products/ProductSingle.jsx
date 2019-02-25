@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
+import ProductPrices from './ProductPrices';
 import ReactHtmlParser from 'react-html-parser';
 
 class ProductSingle extends Component {
 
     render(){
 
-        const { image, title, excerpt, descrtitle, descrtext, price, currency, id } = this.props;
+        const { image, title, excerpt, descrtitle, descrtext, regular_price, sale_price, discount, currency, id } = this.props;
         
-        console.log( this.props );
-
         return (
             <div className="good__item">
                 <div className="good__itemInner">
@@ -25,12 +24,8 @@ class ProductSingle extends Component {
                             <a href="/" className="good__itemDescrTitle">{ ReactHtmlParser(descrtitle) }</a>
                             <a href="/" className="good__itemDescrText">{ ReactHtmlParser(descrtext) }</a>
                         </div>
-                        <div className="good__itemPrices">
-                            <span className="good__itemRegularPrice">
-                                <span className="good__itemRegularPriceValue">{ ReactHtmlParser(price) }</span>
-                                <span className="good__itemRegularPriceCur">{ ReactHtmlParser(currency) }</span>
-                            </span>
-                        </div>
+
+                        <ProductPrices regular_price={regular_price} sale_price={sale_price} currency={currency} />
                     </div>
 
                     <div className="good__itemFooter">

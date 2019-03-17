@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Slidermain from '../SliderMain/Slidermain';
-import Recommended from '../Recommended';
+import Recommended from '../../containers/Recommended';
 import Movietiphome from '../Movietiphome';
 import Howitwork from '../howitwork/Howitwork';
 import Advants from '../advants/Advants';

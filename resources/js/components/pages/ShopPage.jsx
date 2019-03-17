@@ -2,30 +2,34 @@ import React, { Component } from 'react';
 import ProductSingle from '../products/ProductSingle';
 import { connect } from 'react-redux';
 import * as productsActions from '../../actions/products';
-
-import allProductsData from '../database/all-products-data';
-import {fetchProducts} from "../../actions/products";
+import { CategoryFilters } from '../../actions/products';
+import {fetchProductsSuccess} from "../../actions/products";
 
 class ShopPage extends Component {
 
-    state = {
-        allProductsData: allProductsData,
-        allProductsDataAxios: [],
-    }
+    /*componentWillMount() {
+        const { setBooks } = this.props;
+        axios.get('/books.json').then(({ data }) => {
+            setBooks(data);
+        });
+    }*/
 
     componentWillMount() {
         this.props.fetchProducts();
-        // const { products } = this.props.products;
-        //
-        //
-        // this.setState({
-        //     allProductsDataAxios: this.products
-        // });
+
+        const { setProducts } = this.props;
+        axios.get('/api/products').then(({ data }) => {
+            setProducts(data);
+        });
+    }
+
+    onFilter = (e) => {
+        const filterName = e.target.attributes.filter.nodeValue;
+
+        dispatch(setVisibilityFilter(filterName))
     }
 
     render(){
-        
-        //console.log( 'edwewe', this.state );
 
         const { products } = this.props.products;
 
@@ -53,26 +57,44 @@ class ShopPage extends Component {
 
                                         <ul className="products__categoryList" id="products__categoryList">
                                             <li className="products__categoryItem">
-                                                <a href="/shop" className="products__categoryItemLink all__categories active">
+                                                <span filter={CategoryFilters.SHOW_ALL}
+                                                      className="products__categoryItemLink all__categories active"
+                                                      onClick={this.onFilter}
+                                                >
                                                     Весь ассортимент
-                                                </a>
+                                                </span>
                                             </li>
                                             <li className="products__categoryItem">
-                                                <a href="/product-category/%d1%81%d0%ba%d1%80%d0%b0%d0%b1%d1%8b/" className="products__categoryItemLink">
-                                                    Скрабы </a>
+                                                <span filter={CategoryFilters.SCRUB}
+                                                      className="products__categoryItemLink"
+                                                      onClick={this.onFilter}
+                                                >
+                                                    Скрабы
+                                                </span>
                                             </li>
                                             <li className="products__categoryItem">
-                                                <a href="/product-category/%d1%85%d0%b8%d1%82-%d0%bf%d1%80%d0%be%d0%b4%d0%b0%d0%b6/" className="products__categoryItemLink">
-                                                    Хит продаж</a>
+                                                <span filter={CategoryFilters.BESTSELLER}
+                                                   className="products__categoryItemLink"
+                                                      onClick={this.onFilter}
+                                                >
+                                                    Хит продаж
+                                                </span>
                                             </li>
                                             <li className="products__categoryItem">
-                                                <a href="/product-category/cosmeticiviso/" className="products__categoryItemLink">
-                                                    Косметика для лица</a>
+                                                <span filter={CategoryFilters.FACE}
+                                                   className="products__categoryItemLink"
+                                                      onClick={this.onFilter}
+                                                >
+                                                    Косметика для лица
+                                                </span>
                                             </li>
                                             <li className="products__categoryItem">
-                                                <a href="/product-category/setregalo/"
-                                                   className="products__categoryItemLink">
-                                                    Косметика для тела </a>
+                                                <span filter={CategoryFilters.BODY}
+                                                      className="products__categoryItemLink"
+                                                      onClick={this.onFilter}
+                                                >
+                                                    Косметика для тела
+                                                </span>
                                             </li>
                                         </ul>
                                     </div>

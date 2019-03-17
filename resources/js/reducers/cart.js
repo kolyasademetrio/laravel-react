@@ -1,17 +1,24 @@
-// export { FETCH_PRODUCTS, FETCH_PRODUCTS_SUCCESS } from '../actions/types';
-
-const INITIAL_STATE = {
-
+const initialState = {
+    items: [],
 };
 
-
-export default function (state = {INITIAL_STATE},action){
+export default (state = initialState, action) => {
     switch (action.type) {
-        case 'FETCH_CART':
-            return { ...state, productsList:{products:[],error:null,loading:true}};
-        case 'FETCH_CART_SUCCESS':
-            return { ...state, productsList:{products:action.payload.data,error:null,loading:false}};
+        case 'ADD_TO_CART':
+            return {
+                ...state,
+                items: [
+                    ...state.items,
+                    action.payload
+                ],
+            };
+        case 'REMOVE_FROM_CART':
+            return {
+                ...state,
+                items: state.items.filter(o => o.id != action.payload),
+            };
+            break;
         default:
             return state;
     }
-}
+};

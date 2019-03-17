@@ -258,7 +258,7 @@ jQuery(document).ready(function($){
 
 
     /* ------------------------>>> Вкладки с категориями на Главной <<<------------------------------------------------- */
-    (function(){
+    /*(function(){
         $('.recommended__categoryItemLink').eq(0).addClass('active');
         $('.recommended__categoryWrapper').eq(0).addClass('active');
 
@@ -278,7 +278,7 @@ jQuery(document).ready(function($){
             e.preventDefault();
         });
 
-    })();
+    })();*/
     /* ------------------------>>> Вкладки с категориями на Главной End <<<------------------------------------------------- */
 
 

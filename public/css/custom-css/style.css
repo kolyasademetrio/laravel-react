@@ -2301,8 +2301,8 @@ a.footer__itemTitleLink {
 }
 
 .recommended__categoryWrapper {
-    height: 0;
-    overflow: hidden;
+    /*height: 0;
+    overflow: hidden;*/
     width: 100%;
 }
 
@@ -2993,6 +2993,7 @@ form.checkout.woocommerce-checkout .blockUI.blockOverlay:before {
     font-style: normal;
     font-size: 16px;
     color: #629a3f;
+    cursor: pointer;
 
     -webkit-transition: all .6s ease 0s;
     -moz-transition: all .6s ease 0s;

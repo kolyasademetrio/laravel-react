@@ -78923,7 +78923,6 @@ function (_Component) {
   _createClass(Main, [{
     key: "render",
     value: function render() {
-      // const { id, title } = this.props.products[0];
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "content__main test"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_header_Header__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -78973,13 +78972,27 @@ function (_Component) {
 
   return Main;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-/*const mapState = state => ({
-    products: state.products.state,
-    cart: state.cart.state,
-});*/
 
+/* harmony default export */ __webpack_exports__["default"] = (Main);
 
-/* harmony default export */ __webpack_exports__["default"] = (/*connect(mapState)(Main)*/Main);
+/***/ }),
+
+/***/ "./resources/js/actions/filter.js":
+/*!****************************************!*\
+  !*** ./resources/js/actions/filter.js ***!
+  \****************************************/
+/*! exports provided: setFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFilter", function() { return setFilter; });
+var setFilter = function setFilter(filter) {
+  return {
+    type: 'SET_FILTER',
+    payload: filter
+  };
+};
 
 /***/ }),
 
@@ -78987,16 +79000,18 @@ function (_Component) {
 /*!******************************************!*\
   !*** ./resources/js/actions/products.js ***!
   \******************************************/
-/*! exports provided: fetchProducts, fetchProductsSuccess */
+/*! exports provided: fetchProducts, fetchProductsSuccess, setProducts, CategoryFilters */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProducts", function() { return fetchProducts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProductsSuccess", function() { return fetchProductsSuccess; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProducts", function() { return setProducts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CategoryFilters", function() { return CategoryFilters; });
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./resources/js/actions/types.js");
 
-function fetchProducts() {
+var fetchProducts = function fetchProducts() {
   return function (dispatch) {
     dispatch({
       type: _types__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCTS"]
@@ -79005,13 +79020,26 @@ function fetchProducts() {
       dispatch(fetchProductsSuccess(response));
     });
   };
-}
-function fetchProductsSuccess(products) {
+};
+var fetchProductsSuccess = function fetchProductsSuccess(products) {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCTS_SUCCESS"],
     payload: products
   };
-}
+};
+var setProducts = function setProducts(products) {
+  return {
+    type: 'SET_PRODUCTS',
+    payload: products
+  };
+};
+var CategoryFilters = {
+  SHOW_ALL: 'SHOW_ALL',
+  BESTSELLER: 'BESTSELLER',
+  FACE: 'FACE',
+  BODY: 'BODY',
+  SCRUB: 'SCRUB'
+};
 
 /***/ }),
 
@@ -79019,15 +79047,25 @@ function fetchProductsSuccess(products) {
 /*!***************************************!*\
   !*** ./resources/js/actions/types.js ***!
   \***************************************/
-/*! exports provided: FETCH_PRODUCTS, FETCH_PRODUCTS_SUCCESS */
+/*! exports provided: FETCH_PRODUCTS, FETCH_PRODUCTS_SUCCESS, SET_PRODUCTS, SET_IS_READY, FETCH_RECCOMENDED_PRODUCTS, FETCH_RECCOMENDED_PRODUCTS_SUCCESS, SET_CATEGORY_FILTER */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_PRODUCTS", function() { return FETCH_PRODUCTS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_PRODUCTS_SUCCESS", function() { return FETCH_PRODUCTS_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCTS", function() { return SET_PRODUCTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_IS_READY", function() { return SET_IS_READY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_RECCOMENDED_PRODUCTS", function() { return FETCH_RECCOMENDED_PRODUCTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_RECCOMENDED_PRODUCTS_SUCCESS", function() { return FETCH_RECCOMENDED_PRODUCTS_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_CATEGORY_FILTER", function() { return SET_CATEGORY_FILTER; });
 var FETCH_PRODUCTS = "FETCH_PRODUCTS";
 var FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
+var SET_PRODUCTS = "SET_PRODUCTS";
+var SET_IS_READY = "SET_IS_READY";
+var FETCH_RECCOMENDED_PRODUCTS = "FETCH_RECCOMENDED_PRODUCTS";
+var FETCH_RECCOMENDED_PRODUCTS_SUCCESS = "FETCH_RECCOMENDED_PRODUCTS_SUCCESS";
+var SET_CATEGORY_FILTER = "SET_CATEGORY_FILTER";
 
 /***/ }),
 
@@ -79169,6 +79207,65 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Ancorup);
+
+/***/ }),
+
+/***/ "./resources/js/components/CatsFilterHome.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/components/CatsFilterHome.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/filter */ "./resources/js/actions/filter.js");
+var _this = undefined;
+
+
+
+
+
+var CatsFilterHome = function CatsFilterHome(_ref) {
+  var categoriesToShow = _ref.categoriesToShow,
+      setFilter = _ref.setFilter,
+      filterBy = _ref.filterBy;
+  var categoryFilterBy = filterBy ? filterBy : categoriesToShow && categoriesToShow[0]['category_filter_by'];
+  console.log(categoryFilterBy);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "recommended__cats"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "recommended__categoryList"
+  }, categoriesToShow && categoriesToShow.map(function (categoryItem, index) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: 'category-key-' + index,
+      className: "recommended__categoryItem"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: 'recommended__categoryItemLink' + (categoryFilterBy === categoryItem['category_filter_by'] ? ' active' : ''),
+      onClick: setFilter.bind(_this, categoryItem['category_filter_by'])
+    }, categoryItem['category_name']));
+  })));
+};
+
+var mapStateToProps = function mapStateToProps(_ref2) {
+  var filter = _ref2.filter;
+  return {
+    filterBy: filter.filterBy
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setFilter: function setFilter(filter) {
+      return dispatch(Object(_actions_filter__WEBPACK_IMPORTED_MODULE_2__["setFilter"])(filter));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(CatsFilterHome));
 
 /***/ }),
 
@@ -79350,207 +79447,6 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Movietiphome);
-
-/***/ }),
-
-/***/ "./resources/js/components/Recommended.jsx":
-/*!*************************************************!*\
-  !*** ./resources/js/components/Recommended.jsx ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _components_products_ProductSingle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/products/ProductSingle */ "./resources/js/components/products/ProductSingle.jsx");
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../actions/products */ "./resources/js/actions/products.js");
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-
-
-
-
-var Recommended =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Recommended, _Component);
-
-  function Recommended() {
-    _classCallCheck(this, Recommended);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Recommended).apply(this, arguments));
-  }
-
-  _createClass(Recommended, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      this.props.fetchProducts();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var allproducts = this.props.allproducts;
-      var productsReccomeended = allproducts.filter(function (product) {
-        return product.is_reccomended == 1;
-      });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommended"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container recommendedTitle__container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row recommendedTitle__row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-xs-12 recommendedTitle__col"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommendedTitle__inner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
-        className: "recommended__title home__sectionTitle home__sectionTitleAfter"
-      }, "\u041C\u044B \u0440\u0435\u043A\u043E\u043C\u0435\u043D\u0434\u0443\u0435\u043C "))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container recommended__container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row recommended__row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommended__col col-xs-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommended__inner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommended__cats"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "recommended__categoryList"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "recommended__categoryItem"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/",
-        className: "recommended__categoryItemLink"
-      }, "\u0425\u0438\u0442 \u043F\u0440\u043E\u0434\u0430\u0436")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommended__products"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommended__categoryWrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_3___default.a, settings, productsReccomeended.map(function (productData) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_products_ProductSingle__WEBPACK_IMPORTED_MODULE_2__["default"], _extends({
-          key: productData.id
-        }, productData));
-      })))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container recommended__container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row recommended__row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommended__col col-xs-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommended__btnWrap rayBtn__wrap"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/shop",
-        className: "reccomended__btnLink homepage__rayBtn"
-      }, "\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0432\u0441\u0435 \u0442\u043E\u0432\u0430\u0440\u044B"))))));
-    }
-  }]);
-
-  return Recommended;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-var settings = {
-  slidesToScroll: 1,
-  dots: false,
-  arrows: true,
-  prevArrow: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SamplePrevArrow, null),
-  nextArrow: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SampleNextArrow, null),
-  centerMode: false,
-  focusOnSelect: false,
-  autoplay: false,
-  centerPadding: 0,
-  swipe: false,
-  responsive: [{
-    breakpoint: 2400,
-    settings: {
-      slidesToShow: 4
-    }
-  }, {
-    breakpoint: 1199,
-    settings: {
-      slidesToShow: 3
-    }
-  }, {
-    breakpoint: 991,
-    settings: {
-      slidesToShow: 2
-    }
-  }, {
-    breakpoint: 600,
-    settings: {
-      slidesToShow: 1
-    }
-  }]
-};
-
-function SampleNextArrow(props) {
-  var style = props.style,
-      onClick = props.onClick;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    type: "button",
-    "data-role": "none",
-    className: "slick-next slick-arrow",
-    "aria-label": "Next",
-    role: "button",
-    onClick: onClick,
-    style: _objectSpread({}, style, {
-      display: "block"
-    })
-  });
-}
-
-function SamplePrevArrow(props) {
-  var style = props.style,
-      onClick = props.onClick;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    type: "button",
-    "data-role": "none",
-    className: "slick-prev slick-arrow",
-    "aria-label": "Previous",
-    role: "button",
-    onClick: onClick,
-    style: _objectSpread({}, style, {
-      display: "block"
-    })
-  });
-}
-
-function mapStateToProps(state) {
-  return {
-    allproducts: state.products.productsList.products
-  };
-}
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, _actions_products__WEBPACK_IMPORTED_MODULE_4__)(Recommended));
 
 /***/ }),
 
@@ -79871,155 +79767,6 @@ var advants = [{
   descr: 'Отсутствие химических<br /> консервантов, не позволяет<br /> хранить органическую косметику<br /> 3 года.'
 }];
 /* harmony default export */ __webpack_exports__["default"] = (advants);
-
-/***/ }),
-
-/***/ "./resources/js/components/database/all-products-data.js":
-/*!***************************************************************!*\
-  !*** ./resources/js/components/database/all-products-data.js ***!
-  \***************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-var allProductsData = [{
-  img: 'uploads/2018/10/250ml_1_07-600x587.jpg',
-  title: 'Крем для рук и ногтей',
-  exerpt: 'питательный крем 250 мл',
-  descrTitle: 'Крем для рук и ногтей',
-  descrText: 'Крем для рук и ногтей',
-  price: '115',
-  currency: 'грн',
-  id: '941'
-}, {
-  img: 'uploads/2018/08/5-ml_0004-600x587.jpg',
-  title: 'Крем для век',
-  exerpt: 'крем для контура глаз 5 мл',
-  descrTitle: 'Крем для век',
-  descrText: 'Крем для контура глаз Alga Ph снимает отечность и убирает темные круги под глазами. Активные компоненты в его составе обеспечивают необходимую защиту, питание и гидратацию нежной коже вокруг глаз.',
-  price: '350',
-  currency: 'грн',
-  id: '108'
-}, {
-  img: 'uploads/2018/08/50-ml_0005-600x587.jpg',
-  title: 'Питательный крем',
-  exerpt: 'ночной питательный крем 5 мл',
-  descrTitle: 'Питательный крем',
-  descrText: 'Благодаря своим органическим компонентам, ночной питательный крем Alga Ph, обеспечивает коже максимально здоровое природное питание. <br /> Помимо увлажнения он насыщает кожу минералами, витаминами, аминокислотами и протеинами.',
-  price: '735',
-  currency: 'грн',
-  id: '364'
-}, {
-  img: 'uploads/2018/10/180-g_scrub-cream__01-600x587.jpg',
-  title: 'Скраб-крем апельсин',
-  exerpt: 'сахарный крем-скраб 180 г',
-  descrTitle: 'Скраб-крем апельсин',
-  descrText: 'Крем-скраб',
-  price: '75',
-  currency: 'грн',
-  id: '891'
-}, {
-  img: 'uploads/2018/10/180-g_scrub-cream__03-600x587.jpg',
-  title: 'Скраб-крем дыня',
-  exerpt: 'сахарный крем-скраб 180 г',
-  descrTitle: 'Скраб-крем дыня',
-  descrText: 'Крем-скраб',
-  price: '75',
-  currency: 'грн',
-  id: '906'
-}, {
-  img: 'uploads/2018/10/250ml_1_07-600x587.jpg',
-  title: 'Крем для рук и ногтей',
-  exerpt: 'питательный крем 250 мл',
-  descrTitle: 'Крем для рук и ногтей',
-  descrText: 'Крем для рук и ногтей',
-  price: '115',
-  currency: 'грн',
-  id: '941-1'
-}, {
-  img: 'uploads/2018/08/5-ml_0004-600x587.jpg',
-  title: 'Крем для век',
-  exerpt: 'крем для контура глаз 5 мл',
-  descrTitle: 'Крем для век',
-  descrText: 'Крем для контура глаз Alga Ph снимает отечность и убирает темные круги под глазами. Активные компоненты в его составе обеспечивают необходимую защиту, питание и гидратацию нежной коже вокруг глаз.',
-  price: '350',
-  currency: 'грн',
-  id: '108-1'
-}, {
-  img: 'uploads/2018/08/50-ml_0005-600x587.jpg',
-  title: 'Питательный крем',
-  exerpt: 'ночной питательный крем 5 мл',
-  descrTitle: 'Питательный крем',
-  descrText: 'Благодаря своим органическим компонентам, ночной питательный крем Alga Ph, обеспечивает коже максимально здоровое природное питание. <br /> Помимо увлажнения он насыщает кожу минералами, витаминами, аминокислотами и протеинами.',
-  price: '735',
-  currency: 'грн',
-  id: '364-1'
-}, {
-  img: 'uploads/2018/10/180-g_scrub-cream__01-600x587.jpg',
-  title: 'Скраб-крем апельсин',
-  exerpt: 'сахарный крем-скраб 180 г',
-  descrTitle: 'Скраб-крем апельсин',
-  descrText: 'Крем-скраб',
-  price: '75',
-  currency: 'грн',
-  id: '891-1'
-}, {
-  img: 'uploads/2018/10/180-g_scrub-cream__03-600x587.jpg',
-  title: 'Скраб-крем дыня',
-  exerpt: 'сахарный крем-скраб 180 г',
-  descrTitle: 'Скраб-крем дыня',
-  descrText: 'Крем-скраб',
-  price: '75',
-  currency: 'грн',
-  id: '906-1'
-}, {
-  img: 'uploads/2018/10/250ml_1_07-600x587.jpg',
-  title: 'Крем для рук и ногтей',
-  exerpt: 'питательный крем 250 мл',
-  descrTitle: 'Крем для рук и ногтей',
-  descrText: 'Крем для рук и ногтей',
-  price: '115',
-  currency: 'грн',
-  id: '941-2'
-}, {
-  img: 'uploads/2018/08/5-ml_0004-600x587.jpg',
-  title: 'Крем для век',
-  exerpt: 'крем для контура глаз 5 мл',
-  descrTitle: 'Крем для век',
-  descrText: 'Крем для контура глаз Alga Ph снимает отечность и убирает темные круги под глазами. Активные компоненты в его составе обеспечивают необходимую защиту, питание и гидратацию нежной коже вокруг глаз.',
-  price: '350',
-  currency: 'грн',
-  id: '108-2'
-}, {
-  img: 'uploads/2018/08/50-ml_0005-600x587.jpg',
-  title: 'Питательный крем',
-  exerpt: 'ночной питательный крем 5 мл',
-  descrTitle: 'Питательный крем',
-  descrText: 'Благодаря своим органическим компонентам, ночной питательный крем Alga Ph, обеспечивает коже максимально здоровое природное питание. <br /> Помимо увлажнения он насыщает кожу минералами, витаминами, аминокислотами и протеинами.',
-  price: '735',
-  currency: 'грн',
-  id: '364-2'
-}, {
-  img: 'uploads/2018/10/180-g_scrub-cream__01-600x587.jpg',
-  title: 'Скраб-крем апельсин',
-  exerpt: 'сахарный крем-скраб 180 г',
-  descrTitle: 'Скраб-крем апельсин',
-  descrText: 'Крем-скраб',
-  price: '75',
-  currency: 'грн',
-  id: '891-2'
-}, {
-  img: 'uploads/2018/10/180-g_scrub-cream__03-600x587.jpg',
-  title: 'Скраб-крем дыня',
-  exerpt: 'сахарный крем-скраб 180 г',
-  descrTitle: 'Скраб-крем дыня',
-  descrText: 'Крем-скраб',
-  price: '75',
-  currency: 'грн',
-  id: '906-2'
-}];
-/* harmony default export */ __webpack_exports__["default"] = (allProductsData);
 
 /***/ }),
 
@@ -83561,7 +83308,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SliderMain/Slidermain */ "./resources/js/components/SliderMain/Slidermain.jsx");
-/* harmony import */ var _Recommended__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Recommended */ "./resources/js/components/Recommended.jsx");
+/* harmony import */ var _containers_Recommended__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../containers/Recommended */ "./resources/js/containers/Recommended.js");
 /* harmony import */ var _Movietiphome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Movietiphome */ "./resources/js/components/Movietiphome.jsx");
 /* harmony import */ var _howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../howitwork/Howitwork */ "./resources/js/components/howitwork/Howitwork.jsx");
 /* harmony import */ var _advants_Advants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../advants/Advants */ "./resources/js/components/advants/Advants.jsx");
@@ -83604,7 +83351,7 @@ function (_Component) {
   _createClass(HomePage, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Recommended__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Movietiphome__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_advants_Advants__WEBPACK_IMPORTED_MODULE_5__["default"], null));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_Recommended__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Movietiphome__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_advants_Advants__WEBPACK_IMPORTED_MODULE_5__["default"], null));
     }
   }]);
 
@@ -83829,7 +83576,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../products/ProductSingle */ "./resources/js/components/products/ProductSingle.jsx");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/products */ "./resources/js/actions/products.js");
-/* harmony import */ var _database_all_products_data__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../database/all-products-data */ "./resources/js/components/database/all-products-data.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -83877,9 +83623,9 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ShopPage)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_this), "state", {
-      allProductsData: _database_all_products_data__WEBPACK_IMPORTED_MODULE_4__["default"],
-      allProductsDataAxios: []
+    _defineProperty(_assertThisInitialized(_this), "onFilter", function (e) {
+      var filterName = e.target.attributes.filter.nodeValue;
+      dispatch(setVisibilityFilter(filterName));
     });
 
     return _this;
@@ -83887,18 +83633,24 @@ function (_Component) {
 
   _createClass(ShopPage, [{
     key: "componentWillMount",
+
+    /*componentWillMount() {
+        const { setBooks } = this.props;
+        axios.get('/books.json').then(({ data }) => {
+            setBooks(data);
+        });
+    }*/
     value: function componentWillMount() {
-      this.props.fetchProducts(); // const { products } = this.props.products;
-      //
-      //
-      // this.setState({
-      //     allProductsDataAxios: this.products
-      // });
+      this.props.fetchProducts();
+      var setProducts = this.props.setProducts;
+      axios.get('/api/products').then(function (_ref) {
+        var data = _ref.data;
+        setProducts(data);
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      //console.log( 'edwewe', this.state );
       var products = this.props.products.products;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container woocomm__container"
@@ -83940,30 +83692,35 @@ function (_Component) {
         id: "products__categoryList"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "products__categoryItem"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/shop",
-        className: "products__categoryItemLink all__categories active"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        filter: _actions_products__WEBPACK_IMPORTED_MODULE_3__["CategoryFilters"].SHOW_ALL,
+        className: "products__categoryItemLink all__categories active",
+        onClick: this.onFilter
       }, "\u0412\u0435\u0441\u044C \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "products__categoryItem"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/product-category/%d1%81%d0%ba%d1%80%d0%b0%d0%b1%d1%8b/",
-        className: "products__categoryItemLink"
-      }, "\u0421\u043A\u0440\u0430\u0431\u044B ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        filter: _actions_products__WEBPACK_IMPORTED_MODULE_3__["CategoryFilters"].SCRUB,
+        className: "products__categoryItemLink",
+        onClick: this.onFilter
+      }, "\u0421\u043A\u0440\u0430\u0431\u044B")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "products__categoryItem"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/product-category/%d1%85%d0%b8%d1%82-%d0%bf%d1%80%d0%be%d0%b4%d0%b0%d0%b6/",
-        className: "products__categoryItemLink"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        filter: _actions_products__WEBPACK_IMPORTED_MODULE_3__["CategoryFilters"].BESTSELLER,
+        className: "products__categoryItemLink",
+        onClick: this.onFilter
       }, "\u0425\u0438\u0442 \u043F\u0440\u043E\u0434\u0430\u0436")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "products__categoryItem"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/product-category/cosmeticiviso/",
-        className: "products__categoryItemLink"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        filter: _actions_products__WEBPACK_IMPORTED_MODULE_3__["CategoryFilters"].FACE,
+        className: "products__categoryItemLink",
+        onClick: this.onFilter
       }, "\u041A\u043E\u0441\u043C\u0435\u0442\u0438\u043A\u0430 \u0434\u043B\u044F \u043B\u0438\u0446\u0430")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "products__categoryItem"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/product-category/setregalo/",
-        className: "products__categoryItemLink"
-      }, "\u041A\u043E\u0441\u043C\u0435\u0442\u0438\u043A\u0430 \u0434\u043B\u044F \u0442\u0435\u043B\u0430 "))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        filter: _actions_products__WEBPACK_IMPORTED_MODULE_3__["CategoryFilters"].BODY,
+        className: "products__categoryItemLink",
+        onClick: this.onFilter
+      }, "\u041A\u043E\u0441\u043C\u0435\u0442\u0438\u043A\u0430 \u0434\u043B\u044F \u0442\u0435\u043B\u0430"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__content"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__contentHeader"
@@ -84763,6 +84520,278 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/recomended/Recommended.jsx":
+/*!************************************************************!*\
+  !*** ./resources/js/components/recomended/Recommended.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../products/ProductSingle */ "./resources/js/components/products/ProductSingle.jsx");
+/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
+/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _recommendedSliderSettings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./recommendedSliderSettings */ "./resources/js/components/recomended/recommendedSliderSettings.js");
+/* harmony import */ var _components_CatsFilterHome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/CatsFilterHome */ "./resources/js/components/CatsFilterHome.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+var Recommended =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Recommended, _Component);
+
+  function Recommended() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, Recommended);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Recommended)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "handleClick", function (e) {
+      return alert(11);
+    });
+
+    return _this;
+  }
+
+  _createClass(Recommended, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var setProducts = this.props.setProducts;
+      axios.get("/api/products").then(function (response) {
+        setProducts(response.data);
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props$products = this.props.products,
+          productsList = _this$props$products.productsList,
+          categories = _this$props$products.categories,
+          categoriesRelationship = _this$props$products.categoriesRelationship;
+      /*console.log( productsList );
+      console.log( categories );
+      console.log( categoriesRelationship );*/
+
+      var productsReccomeended = productsList && productsList.filter(function (product) {
+        return product.is_reccomended == 1;
+      });
+      var categoriesToShow = categories && categories.filter(function (category) {
+        return category.show_on_homepage == 1;
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "recommended"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container recommendedTitle__container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row recommendedTitle__row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-xs-12 recommendedTitle__col"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "recommendedTitle__inner"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+        className: "recommended__title home__sectionTitle home__sectionTitleAfter"
+      }, "\u041C\u044B \u0440\u0435\u043A\u043E\u043C\u0435\u043D\u0434\u0443\u0435\u043C "))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container recommended__container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row recommended__row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "recommended__col col-xs-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "recommended__inner"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CatsFilterHome__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        categoriesToShow: categoriesToShow
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "recommended__products"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "recommended__categoryWrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _recommendedSliderSettings__WEBPACK_IMPORTED_MODULE_3__["settings"], productsReccomeended && productsReccomeended.map(function (productData) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
+          key: productData.id
+        }, productData));
+      })))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container recommended__container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row recommended__row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "recommended__col col-xs-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "recommended__btnWrap rayBtn__wrap"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "/shop",
+        className: "reccomended__btnLink homepage__rayBtn"
+      }, "\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0432\u0441\u0435 \u0442\u043E\u0432\u0430\u0440\u044B"))))));
+    }
+  }]);
+
+  return Recommended;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Recommended);
+
+/***/ }),
+
+/***/ "./resources/js/components/recomended/recommendedSliderSettings.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/recomended/recommendedSliderSettings.js ***!
+  \*************************************************************************/
+/*! exports provided: settings */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+var settings = {
+  slidesToScroll: 1,
+  dots: false,
+  arrows: true,
+  prevArrow: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SamplePrevArrow, null),
+  nextArrow: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SampleNextArrow, null),
+  centerMode: false,
+  focusOnSelect: false,
+  autoplay: false,
+  centerPadding: 0,
+  swipe: false,
+  responsive: [{
+    breakpoint: 2400,
+    settings: {
+      slidesToShow: 4
+    }
+  }, {
+    breakpoint: 1199,
+    settings: {
+      slidesToShow: 3
+    }
+  }, {
+    breakpoint: 991,
+    settings: {
+      slidesToShow: 2
+    }
+  }, {
+    breakpoint: 600,
+    settings: {
+      slidesToShow: 1
+    }
+  }]
+};
+
+function SampleNextArrow(props) {
+  var style = props.style,
+      onClick = props.onClick;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    type: "button",
+    "data-role": "none",
+    className: "slick-next slick-arrow",
+    "aria-label": "Next",
+    role: "button",
+    onClick: onClick,
+    style: _objectSpread({}, style, {
+      display: "block"
+    })
+  });
+}
+
+function SamplePrevArrow(props) {
+  var style = props.style,
+      onClick = props.onClick;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    type: "button",
+    "data-role": "none",
+    className: "slick-prev slick-arrow",
+    "aria-label": "Previous",
+    role: "button",
+    onClick: onClick,
+    style: _objectSpread({}, style, {
+      display: "block"
+    })
+  });
+}
+
+/***/ }),
+
+/***/ "./resources/js/containers/Recommended.js":
+/*!************************************************!*\
+  !*** ./resources/js/containers/Recommended.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/products */ "./resources/js/actions/products.js");
+/* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/filter */ "./resources/js/actions/filter.js");
+/* harmony import */ var _components_recomended_Recommended__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/recomended/Recommended */ "./resources/js/components/recomended/Recommended.jsx");
+
+
+
+
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var products = _ref.products;
+  return {
+    products: products.items,
+    isReady: products.isReady
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setProducts: function setProducts(products) {
+      return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setProducts"])(products));
+    },
+    setFilter: function setFilter(filter) {
+      return dispatch(Object(_actions_filter__WEBPACK_IMPORTED_MODULE_2__["setFilter"])(filter));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_recomended_Recommended__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+/***/ }),
+
 /***/ "./resources/js/index.jsx":
 /*!********************************!*\
   !*** ./resources/js/index.jsx ***!
@@ -84804,35 +84833,76 @@ react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// export { FETCH_PRODUCTS, FETCH_PRODUCTS_SUCCESS } from '../actions/types';
-var INITIAL_STATE = {};
+var initialState = {
+  items: []
+};
 /* harmony default export */ __webpack_exports__["default"] = (function () {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    INITIAL_STATE: INITIAL_STATE
-  };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case 'FETCH_CART':
+    case 'ADD_TO_CART':
       return _objectSpread({}, state, {
-        productsList: {
-          products: [],
-          error: null,
-          loading: true
-        }
+        items: [].concat(_toConsumableArray(state.items), [action.payload])
       });
 
-    case 'FETCH_CART_SUCCESS':
+    case 'REMOVE_FROM_CART':
       return _objectSpread({}, state, {
-        productsList: {
-          products: action.payload.data,
-          error: null,
-          loading: false
-        }
+        items: state.items.filter(function (o) {
+          return o.id != action.payload;
+        })
+      });
+      break;
+
+    default:
+      return state;
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/reducers/filter.js":
+/*!*****************************************!*\
+  !*** ./resources/js/reducers/filter.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var initialState = {
+  searchQuery: "",
+  filterBy: ""
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case "SET_QUERY":
+      return _objectSpread({}, state, {
+        searchQuery: action.payload
+      });
+
+    case "SET_FILTER":
+      return _objectSpread({}, state, {
+        filterBy: action.payload
       });
 
     default:
@@ -84854,12 +84924,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _products__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./products */ "./resources/js/reducers/products.js");
 /* harmony import */ var _cart__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./cart */ "./resources/js/reducers/cart.js");
+/* harmony import */ var _filter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./filter */ "./resources/js/reducers/filter.js");
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   products: _products__WEBPACK_IMPORTED_MODULE_1__["default"],
-  cart: _cart__WEBPACK_IMPORTED_MODULE_2__["default"]
+  cart: _cart__WEBPACK_IMPORTED_MODULE_2__["default"],
+  filter: _filter__WEBPACK_IMPORTED_MODULE_3__["default"]
 }));
 
 /***/ }),
@@ -84880,58 +84953,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var INITIAL_STATE = {
-  productsList: {
-    products: [],
-    error: null,
-    loading: false
-  },
-  newProduct: {
-    post: null,
-    error: null,
-    loading: false
-  },
-  deletedProduct: {
-    post: null,
-    error: null,
-    loading: false
-  },
-  editProduct: {
-    post: null,
-    error: null,
-    loading: false
-  },
-  activeProduct: {
-    post: null,
-    error: null,
-    loading: false
-  },
-  updateProduct: {
-    post: null,
-    error: null,
-    loading: false
-  }
+  isReady: false,
+  items: []
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCTS"]:
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCTS"]:
       return _objectSpread({}, state, {
-        productsList: {
-          products: [],
-          error: null,
-          loading: true
-        }
+        items: action.payload,
+        isReady: true
       });
 
-    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCTS_SUCCESS"]:
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_IS_READY"]:
       return _objectSpread({}, state, {
-        productsList: {
-          products: action.payload.data,
-          error: null,
-          loading: false
-        }
+        isReady: action.payload
       });
 
     default:
@@ -84957,6 +84995,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux-devtools-extension */ "./node_modules/redux-devtools-extension/index.js");
 /* harmony import */ var redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(redux_devtools_extension__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _reducers__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./reducers */ "./resources/js/reducers/index.js");
+/* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./actions/types */ "./resources/js/actions/types.js");
+
 
 
 
@@ -84985,8 +85025,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use DB;
 use App\Products;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,8 +16,25 @@ class ProductsController extends Controller
      */
     public function index()
     {
+        /*$pages = DB::table('pages')->get();
+
+        $products = DB::table('products')->get();
+
+        return response()->json([
+            'pages' => $pages,
+            'products' => $products,
+        ]);*/
+
+
         $products = Products::all();
-        return response()->json($products);
+        $categories = DB::table('categories')->get();
+        $categoriesRelationship = DB::table('categories_relationship')->get();
+
+        return response()->json([
+            'productsList' => $products,
+            'categories' => $categories,
+            'categoriesRelationship' => $categoriesRelationship,
+        ]);
     }
 
     /**

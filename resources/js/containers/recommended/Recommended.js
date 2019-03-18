@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
-import {setProducts} from '../actions/products';
-import {setFilter} from '../actions/filter';
-import Recommended from '../components/recomended/Recommended';
+import {setProducts} from '../../actions/products';
+import {setFilter} from '../../actions/filter';
+import Recommended from '../../components/recomended/Recommended';
 
 const mapStateToProps = ({ products }) => ({
     products: products.items,

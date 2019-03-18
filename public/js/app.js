@@ -79221,51 +79221,31 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/filter */ "./resources/js/actions/filter.js");
 var _this = undefined;
 
 
 
-
-
 var CatsFilterHome = function CatsFilterHome(_ref) {
-  var categoriesToShow = _ref.categoriesToShow,
+  var categories = _ref.categoriesToShow,
       setFilter = _ref.setFilter,
       filterBy = _ref.filterBy;
-  var categoryFilterBy = filterBy ? filterBy : categoriesToShow && categoriesToShow[0]['category_filter_by'];
-  console.log(categoryFilterBy);
+  var catFilterBy = filterBy ? filterBy : categories && categories[0]['category_filter_by'];
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "recommended__cats"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "recommended__categoryList"
-  }, categoriesToShow && categoriesToShow.map(function (categoryItem, index) {
+  }, categories && categories.map(function (catItem, index) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: 'category-key-' + index,
       className: "recommended__categoryItem"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: 'recommended__categoryItemLink' + (categoryFilterBy === categoryItem['category_filter_by'] ? ' active' : ''),
-      onClick: setFilter.bind(_this, categoryItem['category_filter_by'])
-    }, categoryItem['category_name']));
+      className: 'recommended__categoryItemLink' + (catFilterBy === catItem['category_filter_by'] ? ' active' : ''),
+      onClick: setFilter.bind(_this, catItem['category_filter_by'])
+    }, catItem['category_name']));
   })));
 };
 
-var mapStateToProps = function mapStateToProps(_ref2) {
-  var filter = _ref2.filter;
-  return {
-    filterBy: filter.filterBy
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    setFilter: function setFilter(filter) {
-      return dispatch(Object(_actions_filter__WEBPACK_IMPORTED_MODULE_2__["setFilter"])(filter));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(CatsFilterHome));
+/* harmony default export */ __webpack_exports__["default"] = (CatsFilterHome);
 
 /***/ }),
 
@@ -83308,7 +83288,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SliderMain/Slidermain */ "./resources/js/components/SliderMain/Slidermain.jsx");
-/* harmony import */ var _containers_Recommended__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../containers/Recommended */ "./resources/js/containers/Recommended.js");
+/* harmony import */ var _containers_recommended_Recommended__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../containers/recommended/Recommended */ "./resources/js/containers/recommended/Recommended.js");
 /* harmony import */ var _Movietiphome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Movietiphome */ "./resources/js/components/Movietiphome.jsx");
 /* harmony import */ var _howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../howitwork/Howitwork */ "./resources/js/components/howitwork/Howitwork.jsx");
 /* harmony import */ var _advants_Advants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../advants/Advants */ "./resources/js/components/advants/Advants.jsx");
@@ -83351,7 +83331,7 @@ function (_Component) {
   _createClass(HomePage, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_Recommended__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Movietiphome__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_advants_Advants__WEBPACK_IMPORTED_MODULE_5__["default"], null));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_recommended_Recommended__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Movietiphome__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_advants_Advants__WEBPACK_IMPORTED_MODULE_5__["default"], null));
     }
   }]);
 
@@ -84535,10 +84515,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
 /* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _recommendedSliderSettings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./recommendedSliderSettings */ "./resources/js/components/recomended/recommendedSliderSettings.js");
-/* harmony import */ var _components_CatsFilterHome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/CatsFilterHome */ "./resources/js/components/CatsFilterHome.jsx");
+/* harmony import */ var _containers_CatsFilterHome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../containers/CatsFilterHome */ "./resources/js/containers/CatsFilterHome.js");
+/* harmony import */ var _containers_recommended_RecommendedList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../containers/recommended/RecommendedList */ "./resources/js/containers/recommended/RecommendedList.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -84557,6 +84536,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -84607,13 +84587,8 @@ function (_Component) {
       /*console.log( productsList );
       console.log( categories );
       console.log( categoriesRelationship );*/
+      //const productsReccomeended = productsList && productsList.filter(product => product.is_reccomended == 1);
 
-      var productsReccomeended = productsList && productsList.filter(function (product) {
-        return product.is_reccomended == 1;
-      });
-      var categoriesToShow = categories && categories.filter(function (category) {
-        return category.show_on_homepage == 1;
-      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recommended"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84634,17 +84609,11 @@ function (_Component) {
         className: "recommended__col col-xs-12"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recommended__inner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_CatsFilterHome__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        categoriesToShow: categoriesToShow
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommended__products"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommended__categoryWrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _recommendedSliderSettings__WEBPACK_IMPORTED_MODULE_3__["settings"], productsReccomeended && productsReccomeended.map(function (productData) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
-          key: productData.id
-        }, productData));
-      })))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_CatsFilterHome__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        categories: categories
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_recommended_RecommendedList__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        productsList: productsList
+      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container recommended__container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row recommended__row"
@@ -84663,6 +84632,46 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Recommended);
+
+/***/ }),
+
+/***/ "./resources/js/components/recomended/RecommendedList.jsx":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/recomended/RecommendedList.jsx ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
+/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _recommendedSliderSettings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./recommendedSliderSettings */ "./resources/js/components/recomended/recommendedSliderSettings.js");
+/* harmony import */ var _products_ProductSingle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../products/ProductSingle */ "./resources/js/components/products/ProductSingle.jsx");
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
+
+
+
+
+
+var RecommendedList = function RecommendedList(_ref) {
+  var productsRecommended = _ref.productsRecommended,
+      filterBy = _ref.filterBy;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "recommended__products"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "recommended__categoryWrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_1___default.a, _recommendedSliderSettings__WEBPACK_IMPORTED_MODULE_2__["settings"], productsRecommended && productsRecommended.map(function (productData) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
+      key: productData.id
+    }, productData));
+  }))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (RecommendedList);
 
 /***/ }),
 
@@ -84751,19 +84760,57 @@ function SamplePrevArrow(props) {
 
 /***/ }),
 
-/***/ "./resources/js/containers/Recommended.js":
-/*!************************************************!*\
-  !*** ./resources/js/containers/Recommended.js ***!
-  \************************************************/
+/***/ "./resources/js/containers/CatsFilterHome.js":
+/*!***************************************************!*\
+  !*** ./resources/js/containers/CatsFilterHome.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/filter */ "./resources/js/actions/filter.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _components_CatsFilterHome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/CatsFilterHome */ "./resources/js/components/CatsFilterHome.jsx");
+
+
+
+
+var mapStateToProps = function mapStateToProps(_ref, ownProps) {
+  var filter = _ref.filter;
+  return {
+    filterBy: filter.filterBy,
+    categoriesToShow: ownProps.categories && ownProps.categories.filter(function (category) {
+      return category.show_on_homepage == 1;
+    })
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setFilter: function setFilter(filter) {
+      return dispatch(Object(_actions_filter__WEBPACK_IMPORTED_MODULE_0__["setFilter"])(filter));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_components_CatsFilterHome__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./resources/js/containers/recommended/Recommended.js":
+/*!************************************************************!*\
+  !*** ./resources/js/containers/recommended/Recommended.js ***!
+  \************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/products */ "./resources/js/actions/products.js");
-/* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/filter */ "./resources/js/actions/filter.js");
-/* harmony import */ var _components_recomended_Recommended__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/recomended/Recommended */ "./resources/js/components/recomended/Recommended.jsx");
+/* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/products */ "./resources/js/actions/products.js");
+/* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/filter */ "./resources/js/actions/filter.js");
+/* harmony import */ var _components_recomended_Recommended__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../components/recomended/Recommended */ "./resources/js/components/recomended/Recommended.jsx");
 
 
 
@@ -84789,6 +84836,38 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_recomended_Recommended__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+/***/ }),
+
+/***/ "./resources/js/containers/recommended/RecommendedList.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/containers/recommended/RecommendedList.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _components_recomended_RecommendedList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/recomended/RecommendedList */ "./resources/js/components/recomended/RecommendedList.jsx");
+
+
+
+var mapStateToProps = function mapStateToProps(_ref, ownProps) {
+  var filter = _ref.filter;
+  return {
+    filterBy: filter.filterBy,
+    productsRecommended: ownProps.productsList && ownProps.productsList.filter(function (product) {
+      return product.is_reccomended == 1;
+    })
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_recomended_RecommendedList__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 

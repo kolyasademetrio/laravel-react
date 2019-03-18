@@ -1,24 +1,20 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {setFilter} from '../actions/filter';
 
-const CatsFilterHome = ({categoriesToShow, setFilter, filterBy}) => {
-    
-    const categoryFilterBy = filterBy ? filterBy : (categoriesToShow && categoriesToShow[0]['category_filter_by']);
+const CatsFilterHome = ({categoriesToShow: categories, setFilter, filterBy}) => {
 
-    console.log( categoryFilterBy );
+    const catFilterBy = filterBy ? filterBy : (categories && categories[0]['category_filter_by']);
     
     return (
         <div className="recommended__cats">
             <ul className="recommended__categoryList">
                 {
-                    categoriesToShow && categoriesToShow.map((categoryItem, index) => (
+                    categories && categories.map((catItem, index) => (
                         <li key={'category-key-' + index} className="recommended__categoryItem">
                             <span
-                                className={'recommended__categoryItemLink' + (categoryFilterBy === categoryItem['category_filter_by'] ? ' active' : '')}
-                                onClick={setFilter.bind(this, categoryItem['category_filter_by'])}
+                                className={'recommended__categoryItemLink' + (catFilterBy === catItem['category_filter_by'] ? ' active' : '')}
+                                onClick={setFilter.bind(this, catItem['category_filter_by'])}
                             >
-                                {categoryItem['category_name']}
+                                { catItem['category_name'] }
                             </span>
                         </li>
                     ))
@@ -26,15 +22,6 @@ const CatsFilterHome = ({categoriesToShow, setFilter, filterBy}) => {
             </ul>
         </div>
     );
-
 };
 
-const mapStateToProps = ({filter}) => ({
-    filterBy: filter.filterBy,
-});
-
-const mapDispatchToProps = dispatch => ({
-    setFilter: filter => dispatch(setFilter(filter)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(CatsFilterHome);
+export default CatsFilterHome;

@@ -4,7 +4,8 @@ import ProductSingle from '../products/ProductSingle';
 import Slider from 'react-slick';
 import {settings} from './recommendedSliderSettings';
 
-import CatsFilterHome from '../../components/CatsFilterHome';
+import CatsFilterHome from '../../containers/CatsFilterHome';
+import RecommendedList from '../../containers/recommended/RecommendedList';
 
 class Recommended extends Component {
     componentWillMount(){
@@ -24,8 +25,8 @@ class Recommended extends Component {
         console.log( categories );
         console.log( categoriesRelationship );*/
 
-        const productsReccomeended = productsList && productsList.filter(product => product.is_reccomended == 1);
-        const categoriesToShow = categories && categories.filter(category => category.show_on_homepage == 1);
+        //const productsReccomeended = productsList && productsList.filter(product => product.is_reccomended == 1);
+
 
         return (
             <div className="recommended">
@@ -45,9 +46,11 @@ class Recommended extends Component {
                         <div className="recommended__col col-xs-12">
                             <div className="recommended__inner">
 
-                                <CatsFilterHome categoriesToShow={categoriesToShow}/>
+                                <CatsFilterHome categories={categories}/>
 
-                                <div className="recommended__products">
+                                <RecommendedList productsList={productsList} />
+
+                                {/*<div className="recommended__products">
                                     <div className="recommended__categoryWrapper">
                                         <Slider {...settings}>
                                         {
@@ -57,7 +60,7 @@ class Recommended extends Component {
                                         }
                                         </Slider>
                                     </div>
-                                </div>
+                                </div>*/}
                             </div>
                         </div>
                     </div>

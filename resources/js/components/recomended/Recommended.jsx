@@ -1,8 +1,4 @@
 import React, {Component} from 'react';
-import ProductSingle from '../products/ProductSingle';
-
-import Slider from 'react-slick';
-import {settings} from './recommendedSliderSettings';
 
 import CatsFilterHome from '../../containers/CatsFilterHome';
 import RecommendedList from '../../containers/recommended/RecommendedList';
@@ -21,12 +17,9 @@ class Recommended extends Component {
     render(){
         const {productsList, categories, categoriesRelationship} = this.props.products;
 
-        /*console.log( productsList );
+        console.log( productsList );
         console.log( categories );
-        console.log( categoriesRelationship );*/
-
-        //const productsReccomeended = productsList && productsList.filter(product => product.is_reccomended == 1);
-
+        console.log( categoriesRelationship );
 
         return (
             <div className="recommended">
@@ -48,19 +41,11 @@ class Recommended extends Component {
 
                                 <CatsFilterHome categories={categories}/>
 
-                                <RecommendedList productsList={productsList} />
+                                <RecommendedList productsList={productsList}
+                                                 categories={categories}
+                                                 categoriesRelationship={categoriesRelationship}
+                                />
 
-                                {/*<div className="recommended__products">
-                                    <div className="recommended__categoryWrapper">
-                                        <Slider {...settings}>
-                                        {
-                                            productsReccomeended && productsReccomeended.map( productData => (
-                                                <ProductSingle key={productData.id} {...productData} />
-                                            ))
-                                        }
-                                        </Slider>
-                                    </div>
-                                </div>*/}
                             </div>
                         </div>
                     </div>

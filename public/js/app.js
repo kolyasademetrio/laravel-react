@@ -84511,12 +84511,8 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../products/ProductSingle */ "./resources/js/components/products/ProductSingle.jsx");
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
-/* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _recommendedSliderSettings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./recommendedSliderSettings */ "./resources/js/components/recomended/recommendedSliderSettings.js");
-/* harmony import */ var _containers_CatsFilterHome__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../containers/CatsFilterHome */ "./resources/js/containers/CatsFilterHome.js");
-/* harmony import */ var _containers_recommended_RecommendedList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../containers/recommended/RecommendedList */ "./resources/js/containers/recommended/RecommendedList.js");
+/* harmony import */ var _containers_CatsFilterHome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../containers/CatsFilterHome */ "./resources/js/containers/CatsFilterHome.js");
+/* harmony import */ var _containers_recommended_RecommendedList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../containers/recommended/RecommendedList */ "./resources/js/containers/recommended/RecommendedList.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84536,9 +84532,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
-
 
 
 
@@ -84584,11 +84577,9 @@ function (_Component) {
           productsList = _this$props$products.productsList,
           categories = _this$props$products.categories,
           categoriesRelationship = _this$props$products.categoriesRelationship;
-      /*console.log( productsList );
-      console.log( categories );
-      console.log( categoriesRelationship );*/
-      //const productsReccomeended = productsList && productsList.filter(product => product.is_reccomended == 1);
-
+      console.log(productsList);
+      console.log(categories);
+      console.log(categoriesRelationship);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recommended"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84609,10 +84600,12 @@ function (_Component) {
         className: "recommended__col col-xs-12"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recommended__inner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_CatsFilterHome__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_CatsFilterHome__WEBPACK_IMPORTED_MODULE_1__["default"], {
         categories: categories
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_recommended_RecommendedList__WEBPACK_IMPORTED_MODULE_5__["default"], {
-        productsList: productsList
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_recommended_RecommendedList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        productsList: productsList,
+        categories: categories,
+        categoriesRelationship: categoriesRelationship
       }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container recommended__container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84659,7 +84652,10 @@ function _extends() { _extends = Object.assign || function (target) { for (var i
 
 var RecommendedList = function RecommendedList(_ref) {
   var productsRecommended = _ref.productsRecommended,
+      categoriesRelationship = _ref.categoriesRelationship,
+      categories = _ref.categories,
       filterBy = _ref.filterBy;
+  console.log(categoriesRelationship);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "recommended__products"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84852,6 +84848,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_recomended_RecommendedList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/recomended/RecommendedList */ "./resources/js/components/recomended/RecommendedList.jsx");
 
 
+/*const getVisibleProducts = (products, filterBy) => {
+    switch(filterBy){
+        case
+    }
+}*/
 
 var mapStateToProps = function mapStateToProps(_ref, ownProps) {
   var filter = _ref.filter;
@@ -84860,6 +84861,9 @@ var mapStateToProps = function mapStateToProps(_ref, ownProps) {
     productsRecommended: ownProps.productsList && ownProps.productsList.filter(function (product) {
       return product.is_reccomended == 1;
     })
+    /*categories: ownProps.categories,
+    categoriesRelationship: ownProps.categoriesRelationship,*/
+
   };
 };
 

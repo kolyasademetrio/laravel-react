@@ -3,7 +3,10 @@ import Slider from 'react-slick';
 import {settings} from "./recommendedSliderSettings";
 import ProductSingle from '../products/ProductSingle';
 
-const RecommendedList = ({productsRecommended, filterBy}) => {
+const RecommendedList = ({productsRecommended, categoriesRelationship, categories, filterBy}) => {
+    
+    console.log( categoriesRelationship );
+
     return (
         <div className="recommended__products">
             <div className="recommended__categoryWrapper">

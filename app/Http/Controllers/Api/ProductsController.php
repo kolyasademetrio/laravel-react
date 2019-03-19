@@ -16,19 +16,19 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        /*$pages = DB::table('pages')->get();
-
-        $products = DB::table('products')->get();
-
-        return response()->json([
-            'pages' => $pages,
-            'products' => $products,
-        ]);*/
-
-
         $products = Products::all();
         $categories = DB::table('categories')->get();
-        $categoriesRelationship = DB::table('categories_relationship')->get();
+        //$categoriesRelationship = DB::table('categories_relationship')->get();
+        $categoriesRelationship = DB::select("SELECT
+                                            categories.category_filter_by AS 'catFilterBy',
+                                            products.id AS 'productID'
+                                          FROM
+                                            categories, products, categories_relationship
+                                          WHERE
+                                            categories.category_id = categories_relationship.category_id
+                                          AND
+                                            products.id = categories_relationship.object_id"
+                                        );
 
         return response()->json([
             'productsList' => $products,

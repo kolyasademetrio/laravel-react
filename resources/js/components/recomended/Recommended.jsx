@@ -15,11 +15,8 @@ class Recommended extends Component {
     handleClick = (e) => alert(11);
 
     render(){
-        const {productsList, categories, categoriesRelationship} = this.props.products;
-
-        console.log( productsList );
-        console.log( categories );
-        console.log( categoriesRelationship );
+        const {productsList, categories} = this.props.products;
+        const {categoriesRelationship} = this.props;
 
         return (
             <div className="recommended">

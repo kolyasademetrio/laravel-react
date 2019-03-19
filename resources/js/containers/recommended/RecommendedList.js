@@ -1,21 +1,30 @@
 import {connect} from "react-redux";
 import RecommendedList from '../../components/recomended/RecommendedList';
 
-/*const getVisibleProducts = (products, filterBy) => {
-    switch(filterBy){
-        case
+const getVisibleProducts = (productsRecommended, filterBy, catsRelation, categories) => {
+
+    const catFilterBy = filterBy ? filterBy : (categories && categories[0]['category_filter_by']);
+
+    const productIDs = catsRelation[catFilterBy];
+
+    return productsRecommended && productsRecommended.filter(item => productIDs.includes(item.id));
+}
+
+const mapStateToProps = ({filter}, ownProps) => {
+
+    const productsRecommended = ownProps.productsList && ownProps.productsList.filter(product => product.is_reccomended == 1);
+    
+    return {
+        filterBy: filter.filterBy,
+        productsRecommended: getVisibleProducts(
+            productsRecommended,
+            filter.filterBy,
+            ownProps.categoriesRelationship,
+            ownProps.categories
+        ),
+        /*categories: ownProps.categories,
+        categoriesRelationship: ownProps.categoriesRelationship,*/
     }
-}*/
+};
 
-const mapStateToProps = ({filter}, ownProps) => ({
-    filterBy: filter.filterBy,
-    productsRecommended: ownProps.productsList && ownProps.productsList.filter(product => product.is_reccomended == 1),
-    /*categories: ownProps.categories,
-    categoriesRelationship: ownProps.categoriesRelationship,*/
-});
-
-const mapDispatchToProps = (dispatch) => ({
-
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(RecommendedList);
+export default connect(mapStateToProps)(RecommendedList);

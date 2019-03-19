@@ -84575,11 +84575,8 @@ function (_Component) {
     value: function render() {
       var _this$props$products = this.props.products,
           productsList = _this$props$products.productsList,
-          categories = _this$props$products.categories,
-          categoriesRelationship = _this$props$products.categoriesRelationship;
-      console.log(productsList);
-      console.log(categories);
-      console.log(categoriesRelationship);
+          categories = _this$props$products.categories;
+      var categoriesRelationship = this.props.categoriesRelationship;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recommended"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84655,7 +84652,6 @@ var RecommendedList = function RecommendedList(_ref) {
       categoriesRelationship = _ref.categoriesRelationship,
       categories = _ref.categories,
       filterBy = _ref.filterBy;
-  console.log(categoriesRelationship);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "recommended__products"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84812,10 +84808,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+function getCategoryProductRelations(categoriesRelationship) {
+  var newRelations = [];
+
+  if (categoriesRelationship !== undefined) {
+    for (var i = 0; i < categoriesRelationship.length; i++) {
+      var o = categoriesRelationship[i];
+      if (!newRelations[o.catFilterBy]) newRelations[o.catFilterBy] = [];
+      newRelations[o.catFilterBy].push(o.productID);
+    }
+  }
+
+  return newRelations;
+}
+
 var mapStateToProps = function mapStateToProps(_ref) {
   var products = _ref.products;
   return {
     products: products.items,
+    categoriesRelationship: getCategoryProductRelations(products.items.categoriesRelationship),
     isReady: products.isReady
   };
 };
@@ -84848,30 +84859,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_recomended_RecommendedList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/recomended/RecommendedList */ "./resources/js/components/recomended/RecommendedList.jsx");
 
 
-/*const getVisibleProducts = (products, filterBy) => {
-    switch(filterBy){
-        case
-    }
-}*/
+
+var getVisibleProducts = function getVisibleProducts(productsRecommended, filterBy, catsRelation, categories) {
+  var catFilterBy = filterBy ? filterBy : categories && categories[0]['category_filter_by'];
+  var productIDs = catsRelation[catFilterBy];
+  return productsRecommended && productsRecommended.filter(function (item) {
+    return productIDs.includes(item.id);
+  });
+};
 
 var mapStateToProps = function mapStateToProps(_ref, ownProps) {
   var filter = _ref.filter;
+  var productsRecommended = ownProps.productsList && ownProps.productsList.filter(function (product) {
+    return product.is_reccomended == 1;
+  });
   return {
     filterBy: filter.filterBy,
-    productsRecommended: ownProps.productsList && ownProps.productsList.filter(function (product) {
-      return product.is_reccomended == 1;
-    })
+    productsRecommended: getVisibleProducts(productsRecommended, filter.filterBy, ownProps.categoriesRelationship, ownProps.categories)
     /*categories: ownProps.categories,
     categoriesRelationship: ownProps.categoriesRelationship,*/
 
   };
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_recomended_RecommendedList__WEBPACK_IMPORTED_MODULE_1__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps)(_components_recomended_RecommendedList__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 

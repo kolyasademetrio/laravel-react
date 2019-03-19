@@ -18,6 +18,8 @@ class Recommended extends Component {
         const {productsList, categories} = this.props.products;
         const {categoriesRelationship} = this.props;
 
+        console.log( categoriesRelationship );
+
         return (
             <div className="recommended">
                 <div className="container recommendedTitle__container">

@@ -6,7 +6,7 @@ import CatsFilterHome from '../components/CatsFilterHome';
 
 const mapStateToProps = ({filter}, ownProps) => ({
     filterBy: filter.filterBy,
-    categoriesToShow: ownProps.categories && ownProps.categories.filter(category => category.show_on_homepage == 1),
+    categoriesToShow: ownProps.categories.filter(category => category.show_on_homepage == 1),
 });
 
 const mapDispatchToProps = dispatch => ({

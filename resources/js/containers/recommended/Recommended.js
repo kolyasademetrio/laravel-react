@@ -5,11 +5,7 @@ import Recommended from '../../components/recomended/Recommended';
 
 function getCategoryProductRelations(categoriesRelationship){
     let newRelations = [];
-
     if ( categoriesRelationship !== undefined ) {
-
-        console.log(categoriesRelationship);
-
         for(let i=0; i<categoriesRelationship.length; i++) {
             let o = categoriesRelationship[i];
             if (!newRelations[o.catFilterBy]) newRelations[o.catFilterBy] = [];
@@ -25,9 +21,16 @@ const mapStateToProps = ({ products }) => ({
     isReady: products.isReady,
 });
 
-const mapDispatchToProps = dispatch => ({
+/*const mapDispatchToProps = dispatch => ({
     setProducts: products => dispatch(setProducts(products)),
     setFilter:   filter   => dispatch(setFilter(filter)),
-});
+});*/
+
+/* если параметры совпадают то можно сократить до такого вида */
+/* setProducts: PRODUCTS => dispatch(setProducts(PRODUCTS)), */
+const mapDispatchToProps = {
+    setProducts,
+    setFilter,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Recommended);

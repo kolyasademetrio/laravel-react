@@ -79000,33 +79000,15 @@ var setFilter = function setFilter(filter) {
 /*!******************************************!*\
   !*** ./resources/js/actions/products.js ***!
   \******************************************/
-/*! exports provided: fetchProducts, fetchProductsSuccess, setProducts, CategoryFilters */
+/*! exports provided: setProducts, CategoryFilters */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProducts", function() { return fetchProducts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchProductsSuccess", function() { return fetchProductsSuccess; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProducts", function() { return setProducts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CategoryFilters", function() { return CategoryFilters; });
 /* harmony import */ var _types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./types */ "./resources/js/actions/types.js");
 
-var fetchProducts = function fetchProducts() {
-  return function (dispatch) {
-    dispatch({
-      type: _types__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCTS"]
-    });
-    axios.get("/api/products").then(function (response) {
-      dispatch(fetchProductsSuccess(response));
-    });
-  };
-};
-var fetchProductsSuccess = function fetchProductsSuccess(products) {
-  return {
-    type: _types__WEBPACK_IMPORTED_MODULE_0__["FETCH_PRODUCTS_SUCCESS"],
-    payload: products
-  };
-};
 var setProducts = function setProducts(products) {
   return {
     type: 'SET_PRODUCTS',
@@ -79229,19 +79211,19 @@ var CatsFilterHome = function CatsFilterHome(_ref) {
   var categories = _ref.categoriesToShow,
       setFilter = _ref.setFilter,
       filterBy = _ref.filterBy;
-  var catFilterBy = filterBy ? filterBy : categories && categories[0]['category_filter_by'];
+  var catFilterBy = filterBy ? filterBy : categories && categories[0].category_filter_by;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "recommended__cats"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "recommended__categoryList"
-  }, categories && categories.map(function (catItem, index) {
+  }, categories.map(function (catItem, index) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: 'category-key-' + index,
       className: "recommended__categoryItem"
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: 'recommended__categoryItemLink' + (catFilterBy === catItem['category_filter_by'] ? ' active' : ''),
-      onClick: setFilter.bind(_this, catItem['category_filter_by'])
-    }, catItem['category_name']));
+      className: 'recommended__categoryItemLink' + (catFilterBy === catItem.category_filter_by ? ' active' : ''),
+      onClick: setFilter.bind(_this, catItem.category_filter_by)
+    }, catItem.category_name));
   })));
 };
 
@@ -84563,8 +84545,8 @@ function (_Component) {
   }
 
   _createClass(Recommended, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
+    key: "componentDidMount",
+    value: function componentDidMount() {
       var setProducts = this.props.setProducts;
       axios.get("/api/products").then(function (response) {
         setProducts(response.data);
@@ -84576,8 +84558,9 @@ function (_Component) {
       var _this$props$products = this.props.products,
           productsList = _this$props$products.productsList,
           categories = _this$props$products.categories;
-      var categoriesRelationship = this.props.categoriesRelationship;
-      console.log(categoriesRelationship);
+      var _this$props = this.props,
+          categoriesRelationship = _this$props.categoriesRelationship,
+          isReady = _this$props.isReady;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recommended"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84598,9 +84581,9 @@ function (_Component) {
         className: "recommended__col col-xs-12"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "recommended__inner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_CatsFilterHome__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, isReady && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_CatsFilterHome__WEBPACK_IMPORTED_MODULE_1__["default"], {
         categories: categories
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_recommended_RecommendedList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }), isReady && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_recommended_RecommendedList__WEBPACK_IMPORTED_MODULE_2__["default"], {
         productsList: productsList,
         categories: categories,
         categoriesRelationship: categoriesRelationship
@@ -84641,99 +84624,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _recommendedSliderSettings__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./recommendedSliderSettings */ "./resources/js/components/recomended/recommendedSliderSettings.js");
 /* harmony import */ var _products_ProductSingle__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../products/ProductSingle */ "./resources/js/components/products/ProductSingle.jsx");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
 
 
-/*const RecommendedList = ({productsRecommended, categoriesRelationship, categories, filterBy}) => {
-    return (
-        <div className="recommended__products">
-            <Slider {...settings} className={'recommended__categoryWrapper active'}>
-                {
-                    productsRecommended && productsRecommended.map(productData => (
-                        <ProductSingle key={productData.id} {...productData} />
-                    ))
-                }
-            </Slider>
-        </div>
-    );
-};*/
-
-var RecommendedList =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(RecommendedList, _Component);
-
-  function RecommendedList(state) {
-    var _this;
-
-    _classCallCheck(this, RecommendedList);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(RecommendedList).call(this, state));
-
-    _this.setState({
-      showSlider: _this.setSliderVisibility(_this.props.productsRecommended && _this.props.productsRecommended.length, window.innerWidth)
-    });
-
-    return _this;
-  }
-
-  _createClass(RecommendedList, [{
-    key: "setSliderVisibility",
-    value: function setSliderVisibility(childQty, windowWidth) {
-      if (childQty > 4 && windowWidth > 1199) {
-        return true;
-      } else if (childQty > 3 && windowWidth <= 1199) {
-        return true;
-      } else if (childQty > 2 && windowWidth <= 991) {
-        return true;
-      } else if (childQty > 1 && windowWidth <= 500) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "recommended__products"
-      }, this.state.showSlider ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_1___default.a, _extends({}, _recommendedSliderSettings__WEBPACK_IMPORTED_MODULE_2__["settings"], {
-        className: 'recommended__categoryWrapper active'
-      }), this.props.productsRecommended && this.props.productsRecommended.map(function (productData) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
-          key: productData.id
-        }, productData));
-      })) : this.props.productsRecommended && this.props.productsRecommended.map(function (productData) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
-          key: productData.id
-        }, productData));
-      }));
-    }
-  }]);
-
-  return RecommendedList;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+var RecommendedList = function RecommendedList(_ref) {
+  var productsRecommended = _ref.productsRecommended;
+  var showSlider = Object(_recommendedSliderSettings__WEBPACK_IMPORTED_MODULE_2__["setSliderVisibility"])(productsRecommended.length, window.innerWidth);
+  var productsRecommendedList = productsRecommended.map(function (productData) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
+      key: productData.id
+    }, productData));
+  });
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "recommended__products"
+  }, showSlider ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_1___default.a, _extends({}, _recommendedSliderSettings__WEBPACK_IMPORTED_MODULE_2__["settings"], {
+    className: 'recommended__categoryWrapper active'
+  }), productsRecommendedList) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "recommended__categoryWrapper active no_slider"
+  }, productsRecommendedList));
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (RecommendedList);
 
@@ -84743,11 +84656,12 @@ function (_Component) {
 /*!*************************************************************************!*\
   !*** ./resources/js/components/recomended/recommendedSliderSettings.js ***!
   \*************************************************************************/
-/*! exports provided: settings */
+/*! exports provided: setSliderVisibility, settings */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSliderVisibility", function() { return setSliderVisibility; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "settings", function() { return settings; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
@@ -84756,6 +84670,19 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
+var setSliderVisibility = function setSliderVisibility(childQty, windowWidth) {
+  if (childQty > 4 && windowWidth > 1199) {
+    return true;
+  } else if (childQty > 3 && windowWidth <= 1199) {
+    return true;
+  } else if (childQty > 2 && windowWidth <= 991) {
+    return true;
+  } else if (childQty > 1 && windowWidth <= 500) {
+    return true;
+  } else {
+    return false;
+  }
+};
 var settings = {
   slidesToScroll: 1,
   dots: false,
@@ -84844,7 +84771,7 @@ var mapStateToProps = function mapStateToProps(_ref, ownProps) {
   var filter = _ref.filter;
   return {
     filterBy: filter.filterBy,
-    categoriesToShow: ownProps.categories && ownProps.categories.filter(function (category) {
+    categoriesToShow: ownProps.categories.filter(function (category) {
       return category.show_on_homepage == 1;
     })
   };
@@ -84884,8 +84811,6 @@ function getCategoryProductRelations(categoriesRelationship) {
   var newRelations = [];
 
   if (categoriesRelationship !== undefined) {
-    console.log(categoriesRelationship);
-
     for (var i = 0; i < categoriesRelationship.length; i++) {
       var o = categoriesRelationship[i];
       if (!newRelations[o.catFilterBy]) newRelations[o.catFilterBy] = [];
@@ -84904,18 +84829,20 @@ var mapStateToProps = function mapStateToProps(_ref) {
     isReady: products.isReady
   };
 };
+/*const mapDispatchToProps = dispatch => ({
+    setProducts: products => dispatch(setProducts(products)),
+    setFilter:   filter   => dispatch(setFilter(filter)),
+});*/
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    setProducts: function setProducts(products) {
-      return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setProducts"])(products));
-    },
-    setFilter: function setFilter(filter) {
-      return dispatch(Object(_actions_filter__WEBPACK_IMPORTED_MODULE_2__["setFilter"])(filter));
-    }
-  };
+/* если параметры совпадают то можно сократить до такого вида */
+
+/* setProducts: PRODUCTS => dispatch(setProducts(PRODUCTS)), */
+
+
+var mapDispatchToProps = {
+  setProducts: _actions_products__WEBPACK_IMPORTED_MODULE_1__["setProducts"],
+  setFilter: _actions_filter__WEBPACK_IMPORTED_MODULE_2__["setFilter"]
 };
-
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_recomended_Recommended__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
@@ -84935,16 +84862,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var getVisibleProducts = function getVisibleProducts(productsRecommended, filterBy, catsRelation, categories) {
-  var catFilterBy = filterBy ? filterBy : categories && categories[0]['category_filter_by'];
+  var catFilterBy = filterBy ? filterBy : categories[0].category_filter_by;
   var productIDs = catsRelation[catFilterBy];
-  return productsRecommended && productsRecommended.filter(function (item) {
+  return productsRecommended.filter(function (item) {
     return productIDs.includes(item.id);
   });
 };
 
 var mapStateToProps = function mapStateToProps(_ref, ownProps) {
   var filter = _ref.filter;
-  var productsRecommended = ownProps.productsList && ownProps.productsList.filter(function (product) {
+  var productsRecommended = ownProps.productsList.filter(function (product) {
     return product.is_reccomended == 1;
   });
   return {

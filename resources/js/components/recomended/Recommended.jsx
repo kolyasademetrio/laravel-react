@@ -4,7 +4,7 @@ import CatsFilterHome from '../../containers/CatsFilterHome';
 import RecommendedList from '../../containers/recommended/RecommendedList';
 
 class Recommended extends Component {
-    componentWillMount(){
+    componentDidMount(){
         const { setProducts } = this.props;
         axios.get(`/api/products`)
             .then(response => {
@@ -16,9 +16,7 @@ class Recommended extends Component {
 
     render(){
         const {productsList, categories} = this.props.products;
-        const {categoriesRelationship} = this.props;
-
-        console.log( categoriesRelationship );
+        const {categoriesRelationship, isReady} = this.props;
 
         return (
             <div className="recommended">
@@ -37,14 +35,15 @@ class Recommended extends Component {
                     <div className="row recommended__row">
                         <div className="recommended__col col-xs-12">
                             <div className="recommended__inner">
+                                { isReady &&  <CatsFilterHome categories={categories}/> }
 
-                                <CatsFilterHome categories={categories}/>
-
-                                <RecommendedList productsList={productsList}
-                                                 categories={categories}
-                                                 categoriesRelationship={categoriesRelationship}
-                                />
-
+                                {
+                                    isReady && <RecommendedList
+                                                    productsList={productsList}
+                                                    categories={categories}
+                                                    categoriesRelationship={categoriesRelationship}
+                                                />
+                                }
                             </div>
                         </div>
                     </div>

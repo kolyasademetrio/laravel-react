@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ProductSingle from '../products/ProductSingle';
 import CatsFilterShop from '../../containers/CatsFilterShop';
+import ProductsFilterShop from '../../containers/ProductsFilterShop';
 
 class ShopPage extends Component {
 
@@ -41,20 +42,10 @@ class ShopPage extends Component {
                                 <div className="products__content">
                                     <div className="products__contentHeader">
                                         <div className="products__contentHeaderTitle">Весь ассортимент</div>
-                                        <div className="products__contentHeaderFilter">
-                                            <span className="products__contentHeaderFilterText">Сортировать по: Цене</span>
-                                            <span className="products__contentHeaderFilterLinks">
-                                                <ul name="orderby" className="orderby">
-                                                    <li>
-                                                        <a href="/shop/?orderby=price"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="/shop/?orderby=price-desc"></a>
-                                                    </li>
-                                                </ul>
-                                            </span>
-                                        </div>
+
+                                        <ProductsFilterShop />
                                     </div>
+
                                     <div className="products__list">
                                         {isReady && (
                                             productsList.length ? (
@@ -64,8 +55,8 @@ class ShopPage extends Component {
                                                 <div className="products__list-empty">В этой категории товаров нет</div>
                                             )
                                         )}
-
                                     </div>
+
                                     <nav className="woocommerce-pagination">
                                         <ul className="page-numbers">
                                             <li>

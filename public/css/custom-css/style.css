@@ -3058,20 +3058,21 @@ form.checkout.woocommerce-checkout .blockUI.blockOverlay:before {
     margin-right: 0;
 }
 
-.products__contentHeaderFilterLinks ul li a {
+.products__contentHeaderFilterLinks ul li .product__filter_link {
     width: 23px;
     height: 26px;
     display: block;
     border: 1px solid #e1e1e1;
+    cursor: pointer;
 }
 
-.products__contentHeaderFilterLinks ul li:first-child a {
+.products__contentHeaderFilterLinks ul li:first-child .product__filter_link {
     background: url(../../images/myicons/filter-up-arrow.png) no-repeat center center;
     -webkit-background-size: 13px 20px;
     background-size: 13px 20px;
 }
 
-.products__contentHeaderFilterLinks ul li:last-child a {
+.products__contentHeaderFilterLinks ul li:last-child .product__filter_link {
     background: url(../../images/myicons/filter-down-arrow.png) no-repeat center center;
     -webkit-background-size: 13px 20px;
     background-size: 13px 20px;

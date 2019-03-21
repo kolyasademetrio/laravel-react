@@ -9,7 +9,7 @@ import store from './store';
 ReactDOM.render((
     <Provider store={store}>
         <Router>
-            <Route path="/" component={Main} />
+            <Main />
         </Router>
     </Provider>
 ), document.getElementById('root'));

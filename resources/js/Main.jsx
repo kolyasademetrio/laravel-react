@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-//import { connect } from 'react-redux';
 
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';

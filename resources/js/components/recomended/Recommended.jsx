@@ -1,22 +1,20 @@
 import React, {Component} from 'react';
+import {Link, NavLink} from 'react-router-dom';
 
 import CatsFilterHome from '../../containers/CatsFilterHome';
 import RecommendedList from '../../containers/recommended/RecommendedList';
 
 class Recommended extends Component {
     componentDidMount(){
-        const { setProducts } = this.props;
+        const {setProducts} = this.props;
         axios.get(`/api/products`)
             .then(response => {
                 setProducts(response.data);
             });
     }
 
-    handleClick = (e) => alert(11);
-
     render(){
-        const {productsList, categories} = this.props.products;
-        const {categoriesRelationship, isReady} = this.props;
+        const {productsList, categories, categoriesRelationship, isReady} = this.props;
 
         return (
             <div className="recommended">
@@ -35,15 +33,15 @@ class Recommended extends Component {
                     <div className="row recommended__row">
                         <div className="recommended__col col-xs-12">
                             <div className="recommended__inner">
-                                { isReady &&  <CatsFilterHome categories={categories}/> }
+                                {isReady &&  <CatsFilterHome categories={categories} />}
 
-                                {
-                                    isReady && <RecommendedList
-                                                    productsList={productsList}
-                                                    categories={categories}
-                                                    categoriesRelationship={categoriesRelationship}
-                                                />
-                                }
+                                {isReady && (
+                                    <RecommendedList
+                                        productsList={productsList}
+                                        categories={categories}
+                                        categoriesRelationship={categoriesRelationship}
+                                    />
+                                )}
                             </div>
                         </div>
                     </div>
@@ -53,7 +51,7 @@ class Recommended extends Component {
                     <div className="row recommended__row">
                         <div className="recommended__col col-xs-12">
                             <div className="recommended__btnWrap rayBtn__wrap">
-                                <a href="/shop" className="reccomended__btnLink homepage__rayBtn">Просмотреть все товары</a>
+                                <Link to={'/shop'} className={'reccomended__btnLink homepage__rayBtn'}>Просмотреть все товары</Link>
                             </div>
                         </div>
                     </div>

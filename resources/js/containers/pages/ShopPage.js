@@ -1,7 +1,9 @@
 import {connect} from 'react-redux';
 import {setProducts} from '../../actions/products';
 import {setFilter} from '../../actions/filter';
-import Recommended from '../../components/recomended/Recommended';
+
+import ShopPage from '../../components/pages/ShopPage';
+
 
 function getCategoryProductRelations(categoriesRelationship){
     let newRelations = [];
@@ -15,23 +17,16 @@ function getCategoryProductRelations(categoriesRelationship){
     return newRelations;
 }
 
-const mapStateToProps = ({ products }) => ({
+const mapStateToProps = ({products}) => ({
     productsList: products.items.productsList,
     categories: products.items.categories,
     categoriesRelationship: getCategoryProductRelations( products.items.categoriesRelationship ),
     isReady: products.isReady,
 });
 
-/*const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     setProducts: products => dispatch(setProducts(products)),
-    setFilter:   filter   => dispatch(setFilter(filter)),
-});*/
+    setFilter
+});
 
-/* если параметры совпадают то можно сократить до такого вида */
-/* setProducts: PRODUCTS => dispatch(setProducts(PRODUCTS)), */
-const mapDispatchToProps = {
-    setProducts,
-    setFilter,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Recommended);
+export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);

@@ -8,7 +8,7 @@ import Ancorup from './components/Ancorup';
 import { Route, Switch } from 'react-router-dom';
 import HomePage from './components/pages/HomePage';
 import AboutPage from './components/pages/AboutPage';
-import ShopPage from './components/pages/ShopPage';
+import ShopPage from './containers/pages/ShopPage';
 import VideotipPage from './components/pages/VideotipPage';
 import StockPage from './components/pages/StockPage';
 import DoyouknowPage from './components/pages/DoyouknowPage';

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ProductSingle from '../products/ProductSingle';
+import CatsFilterShop from '../../containers/CatsFilterShop';
 
 class ShopPage extends Component {
 
@@ -12,13 +13,16 @@ class ShopPage extends Component {
 
     render(){
 
-        const {productsList, categories, categoriesRelationship, isReady} = this.props;
+        const {productsList, categories, categoriesRelationship, isReady, filterBy} = this.props;
+
+        // console.log('productsList', productsList);
 
         return (
             <div className="container woocomm__container">
                 <div className="row woocomm__row">
                     <div className="col-xs-12">
                         <div className="woocomm__col">
+
                             <div className="kama_breadcrumbs" itemScope="" itemType="http://schema.org/BreadcrumbList">
                                 <span itemProp="itemListElement" itemType="http://schema.org/ListItem">
                                     <a href="/" itemProp="item">
@@ -28,42 +32,10 @@ class ShopPage extends Component {
                                 <span className="kb_sep"> / </span>
                                 Ассортимент
                             </div>
+
                             <div className="products__wrapper">
                                 <div className="products__sidebar">
-                                    <div className="products__categories">
-                                        <div className="products__categoryHeader">
-                                            <div className="products__categoryTitle">Ассортимент продуктов</div>
-                                            <a href="#products__categoryList" className="products__categoryMenuBtn"></a>
-                                        </div>
-
-                                        <ul className="products__categoryList" id="products__categoryList">
-                                            <li className="products__categoryItem">
-                                                <span className="products__categoryItemLink all__categories active">
-                                                    Весь ассортимент
-                                                </span>
-                                            </li>
-                                            <li className="products__categoryItem">
-                                                <span className="products__categoryItemLink">
-                                                    Скрабы
-                                                </span>
-                                            </li>
-                                            <li className="products__categoryItem">
-                                                <span className="products__categoryItemLink">
-                                                    Хит продаж
-                                                </span>
-                                            </li>
-                                            <li className="products__categoryItem">
-                                                <span className="products__categoryItemLink">
-                                                    Косметика для лица
-                                                </span>
-                                            </li>
-                                            <li className="products__categoryItem">
-                                                <span className="products__categoryItemLink">
-                                                    Косметика для тела
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    {isReady && <CatsFilterShop categories={categories} />}
                                 </div>
 
                                 <div className="products__content">
@@ -85,9 +57,12 @@ class ShopPage extends Component {
                                     </div>
                                     <div className="products__list">
                                         {isReady && (
-                                            productsList.map( ( productData ) => (
+                                            productsList.length ? (
+                                                productsList.map( ( productData ) => (
                                                 <ProductSingle key={productData.id} {...productData} />
-                                            ))
+                                            ))) : (
+                                                <div className="products__list-empty">В этой категории товаров нет</div>
+                                            )
                                         )}
 
                                     </div>

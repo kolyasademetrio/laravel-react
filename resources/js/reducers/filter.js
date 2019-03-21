@@ -1,14 +1,15 @@
 const initialState = {
     searchQuery: "",
-    filterBy: ""
+    filterBy: "",
+    filterShopBy: "all",
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case "SET_QUERY":
+        case "SET_FILTER_SHOP":
             return {
                 ...state,
-                searchQuery: action.payload
+                filterShopBy: action.payload
             };
         case "SET_FILTER":
             return {

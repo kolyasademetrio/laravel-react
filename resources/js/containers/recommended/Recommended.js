@@ -1,19 +1,10 @@
 import {connect} from 'react-redux';
 import {setProducts} from '../../actions/products';
 import {setFilter} from '../../actions/filter';
+import getCategoryProductRelations from '../../helpers/getCategoryProductRelations';
 import Recommended from '../../components/recomended/Recommended';
 
-function getCategoryProductRelations(categoriesRelationship){
-    let newRelations = [];
-    if ( categoriesRelationship !== undefined ) {
-        for(let i=0; i<categoriesRelationship.length; i++) {
-            let o = categoriesRelationship[i];
-            if (!newRelations[o.catFilterBy]) newRelations[o.catFilterBy] = [];
-            newRelations[o.catFilterBy].push(o.productID);
-        }
-    }
-    return newRelations;
-}
+
 
 const mapStateToProps = ({ products }) => ({
     productsList: products.items.productsList,

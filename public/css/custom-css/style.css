@@ -7895,7 +7895,21 @@ form.woocommerce-EditAccountForm.edit-account {
 /* ---------------------------------------------------------------------------------------------------- */
 /* ----------------------------->>> feedback__wrap End <<<--------------------------------------------- */
 /* ---------------------------------------------------------------------------------------------------- */
+.products__list-empty {
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
 
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
+
+    font-family: "ArimoRegular", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 16px;
+    color: #1d2f29;
+}
 
 .woocommerce-form__label-for-checkbox span {
     position: relative;

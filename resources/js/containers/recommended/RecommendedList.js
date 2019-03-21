@@ -5,7 +5,7 @@ const getVisibleProducts = (productsRecommended, filterBy, catsRelation, categor
 
     const catFilterBy = filterBy ? filterBy : categories[0].category_filter_by;
 
-    const productIDs = catsRelation[catFilterBy];
+    const productIDs = catsRelation[catFilterBy] ? catsRelation[catFilterBy] : [];
 
     return productsRecommended.filter(item => productIDs.includes(item.id));
 }

@@ -2,26 +2,30 @@ import {connect} from 'react-redux';
 import {setProducts} from '../../actions/products';
 import {setFilter} from '../../actions/filter';
 
+import getCategoryProductRelations from '../../helpers/getCategoryProductRelations';
 import ShopPage from '../../components/pages/ShopPage';
 
 
-function getCategoryProductRelations(categoriesRelationship){
-    let newRelations = [];
-    if ( categoriesRelationship !== undefined ) {
-        for(let i=0; i<categoriesRelationship.length; i++) {
-            let o = categoriesRelationship[i];
-            if (!newRelations[o.catFilterBy]) newRelations[o.catFilterBy] = [];
-            newRelations[o.catFilterBy].push(o.productID);
-        }
-    }
-    return newRelations;
+
+const getVisibleProducts = (productsList, filterBy, catsRelation) => {
+
+    if (filterBy == "all") return productsList;
+
+    const productIDs = catsRelation[filterBy] ? catsRelation[filterBy] : [];
+
+    return productsList.filter(item => (productIDs.includes(item.id)));
 }
 
-const mapStateToProps = ({products}) => ({
-    productsList: products.items.productsList,
+const mapStateToProps = ({products, filter}) => ({
+    productsList: getVisibleProducts(
+        products.items.productsList,
+        filter.filterShopBy,
+        getCategoryProductRelations( products.items.categoriesRelationship )
+    ),
     categories: products.items.categories,
     categoriesRelationship: getCategoryProductRelations( products.items.categoriesRelationship ),
     isReady: products.isReady,
+    filterBy: filter.filterShopBy,
 });
 
 const mapDispatchToProps = dispatch => ({

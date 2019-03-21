@@ -79477,10 +79477,10 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/ProductsFilterShop.jsx":
-/*!********************************************************!*\
-  !*** ./resources/js/components/ProductsFilterShop.jsx ***!
-  \********************************************************/
+/***/ "./resources/js/components/ProductsSortShop.jsx":
+/*!******************************************************!*\
+  !*** ./resources/js/components/ProductsSortShop.jsx ***!
+  \******************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -79492,7 +79492,7 @@ var _this = undefined;
 
 
 
-var ProductsFilterShop = function ProductsFilterShop(_ref) {
+var ProductsSortShop = function ProductsSortShop(_ref) {
   var setFilter = _ref.setFilter;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "products__contentHeaderFilter"
@@ -79512,7 +79512,7 @@ var ProductsFilterShop = function ProductsFilterShop(_ref) {
   })))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (ProductsFilterShop);
+/* harmony default export */ __webpack_exports__["default"] = (ProductsSortShop);
 
 /***/ }),
 
@@ -83641,7 +83641,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../products/ProductSingle */ "./resources/js/components/products/ProductSingle.jsx");
 /* harmony import */ var _containers_CatsFilterShop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../containers/CatsFilterShop */ "./resources/js/containers/CatsFilterShop.js");
-/* harmony import */ var _containers_ProductsFilterShop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../containers/ProductsFilterShop */ "./resources/js/containers/ProductsFilterShop.js");
+/* harmony import */ var _containers_ProductsSortShop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../containers/ProductsSortShop */ "./resources/js/containers/ProductsSortShop.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -83731,7 +83731,7 @@ function (_Component) {
         className: "products__contentHeader"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__contentHeaderTitle"
-      }, "\u0412\u0435\u0441\u044C \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_ProductsFilterShop__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "\u0412\u0435\u0441\u044C \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_ProductsSortShop__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__list"
       }, isReady && (productsList.length ? productsList.map(function (productData) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
@@ -84843,10 +84843,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./resources/js/containers/ProductsFilterShop.js":
-/*!*******************************************************!*\
-  !*** ./resources/js/containers/ProductsFilterShop.js ***!
-  \*******************************************************/
+/***/ "./resources/js/containers/ProductsSortShop.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/containers/ProductsSortShop.js ***!
+  \*****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -84854,14 +84854,10 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/filter */ "./resources/js/actions/filter.js");
-/* harmony import */ var _components_ProductsFilterShop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ProductsFilterShop */ "./resources/js/components/ProductsFilterShop.jsx");
+/* harmony import */ var _components_ProductsSortShop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ProductsSortShop */ "./resources/js/components/ProductsSortShop.jsx");
 
 
 
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {};
-};
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
@@ -84871,7 +84867,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_ProductsFilterShop__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mapDispatchToProps)(_components_ProductsSortShop__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -84895,38 +84891,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var sortByPriceAsc = function sortByPriceAsc(products) {
-  products.sort(function (a, b) {
-    return a.regular_price - b.regular_price;
-  });
-};
+var sortBy = function sortBy(products, filterProductBy) {
+  switch (filterProductBy) {
+    case 'price_asc':
+      return products && products.sort(function (a, b) {
+        return a.regular_price - b.regular_price;
+      });
 
-var sortByPriceDesc = function sortByPriceDesc(products) {
-  products.sort(function (a, b) {
-    return b.regular_price - a.regular_price;
-  });
+    case 'price_desc':
+      return products && products.sort(function (a, b) {
+        return b.regular_price - a.regular_price;
+      });
+
+    default:
+      return products && products;
+  }
 };
 
 var getVisibleProducts = function getVisibleProducts(productsList, filterBy, filterProductBy, catsRelation) {
-  if (filterBy == "all") {
-    var _productsListVisible = productsList;
-  } else {
-    var productIDs = catsRelation[filterBy] ? catsRelation[filterBy] : [];
+  switch (filterBy) {
+    case "all":
+      return sortBy(productsList, filterProductBy);
 
-    var _productsListVisible2 = productsList.filter(function (item) {
-      return productIDs.includes(item.id);
-    });
+    default:
+      var productIDs = catsRelation[filterBy] ? catsRelation[filterBy] : [];
+      return sortBy(productsList.filter(function (item) {
+        return productIDs.includes(item.id);
+      }), filterProductBy);
   }
-
-  console.log(productsListVisible);
-  /*switch(filterProductBy){
-      case 'price_asc':
-          return sortByPriceAsc(productsListVisible)
-          break;
-      case 'price_desc':
-          return sortByPriceDesc(productsListVisible)
-          break;
-  }*/
 };
 
 var mapStateToProps = function mapStateToProps(_ref) {
@@ -85305,8 +85297,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

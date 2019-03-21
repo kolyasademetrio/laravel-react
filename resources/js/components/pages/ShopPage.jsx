@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ProductSingle from '../products/ProductSingle';
 import CatsFilterShop from '../../containers/CatsFilterShop';
-import ProductsFilterShop from '../../containers/ProductsFilterShop';
+import ProductsSortShop from '../../containers/ProductsSortShop';
 
 class ShopPage extends Component {
 
@@ -43,7 +43,7 @@ class ShopPage extends Component {
                                     <div className="products__contentHeader">
                                         <div className="products__contentHeaderTitle">Весь ассортимент</div>
 
-                                        <ProductsFilterShop />
+                                        <ProductsSortShop />
                                     </div>
 
                                     <div className="products__list">

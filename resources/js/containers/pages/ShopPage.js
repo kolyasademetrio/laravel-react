@@ -5,34 +5,30 @@ import {setFilter} from '../../actions/filter';
 import getCategoryProductRelations from '../../helpers/getCategoryProductRelations';
 import ShopPage from '../../components/pages/ShopPage';
 
-const sortByPriceAsc = products => {
-    products.sort((a, b) => (a.regular_price - b.regular_price))
-}
 
-const sortByPriceDesc = products => {
-    products.sort((a, b) => (b.regular_price - a.regular_price))
+
+const sortBy = (products, filterProductBy) => {
+    switch(filterProductBy){
+        case 'price_asc':
+            return products && products.sort((a, b) => (a.regular_price - b.regular_price));
+        case 'price_desc':
+            return products && products.sort((a, b) => (b.regular_price - a.regular_price))
+        default:
+            return products && products;
+    }
 }
 
 const getVisibleProducts = (productsList, filterBy, filterProductBy, catsRelation) => {
-
-    if (filterBy == "all") {
-        const productsListVisible = productsList;
-    } else {
-        const productIDs = catsRelation[filterBy] ? catsRelation[filterBy] : [];
-
-        const productsListVisible = productsList.filter(item => (productIDs.includes(item.id)));
+    switch(filterBy){
+        case "all":
+            return sortBy(productsList, filterProductBy);
+        default:
+            const productIDs = catsRelation[filterBy] ? catsRelation[filterBy] : [];
+            return sortBy(
+                productsList.filter(item => (productIDs.includes(item.id))),
+                filterProductBy
+            );
     }
-
-    console.log( productsListVisible );
-
-    /*switch(filterProductBy){
-        case 'price_asc':
-            return sortByPriceAsc(productsListVisible)
-            break;
-        case 'price_desc':
-            return sortByPriceDesc(productsListVisible)
-            break;
-    }*/
 }
 
 const mapStateToProps = ({products, filter}) => ({

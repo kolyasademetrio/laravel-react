@@ -1,16 +1,11 @@
 import {connect} from 'react-redux';
 import {setFilterProductsShop} from '../actions/filter';
-import ProductsFilterShop from '../components/ProductsFilterShop';
+import ProductsSortShop from '../components/ProductsSortShop';
 
 
-
-const mapStateToProps = (state) => ({
-
-});
 
 const mapDispatchToProps = dispatch => ({
     setFilter: filter => dispatch(setFilterProductsShop(filter)),
 });
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductsFilterShop);
+export default connect(null, mapDispatchToProps)(ProductsSortShop);

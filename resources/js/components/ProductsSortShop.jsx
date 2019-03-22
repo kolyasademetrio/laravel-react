@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProductsFilterShop = ({setFilter}) => {
+const ProductsSortShop = ({setFilter}) => {
     return (
         <div className="products__contentHeaderFilter">
             <span className="products__contentHeaderFilterText">Сортировать по: Цене</span>
@@ -25,4 +25,4 @@ const ProductsFilterShop = ({setFilter}) => {
     );
 }
 
-export default ProductsFilterShop;
+export default ProductsSortShop;

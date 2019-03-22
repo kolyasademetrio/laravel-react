@@ -79009,6 +79009,29 @@ var setFilterProductsShop = function setFilterProductsShop(filter) {
 
 /***/ }),
 
+/***/ "./resources/js/actions/pagination.js":
+/*!********************************************!*\
+  !*** ./resources/js/actions/pagination.js ***!
+  \********************************************/
+/*! exports provided: setPagination */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setPagination", function() { return setPagination; });
+var setPagination = function setPagination(products, startIndex, endIndex) {
+  return {
+    type: 'SET_PAGINATION',
+    payload: {
+      products: products,
+      startIndex: startIndex,
+      endIndex: endIndex
+    }
+  };
+};
+
+/***/ }),
+
 /***/ "./resources/js/actions/products.js":
 /*!******************************************!*\
   !*** ./resources/js/actions/products.js ***!
@@ -79474,6 +79497,218 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Movietiphome);
+
+/***/ }),
+
+/***/ "./resources/js/components/Pagination.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Pagination.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+var defaultProps = {
+  initialPage: 1
+};
+
+var Pagination =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Pagination, _Component);
+
+  function Pagination(props) {
+    var _this;
+
+    _classCallCheck(this, Pagination);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Pagination).call(this, props));
+    _this.state = {
+      pager: {},
+      pageSizeDefault: _this.props.postsPerPage ? _this.props.postsPerPage : 10,
+      showFirstLast: _this.props.showFirstLast ? true : false,
+      showPrevNext: _this.props.showPrevNext ? true : false
+    };
+    return _this;
+  }
+
+  _createClass(Pagination, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      // set page if items array isn't empty
+      if (this.props.items && this.props.items.length) {
+        this.setPage(this.props.initialPage);
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      // reset page if items array has changed
+      if (this.props.items !== prevProps.items) {
+        this.setPage(this.props.initialPage);
+      }
+    }
+  }, {
+    key: "setPage",
+    value: function setPage(page) {
+      var items = this.props.items;
+      var pager = this.state.pager;
+
+      if (page < 1 || page > pager.totalPages) {
+        return;
+      } // get new pager object for specified page
+
+
+      pager = this.getPager(items.length, page); // get new page of items from items array
+
+      var pageOfItems = items.slice(pager.startIndex, pager.endIndex + 1); // update state
+
+      this.setState({
+        pager: pager
+      });
+      var start = pager.startIndex;
+      var end = pager.endIndex + 1; // call change page function in parent component
+
+      this.props.onChangePage(pageOfItems, start, end);
+    }
+  }, {
+    key: "getPager",
+    value: function getPager(totalItems, currentPage, pageSize) {
+      // default to first page
+      currentPage = currentPage || 1; // default page size is 10
+
+      pageSize = pageSize || this.state.pageSizeDefault; // calculate total pages
+
+      var totalPages = Math.ceil(totalItems / pageSize);
+      var startPage, endPage;
+
+      if (totalPages <= 10) {
+        // less than 10 total pages so show all
+        startPage = 1;
+        endPage = totalPages;
+      } else {
+        // more than 10 total pages so calculate start and end pages
+        if (currentPage <= 6) {
+          startPage = 1;
+          endPage = 10;
+        } else if (currentPage + 4 >= totalPages) {
+          startPage = totalPages - 9;
+          endPage = totalPages;
+        } else {
+          startPage = currentPage - 5;
+          endPage = currentPage + 4;
+        }
+      } // calculate start and end item indexes
+
+
+      var startIndex = (currentPage - 1) * pageSize;
+      var endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1); // create an array of pages to ng-repeat in the pager control
+
+      var pages = _toConsumableArray(Array(endPage + 1 - startPage).keys()).map(function (i) {
+        return startPage + i;
+      }); // return object with all pager properties required by the view
+
+
+      return {
+        totalItems: totalItems,
+        currentPage: currentPage,
+        pageSize: pageSize,
+        totalPages: totalPages,
+        startPage: startPage,
+        endPage: endPage,
+        startIndex: startIndex,
+        endIndex: endIndex,
+        pages: pages
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var pager = this.state.pager;
+
+      if (!pager.pages || pager.pages.length <= 1) {
+        // don't display pager if there is only 1 page
+        return null;
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+        className: "pagination"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "page-numbers"
+      }, this.state.showFirstLast && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: pager.currentPage === 1 ? 'disabled' : ''
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this2.setPage(1);
+        }
+      }, "First")), this.state.showPrevNext && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: pager.currentPage === 1 ? 'disabled' : ''
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this2.setPage(pager.currentPage - 1);
+        }
+      }, "\u2190")), pager.pages.map(function (page, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: index,
+          className: pager.currentPage === page ? 'active' : ''
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          onClick: function onClick() {
+            return _this2.setPage(page);
+          }
+        }, page));
+      }), this.state.showPrevNext && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: pager.currentPage === pager.totalPages ? 'disabled' : ''
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this2.setPage(pager.currentPage + 1);
+        }
+      }, "\u2192")), this.state.showFirstLast && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: pager.currentPage === pager.totalPages ? 'disabled' : ''
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        onClick: function onClick() {
+          return _this2.setPage(pager.totalPages);
+        }
+      }, "Last"))));
+    }
+  }]);
+
+  return Pagination;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+Pagination.defaultProps = defaultProps;
+/* harmony default export */ __webpack_exports__["default"] = (Pagination);
 
 /***/ }),
 
@@ -83642,25 +83877,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../products/ProductSingle */ "./resources/js/components/products/ProductSingle.jsx");
 /* harmony import */ var _containers_CatsFilterShop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../containers/CatsFilterShop */ "./resources/js/containers/CatsFilterShop.js");
 /* harmony import */ var _containers_ProductsSortShop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../containers/ProductsSortShop */ "./resources/js/containers/ProductsSortShop.js");
+/* harmony import */ var _components_Pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Pagination */ "./resources/js/components/Pagination.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -83672,12 +83909,6 @@ var ShopPage =
 function (_Component) {
   _inherits(ShopPage, _Component);
 
-  function ShopPage() {
-    _classCallCheck(this, ShopPage);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(ShopPage).apply(this, arguments));
-  }
-
   _createClass(ShopPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -83687,6 +83918,33 @@ function (_Component) {
         setProducts(data);
       });
     }
+  }]);
+
+  function ShopPage(props) {
+    var _this;
+
+    _classCallCheck(this, ShopPage);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ShopPage).call(this, props));
+    _this.state = {
+      pageOfItems: []
+    }; // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+
+    _this.onChangePage = _this.onChangePage.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(ShopPage, [{
+    key: "onChangePage",
+    value: function onChangePage(pageOfItems, startIndex, endIndex) {
+      console.log('startIndex', startIndex);
+      console.log('endIndex', endIndex); // update state with new page of items
+
+      this.setState({
+        pageOfItems: pageOfItems
+      });
+      this.props.setPagination(pageOfItems, startIndex, endIndex);
+    }
   }, {
     key: "render",
     value: function render() {
@@ -83695,8 +83953,7 @@ function (_Component) {
           categories = _this$props.categories,
           categoriesRelationship = _this$props.categoriesRelationship,
           isReady = _this$props.isReady,
-          filterBy = _this$props.filterBy; // console.log('productsList', productsList);
-
+          filterBy = _this$props.filterBy;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container woocomm__container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83733,26 +83990,19 @@ function (_Component) {
         className: "products__contentHeaderTitle"
       }, "\u0412\u0435\u0441\u044C \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_ProductsSortShop__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__list"
-      }, isReady && (productsList.length ? productsList.map(function (productData) {
+      }, isReady && (this.state.pageOfItems.length ? this.state.pageOfItems.map(function (productData) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
           key: productData.id
         }, productData));
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__list-empty"
-      }, "\u0412 \u044D\u0442\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u0442\u043E\u0432\u0430\u0440\u043E\u0432 \u043D\u0435\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
-        className: "woocommerce-pagination"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "page-numbers"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        "aria-current": "page",
-        className: "page-numbers current"
-      }, "1")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "page-numbers",
-        href: "/shop/page/2/"
-      }, "2")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        className: "next page-numbers",
-        href: "/shop/page/2/"
-      }, "\u2192"))))))))));
+      }, "\u0412 \u044D\u0442\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u0442\u043E\u0432\u0430\u0440\u043E\u0432 \u043D\u0435\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Pagination__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        items: productsList && productsList,
+        onChangePage: this.onChangePage,
+        postsPerPage: 9,
+        showFirstLast: false,
+        showPrevNext: true
+      })))))));
     }
   }]);
 
@@ -84883,8 +85133,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/products */ "./resources/js/actions/products.js");
 /* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/filter */ "./resources/js/actions/filter.js");
-/* harmony import */ var _helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers/getCategoryProductRelations */ "./resources/js/helpers/getCategoryProductRelations.js");
-/* harmony import */ var _components_pages_ShopPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/pages/ShopPage */ "./resources/js/components/pages/ShopPage.jsx");
+/* harmony import */ var _actions_pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/pagination */ "./resources/js/actions/pagination.js");
+/* harmony import */ var _helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers/getCategoryProductRelations */ "./resources/js/helpers/getCategoryProductRelations.js");
+/* harmony import */ var _components_pages_ShopPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/pages/ShopPage */ "./resources/js/components/pages/ShopPage.jsx");
+
 
 
 
@@ -84925,9 +85177,9 @@ var mapStateToProps = function mapStateToProps(_ref) {
   var products = _ref.products,
       filter = _ref.filter;
   return {
-    productsList: getVisibleProducts(products.items.productsList, filter.filterShopBy, filter.filterProductShopBy, Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__["default"])(products.items.categoriesRelationship)),
+    productsList: getVisibleProducts(products.items.productsList, filter.filterShopBy, filter.filterProductShopBy, Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_4__["default"])(products.items.categoriesRelationship)),
     categories: products.items.categories,
-    categoriesRelationship: Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__["default"])(products.items.categoriesRelationship),
+    categoriesRelationship: Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_4__["default"])(products.items.categoriesRelationship),
     isReady: products.isReady,
     filterBy: filter.filterShopBy,
     filterProductShopBy: filter.filterProductShopBy
@@ -84939,11 +85191,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     setProducts: function setProducts(products) {
       return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setProducts"])(products));
     },
+    setPagination: function setPagination(products) {
+      return dispatch(Object(_actions_pagination__WEBPACK_IMPORTED_MODULE_3__["setPagination"])(products));
+    },
     setFilter: _actions_filter__WEBPACK_IMPORTED_MODULE_2__["setFilter"]
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_pages_ShopPage__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_pages_ShopPage__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 
@@ -85297,8 +85552,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

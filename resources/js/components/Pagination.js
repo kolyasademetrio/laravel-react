@@ -46,8 +46,11 @@ class Pagination extends Component {
         // update state
         this.setState({ pager: pager });
 
+        var start = pager.startIndex;
+        var end = pager.endIndex + 1;
+
         // call change page function in parent component
-        this.props.onChangePage(pageOfItems);
+        this.props.onChangePage(pageOfItems, start, end);
     }
 
     getPager(totalItems, currentPage, pageSize) {

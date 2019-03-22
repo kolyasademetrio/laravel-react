@@ -1,6 +1,7 @@
 import {connect} from 'react-redux';
 import {setProducts} from '../../actions/products';
 import {setFilter} from '../../actions/filter';
+import {setPagination} from '../../actions/pagination';
 
 import getCategoryProductRelations from '../../helpers/getCategoryProductRelations';
 import ShopPage from '../../components/pages/ShopPage';
@@ -47,6 +48,7 @@ const mapStateToProps = ({products, filter}) => ({
 
 const mapDispatchToProps = dispatch => ({
     setProducts: products => dispatch(setProducts(products)),
+    setPagination: products => dispatch(setPagination(products)),
     setFilter
 });
 

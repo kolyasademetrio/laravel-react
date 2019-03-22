@@ -22,11 +22,16 @@ class ShopPage extends Component {
         this.onChangePage = this.onChangePage.bind(this);
     }
 
-    onChangePage(pageOfItems) {
+    onChangePage(pageOfItems, startIndex, endIndex) {
+
+        console.log( 'startIndex', startIndex );
+        console.log( 'endIndex', endIndex );
+
         // update state with new page of items
         this.setState(
             { pageOfItems: pageOfItems }
         );
+        this.props.setPagination( pageOfItems, startIndex, endIndex );
     }
 
     render(){

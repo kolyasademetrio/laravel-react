@@ -79009,6 +79009,29 @@ var setFilterProductsShop = function setFilterProductsShop(filter) {
 
 /***/ }),
 
+/***/ "./resources/js/actions/pagination.js":
+/*!********************************************!*\
+  !*** ./resources/js/actions/pagination.js ***!
+  \********************************************/
+/*! exports provided: setPagination */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setPagination", function() { return setPagination; });
+var setPagination = function setPagination(products, startIndex, endIndex) {
+  return {
+    type: 'SET_PAGINATION',
+    payload: {
+      products: products,
+      startIndex: startIndex,
+      endIndex: endIndex
+    }
+  };
+};
+
+/***/ }),
+
 /***/ "./resources/js/actions/products.js":
 /*!******************************************!*\
   !*** ./resources/js/actions/products.js ***!
@@ -79572,9 +79595,11 @@ function (_Component) {
 
       this.setState({
         pager: pager
-      }); // call change page function in parent component
+      });
+      var start = pager.startIndex;
+      var end = pager.endIndex + 1; // call change page function in parent component
 
-      this.props.onChangePage(pageOfItems);
+      this.props.onChangePage(pageOfItems, start, end);
     }
   }, {
     key: "getPager",
@@ -83911,11 +83936,14 @@ function (_Component) {
 
   _createClass(ShopPage, [{
     key: "onChangePage",
-    value: function onChangePage(pageOfItems) {
-      // update state with new page of items
+    value: function onChangePage(pageOfItems, startIndex, endIndex) {
+      console.log('startIndex', startIndex);
+      console.log('endIndex', endIndex); // update state with new page of items
+
       this.setState({
         pageOfItems: pageOfItems
       });
+      this.props.setPagination(pageOfItems, startIndex, endIndex);
     }
   }, {
     key: "render",
@@ -85105,8 +85133,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/products */ "./resources/js/actions/products.js");
 /* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/filter */ "./resources/js/actions/filter.js");
-/* harmony import */ var _helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers/getCategoryProductRelations */ "./resources/js/helpers/getCategoryProductRelations.js");
-/* harmony import */ var _components_pages_ShopPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/pages/ShopPage */ "./resources/js/components/pages/ShopPage.jsx");
+/* harmony import */ var _actions_pagination__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/pagination */ "./resources/js/actions/pagination.js");
+/* harmony import */ var _helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers/getCategoryProductRelations */ "./resources/js/helpers/getCategoryProductRelations.js");
+/* harmony import */ var _components_pages_ShopPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/pages/ShopPage */ "./resources/js/components/pages/ShopPage.jsx");
+
 
 
 
@@ -85147,9 +85177,9 @@ var mapStateToProps = function mapStateToProps(_ref) {
   var products = _ref.products,
       filter = _ref.filter;
   return {
-    productsList: getVisibleProducts(products.items.productsList, filter.filterShopBy, filter.filterProductShopBy, Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__["default"])(products.items.categoriesRelationship)),
+    productsList: getVisibleProducts(products.items.productsList, filter.filterShopBy, filter.filterProductShopBy, Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_4__["default"])(products.items.categoriesRelationship)),
     categories: products.items.categories,
-    categoriesRelationship: Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__["default"])(products.items.categoriesRelationship),
+    categoriesRelationship: Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_4__["default"])(products.items.categoriesRelationship),
     isReady: products.isReady,
     filterBy: filter.filterShopBy,
     filterProductShopBy: filter.filterProductShopBy
@@ -85161,11 +85191,14 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     setProducts: function setProducts(products) {
       return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setProducts"])(products));
     },
+    setPagination: function setPagination(products) {
+      return dispatch(Object(_actions_pagination__WEBPACK_IMPORTED_MODULE_3__["setPagination"])(products));
+    },
     setFilter: _actions_filter__WEBPACK_IMPORTED_MODULE_2__["setFilter"]
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_pages_ShopPage__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_pages_ShopPage__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 

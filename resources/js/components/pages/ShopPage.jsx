@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ProductSingle from '../products/ProductSingle';
 import CatsListFilterShop from '../../containers/CatsListFilterShop';
 import ProductsSortShop from '../../containers/ProductsSortShop';
-//import {push} from 'react-router-redux';
 import { Pagination } from '@sketchpixy/rubix';
 
 class ShopPage extends Component {

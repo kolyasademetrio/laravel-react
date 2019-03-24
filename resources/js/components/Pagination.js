@@ -114,34 +114,24 @@ class Pagination extends Component {
         return (
             <nav className="pagination">
                 <ul className="page-numbers">
-                {this.state.showFirstLast && (
                     <li className={pager.currentPage === 1 ? 'disabled' : ''}>
                         <a onClick={() => this.setPage(1)}>First</a>
                     </li>
-                )}
 
-                {this.state.showPrevNext && (
                     <li className={pager.currentPage === 1 ? 'disabled' : ''}>
                         <a onClick={() => this.setPage(pager.currentPage - 1)}>←</a>
                     </li>
-                )}
-                {pager.pages.map((page, index) =>
                     <li key={index} className={pager.currentPage === page ? 'active' : ''}>
                         <a onClick={() => this.setPage(page)}>{page}</a>
                     </li>
-                )}
 
-                {this.state.showPrevNext && (
                     <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
                         <a onClick={() => this.setPage(pager.currentPage + 1)}>→</a>
                     </li>
-                )}
 
-                {this.state.showFirstLast && (
                     <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
                         <a onClick={() => this.setPage(pager.totalPages)}>Last</a>
                     </li>
-                )}
                 </ul>
             </nav>
         );

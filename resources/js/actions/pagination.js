@@ -1,8 +1,4 @@
-export const setPagination = (products, startIndex, endIndex) => ({
+export const setPagination = (page) => ({
     type: 'SET_PAGINATION',
-    payload: {
-        products: products,
-        startIndex: startIndex,
-        endIndex: endIndex,
-    }
+    payload: page,
 });

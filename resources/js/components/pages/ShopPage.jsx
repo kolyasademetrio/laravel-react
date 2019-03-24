@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ProductSingle from '../products/ProductSingle';
-import CatsFilterShop from '../../containers/CatsFilterShop';
+import CatsListFilterShop from '../../containers/CatsListFilterShop';
 import ProductsSortShop from '../../containers/ProductsSortShop';
-import Pagination from '../../components/Pagination';
+//import {push} from 'react-router-redux';
+import { Pagination } from '@sketchpixy/rubix';
 
 class ShopPage extends Component {
 
@@ -13,29 +14,8 @@ class ShopPage extends Component {
         });
     }
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            pageOfItems: []
-        };
-        // bind function in constructor instead of render (https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
-        this.onChangePage = this.onChangePage.bind(this);
-    }
-
-    onChangePage(pageOfItems, startIndex, endIndex) {
-
-        console.log( 'startIndex', startIndex );
-        console.log( 'endIndex', endIndex );
-
-        // update state with new page of items
-        this.setState(
-            { pageOfItems: pageOfItems }
-        );
-        this.props.setPagination( pageOfItems, startIndex, endIndex );
-    }
-
     render(){
-        const {productsList, categories, categoriesRelationship, isReady, filterBy} = this.props;
+        const {productsList, categories, isReady, setPagination, pages, currentPage} = this.props;
 
         return (
             <div className="container woocomm__container">
@@ -55,7 +35,7 @@ class ShopPage extends Component {
 
                             <div className="products__wrapper">
                                 <div className="products__sidebar">
-                                    {isReady && <CatsFilterShop categories={categories} />}
+                                    {isReady && <CatsListFilterShop categories={categories} />}
                                 </div>
 
                                 <div className="products__content">
@@ -67,36 +47,29 @@ class ShopPage extends Component {
 
                                     <div className="products__list">
                                         {isReady && (
-                                            this.state.pageOfItems.length ? (
-                                                this.state.pageOfItems.map( ( productData ) => (
-                                                <ProductSingle key={productData.id} {...productData} />
-                                            ))) : (
+                                            productsList.length ? (
+                                                productsList.map( ( productData ) => {
+                                                    return (
+                                                        <ProductSingle key={productData.id} {...productData} />
+                                                    );
+                                                })) : (
                                                 <div className="products__list-empty">В этой категории товаров нет</div>
                                             )
                                         )}
                                     </div>
 
-                                    {/*<nav className="woocommerce-pagination">
-                                        <ul className="page-numbers">
-                                            <li>
-                                                <span aria-current="page" className="page-numbers current">1</span>
-                                            </li>
-                                            <li>
-                                                <a className="page-numbers" href="/shop/page/2/">2</a>
-                                            </li>
-                                            <li>
-                                                <a className="next page-numbers"  href="/shop/page/2/">→</a>
-                                            </li>
-                                        </ul>
-                                    </nav>*/}
-
-                                    <Pagination
-                                        items={productsList && productsList}
-                                        onChangePage={this.onChangePage}
-                                        postsPerPage={9}
-                                        showFirstLast={false}
-                                        showPrevNext={true}
-                                    />
+                                    {(pages > 1) && (
+                                        <Pagination className="pagination"
+                                            bsSize="medium"
+                                            maxButtons={10}
+                                            first
+                                            last
+                                            boundaryLinks
+                                            items={pages}
+                                            activepage={currentPage}
+                                            onSelect={setPagination}
+                                        />
+                                    )}
                                 </div>
                             </div>
                         </div>

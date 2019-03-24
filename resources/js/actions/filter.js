@@ -3,12 +3,17 @@ export const setFilter = filter => ({
     payload: filter,
 });
 
-export const setFilterShop = filter => ({
-    type: 'SET_FILTER_SHOP',
+export const showProductsByCategory = filter => ({
+    type: 'SHOW_PRODUCTS_BY_CATEGORY_SHOP',
     payload: filter,
 });
 
-export const setFilterProductsShop = filter => ({
-    type: 'SET_FILTER_PRODUCTS_SHOP',
+export const sortProduct = filter => ({
+    type: 'SORT_PRODUCTS_SHOP',
     payload: filter,
+});
+
+export const setPagination = (page) => ({
+    type: 'SET_PAGINATION',
+    payload: page,
 });

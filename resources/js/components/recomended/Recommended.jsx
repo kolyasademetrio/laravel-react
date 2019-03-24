@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 
-import CatsFilterHome from '../../containers/CatsFilterHome';
+import CatsListFilterHome from '../../containers/CatsListFilterHome';
 import RecommendedList from '../../containers/recommended/RecommendedList';
 
 class Recommended extends Component {
@@ -33,7 +33,7 @@ class Recommended extends Component {
                     <div className="row recommended__row">
                         <div className="recommended__col col-xs-12">
                             <div className="recommended__inner">
-                                {isReady &&  <CatsFilterHome categories={categories} />}
+                                {isReady &&  <CatsListFilterHome categories={categories} />}
 
                                 {isReady && (
                                     <RecommendedList

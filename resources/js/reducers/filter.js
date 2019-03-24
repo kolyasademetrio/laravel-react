@@ -10,12 +10,13 @@ export default (state = initialState, action) => {
         case "SORT_PRODUCTS_SHOP":
             return {
                 ...state,
-                filterProductShopBy: action.payload
+                sortProductShopBy: action.payload
             }
         case "SHOW_PRODUCTS_BY_CATEGORY_SHOP":
             return {
                 ...state,
                 filterShopBy: action.payload,
+                page: 1,
             };
         case "SET_FILTER":
             return {

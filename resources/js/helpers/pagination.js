@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 export const getPager = (totalItems, currentPage, pageSize) => {
     // default to first page
@@ -53,34 +53,43 @@ export const getPager = (totalItems, currentPage, pageSize) => {
 
 }
 
-export const Pagination = ({pager}) => {
-    
-    // console.log( props.pager );
-    
-    if (!pager.pages || pager.pages.length <= 1) {
-        // don't display pager if there is only 1 page
-        return null;
-    } else {
-        return (<nav className="pagination">
-                    <ul className="page-numbers">
-                        <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                            <a onClick={() => this.setPage(1)}>First</a>
-                        </li>
-                        <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                            <a onClick={() => this.setPage(pager.currentPage - 1)}>←</a>
-                        </li>
-                        {/*<li className={pager.currentPage === page ? 'active' : ''}>*/}
-                        <li className="sass">
-                            {/*<a onClick={() => this.setPage(page)}>{page}</a>*/}
-                            <a onClick={() => this.setPage()}>{'page'}</a>
-                        </li>
-                        <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                            <a onClick={() => this.setPage(pager.currentPage + 1)}>→</a>
-                        </li>
-                        <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                            <a onClick={() => this.setPage(pager.totalPages)}>Last</a>
-                        </li>
-                    </ul>
-                </nav>)
+export class Pagination extends Component {
+
+    /*constructor(){
+
+    }*/
+
+    render(){
+
+        const {pager, page, setPagination: setPage} = this.props;
+        
+        console.log( setPage );
+
+        if (!pager.pages || pager.pages.length <= 1) {
+            // don't display pager if there is only 1 page
+            return null;
+        } else {
+            return (<nav className="pagination">
+                <ul className="page-numbers">
+                    <li className={pager.currentPage === 1 ? 'disabled' : ''}>
+                        <a onClick={() => this.setPage(1)}>First</a>
+                    </li>
+                    <li className={pager.currentPage === 1 ? 'disabled' : ''}>
+                        <a onClick={() => this.setPage(pager.currentPage - 1)}>←</a>
+                    </li>
+                    <li className={pager.currentPage === page ? 'active' : ''}>
+                        <a onClick={() => this.setPage(page)}>{page}</a>
+                    </li>
+                    <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
+                        <a onClick={() => this.setPage(pager.currentPage + 1)}>→</a>
+                    </li>
+                    <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
+                        <a onClick={() => this.setPage(pager.totalPages)}>Last</a>
+                    </li>
+                </ul>
+            </nav>)
+        }
     }
+    
+
 }

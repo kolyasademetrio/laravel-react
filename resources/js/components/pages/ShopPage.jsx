@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import ProductSingle from '../products/ProductSingle';
 import CatsListFilterShop from '../../containers/CatsListFilterShop';
 import ProductsSortShop from '../../containers/ProductsSortShop';
-import { Pagination } from '@sketchpixy/rubix';
+//import { Pagination } from '@sketchpixy/rubix';
+import {getPager, Pagination} from "../../helpers/pagination";
 
 class ShopPage extends Component {
 
@@ -14,7 +15,11 @@ class ShopPage extends Component {
     }
 
     render(){
-        const {productsList, categories, isReady, setPagination, pages, currentPage} = this.props;
+        const {productsList, categories, isReady, setPagination, pages, currentPage, perPage} = this.props;
+
+        const Pager = getPager(pages, currentPage, perPage);
+        
+        console.log( Pager );
 
         return (
             <div className="container woocomm__container">
@@ -45,8 +50,11 @@ class ShopPage extends Component {
                                     </div>
 
                                     <div className="products__list">
+                                        
+                                        {/*{ console.log( productsList ) }*/}
+                                        
                                         {isReady && (
-                                            productsList.length ? (
+                                            productsList ? (
                                                 productsList.map( ( productData ) => {
                                                     return (
                                                         <ProductSingle key={productData.id} {...productData} />
@@ -57,8 +65,16 @@ class ShopPage extends Component {
                                         )}
                                     </div>
 
-                                    {(pages > 1) && (
-                                        <Pagination className="pagination"
+                                    {Pager && (
+                                        <Pagination
+                                            pager={Pager}
+                                            page={currentPage}
+                                            setPagination={setPagination}
+                                        />
+                                    )}
+
+                                    {/*{(pages > 1) && (
+                                        {<Pagination className="pagination"
                                             bsSize="medium"
                                             maxButtons={10}
                                             first
@@ -67,8 +83,8 @@ class ShopPage extends Component {
                                             items={pages}
                                             activepage={currentPage}
                                             onSelect={setPagination}
-                                        />
-                                    )}
+                                        />}
+                                    )}*/}
                                 </div>
                             </div>
                         </div>

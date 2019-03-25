@@ -3,7 +3,7 @@ import ProductSingle from '../products/ProductSingle';
 import CatsListFilterShop from '../../containers/CatsListFilterShop';
 import ProductsSortShop from '../../containers/ProductsSortShop';
 //import { Pagination } from '@sketchpixy/rubix';
-import {getPager, Pagination} from "../../helpers/pagination";
+import {Pagination} from "../../helpers/pagination";
 
 class ShopPage extends Component {
 
@@ -15,11 +15,7 @@ class ShopPage extends Component {
     }
 
     render(){
-        const {productsList, categories, isReady, setPagination, pages, currentPage, perPage} = this.props;
-
-        const Pager = getPager(pages, currentPage, perPage);
-        
-        console.log( Pager );
+        const {productsList, categories, isReady, setPagination, currentPage, pager} = this.props;
 
         return (
             <div className="container woocomm__container">
@@ -65,26 +61,13 @@ class ShopPage extends Component {
                                         )}
                                     </div>
 
-                                    {Pager && (
+                                    {pager && (
                                         <Pagination
-                                            pager={Pager}
+                                            pager={pager}
                                             page={currentPage}
-                                            setPagination={setPagination}
+                                            setPagination={setPagination.bind(this)}
                                         />
                                     )}
-
-                                    {/*{(pages > 1) && (
-                                        {<Pagination className="pagination"
-                                            bsSize="medium"
-                                            maxButtons={10}
-                                            first
-                                            last
-                                            boundaryLinks
-                                            items={pages}
-                                            activepage={currentPage}
-                                            onSelect={setPagination}
-                                        />}
-                                    )}*/}
                                 </div>
                             </div>
                         </div>

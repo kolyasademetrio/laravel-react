@@ -7944,7 +7944,7 @@ nav.pagination ul li.disabled {
     display: none;
 }
 
-nav.pagination ul li a {
+nav.pagination ul li span {
     margin: 0;
     text-decoration: none;
     padding: 0;
@@ -7960,11 +7960,16 @@ nav.pagination ul li a {
     font-style: normal;
     font-size: 18px;
     color: #629a3f;
+    cursor: pointer;
 }
 
-nav.pagination ul li a:focus,
-nav.pagination ul li a:hover,
-nav.pagination ul li.active a {
+nav.pagination ul li.active span {
+    cursor: default;
+}
+
+nav.pagination ul li span:focus,
+nav.pagination ul li span:hover,
+nav.pagination ul li.active span {
     color: #ff7422;
     background-color: transparent;
 }

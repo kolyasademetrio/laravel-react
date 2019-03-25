@@ -83069,11 +83069,8 @@ function (_Component) {
           categories = _this$props.categories,
           isReady = _this$props.isReady,
           setPagination = _this$props.setPagination,
-          pages = _this$props.pages,
           currentPage = _this$props.currentPage,
-          perPage = _this$props.perPage;
-      var Pager = Object(_helpers_pagination__WEBPACK_IMPORTED_MODULE_4__["getPager"])(pages, currentPage, perPage);
-      console.log(Pager);
+          pager = _this$props.pager;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container woocomm__container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83116,10 +83113,10 @@ function (_Component) {
         }, productData));
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__list-empty"
-      }, "\u0412 \u044D\u0442\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u0442\u043E\u0432\u0430\u0440\u043E\u0432 \u043D\u0435\u0442"))), Pager && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_pagination__WEBPACK_IMPORTED_MODULE_4__["Pagination"], {
-        pager: Pager,
+      }, "\u0412 \u044D\u0442\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u0442\u043E\u0432\u0430\u0440\u043E\u0432 \u043D\u0435\u0442"))), pager && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_pagination__WEBPACK_IMPORTED_MODULE_4__["Pagination"], {
+        pager: pager,
         page: currentPage,
-        setPagination: setPagination
+        setPagination: setPagination.bind(this)
       })))))));
     }
   }]);
@@ -84253,6 +84250,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/products */ "./resources/js/actions/products.js");
 /* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/filter */ "./resources/js/actions/filter.js");
 /* harmony import */ var _helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers/getCategoryProductRelations */ "./resources/js/helpers/getCategoryProductRelations.js");
+/* harmony import */ var _helpers_pagination__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/pagination */ "./resources/js/helpers/pagination.js");
+
 
 
 
@@ -84313,8 +84312,14 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   /* START: Pagination */
 
   var perPage = 3;
-  var paginatedProducts = getPaginatedProducts(sortedProducts, filter.page || 1, perPage);
-  var pages = getPages(visibleProducts && visibleProducts, perPage);
+  var currentPage = filter.page || 1;
+  var paginatedProducts = getPaginatedProducts(sortedProducts, currentPage, perPage);
+  var Pager = Object(_helpers_pagination__WEBPACK_IMPORTED_MODULE_5__["getPager"])(visibleProducts && visibleProducts.length, currentPage, perPage);
+  /*const pages = getPages(
+      visibleProducts && visibleProducts,
+      perPage
+  );*/
+
   /* END: Pagination */
 
   return {
@@ -84324,9 +84329,10 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     isReady: products.isReady,
     filterBy: filter.filterShopBy,
     sortProductShopBy: filter.sortProductShopBy,
-    pages: pages,
-    currentPage: filter.page || 1,
-    perPage: perPage
+    pager: Pager,
+    // pages: pages,
+    currentPage: currentPage // perPage: perPage,
+
   };
 };
 
@@ -84482,13 +84488,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
@@ -84554,63 +84562,69 @@ var Pagination =
 function (_Component) {
   _inherits(Pagination, _Component);
 
-  function Pagination() {
+  function Pagination(props) {
+    var _this;
+
     _classCallCheck(this, Pagination);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Pagination).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Pagination).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_this), "state", {
+      showLastPrev: false
+    });
+
+    _this.setPage = _this.props.setPagination.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Pagination, [{
     key: "render",
-
-    /*constructor(){
-      }*/
     value: function render() {
-      var _this = this;
+      var _this2 = this;
 
       var _this$props = this.props,
           pager = _this$props.pager,
-          page = _this$props.page,
           setPage = _this$props.setPagination;
-      console.log(setPage);
 
       if (!pager.pages || pager.pages.length <= 1) {
-        // don't display pager if there is only 1 page
         return null;
       } else {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
           className: "pagination"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
           className: "page-numbers"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        }, this.state.showLastPrev && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: pager.currentPage === 1 ? 'disabled' : ''
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           onClick: function onClick() {
-            return _this.setPage(1);
+            return _this2.setPage(1);
           }
         }, "First")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: pager.currentPage === 1 ? 'disabled' : ''
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           onClick: function onClick() {
-            return _this.setPage(pager.currentPage - 1);
+            return _this2.setPage(pager.currentPage - 1);
           }
-        }, "\u2190")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: pager.currentPage === page ? 'active' : ''
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          onClick: function onClick() {
-            return _this.setPage(page);
-          }
-        }, page)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        }, "\u2190")), pager.pages.map(function (p) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+            className: pager.currentPage === p ? 'active' : '',
+            key: p
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            onClick: function onClick() {
+              return _this2.setPage(p);
+            }
+          }, p));
+        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: pager.currentPage === pager.totalPages ? 'disabled' : ''
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           onClick: function onClick() {
-            return _this.setPage(pager.currentPage + 1);
+            return _this2.setPage(pager.currentPage + 1);
           }
-        }, "\u2192")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        }, "\u2192")), this.state.showLastPrev && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: pager.currentPage === pager.totalPages ? 'disabled' : ''
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           onClick: function onClick() {
-            return _this.setPage(pager.totalPages);
+            return _this2.setPage(pager.totalPages);
           }
         }, "Last"))));
       }

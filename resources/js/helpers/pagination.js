@@ -55,37 +55,47 @@ export const getPager = (totalItems, currentPage, pageSize) => {
 
 export class Pagination extends Component {
 
-    /*constructor(){
+    constructor(props) {
+        super(props);
+        this.setPage = this.props.setPagination.bind(this);
+    }
 
-    }*/
+    state = {
+        showLastPrev: false
+    }
 
     render(){
-
-        const {pager, page, setPagination: setPage} = this.props;
-        
-        console.log( setPage );
+        const {pager, setPagination: setPage} = this.props;
 
         if (!pager.pages || pager.pages.length <= 1) {
-            // don't display pager if there is only 1 page
             return null;
         } else {
             return (<nav className="pagination">
                 <ul className="page-numbers">
+                    {this.state.showLastPrev && (
+                        <li className={pager.currentPage === 1 ? 'disabled' : ''}>
+                            <span onClick={() => this.setPage(1)}>First</span>
+                        </li>
+                    )}
                     <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                        <a onClick={() => this.setPage(1)}>First</a>
+                        <span onClick={() => this.setPage(pager.currentPage - 1)}>←</span>
                     </li>
-                    <li className={pager.currentPage === 1 ? 'disabled' : ''}>
-                        <a onClick={() => this.setPage(pager.currentPage - 1)}>←</a>
-                    </li>
-                    <li className={pager.currentPage === page ? 'active' : ''}>
-                        <a onClick={() => this.setPage(page)}>{page}</a>
-                    </li>
+                    {
+                        pager.pages.map(p => (
+                            <li className={pager.currentPage === p ? 'active' : ''} key={p}>
+                                <span onClick={() => this.setPage(p)}>{p}</span>
+                            </li>
+                        ))
+                    }
                     <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                        <a onClick={() => this.setPage(pager.currentPage + 1)}>→</a>
+                        <span onClick={() => this.setPage(pager.currentPage + 1)}>→</span>
                     </li>
-                    <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
-                        <a onClick={() => this.setPage(pager.totalPages)}>Last</a>
-                    </li>
+
+                    {this.state.showLastPrev && (
+                        <li className={pager.currentPage === pager.totalPages ? 'disabled' : ''}>
+                            <span onClick={() => this.setPage(pager.totalPages)}>Last</span>
+                        </li>
+                    )}
                 </ul>
             </nav>)
         }

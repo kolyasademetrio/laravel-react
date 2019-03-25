@@ -6,6 +6,7 @@ import {setProducts} from '../../actions/products';
 import {setFilter, setPagination} from '../../actions/filter';
 
 import getCategoryProductRelations from '../../helpers/getCategoryProductRelations';
+import {getPager} from "../../helpers/pagination";
 
 
 
@@ -66,16 +67,26 @@ const mapStateToProps = (state, ownProps) => {
     /* START: Pagination */
     const perPage = 3;
 
+    const currentPage = filter.page || 1;
+
     const paginatedProducts = getPaginatedProducts(
         sortedProducts,
-        filter.page || 1,
+        currentPage,
         perPage
     );
 
-    const pages = getPages(
-        visibleProducts && visibleProducts,
+    const Pager = getPager(
+        visibleProducts && visibleProducts.length,
+        currentPage,
         perPage
     );
+
+    /*const pages = getPages(
+        visibleProducts && visibleProducts,
+        perPage
+    );*/
+
+
     /* END: Pagination */
 
     return {
@@ -85,9 +96,10 @@ const mapStateToProps = (state, ownProps) => {
         isReady: products.isReady,
         filterBy: filter.filterShopBy,
         sortProductShopBy: filter.sortProductShopBy,
-        pages: pages,
-        currentPage: filter.page || 1,
-        perPage: perPage,
+        pager: Pager,
+        // pages: pages,
+        currentPage: currentPage,
+        // perPage: perPage,
     }
 };
 

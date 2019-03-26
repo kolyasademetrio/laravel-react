@@ -84496,15 +84496,33 @@ function (_Component) {
   _createClass(Breadcrumbs, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this = this;
+
       axios.get('/api/pages').then(function (_ref) {
         var data = _ref.data;
-        console.log(data);
+
+        _this.setState({
+          slugs: data
+        });
+
+        var slugsNames = {};
+        data.forEach(function (elem, index) {
+          var slugEl = elem.slug;
+          slugsNames[slugEl] = elem.title;
+        });
+
+        _this.setState({
+          slugsNames: slugsNames
+        });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BreadcrumbsComp, null);
+      var slugsNames = this.state && this.state.slugsNames;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BreadcrumbsComp, {
+        slugsNames: slugsNames
+      });
     }
   }]);
 
@@ -84512,7 +84530,8 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Breadcrumbs);
-var BreadcrumbsComp = function BreadcrumbsComp() {
+var BreadcrumbsComp = function BreadcrumbsComp(props) {
+  var slugsNames = props.slugsNames;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "*",
     render: function render(props) {
@@ -84525,7 +84544,7 @@ var BreadcrumbsComp = function BreadcrumbsComp() {
         to: '/'
       }, "\u0413\u043B\u0430\u0432\u043D\u0430\u044F"), parts.map(crumb), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "kb_sep"
-      }, " / "), place);
+      }, " / "), slugsNames && slugsNames[place]);
     }
   });
 };

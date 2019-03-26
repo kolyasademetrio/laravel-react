@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Breadcrumbs from "../../helpers/breadcrumbs";
 
 class AboutPage extends Component {
     render() {
@@ -19,6 +20,8 @@ class AboutPage extends Component {
                         </div>
                     </div>
                 </div>
+
+                <Breadcrumbs />
 
                 <div className="container dinamyc-page-container">
                     <div className="row">

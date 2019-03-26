@@ -65,7 +65,7 @@ const mapStateToProps = (state, ownProps) => {
     );
 
     /* START: Pagination */
-    const perPage = 3;
+    const perPage = 9;
 
     const currentPage = filter.page || 1;
 

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import ProductSingle from '../products/ProductSingle';
 import CatsListFilterShop from '../../containers/CatsListFilterShop';
 import ProductsSortShop from '../../containers/ProductsSortShop';
-//import { Pagination } from '@sketchpixy/rubix';
 import {Pagination} from "../../helpers/pagination";
+
+import Breadcrumbs from "../../helpers/breadcrumbs";
 
 class ShopPage extends Component {
 
@@ -22,6 +23,8 @@ class ShopPage extends Component {
                 <div className="row woocomm__row">
                     <div className="col-xs-12">
                         <div className="woocomm__col">
+
+                            <Breadcrumbs />
 
                             <div className="kama_breadcrumbs" itemScope="" itemType="http://schema.org/BreadcrumbList">
                                 <span itemProp="itemListElement" itemType="http://schema.org/ListItem">

@@ -16,6 +16,7 @@ class PagesController extends Controller
     public function index()
     {
         $pages = Pages::all();
+
         return response()->json($pages);
     }
 

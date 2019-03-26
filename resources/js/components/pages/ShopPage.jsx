@@ -26,16 +26,6 @@ class ShopPage extends Component {
 
                             <Breadcrumbs />
 
-                            <div className="kama_breadcrumbs" itemScope="" itemType="http://schema.org/BreadcrumbList">
-                                <span itemProp="itemListElement" itemType="http://schema.org/ListItem">
-                                    <a href="/" itemProp="item">
-                                        <span itemProp="name">Главная</span>
-                                    </a>
-                                </span>
-                                <span className="kb_sep"> / </span>
-                                Ассортимент
-                            </div>
-
                             <div className="products__wrapper">
                                 <div className="products__sidebar">
                                     {isReady && <CatsListFilterShop categories={categories} />}

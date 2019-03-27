@@ -75,7 +75,7 @@ const mapStateToProps = (state, ownProps) => {
         perPage
     );
 
-    const Pager = getPager(
+    const pager = getPager(
         visibleProducts && visibleProducts.length,
         currentPage,
         perPage
@@ -96,10 +96,8 @@ const mapStateToProps = (state, ownProps) => {
         isReady: products.isReady,
         filterBy: filter.filterShopBy,
         sortProductShopBy: filter.sortProductShopBy,
-        pager: Pager,
-        // pages: pages,
+        pager: pager,
         currentPage: currentPage,
-        // perPage: perPage,
     }
 };
 

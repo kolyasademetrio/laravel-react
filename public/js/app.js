@@ -83101,6 +83101,7 @@ function (_Component) {
           setPagination = _this$props.setPagination,
           currentPage = _this$props.currentPage,
           pager = _this$props.pager;
+      console.log(this.props);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container woocomm__container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84332,7 +84333,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var perPage = 9;
   var currentPage = filter.page || 1;
   var paginatedProducts = getPaginatedProducts(sortedProducts, currentPage, perPage);
-  var Pager = Object(_helpers_pagination__WEBPACK_IMPORTED_MODULE_5__["getPager"])(visibleProducts && visibleProducts.length, currentPage, perPage);
+  var pager = Object(_helpers_pagination__WEBPACK_IMPORTED_MODULE_5__["getPager"])(visibleProducts && visibleProducts.length, currentPage, perPage);
   /*const pages = getPages(
       visibleProducts && visibleProducts,
       perPage
@@ -84347,10 +84348,8 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
     isReady: products.isReady,
     filterBy: filter.filterShopBy,
     sortProductShopBy: filter.sortProductShopBy,
-    pager: Pager,
-    // pages: pages,
-    currentPage: currentPage // perPage: perPage,
-
+    pager: pager,
+    currentPage: currentPage
   };
 };
 

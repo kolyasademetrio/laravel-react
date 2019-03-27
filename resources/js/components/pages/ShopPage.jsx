@@ -17,6 +17,8 @@ class ShopPage extends Component {
 
     render(){
         const {productsList, categories, isReady, setPagination, currentPage, pager} = this.props;
+        
+        console.log( this.props );
 
         return (
             <div className="container woocomm__container">

@@ -15,6 +15,7 @@ import ContactsPage from './components/pages/ContactsPage';
 import ErrorPage from './components/pages/ErrorPage';
 import ShippingPage from './components/pages/ShippingPage';
 import TermsCooperationPage from './components/pages/TermsCooperationPage';
+import ProductSinglePage from './components/pages/ProductSinglePage';
 
 class Main extends Component {
     render() {
@@ -33,6 +34,7 @@ class Main extends Component {
                             <Route exact path="/contacts" component={ ContactsPage }/>
                             <Route exact path="/shipping" component={ ShippingPage }/>
                             <Route exact path="/terms-cooperation" component={ TermsCooperationPage }/>
+                            <Route exact path={`/products/:productId`} component={ProductSinglePage} />
                             <Route component={ ErrorPage } />
                         </Switch>
                     </div>

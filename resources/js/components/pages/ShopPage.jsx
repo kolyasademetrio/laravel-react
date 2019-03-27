@@ -40,8 +40,6 @@ class ShopPage extends Component {
 
                                     <div className="products__list">
                                         
-                                        {/*{ console.log( productsList ) }*/}
-                                        
                                         {isReady && (
                                             productsList ? (
                                                 productsList.map( ( productData ) => {

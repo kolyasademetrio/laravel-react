@@ -25,16 +25,16 @@ class Main extends Component {
                     <Header/>
                     <div id="main" className="site__main">
                         <Switch>
-                            <Route exact path="/" component={ HomePage }/>
-                            <Route exact path="/about-cosmetics" component={ AboutPage }/>
-                            <Route exact path="/shop" component={ ShopPage }/>
-                            <Route exact path="/videotip" component={ VideotipPage }/>
+                            <Route exact path="/" component={ HomePage } />
+                            <Route exact path="/about-cosmetics" component={ AboutPage } />
+                            <Route exact path="/shop" component={ ShopPage } />
+                            <Route exact path={`/shop/:productId`} component={ProductSinglePage} />
+                            <Route exact path="/videotip" component={ VideotipPage } />
                             <Route exact path="/stock" component={ StockPage }/>
-                            <Route exact path="/doyouknow" component={ DoyouknowPage }/>
-                            <Route exact path="/contacts" component={ ContactsPage }/>
-                            <Route exact path="/shipping" component={ ShippingPage }/>
-                            <Route exact path="/terms-cooperation" component={ TermsCooperationPage }/>
-                            <Route exact path={`/products/:productId`} component={ProductSinglePage} />
+                            <Route exact path="/doyouknow" component={ DoyouknowPage } />
+                            <Route exact path="/contacts" component={ ContactsPage } />
+                            <Route exact path="/shipping" component={ ShippingPage } />
+                            <Route exact path="/terms-cooperation" component={ TermsCooperationPage } />
                             <Route component={ ErrorPage } />
                         </Switch>
                     </div>

@@ -78307,6 +78307,10 @@ function (_Component) {
         component: _containers_pages_ShopPage__WEBPACK_IMPORTED_MODULE_7__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
+        path: "/shop/:productId",
+        component: _components_pages_ProductSinglePage__WEBPACK_IMPORTED_MODULE_15__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+        exact: true,
         path: "/videotip",
         component: _components_pages_VideotipPage__WEBPACK_IMPORTED_MODULE_8__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
@@ -78329,10 +78333,6 @@ function (_Component) {
         exact: true,
         path: "/terms-cooperation",
         component: _components_pages_TermsCooperationPage__WEBPACK_IMPORTED_MODULE_14__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
-        exact: true,
-        path: "/products/:productId",
-        component: _components_pages_ProductSinglePage__WEBPACK_IMPORTED_MODULE_15__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         component: _components_pages_ErrorPage__WEBPACK_IMPORTED_MODULE_12__["default"]
       })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_footer_Footer__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Ancorup__WEBPACK_IMPORTED_MODULE_3__["default"], null));
@@ -79913,11 +79913,12 @@ function (_Component) {
   }
 
   _createClass(HeaderBottomMenu, [{
-    key: "componentWillMount",
-    value: function componentWillMount() {
-      var $this = this;
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
       axios.get('/api/pages').then(function (response) {
-        $this.setState({
+        _this2.setState({
           menuItems: response.data
         });
       }).catch(function (error) {
@@ -79927,7 +79928,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "headerBottom__menu",
@@ -79936,9 +79937,9 @@ function (_Component) {
         className: "headerBottom__menuList"
       }, this.state.menuItems.map(function (headerMenuItem) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HeaderBottomMenuItem__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
-          key: _this2.nextUniqueId()
+          key: _this3.nextUniqueId()
         }, headerMenuItem, {
-          onHandler: _this2.onClickAlert
+          onHandler: _this3.onClickAlert
         }));
       })));
     }
@@ -79963,61 +79964,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
-
-var HeaderBottomMenuItem =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(HeaderBottomMenuItem, _Component);
-
-  function HeaderBottomMenuItem() {
-    _classCallCheck(this, HeaderBottomMenuItem);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(HeaderBottomMenuItem).apply(this, arguments));
-  }
-
-  _createClass(HeaderBottomMenuItem, [{
-    key: "render",
-    value: function render() {
-      var _this = this;
-
-      var _this$props = this.props,
-          slug = _this$props.slug,
-          title = _this$props.title;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "headerBottom__menuItem"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-        to: slug,
-        className: "headerBottom__menuItemLink",
-        activeClassName: "active",
-        onClick: function onClick() {
-          return _this.props.onHandler(title);
-        }
-      }, title));
+var HeaderBottomMenuItem = function HeaderBottomMenuItem(_ref) {
+  var slug = _ref.slug,
+      title = _ref.title,
+      onHandler = _ref.onHandler;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "headerBottom__menuItem"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    to: "/".concat(slug),
+    className: "headerBottom__menuItemLink",
+    activeClassName: "active",
+    onClick: function onClick() {
+      return onHandler(title);
     }
-  }]);
-
-  return HeaderBottomMenuItem;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+  }, title));
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (HeaderBottomMenuItem);
 
@@ -85052,8 +85016,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

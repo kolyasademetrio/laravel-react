@@ -1,21 +1,18 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, {Component} from 'react';
+import {NavLink} from 'react-router-dom';
 
-class HeaderBottomMenuItem extends Component {
-    render(){
-        const { slug, title } = this.props;
+const HeaderBottomMenuItem = ({slug, title, onHandler}) => {
         return (
             <li className="headerBottom__menuItem">
-                <NavLink to={ slug }
+                <NavLink to={`/${slug}`}
                          className="headerBottom__menuItemLink"
                          activeClassName="active"
-                         onClick={ () => this.props.onHandler( title) }
+                         onClick={() => onHandler(title)}
                 >
-                    { title }
+                    {title}
                 </NavLink>
             </li>
-        );
-    }
+        )
 }
 
 export default HeaderBottomMenuItem;

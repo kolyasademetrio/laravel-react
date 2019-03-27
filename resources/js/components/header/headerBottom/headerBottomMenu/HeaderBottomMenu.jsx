@@ -13,14 +13,12 @@ class HeaderBottomMenu extends Component {
         }
     }
 
-    componentWillMount(){
-        let $this = this;
-
+    componentDidMount(){
         axios.get('/api/pages')
             .then(response => {
-            $this.setState({
-                menuItems: response.data,
-            });
+                this.setState({
+                    menuItems: response.data,
+                });
         }).catch(error => {
             console.log(error);
         });

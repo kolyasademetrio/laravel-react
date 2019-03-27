@@ -28,7 +28,7 @@ class Videotip extends Component {
                                         <div className="videotip__item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                             <a href="https://www.youtube.com/watch?v=4PgWyVtP0jo"
                                                title="Массаж лица за 10 минут - Базовая схема самомассажа Ренессанс" className="videotip__itemInner">
-                                                <img src="uploads/2018/10/video_size_5.jpg"
+                                                <img src="/uploads/2018/10/video_size_5.jpg"
                                                     alt="" className="videotip__itemImg"
                                                 />
                                                 <span className="videotip__play"></span>
@@ -42,7 +42,7 @@ class Videotip extends Component {
                                                title="Крем с SPF - Какие фильтры вреднее, химические или физические?"
                                                className="videotip__itemInner"
                                             >
-                                                <img src="uploads/2018/10/video_size_4.jpg"
+                                                <img src="/uploads/2018/10/video_size_4.jpg"
                                                      alt="" className="videotip__itemImg"
                                                 />
                                                 <span className="videotip__play"></span>
@@ -55,7 +55,7 @@ class Videotip extends Component {
                                             <a href="https://www.youtube.com/watch?v=A73wanFxw40"
                                                title="Почему после массажа Появляются Прыщи"
                                                className="videotip__itemInner">
-                                                <img src="uploads/2018/10/video_size_3.jpg"
+                                                <img src="/uploads/2018/10/video_size_3.jpg"
                                                      alt="" className="videotip__itemImg"
                                                 />
                                                 <span className="videotip__play"></span>
@@ -68,7 +68,7 @@ class Videotip extends Component {
                                             <a href="https://www.youtube.com/watch?v=m7wOu3PIJJA"
                                                title="Почему вашей коже нужен Защитный Крем"
                                                className="videotip__itemInner">
-                                                <img src="uploads/2018/10/video_size_2.jpg"
+                                                <img src="/uploads/2018/10/video_size_2.jpg"
                                                      alt="" className="videotip__itemImg"
                                                 />
                                                 <span className="videotip__play"></span>
@@ -80,7 +80,7 @@ class Videotip extends Component {
                                         <div className="videotip__item col-lg-3 col-md-3 col-sm-4 col-xs-6">
                                             <a href="https://www.youtube.com/watch?v=hD5vxRg8P_I"
                                                title="О компании Alga Ph" className="videotip__itemInner">
-                                                <img src="uploads/2018/08/video_014.jpg"
+                                                <img src="/uploads/2018/08/video_014.jpg"
                                                      alt="" className="videotip__itemImg"
                                                 />
                                                 <span className="videotip__play"></span>

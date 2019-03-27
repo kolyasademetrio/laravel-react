@@ -78809,7 +78809,7 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "movietiphome",
         style: {
-          background: 'url(uploads/2018/08/movietiphome_bg.png) no-repeat center top',
+          background: 'url(/uploads/2018/08/movietiphome_bg.png) no-repeat center top',
           WebkitBackgroundSize: '100% 100%',
           backgroundSize: '100% 100%'
         }
@@ -78838,7 +78838,7 @@ function (_Component) {
         className: "movietiphome__link",
         title: "\u041E \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438 Alga Ph"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/08/video_014.jpg",
+        src: "/uploads/2018/08/video_014.jpg",
         alt: "",
         className: "movietiphome__img"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -78958,7 +78958,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sliderMain__link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/11/Slider_1266x425_v2__.jpg",
+        src: "/uploads/2018/11/Slider_1266x425_v2__.jpg",
         alt: "",
         className: "sliderMain__img"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -78966,7 +78966,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "sliderMain__link"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/11/Slider_1266x425_v4__.jpg",
+        src: "/uploads/2018/11/Slider_1266x425_v4__.jpg",
         alt: "",
         className: "sliderMain__img"
       })))));
@@ -79365,7 +79365,7 @@ function (_Component) {
         id: "colophon",
         className: "footer",
         style: {
-          background: 'url(uploads/2018/10/grazz.png) no-repeat center top',
+          background: 'url(/uploads/2018/10/grazz.png) no-repeat center top',
           WebkitBackgroundSize: '100% 100%',
           backgroundSize: '100% 100%'
         }
@@ -80333,7 +80333,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "headerMiddle__logoLink"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/07/header_logo.png",
+        src: "/uploads/2018/07/header_logo.png",
         alt: "logo",
         className: "headerMiddle__img"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -80427,7 +80427,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "headerMiddle__pointsMiddle"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/07/header_marker.png",
+        src: "/uploads/2018/07/header_marker.png",
         alt: "img",
         className: "headerMiddle__pointsMarker"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -80501,21 +80501,21 @@ function (_Component) {
         target: "_blank",
         rel: "noopener noreferrer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/09/icons_v-05.png",
+        src: "/uploads/2018/09/icons_v-05.png",
         alt: "social"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "https://www.instagram.com/",
         target: "_blank",
         rel: "noopener noreferrer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/09/icons_v-06.png",
+        src: "/uploads/2018/09/icons_v-06.png",
         alt: "social"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "https://www.youtube.com/",
         target: "_blank",
         rel: "noopener noreferrer"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/09/icons_v-07.png",
+        src: "/uploads/2018/09/icons_v-07.png",
         alt: "social"
       })))));
     }
@@ -80746,7 +80746,7 @@ function (_Component) {
         className: "headerTop__cartQtyWrap"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "headerTop__cartQtyImg",
-        src: "images/myicons/cart.png",
+        src: "/images/myicons/cart.png",
         alt: "Cart Icon"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "headerTop__cartQty"
@@ -81140,7 +81140,7 @@ function (_Component) {
       }, "\u041F\u0440\u043E\u0442\u0435\u0441\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C \u0431\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u043E"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "howitwork__BGinner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/08/bg.png",
+        src: "/uploads/2018/08/bg.png",
         alt: "",
         className: "howitwork__BGimg"
       }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -81152,7 +81152,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "howitwork__itemHeader"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/08/1-1.png",
+        src: "/uploads/2018/08/1-1.png",
         alt: "",
         className: "howitwork__itemImg"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -81164,7 +81164,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "howitwork__itemHeader"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/08/2-2.png",
+        src: "/uploads/2018/08/2-2.png",
         alt: "",
         className: "howitwork__itemImg"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -81176,7 +81176,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "howitwork__itemHeader"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/08/3-2.png",
+        src: "/uploads/2018/08/3-2.png",
         alt: "",
         className: "howitwork__itemImg"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -81188,7 +81188,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "howitwork__itemHeader"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/08/4-2.png",
+        src: "/uploads/2018/08/4-2.png",
         alt: "",
         className: "howitwork__itemImg"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -81200,7 +81200,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "howitwork__itemHeader"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/08/5.png",
+        src: "/uploads/2018/08/5.png",
         alt: "",
         className: "howitwork__itemImg"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -81212,7 +81212,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "howitwork__itemHeader"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/08/6.png",
+        src: "/uploads/2018/08/6.png",
         alt: "",
         className: "howitwork__itemImg"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -81224,7 +81224,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "howitwork__itemHeader"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/08/7.png",
+        src: "/uploads/2018/08/7.png",
         alt: "",
         className: "howitwork__itemImg"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -82293,7 +82293,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "size-full wp-image-828 aligncenter",
-        src: "uploads/2018/10/o_kosmetike_3.jpg",
+        src: "/uploads/2018/10/o_kosmetike_3.jpg",
         alt: "",
         width: "1245",
         height: "420"
@@ -82590,7 +82590,7 @@ function (_Component) {
         href: "https://www.youtube.com/watch?time_continue=1&v=DzwkcbTQ7ZE",
         className: "offers__imageWrap has__video"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/10/977x550_2.jpg",
+        src: "/uploads/2018/10/977x550_2.jpg",
         alt: "sdsd"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "offers__content"
@@ -82608,7 +82608,7 @@ function (_Component) {
         href: "/questions/%d1%82%d0%b5%d1%81%d1%82%d0%be%d0%b2%d1%8b%d0%b9-%d0%b1%d0%bb%d0%be%d0%ba-1/",
         className: "offers__imageWrap"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/10/977x550.jpg",
+        src: "/uploads/2018/10/977x550.jpg",
         alt: "sds"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "offers__content"
@@ -82691,7 +82691,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "error-page-image",
-        src: "./images/404.jpg",
+        src: "/images/404.jpg",
         alt: "404 Page not found",
         style: imageStyles
       }));
@@ -82887,7 +82887,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "size-full wp-image-794 aligncenter",
-        src: "uploads/2018/09/samovuvoz-01-1.jpg",
+        src: "/uploads/2018/09/samovuvoz-01-1.jpg",
         alt: "",
         width: "177",
         height: "112"
@@ -82919,7 +82919,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "size-full wp-image-801 aligncenter",
-        src: "uploads/2018/09/novaya_pochta.jpg",
+        src: "/uploads/2018/09/novaya_pochta.jpg",
         alt: "",
         width: "177",
         height: "112"
@@ -82953,7 +82953,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "size-full wp-image-806 aligncenter",
-        src: "uploads/2018/09/dostavka.jpg",
+        src: "/uploads/2018/09/dostavka.jpg",
         alt: "",
         width: "177",
         height: "112"
@@ -83197,7 +83197,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "offers_date"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "2018-10-24"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "19:00:00")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/10/400x200.jpg",
+        src: "/uploads/2018/10/400x200.jpg",
         alt: "dewr"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "offers__content"
@@ -83217,7 +83217,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "offers_date"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "2018-10-17"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "00:00:00")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/10/977x550_3.jpg",
+        src: "/uploads/2018/10/977x550_3.jpg",
         alt: "wrewhj"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "offers__content"
@@ -83237,7 +83237,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "offers_date"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "2018-10-25"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "10:17:00")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/10/400\u0445200_1.jpg",
+        src: "/uploads/2018/10/400\u0445200_1.jpg",
         alt: "sfsfdkoj"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "offers__content"
@@ -83375,7 +83375,7 @@ function (_Component) {
         }
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
         className: "size-full wp-image-679 aligncenter",
-        src: "uploads/2018/09/sotrudnichestvo.png",
+        src: "/uploads/2018/09/sotrudnichestvo.png",
         alt: "",
         width: "1024",
         height: "325"
@@ -83578,7 +83578,7 @@ function (_Component) {
         title: "\u041C\u0430\u0441\u0441\u0430\u0436 \u043B\u0438\u0446\u0430 \u0437\u0430 10 \u043C\u0438\u043D\u0443\u0442 - \u0411\u0430\u0437\u043E\u0432\u0430\u044F \u0441\u0445\u0435\u043C\u0430 \u0441\u0430\u043C\u043E\u043C\u0430\u0441\u0441\u0430\u0436\u0430 \u0420\u0435\u043D\u0435\u0441\u0441\u0430\u043D\u0441",
         className: "videotip__itemInner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/10/video_size_5.jpg",
+        src: "/uploads/2018/10/video_size_5.jpg",
         alt: "",
         className: "videotip__itemImg"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -83593,7 +83593,7 @@ function (_Component) {
         title: "\u041A\u0440\u0435\u043C \u0441 SPF - \u041A\u0430\u043A\u0438\u0435 \u0444\u0438\u043B\u044C\u0442\u0440\u044B \u0432\u0440\u0435\u0434\u043D\u0435\u0435, \u0445\u0438\u043C\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0438\u043B\u0438 \u0444\u0438\u0437\u0438\u0447\u0435\u0441\u043A\u0438\u0435?",
         className: "videotip__itemInner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/10/video_size_4.jpg",
+        src: "/uploads/2018/10/video_size_4.jpg",
         alt: "",
         className: "videotip__itemImg"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -83608,7 +83608,7 @@ function (_Component) {
         title: "\u041F\u043E\u0447\u0435\u043C\u0443 \u043F\u043E\u0441\u043B\u0435 \u043C\u0430\u0441\u0441\u0430\u0436\u0430 \u041F\u043E\u044F\u0432\u043B\u044F\u044E\u0442\u0441\u044F \u041F\u0440\u044B\u0449\u0438",
         className: "videotip__itemInner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/10/video_size_3.jpg",
+        src: "/uploads/2018/10/video_size_3.jpg",
         alt: "",
         className: "videotip__itemImg"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -83623,7 +83623,7 @@ function (_Component) {
         title: "\u041F\u043E\u0447\u0435\u043C\u0443 \u0432\u0430\u0448\u0435\u0439 \u043A\u043E\u0436\u0435 \u043D\u0443\u0436\u0435\u043D \u0417\u0430\u0449\u0438\u0442\u043D\u044B\u0439 \u041A\u0440\u0435\u043C",
         className: "videotip__itemInner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/10/video_size_2.jpg",
+        src: "/uploads/2018/10/video_size_2.jpg",
         alt: "",
         className: "videotip__itemImg"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -83638,7 +83638,7 @@ function (_Component) {
         title: "\u041E \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438 Alga Ph",
         className: "videotip__itemInner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "uploads/2018/08/video_014.jpg",
+        src: "/uploads/2018/08/video_014.jpg",
         alt: "",
         className: "videotip__itemImg"
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -83999,7 +83999,9 @@ var RecommendedList = function RecommendedList(_ref) {
   var productsRecommendedList = productsRecommended.map(function (productData) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_3__["default"], _extends({
       key: productData.id
-    }, productData));
+    }, productData, {
+      matchPath: 'shop'
+    }));
   });
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "recommended__products"
@@ -84356,7 +84358,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(_ref) {
+var mapStateToProps = function mapStateToProps(_ref, ownProps) {
   var products = _ref.products;
   return {
     productsList: products.items.productsList,
@@ -85016,8 +85018,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

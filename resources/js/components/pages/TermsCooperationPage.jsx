@@ -39,7 +39,7 @@ class TermsCooperationPage extends Component {
                                     </h3>
                                     <p style={{textAlign: 'center'}}>
                                         <img className="size-full wp-image-679 aligncenter"
-                                             src="uploads/2018/09/sotrudnichestvo.png"
+                                             src="/uploads/2018/09/sotrudnichestvo.png"
                                              alt="" width="1024" height="325"
                                         />
                                     </p>

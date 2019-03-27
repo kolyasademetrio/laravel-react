@@ -6,7 +6,7 @@ import Recommended from '../../components/recomended/Recommended';
 
 
 
-const mapStateToProps = ({ products }) => ({
+const mapStateToProps = ({products},ownProps) => ({
     productsList: products.items.productsList,
     categories: products.items.categories,
     categoriesRelationship: getCategoryProductRelations( products.items.categoriesRelationship ),

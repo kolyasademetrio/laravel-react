@@ -8,7 +8,7 @@ const RecommendedList = ({productsRecommended}) => {
     const showSlider = setSliderVisibility( productsRecommended.length, window.innerWidth );
 
     const productsRecommendedList = productsRecommended.map(productData => (
-                <ProductSingle key={productData.id} {...productData} />
+                <ProductSingle key={productData.id} {...productData} matchPath={'shop'} />
     ));
 
     return (

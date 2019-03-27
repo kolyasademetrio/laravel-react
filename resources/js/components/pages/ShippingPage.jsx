@@ -34,7 +34,7 @@ class ShippingPage extends Component {
                                     <p>
                                         <strong style={{fontSize: "10px"}}>
                                             <img className="size-full wp-image-794 aligncenter"
-                                                 src="uploads/2018/09/samovuvoz-01-1.jpg"
+                                                 src="/uploads/2018/09/samovuvoz-01-1.jpg"
                                                  alt="" width="177" height="112"
                                             />
                                         </strong>
@@ -58,7 +58,7 @@ class ShippingPage extends Component {
                                     <p style={{textAlign: 'left'}}>
                                         <span style={{fontSize: '10px'}}>
                                             <img className="size-full wp-image-801 aligncenter"
-                                                 src="uploads/2018/09/novaya_pochta.jpg" alt=""
+                                                 src="/uploads/2018/09/novaya_pochta.jpg" alt=""
                                                  width="177" height="112"
                                             />
                                             <span style={{fontSize: '14px'}}>
@@ -77,7 +77,7 @@ class ShippingPage extends Component {
                                     <p style={{textAlign: 'left'}}>
                                         <span style={{fontSize: '10px'}}>
                                             <img className="size-full wp-image-806 aligncenter"
-                                                 src="uploads/2018/09/dostavka.jpg" alt=""
+                                                 src="/uploads/2018/09/dostavka.jpg" alt=""
                                                  width="177" height="112"
                                             />
                                             <span style={{fontSize: '14px'}}>

@@ -20,7 +20,7 @@ class HeaderTopCart extends Component {
                 <a className="headerTop__cart" href="#cart__popup" onClick={this.showModal}
                    title="View your shopping cart">
                     <div className="headerTop__cartQtyWrap">
-                        <img className="headerTop__cartQtyImg" src="images/myicons/cart.png"
+                        <img className="headerTop__cartQtyImg" src="/images/myicons/cart.png"
                              alt="Cart Icon"/>
                         <span className="headerTop__cartQty">0</span>
                     </div>

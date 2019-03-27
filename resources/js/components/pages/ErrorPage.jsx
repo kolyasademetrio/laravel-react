@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 class ErrorPage extends Component {
     render(){
@@ -12,9 +12,9 @@ class ErrorPage extends Component {
         return (
             <Link className="error-page-link" to="/" style={{display: 'block'}}>
                 <img className="error-page-image"
-                     src="./images/404.jpg"
+                     src="/images/404.jpg"
                      alt="404 Page not found"
-                     style={ imageStyles }
+                     style={imageStyles}
                 />
             </Link>
         );

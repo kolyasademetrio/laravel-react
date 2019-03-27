@@ -51,7 +51,7 @@ class AboutPage extends Component {
                                     <p>
                                         <span style={{fontSize: '14px'}}>Сейчас это едва ли не единственная косметика на отечественном рынке, которая соответствует требованиям «Ecocert» и «BDIH», которые сертифицируют косметические средства, имеющие в своем составе 95 и более процентов натуральных ингредиентов растительного происхождения.</span>
                                         <span style={{fontSize: '14px'}}>
-                                            <img className="size-full wp-image-828 aligncenter" src="uploads/2018/10/o_kosmetike_3.jpg" alt="" width="1245" height="420"/>
+                                            <img className="size-full wp-image-828 aligncenter" src="/uploads/2018/10/o_kosmetike_3.jpg" alt="" width="1245" height="420"/>
                                         </span>
                                     </p>
                                     <p>

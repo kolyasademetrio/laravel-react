@@ -67,7 +67,7 @@ class Howitwork extends Component {
                                     </div>
 
                                     <div className="howitwork__BGinner">
-                                        <img src="uploads/2018/08/bg.png" alt="" className="howitwork__BGimg"/>
+                                        <img src="/uploads/2018/08/bg.png" alt="" className="howitwork__BGimg"/>
                                     </div>
                                 </div>
 
@@ -75,7 +75,7 @@ class Howitwork extends Component {
                                     <div className="howitwork__innerRow">
                                         <div className="howitwork__item">
                                             <div className="howitwork__itemHeader">
-                                                <img src="uploads/2018/08/1-1.png" alt="" className="howitwork__itemImg"/>
+                                                <img src="/uploads/2018/08/1-1.png" alt="" className="howitwork__itemImg"/>
                                             </div>
                                             <div className="howitwork__itemTitle">
                                                 Не имеет возрастного ценза
@@ -88,7 +88,7 @@ class Howitwork extends Component {
                                         </div>
                                         <div className="howitwork__item">
                                             <div className="howitwork__itemHeader">
-                                                <img src="uploads/2018/08/2-2.png" alt="" className="howitwork__itemImg"/>
+                                                <img src="/uploads/2018/08/2-2.png" alt="" className="howitwork__itemImg"/>
                                             </div>
                                             <div className="howitwork__itemTitle">
                                                 Экономична в использовании
@@ -99,7 +99,7 @@ class Howitwork extends Component {
                                         </div>
                                         <div className="howitwork__item">
                                             <div className="howitwork__itemHeader">
-                                                <img src="uploads/2018/08/3-2.png" alt="" className="howitwork__itemImg"/>
+                                                <img src="/uploads/2018/08/3-2.png" alt="" className="howitwork__itemImg"/>
                                             </div>
                                             <div className="howitwork__itemTitle">
                                                 Абсолютно безопасна
@@ -110,7 +110,7 @@ class Howitwork extends Component {
                                         </div>
                                         <div className="howitwork__item">
                                             <div className="howitwork__itemHeader">
-                                                <img src="uploads/2018/08/4-2.png" alt="" className="howitwork__itemImg"/>
+                                                <img src="/uploads/2018/08/4-2.png" alt="" className="howitwork__itemImg"/>
                                             </div>
                                             <div className="howitwork__itemTitle">
                                                 97% натуральных компонентов
@@ -122,7 +122,7 @@ class Howitwork extends Component {
                                         </div>
                                         <div className="howitwork__item">
                                             <div className="howitwork__itemHeader">
-                                                <img src="uploads/2018/08/5.png" alt="" className="howitwork__itemImg"/>
+                                                <img src="/uploads/2018/08/5.png" alt="" className="howitwork__itemImg"/>
                                             </div>
                                             <div className="howitwork__itemTitle">
                                                 Быстро усваивается
@@ -134,7 +134,7 @@ class Howitwork extends Component {
                                         </div>
                                         <div className="howitwork__item">
                                             <div className="howitwork__itemHeader">
-                                                <img src="uploads/2018/08/6.png" alt="" className="howitwork__itemImg"/>
+                                                <img src="/uploads/2018/08/6.png" alt="" className="howitwork__itemImg"/>
                                             </div>
                                             <div className="howitwork__itemTitle">
                                                 Ускоряет процессы регенерации
@@ -146,7 +146,7 @@ class Howitwork extends Component {
                                         </div>
                                         <div className="howitwork__item">
                                             <div className="howitwork__itemHeader">
-                                                <img src="uploads/2018/08/7.png" alt="" className="howitwork__itemImg"/>
+                                                <img src="/uploads/2018/08/7.png" alt="" className="howitwork__itemImg"/>
                                             </div>
                                             <div className="howitwork__itemTitle">
                                                 Дает длительный результат

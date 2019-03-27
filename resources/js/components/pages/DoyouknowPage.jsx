@@ -29,7 +29,7 @@ class DoyouknowPage extends Component {
                                             <a href="https://www.youtube.com/watch?time_continue=1&amp;v=DzwkcbTQ7ZE"
                                                className="offers__imageWrap has__video"
                                             >
-                                                <img src="uploads/2018/10/977x550_2.jpg" alt="sdsd"/>
+                                                <img src="/uploads/2018/10/977x550_2.jpg" alt="sdsd"/>
                                             </a>
                                             <div className="offers__content">
                                                 <h2>
@@ -50,7 +50,7 @@ class DoyouknowPage extends Component {
                                         </div>
                                         <div className="offers__item">
                                             <a href="/questions/%d1%82%d0%b5%d1%81%d1%82%d0%be%d0%b2%d1%8b%d0%b9-%d0%b1%d0%bb%d0%be%d0%ba-1/" className="offers__imageWrap">
-                                                <img src="uploads/2018/10/977x550.jpg" alt="sds"/>
+                                                <img src="/uploads/2018/10/977x550.jpg" alt="sds"/>
                                             </a>
 
 

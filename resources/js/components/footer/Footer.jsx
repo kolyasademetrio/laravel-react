@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 class Footer extends Component {
     render(){
         return (
-            <footer id="colophon" className="footer" style={{background: 'url(uploads/2018/10/grazz.png) no-repeat center top',WebkitBackgroundSize: '100% 100%',backgroundSize: '100% 100%'}}>
+            <footer id="colophon" className="footer" style={{background: 'url(/uploads/2018/10/grazz.png) no-repeat center top',WebkitBackgroundSize: '100% 100%',backgroundSize: '100% 100%'}}>
                 <div className="container footer__container">
                     <div className="row footer__row">
                         <div className="col-xs-12 footer__col">

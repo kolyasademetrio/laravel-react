@@ -32,7 +32,7 @@ class StockPage extends Component {
                                                     <span>2018-10-24</span>
                                                     <span>19:00:00</span>
                                                 </span>
-                                                <img src="uploads/2018/10/400x200.jpg" alt="dewr"/>
+                                                <img src="/uploads/2018/10/400x200.jpg" alt="dewr"/>
                                             </a>
 
 
@@ -64,7 +64,7 @@ class StockPage extends Component {
                                                     <span>2018-10-17</span>
                                                     <span>00:00:00</span>
                                                 </span>
-                                                <img src="uploads/2018/10/977x550_3.jpg" alt="wrewhj"/>
+                                                <img src="/uploads/2018/10/977x550_3.jpg" alt="wrewhj"/>
                                             </a>
 
                                             <div className="offers__content">
@@ -91,7 +91,7 @@ class StockPage extends Component {
                                                     <span>2018-10-25</span>
                                                     <span>10:17:00</span>
                                                 </span>
-                                                <img src="uploads/2018/10/400х200_1.jpg" alt="sfsfdkoj"/>
+                                                <img src="/uploads/2018/10/400х200_1.jpg" alt="sfsfdkoj"/>
                                             </a>
 
 

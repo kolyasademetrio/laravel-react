@@ -22,7 +22,7 @@ class HeaderMiddlePoints extends Component {
 
                 </div>
                 <div className="headerMiddle__pointsMiddle">
-                    <img src="uploads/2018/07/header_marker.png" alt="img"
+                    <img src="/uploads/2018/07/header_marker.png" alt="img"
                          className="headerMiddle__pointsMarker"/>
                 </div>
                 <div className="headerMiddle__pointsRight">

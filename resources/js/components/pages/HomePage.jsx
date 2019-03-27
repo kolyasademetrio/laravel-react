@@ -10,15 +10,15 @@ class HomePage extends Component {
     render(){
         return (
             <React.Fragment>
-                <Slidermain/>
+                <Slidermain />
 
-                <Recommended/>
+                <Recommended />
 
-                <Movietiphome/>
+                <Movietiphome />
 
-                <Howitwork/>
+                <Howitwork />
 
-                <Advants/>
+                <Advants />
             </React.Fragment>
         );
     }

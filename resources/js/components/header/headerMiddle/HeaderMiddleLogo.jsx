@@ -8,7 +8,7 @@ class HeaderMiddleLogo extends Component {
                   className="headerMiddle__logo"
             >
                 <div className="headerMiddle__logoLink">
-                    <img src="uploads/2018/07/header_logo.png" alt="logo"
+                    <img src="/uploads/2018/07/header_logo.png" alt="logo"
                          className="headerMiddle__img" />
                 </div>
 

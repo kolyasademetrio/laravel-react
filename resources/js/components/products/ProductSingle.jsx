@@ -7,7 +7,7 @@ class ProductSingle extends Component {
 
     render(){
 
-        const {image, title, excerpt, descrtitle, descrtext, regular_price, sale_price, discount, currency, id} = this.props;
+        const {image, title, excerpt, descrtitle, descrtext, regular_price, sale_price, discount, currency, id, matchPath} = this.props;
         
         return (
             <div className="good__item">
@@ -22,8 +22,8 @@ class ProductSingle extends Component {
                         <div className="good__itemExcerpt">{ReactHtmlParser(excerpt)}</div>
 
                         <div className="good__itemDescr">
-                            <Link to={`/products/${id}`} className="good__itemDescrTitle">{ReactHtmlParser(descrtitle)}</Link>
-                            <Link to={`/products/${id}`} className="good__itemDescrText">{ReactHtmlParser(descrtext)}</Link>
+                            <Link to={`${matchPath}/${id}`} className="good__itemDescrTitle">{ReactHtmlParser(descrtitle)}</Link>
+                            <Link to={`${matchPath}/${id}`} className="good__itemDescrText">{ReactHtmlParser(descrtext)}</Link>
                         </div>
 
                         <ProductPrices regular_price={regular_price} sale_price={sale_price} currency={currency} />

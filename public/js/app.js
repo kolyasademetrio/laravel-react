@@ -83101,7 +83101,7 @@ function (_Component) {
           setPagination = _this$props.setPagination,
           currentPage = _this$props.currentPage,
           pager = _this$props.pager;
-      console.log(this.props);
+      var matchPath = this.props.match.path;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container woocomm__container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83127,7 +83127,9 @@ function (_Component) {
       }, isReady && (productsList ? productsList.map(function (productData) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
           key: productData.id
-        }, productData));
+        }, productData, {
+          matchPath: matchPath
+        }));
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__list-empty"
       }, "\u0412 \u044D\u0442\u043E\u0439 \u043A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u0438 \u0442\u043E\u0432\u0430\u0440\u043E\u0432 \u043D\u0435\u0442"))), pager && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_pagination__WEBPACK_IMPORTED_MODULE_4__["Pagination"], {
@@ -83842,7 +83844,8 @@ function (_Component) {
           sale_price = _this$props.sale_price,
           discount = _this$props.discount,
           currency = _this$props.currency,
-          id = _this$props.id;
+          id = _this$props.id,
+          matchPath = _this$props.matchPath;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "good__item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83863,10 +83866,10 @@ function (_Component) {
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(excerpt)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "good__itemDescr"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/products/".concat(id),
+        to: "".concat(matchPath, "/").concat(id),
         className: "good__itemDescrTitle"
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(descrtitle)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/products/".concat(id),
+        to: "".concat(matchPath, "/").concat(id),
         className: "good__itemDescrText"
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(descrtext))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductPrices__WEBPACK_IMPORTED_MODULE_2__["default"], {
         regular_price: regular_price,

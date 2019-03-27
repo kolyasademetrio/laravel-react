@@ -18,7 +18,7 @@ class ShopPage extends Component {
     render(){
         const {productsList, categories, isReady, setPagination, currentPage, pager} = this.props;
         
-        console.log( this.props );
+        const matchPath = this.props.match.path;
 
         return (
             <div className="container woocomm__container">
@@ -46,7 +46,7 @@ class ShopPage extends Component {
                                             productsList ? (
                                                 productsList.map( ( productData ) => {
                                                     return (
-                                                        <ProductSingle key={productData.id} {...productData} />
+                                                        <ProductSingle key={productData.id} {...productData} matchPath={matchPath} />
                                                     );
                                                 })) : (
                                                 <div className="products__list-empty">В этой категории товаров нет</div>

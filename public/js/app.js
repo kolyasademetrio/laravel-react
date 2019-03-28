@@ -82782,11 +82782,483 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/breadcrumbs */ "./resources/js/helpers/breadcrumbs.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
-function ProductSinglePage() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Product single page");
-}
+
+
+var ProductSinglePage =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ProductSinglePage, _Component);
+
+  function ProductSinglePage() {
+    _classCallCheck(this, ProductSinglePage);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProductSinglePage).apply(this, arguments));
+  }
+
+  _createClass(ProductSinglePage, [{
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "primary",
+        role: "main",
+        className: "content-area twentyfifteen"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "main",
+        className: "site-main t15wc"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container woocomm__container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row woocomm__row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-xs-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "woocomm__col"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "product-107",
+        className: "post-107 product type-product status-publish has-post-thumbnail product_cat-cosmeticiviso first instock shipping-taxable purchasable product-type-simple"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "good_gallery"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "good_galleryWrap has_galleryNav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "good__gallerySlider"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://algaph.com/wp-content/uploads/2018/08/5-ml_0001.jpg",
+        className: "good__gallerySliderItem image"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        alt: "alt",
+        src: "https://algaph.com/wp-content/uploads/2018/08/5-ml_0001.jpg",
+        className: "good__gallerySliderFeaturedImg"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://algaph.com/wp-content/uploads/2018/07/5-ml_0002.jpg",
+        className: "good__gallerySliderItem image"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        alt: "alt",
+        src: "https://algaph.com/wp-content/uploads/2018/07/5-ml_0002.jpg",
+        className: "good__gallerySliderFeaturedImg"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://algaph.com/wp-content/uploads/2018/08/50-ml_0007.jpg",
+        className: "good__gallerySliderItem image"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        alt: "alt",
+        src: "https://algaph.com/wp-content/uploads/2018/08/50-ml_0007.jpg",
+        className: "good__gallerySliderFeaturedImg"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "https://www.youtube.com/watch?v=Df-Wo48P-M8",
+        className: "good__gallerySliderItem video slick-slide"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        alt: "alt",
+        src: "https://algaph.com/wp-content/uploads/2018/08/youtube_4.jpg",
+        className: "good__gallerySliderFeaturedImg video",
+        video: "https://www.youtube.com/watch?v=Df-Wo48P-M8"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "good__gallerySliderNav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "good__gallerySliderItemNav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        alt: "alt",
+        src: "https://algaph.com/wp-content/uploads/2018/08/5-ml_0001-150x147.jpg",
+        className: "good__gallerySliderFeaturedImgNav"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "good__gallerySliderItemNav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        alt: "alt",
+        src: "https://algaph.com/wp-content/uploads/2018/07/5-ml_0002-150x147.jpg",
+        className: "good__gallerySliderFeaturedImgNav"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "good__gallerySliderItemNav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        alt: "alt",
+        src: "https://algaph.com/wp-content/uploads/2018/08/50-ml_0007-150x147.jpg",
+        className: "good__gallerySliderFeaturedImgNav"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "good__gallerySliderItemNav"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        alt: "alt",
+        src: "https://algaph.com/wp-content/uploads/2018/08/youtube_4.jpg",
+        className: "good__gallerySliderFeaturedImgNav"
+      })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "summary entry-summary"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "product_title entry-title"
+      }, "\u0414\u0435\u0442\u0441\u043A\u0438\u0439 \u043A\u0440\u0435\u043C"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "goodSingle__excerpt"
+      }, "\u0433\u0438\u043F\u043E\u0430\u043B\u0435\u0440\u0433\u0435\u043D\u043D\u044B\u0439 \u043A\u0440\u0435\u043C 5 \u043C\u043B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "goodSingle__descr"
+      }, "\u0413\u0438\u043F\u043E\u0430\u043B\u043B\u0435\u0440\u0433\u0435\u043D\u043D\u044B\u0439 \u043A\u0440\u0435\u043C Alga Ph \u0432\u0435\u043B\u0438\u043A\u043E\u043B\u0435\u043F\u043D\u043E \u043F\u043E\u0434\u043E\u0439\u0434\u0435\u0442 \u0434\u043B\u044F \u043E\u0441\u043E\u0431\u043E \u0447\u0443\u0432\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0439 \u043D\u0435\u0436\u043D\u043E\u0439 \u043A\u043E\u0436\u0438. \u041A\u0440\u0435\u043C \u0431\u044B\u0441\u0442\u0440\u043E \u0437\u0430\u0436\u0438\u0432\u043B\u044F\u0435\u0442 \u0438 \u0443\u0432\u043B\u0430\u0436\u043D\u044F\u0435\u0442 \u043A\u043E\u0436\u0443, \u0430 \u0435\u0433\u043E \u0441\u043E\u0441\u0442\u0430\u0432 \u0434\u0430\u0435\u0442 \u0432\u043E\u0437\u043C\u043E\u0436\u043D\u043E\u0441\u0442\u044C \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C\u0441\u044F \u043A\u0440\u0435\u043C \u0441 \u043F\u0435\u0440\u0432\u044B\u0445 \u043C\u0435\u0441\u044F\u0446\u0435\u0432 \u0436\u0438\u0437\u043D\u0438."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "goodSingle__table"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tr"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "th"
+      }, "\u0426\u0435\u043D\u0430"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "th"
+      }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "th"
+      }, "\u0414\u043E\u0441\u0442\u0430\u0432\u043A\u0430")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tr"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "td"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "price"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "woocommerce-Price-amount amount"
+      }, "185", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "woocommerce-Price-currencySymbol"
+      }, "\u0433\u0440\u043D")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "td"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "cart",
+        method: "post"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "quantity__wrap"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "quantity"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        className: "screen-reader-text"
+      }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number",
+        className: "input-text qty text",
+        step: "1",
+        min: "0",
+        max: "",
+        name: "quantity",
+        defaultValue: "1",
+        title: "\u041A\u043E\u043B-\u0432\u043E",
+        size: "4",
+        pattern: "[0-9]*",
+        inputMode: "numeric"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "inc button"
+      }, "+"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "dec button"
+      }, "-"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "td terms"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "good_shipping_terms"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "good_shipping_imgWrap"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "https://algaph.com/wp-content/uploads/2018/08/shipping-e1535634026174.png"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "good_shipping_text"
+      }, "\u0411\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u0430\u044F \u043F\u0440\u0438", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " \u0437\u0430\u043A\u0430\u0437\u0435 \u043E\u0442 299 \u0433\u0440\u043D")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "tr"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "td"
+      }, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "td"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        "data-product_id": "107",
+        "data-product_sku": "ss",
+        "data-quantity": "1",
+        className: "button product_type_simple"
+      }, "\u0412 \u043A\u043E\u0440\u0437\u0438\u043D\u0443")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "td"
+      }, "\xA0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "woocommerce-product-details__short-description"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041A\u0440\u0435\u043C \u0434\u043B\u044F"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "woocommerce-tabs wc-tabs-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "tabs wc-tabs",
+        role: "tablist"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "description_tab active"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#tab-description"
+      }, "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "ingredients_tab"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#tab-ingredients"
+      }, "\u0421\u043E\u0441\u0442\u0430\u0432")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "usage_tab"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#tab-usage"
+      }, "\u041F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "reviews_tab"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#tab-reviews"
+      }, "\u041E\u0442\u0437\u044B\u0432\u044B (0)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab",
+        style: {
+          background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat',
+          minHeight: '480px',
+          display: 'block'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        },
+        align: "center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u041A\u0440\u0435\u043C \u0434\u043B\u044F \u0441\u0430\u043C\u043E\u0439 \u0447\u0443\u0432\u0441\u0442\u0432\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0439 \u043A\u043E\u0436\u0438")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        },
+        align: "center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0435 \u0437\u0430\u0449\u0438\u0442\u043D\u043E\u0433\u043E \u0434\u0435\u0442\u0441\u043A\u043E\u0433\u043E \u043A\u0440\u0435\u043C\u0430\xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Crema"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Protettiva"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "dei"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Piccoli"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        },
+        align: "center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u043C\u043E\u0436\u0435\u0442 \u0441\u0442\u0430\u0442\u044C \u043E\u0442\u043B\u0438\u0447\u043D\u044B\u043C \u0441\u043F\u043E\u0441\u043E\u0431\u043E\u043C \u043F\u0440\u043E\u0444\u0438\u043B\u0430\u043A\u0442\u0438\u043A\u0438 \u043C\u043D\u043E\u0433\u0438\u0445 \u0434\u0435\u0440\u043C\u0430\u0442\u043E\u043B\u043E\u0433\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u0441\u0438\u043C\u043F\u0442\u043E\u043C\u043E\u0432.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", null, "\u0414\u0435\u0442\u0441\u043A\u0430\u044F \u043A\u043E\u0436\u0430 \u043D\u0443\u0436\u0434\u0430\u0435\u0442\u0441\u044F \u0432 \u0431\u0435\u0440\u0435\u0436\u043D\u043E\u043C \u0443\u0445\u043E\u0434\u0435 \u0441 \u043F\u0435\u0440\u0432\u044B\u0445 \u0434\u043D\u0435\u0439 \u0436\u0438\u0437\u043D\u0438.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", null, "\u041F\u0440\u0430\u0432\u0438\u043B\u044C\u043D\u044B\u0439 \u0432\u044B\u0431\u043E\u0440 \u043A\u043E\u0441\u043C\u0435\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0445 \u0441\u0440\u0435\u0434\u0441\u0442\u0432 \u043F\u043E\u0437\u0432\u043E\u043B\u0438\u0442 \u043D\u0430\u0434\u0451\u0436\u043D\u043E \u0437\u0430\u0449\u0438\u0442\u0438\u0442\u044C \u0435\u0449\u0451 \u043D\u0435\u043E\u043A\u0440\u0435\u043F\u0448\u0438\u0439 \u0441\u043B\u043E\u0439 \u044D\u043F\u0438\u0434\u0435\u0440\u043C\u0438\u0441\u0430")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", null, "\u043E\u0442 \u043D\u0435\u0433\u0430\u0442\u0438\u0432\u043D\u043E\u0433\u043E \u0432\u043B\u0438\u044F\u043D\u0438\u044F \u0431\u0430\u043A\u0442\u0435\u0440\u0438\u0439 \u0438 \u0441\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C \u0435\u0435 \u0435\u0441\u0442\u0435\u0441\u0442\u0432\u0435\u043D\u043D\u0443\u044E \u0443\u0432\u043B\u0430\u0436\u043D\u0451\u043D\u043D\u043E\u0441\u0442\u044C.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u0413\u043B\u0430\u0432\u043D\u044B\u043C\u0438 \u0444\u0443\u043D\u043A\u0446\u0438\u044F\u043C\u0438, \u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u0432\u044B\u043F\u043E\u043B\u043D\u044F\u0435\u0442 \u043A\u0440\u0435\u043C \u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u0443\u0432\u043B\u0430\u0436\u043D\u0435\u043D\u0438\u0435 \u0438 \u0437\u0430\u0449\u0438\u0442\u0430 \u043A\u043E\u0436\u0438 \u043C\u0430\u043B\u044B\u0448\u0430"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u043E\u0442 \u0432\u043E\u0437\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F \u0432\u043D\u0435\u0448\u043D\u0438\u0445 \u0444\u0430\u043A\u0442\u043E\u0440\u043E\u0432. \u041A\u0440\u0435\u043C \u043D\u0430\u0441\u044B\u0449\u0430\u0435\u0442 \u044D\u043F\u0438\u0434\u0435\u0440\u043C\u0438\u0441 \u043F\u0438\u0442\u0430\u0442\u0435\u043B\u044C\u043D\u044B\u043C\u0438 \u0432\u0435\u0449\u0435\u0441\u0442\u0432\u0430\u043C\u0438 \u0438 \u0432\u043B\u0430\u0433\u043E\u0439,"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u0432\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\u044F \u0438 \u0441\u043E\u0445\u0440\u0430\u043D\u044F\u044F \u0438\u0445 \u0435\u0441\u0442\u0435\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0439 \u0437\u0430\u043F\u0430\u0441. \u0412 \u0435\u0433\u043E \u0441\u043E\u0441\u0442\u0430\u0432 \u0432\u0445\u043E\u0434\u044F\u0442 \u0441\u043F\u0435\u0446\u0438\u0430\u043B\u044C\u043D\u044B\u0435 \u0441\u043C\u044F\u0433\u0447\u0430\u044E\u0449\u0438\u0435 \u043A\u043E\u0436\u0443"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u043A\u043E\u043C\u043F\u043E\u043D\u0435\u043D\u0442\u044B \u043D\u0430 \u043E\u0441\u043D\u043E\u0432\u0435 \u043F\u0440\u0438\u0440\u043E\u0434\u043D\u044B\u0445 \u0438\u043D\u0433\u0440\u0435\u0434\u0438\u0435\u043D\u0442\u043E\u0432."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u0411\u043B\u0430\u0433\u043E\u0434\u0430\u0440\u044F \u0432\u0438\u0442\u0430\u043C\u0438\u043D\u0430\u043C, \u043C\u0438\u043D\u0435\u0440\u0430\u043B\u0430\u043C \u0438 \u043C\u0430\u0441\u043B\u0430\u043C \u043E\u043D\u0430 \u043E\u0441\u0442\u0430\u0451\u0442\u0441\u044F \u0433\u043B\u0430\u0434\u043A\u043E\u0439 \u0438 \u043D\u0435\u0436\u043D\u043E\u0439."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u0420\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u044B:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 \u0443\u043C\u0435\u043D\u044C\u0448\u0438\u043B\u043E\u0441\u044C \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u043F\u043E\u043A\u0440\u0430\u0441\u043D\u0435\u043D\u0438\u0439 \u2013 97%"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 \u0440\u0430\u043D\u043A\u0438 \u043D\u0430 \u043A\u043E\u0436\u0435 \u0431\u044B\u0441\u0442\u0440\u0435\u0435 \u0437\u0430\u0436\u0438\u0432\u0430\u044E\u0442\u0441\u044F \u2013 85%"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 \u0438\u0441\u0447\u0435\u0437\u043B\u043E \u0440\u0430\u0437\u0434\u0440\u0430\u0436\u0435\u043D\u0438\u0435 \u043D\u0430 \u043A\u043E\u0436\u0435 \u2013 88%"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "* \u041F\u043E \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u0430\u043C \u043F\u043E\u0442\u0440\u0435\u0431\u0438\u0442\u0435\u043B\u044C\u0441\u043A\u043E\u0433\u043E \u0442\u0435\u0441\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u044F, \u043F\u043E\u0434\u0432\u043E\u0434\u0438\u043C\u043E\u0433\u043E \u0432 \u0442\u0435\u0447\u0435\u043D\u0438\u0438 6 \u043D\u0435\u0434\u0435\u043B\u044C"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u0441 \u0443\u0447\u0430\u0441\u0442\u0438\u0435\u043C 52 \u0436\u0435\u043D\u0449\u0438\u043D, \u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043B\u0438 \u0417\u0430\u0449\u0438\u0442\u043D\u044B\u0439 \u0434\u0435\u0442\u0441\u043A\u0438\u0439 \u043A\u0440\u0435\u043C Alga Ph \u043F\u0440\u0438 \u0443\u0445\u043E\u0434\u0435 \u0437\u0430 \u043A\u043E\u0436\u0435\u0439 \u0434\u0438\u0442\u0435\u0439."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\xA0")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "woocommerce-Tabs-panel woocommerce-Tabs-panel--ingredients panel entry-content wc-tab",
+        id: "tab-ingredients",
+        role: "tabpanel",
+        style: {
+          background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat',
+          minHeight: '480px',
+          display: 'none'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u0421\u043E\u0441\u0442\u0430\u0432 \u043A\u0440\u0435\u043C\u0430:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 \u0433\u0438\u0434\u0440\u043E\u043B\u0430\u0442 \u0440\u043E\u043C\u0430\u0448\u043A\u0438"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 \u043C\u0430\u0441\u043B\u043E \u0430\u0431\u0440\u0438\u043A\u043E\u0441\u043E\u0432\u044B\u0445 \u043A\u043E\u0441\u0442\u043E\u0447\u0435\u043A"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 OLIVEM 1000"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 \u043C\u0430\u0441\u043B\u043E \u0448\u0438"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 \u043C\u0430\u0441\u043B\u043E \u0432\u0438\u043D\u043E\u0433\u0440\u0430\u0434\u043D\u044B\u0445 \u043A\u043E\u0441\u0442\u043E\u0447\u0435\u043A"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 \u0414-\u043F\u0430\u043D\u0442\u0435\u043D\u043E\u043B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 \u0432\u0438\u0442\u0430\u043C\u0438\u043D F"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 \u044D\u043A\u0441\u0442\u0440\u0430\u043A\u0442 \u043A\u0430\u043B\u0435\u043D\u0434\u0443\u043B\u044B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\u2014 Euxyl PE 9010"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        style: {
+          textAlign: 'left'
+        }
+      }, "\xA0")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "woocommerce-Tabs-panel woocommerce-Tabs-panel--usage panel entry-content wc-tab",
+        id: "tab-usage",
+        style: {
+          background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat',
+          minHeight: '480px',
+          display: 'none'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "\u0421\u043F\u043E\u0441\u043E\u0431 \u043D\u0430\u043D\u0435\u0441\u0435\u043D\u0438\u044F:")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041A\u0440\u0435\u043C \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u043D\u0430\u043D\u0435\u0441\u0442\u0438 \u0442\u043E\u043D\u043A\u0438\u043C \u0441\u043B\u043E\u0435\u043C \u043D\u0430 \u0432\u043D\u0443\u0442\u0440\u0435\u043D\u043D\u044E\u044E \u043F\u043E\u0432\u0435\u0440\u0445\u043D\u043E\u0441\u0442\u044C \u0441\u043E\u0431\u0441\u0442\u0432\u0435\u043D\u043D\u044B\u0445 \u043B\u0430\u0434\u043E\u043D\u0435\u0439,"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u043F\u043E\u0441\u043B\u0435 \u0447\u0435\u0433\u043E \u0434\u0430\u0439\u0442\u0435 \u0435\u043C\u0443 \u043D\u0430\u0433\u0440\u0435\u0442\u044C\u0441\u044F 15-20 \u0441\u0435\u043A\u0443\u043D\u0434. \u0422\u0435\u043F\u0435\u0440\u044C \u043A\u0440\u0435\u043C \u043C\u043E\u0436\u043D\u043E \u043D\u0430\u043D\u043E\u0441\u0438\u0442\u044C \u043D\u0430 \u043B\u0438\u0446\u043E \u0438 \u0442\u0435\u043B\u043E \u0440\u0435\u0431\u0435\u043D\u043A\u0430."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041E\u0441\u043E\u0431\u043E\u0435 \u0432\u043D\u0438\u043C\u0430\u043D\u0438\u0435 \u0443\u0434\u0435\u043B\u0438\u0442\u0435 \u0443\u0447\u0430\u0441\u0442\u043A\u0430\u043C \u043A\u043E\u0436\u0438 \u0441 \u044F\u0432\u043D\u044B\u043C\u0438 \u043F\u0440\u0438\u0437\u043D\u0430\u043A\u0430\u043C\u0438 \u043F\u043E\u043A\u0440\u0430\u0441\u043D\u0435\u043D\u0438\u0435\u043C \u0438\u043B\u0438 \u0448\u0435\u043B\u0443\u0448\u0435\u043D\u0438\u0435\u043C."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041F\u0440\u0438 \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u0438 \u043F\u043E\u0434\u0433\u0443\u0437\u043D\u0438\u043A\u043E\u0432, \u043A\u0440\u0435\u043C ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Crema"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        lang: "EN-US"
+      }, "Protettiva"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "dei"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Piccoli")), " \u0440\u0435\u043A\u043E\u043C\u0435\u043D\u0434\u0443\u0435\u0442\u0441\u044F \u043F\u0440\u0438\u043C\u0435\u043D\u044F\u0442\u044C \u0435\u0436\u0435\u0434\u043D\u0435\u0432\u043D\u043E.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel entry-content wc-tab",
+        id: "tab-reviews",
+        style: {
+          display: 'none'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "reviews",
+        className: "woocommerce-Reviews"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "comments",
+        className: "comments"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "woocommerce-Reviews-title"
+      }, "\u041E\u0442\u0437\u044B\u0432\u044B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "woocommerce-noreviews"
+      }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "review_form_wrapper",
+        className: "review_form_wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "review_form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "respond",
+        className: "comment-respond"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        id: "reply-title",
+        className: "comment-reply-title"
+      }, "\u0411\u0443\u0434\u044C\u0442\u0435 \u043F\u0435\u0440\u0432\u044B\u043C, \u043A\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0442\u0437\u044B\u0432 \u043D\u0430 \u201C\u0414\u0435\u0442\u0441\u043A\u0438\u0439 \u043A\u0440\u0435\u043C\u201D ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        id: "cancel-comment-reply-link",
+        href: "#",
+        style: {
+          display: 'none'
+        }
+      }, "\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0442\u0432\u0435\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        method: "post",
+        id: "commentform",
+        className: "comment-form",
+        noValidate: ""
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reply-title-after"
+      }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0434\u0430\u043D\u043D\u0443\u044E \u0444\u043E\u0440\u043C\u0443, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u0437\u044B\u0432 \u043E \u0442\u043E\u0432\u0430\u0440\u0435 \u0438\u043B\u0438 \u0437\u0430\u0434\u0430\u0442\u044C \u0432\u043E\u043F\u0440\u043E\u0441"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "comment-form-author"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "required"
+      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "author",
+        name: "author",
+        type: "text",
+        size: "30",
+        "aria-required": "true",
+        required: ""
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "comment-form-email"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "E-mail \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "required"
+      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "email",
+        name: "email",
+        type: "email",
+        size: "30",
+        "aria-required": "true",
+        required: ""
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "comment-form-comment"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0422\u0435\u043A\u0441\u0442 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "required"
+      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        id: "comment",
+        name: "comment",
+        cols: "45",
+        rows: "8"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "form-submit"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "submit",
+        type: "submit",
+        id: "submit",
+        className: "submit",
+        value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "hidden",
+        name: "comment_post_ID",
+        id: "comment_post_ID"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "hidden",
+        name: "comment_parent",
+        id: "comment_parent"
+      })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "clear"
+      }))))))))));
+    }
+  }]);
+
+  return ProductSinglePage;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (ProductSinglePage);
 

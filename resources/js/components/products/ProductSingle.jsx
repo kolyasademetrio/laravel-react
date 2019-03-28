@@ -2,12 +2,30 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import ProductPrices from './ProductPrices';
 import ReactHtmlParser from 'react-html-parser';
+import history from '../../helpers/history';
 
 class ProductSingle extends Component {
 
-    postSelectedHandler = ( title ) => {
-        const URL = `${this.props.match.url}/${title}`;
-        this.props.history.push({pathname: URL, id: id });
+    constructor(props){
+        super(props);
+
+        this.postSelectedHandler = this.postSelectedHandler.bind(this, this.props.id, this.props.title);
+    }
+
+    postSelectedHandler(id, title, e){
+        /*e.preventDefault();*/
+        
+        const name = ReactHtmlParser(title);
+        
+        console.log( history );
+
+        const name2 = 'sddsd';
+
+        const URL = `${history.location.pathname}/${name2}`;
+        
+        console.log( URL );
+        
+        history.push({pathname: '/shop/some-product', id: id });
     }
 
     render(){
@@ -27,17 +45,16 @@ class ProductSingle extends Component {
                         <div className="good__itemExcerpt">{ReactHtmlParser(excerpt)}</div>
 
                         <div className="good__itemDescr">
-                            <Link
-                                to={`${matchPath}/${id}`}
+                            <span
+                                href={`${matchPath}/${id}`}
                                 className="good__itemDescrTitle"
-                                onClick={() => this.postSelectedHandler( post.title, post.id )}
+                                onClick={this.postSelectedHandler}
                             >
                                 {ReactHtmlParser(descrtitle)}
-                            </Link>
+                            </span>
                             <Link
                                 to={`${matchPath}/${id}`}
                                 className="good__itemDescrText"
-                                onClick={() => this.postSelectedHandler( post.title, post.id )}
                             >
                                 {ReactHtmlParser(descrtext)}
                             </Link>

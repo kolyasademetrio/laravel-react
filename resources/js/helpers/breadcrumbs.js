@@ -60,7 +60,7 @@ export const BreadcrumbsComp = props => {
                 props => {
 
                     let parts = props.location.pathname.split("/");
-
+                    
                     const place = parts[parts.length - 1];
 
                     parts = parts.slice(1, parts.length - 1);

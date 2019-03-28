@@ -83564,7 +83564,7 @@ function (_Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
           key: productData.id
         }, productData, {
-          match: matchPath
+          matchPath: matchPath
         }));
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__list-empty"
@@ -84233,6 +84233,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProductPrices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductPrices */ "./resources/js/components/products/ProductPrices.jsx");
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _helpers_history__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers/history */ "./resources/js/helpers/history.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84251,7 +84252,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -84263,36 +84263,33 @@ var ProductSingle =
 function (_Component) {
   _inherits(ProductSingle, _Component);
 
-  function ProductSingle() {
-    var _getPrototypeOf2;
-
+  function ProductSingle(props) {
     var _this;
 
     _classCallCheck(this, ProductSingle);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ProductSingle)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _defineProperty(_assertThisInitialized(_this), "postSelectedHandler", function (title) {
-      var URL = "".concat(_this.props.match.url, "/").concat(title);
-
-      _this.props.history.push({
-        pathname: URL,
-        id: id
-      });
-    });
-
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductSingle).call(this, props));
+    _this.postSelectedHandler = _this.postSelectedHandler.bind(_assertThisInitialized(_this), _this.props.id, _this.props.title);
     return _this;
   }
 
   _createClass(ProductSingle, [{
+    key: "postSelectedHandler",
+    value: function postSelectedHandler(id, title, e) {
+      /*e.preventDefault();*/
+      var name = react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(title);
+      console.log(_helpers_history__WEBPACK_IMPORTED_MODULE_4__["default"]);
+      var name2 = 'sddsd';
+      var URL = "".concat(_helpers_history__WEBPACK_IMPORTED_MODULE_4__["default"].location.pathname, "/").concat(name2);
+      console.log(URL);
+      _helpers_history__WEBPACK_IMPORTED_MODULE_4__["default"].push({
+        pathname: '/shop/some-product',
+        id: id
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var _this$props = this.props,
           image = _this$props.image,
           title = _this$props.title,
@@ -84324,18 +84321,13 @@ function (_Component) {
         className: "good__itemExcerpt"
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(excerpt)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "good__itemDescr"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "".concat(matchPath, "/").concat(id),
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        href: "".concat(matchPath, "/").concat(id),
         className: "good__itemDescrTitle",
-        onClick: function onClick() {
-          return _this2.postSelectedHandler(post.title, post.id);
-        }
+        onClick: this.postSelectedHandler
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(descrtitle)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "".concat(matchPath, "/").concat(id),
-        className: "good__itemDescrText",
-        onClick: function onClick() {
-          return _this2.postSelectedHandler(post.title, post.id);
-        }
+        className: "good__itemDescrText"
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(descrtext))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductPrices__WEBPACK_IMPORTED_MODULE_2__["default"], {
         regular_price: regular_price,
         sale_price: sale_price,
@@ -85101,6 +85093,21 @@ function getCategoryProductRelations(categoriesRelationship) {
 
 /***/ }),
 
+/***/ "./resources/js/helpers/history.js":
+/*!*****************************************!*\
+  !*** ./resources/js/helpers/history.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var history__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(history__WEBPACK_IMPORTED_MODULE_0__["createBrowserHistory"])());
+
+/***/ }),
+
 /***/ "./resources/js/helpers/pagination.js":
 /*!********************************************!*\
   !*** ./resources/js/helpers/pagination.js ***!
@@ -85287,17 +85294,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Main__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Main */ "./resources/js/Main.jsx");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
+/* harmony import */ var _helpers_history__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./helpers/history */ "./resources/js/helpers/history.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 
 
 
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_4__["Provider"], {
-  store: _store__WEBPACK_IMPORTED_MODULE_5__["default"]
-}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["BrowserRouter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Main__WEBPACK_IMPORTED_MODULE_2__["default"], null))), document.getElementById('root'));
+
+react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__["Provider"], {
+  store: _store__WEBPACK_IMPORTED_MODULE_6__["default"]
+}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["BrowserRouter"], {
+  history: _helpers_history__WEBPACK_IMPORTED_MODULE_4__["default"]
+}, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Main__WEBPACK_IMPORTED_MODULE_2__["default"], null))), document.getElementById('root'));
 
 /***/ }),
 
@@ -85549,8 +85560,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

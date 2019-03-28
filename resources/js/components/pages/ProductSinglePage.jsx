@@ -25,7 +25,7 @@ class ProductSinglePage extends Component {
                                             className="kb_sep"> / </span>
                                         <span className="kb_title">Детский крем</span></div>*/}
 
-                                    {/*<Breadcrumbs />*/}
+                                    <Breadcrumbs />
 
                                     <div id="product-107" className="post-107 product type-product status-publish has-post-thumbnail product_cat-cosmeticiviso first instock shipping-taxable purchasable product-type-simple">
                                         <div className="good_gallery">

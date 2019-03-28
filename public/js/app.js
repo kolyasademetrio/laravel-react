@@ -82833,7 +82833,7 @@ function (_Component) {
         className: "col-xs-12"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "woocomm__col"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "product-107",
         className: "post-107 product type-product status-publish has-post-thumbnail product_cat-cosmeticiviso first instock shipping-taxable purchasable product-type-simple"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83564,7 +83564,7 @@ function (_Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
           key: productData.id
         }, productData, {
-          matchPath: matchPath
+          match: matchPath
         }));
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__list-empty"
@@ -84243,13 +84243,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -84262,14 +84264,35 @@ function (_Component) {
   _inherits(ProductSingle, _Component);
 
   function ProductSingle() {
+    var _getPrototypeOf2;
+
+    var _this;
+
     _classCallCheck(this, ProductSingle);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProductSingle).apply(this, arguments));
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ProductSingle)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_this), "postSelectedHandler", function (title) {
+      var URL = "".concat(_this.props.match.url, "/").concat(title);
+
+      _this.props.history.push({
+        pathname: URL,
+        id: id
+      });
+    });
+
+    return _this;
   }
 
   _createClass(ProductSingle, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$props = this.props,
           image = _this$props.image,
           title = _this$props.title,
@@ -84303,10 +84326,16 @@ function (_Component) {
         className: "good__itemDescr"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "".concat(matchPath, "/").concat(id),
-        className: "good__itemDescrTitle"
+        className: "good__itemDescrTitle",
+        onClick: function onClick() {
+          return _this2.postSelectedHandler(post.title, post.id);
+        }
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(descrtitle)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "".concat(matchPath, "/").concat(id),
-        className: "good__itemDescrText"
+        className: "good__itemDescrText",
+        onClick: function onClick() {
+          return _this2.postSelectedHandler(post.title, post.id);
+        }
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(descrtext))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductPrices__WEBPACK_IMPORTED_MODULE_2__["default"], {
         regular_price: regular_price,
         sale_price: sale_price,
@@ -84918,6 +84947,10 @@ function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.
 
 function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84972,13 +85005,32 @@ function (_Component) {
           slugsNames: slugsNames
         });
       });
+      axios.get('/api/products').then(function (_ref2) {
+        var data = _ref2.data;
+
+        _this.setState({
+          slugsProducts: data.productsList
+        });
+
+        var slugsProductsNames = {};
+        data.productsList.forEach(function (elem, index) {
+          var slugEl = elem.id;
+          slugsProductsNames[slugEl] = elem.title;
+        });
+
+        _this.setState({
+          slugsProductsNames: slugsProductsNames
+        });
+      });
     }
   }, {
     key: "render",
     value: function render() {
       var slugsNames = this.state && this.state.slugsNames;
+      var slugsProductsNames = this.state && this.state.slugsProductsNames;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BreadcrumbsComp, {
-        slugsNames: slugsNames
+        slugsNames: slugsNames,
+        slugsProductsNames: slugsProductsNames
       });
     }
   }]);
@@ -84988,7 +85040,8 @@ function (_Component) {
 
 /* harmony default export */ __webpack_exports__["default"] = (Breadcrumbs);
 var BreadcrumbsComp = function BreadcrumbsComp(props) {
-  var slugsNames = props.slugsNames;
+  var allSlugsNames = _objectSpread({}, props.slugsNames, props.slugsProductsNames);
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "*",
     render: function render(props) {
@@ -84999,19 +85052,25 @@ var BreadcrumbsComp = function BreadcrumbsComp(props) {
         className: "kama_breadcrumbs"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: '/'
-      }, "\u0413\u043B\u0430\u0432\u043D\u0430\u044F"), parts.map(crumb), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, "\u0413\u043B\u0430\u0432\u043D\u0430\u044F"), parts.map(function (part, partIndex, parts) {
+        var path = [''].concat(_toConsumableArray(parts.slice(0, partIndex + 1))).join("/");
+        /*                                    console.log( 'path', path );
+                                            console.log( 'part', part );
+                                            console.log( 'slugsNames', slugsNames );*/
+
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          key: part
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "kb_sep"
+        }, " / "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+          key: path,
+          to: path
+        }, allSlugsNames && allSlugsNames[part]));
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "kb_sep"
-      }, " / "), slugsNames && slugsNames[place]);
+      }, " / "), allSlugsNames && allSlugsNames[place]);
     }
   });
-};
-
-var crumb = function crumb(part, partIndex, parts) {
-  var path = [''].concat(_toConsumableArray(parts.slice(0, partIndex + 1))).join("/");
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    key: path,
-    to: path
-  }, part);
 };
 
 /***/ }),
@@ -85490,8 +85549,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

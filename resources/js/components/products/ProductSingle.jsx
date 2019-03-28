@@ -5,10 +5,15 @@ import ReactHtmlParser from 'react-html-parser';
 
 class ProductSingle extends Component {
 
+    postSelectedHandler = ( title ) => {
+        const URL = `${this.props.match.url}/${title}`;
+        this.props.history.push({pathname: URL, id: id });
+    }
+
     render(){
 
         const {image, title, excerpt, descrtitle, descrtext, regular_price, sale_price, discount, currency, id, matchPath} = this.props;
-        
+
         return (
             <div className="good__item">
                 <div className="good__itemInner">
@@ -22,8 +27,20 @@ class ProductSingle extends Component {
                         <div className="good__itemExcerpt">{ReactHtmlParser(excerpt)}</div>
 
                         <div className="good__itemDescr">
-                            <Link to={`${matchPath}/${id}`} className="good__itemDescrTitle">{ReactHtmlParser(descrtitle)}</Link>
-                            <Link to={`${matchPath}/${id}`} className="good__itemDescrText">{ReactHtmlParser(descrtext)}</Link>
+                            <Link
+                                to={`${matchPath}/${id}`}
+                                className="good__itemDescrTitle"
+                                onClick={() => this.postSelectedHandler( post.title, post.id )}
+                            >
+                                {ReactHtmlParser(descrtitle)}
+                            </Link>
+                            <Link
+                                to={`${matchPath}/${id}`}
+                                className="good__itemDescrText"
+                                onClick={() => this.postSelectedHandler( post.title, post.id )}
+                            >
+                                {ReactHtmlParser(descrtext)}
+                            </Link>
                         </div>
 
                         <ProductPrices regular_price={regular_price} sale_price={sale_price} currency={currency} />

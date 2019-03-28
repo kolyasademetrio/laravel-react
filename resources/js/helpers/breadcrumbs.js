@@ -19,13 +19,30 @@ class Breadcrumbs extends Component {
                 slugsNames: slugsNames,
             });
         });
+
+        axios.get('/api/products').then(({data}) => {
+            this.setState({
+                slugsProducts: data.productsList,
+            });
+
+            const slugsProductsNames = {};
+            data.productsList.forEach((elem, index) => {
+                var slugEl = elem.id;
+                slugsProductsNames[slugEl] = elem.title;
+            });
+
+            this.setState({
+                slugsProductsNames: slugsProductsNames,
+            });
+        });
     }
 
     render(){
         const slugsNames = this.state && this.state.slugsNames;
+        const slugsProductsNames = this.state && this.state.slugsProductsNames;
 
         return (
-            <BreadcrumbsComp slugsNames={slugsNames} />
+            <BreadcrumbsComp slugsNames={slugsNames} slugsProductsNames={slugsProductsNames} />
         );
     }
 }
@@ -34,7 +51,7 @@ export default Breadcrumbs;
 
 export const BreadcrumbsComp = props => {
 
-    const {slugsNames} = props;
+    const allSlugsNames = {...props.slugsNames, ...props.slugsProductsNames};
 
     return (
         <Route
@@ -51,20 +68,27 @@ export const BreadcrumbsComp = props => {
                     return (
                         <div className="kama_breadcrumbs">
                             {<Link to={'/'}>Главная</Link>}
-                            {parts.map(crumb)}
+                            {
+                                parts.map((part, partIndex, parts) => {
+                                    const path = ['', ...parts.slice(0, partIndex+1)].join("/");
+/*                                    console.log( 'path', path );
+                                    console.log( 'part', part );
+                                    console.log( 'slugsNames', slugsNames );*/
+
+                                    return (
+                                        <i key={part}>
+                                            {<span className="kb_sep"> / </span>}
+                                            <Link key={path} to={path} >{allSlugsNames && allSlugsNames[part]}</Link>
+                                        </i>
+                                    );
+                                })
+                            }
                             {<span className="kb_sep"> / </span>}
-                            {slugsNames && slugsNames[place]}
+                            {allSlugsNames && allSlugsNames[place]}
                         </div>
                     );
                 }
             }
         />);
-};
-
-const crumb = (part, partIndex, parts) => {
-    const path = ['', ...parts.slice(0, partIndex+1)].join("/");
-    return (
-        <Link key={path} to={path} >{part}</Link>
-    );
 };
 

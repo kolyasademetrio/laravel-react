@@ -312,6 +312,10 @@ body.home .wrapper__main.is_mobile .mob__bg__homepage {
     color: #444;
 }
 
+.kama_breadcrumbs i {
+    font-style: normal;
+}
+
 @media ( max-width: 767px ) {
     .kama_breadcrumbs {
         padding-bottom: 5px;

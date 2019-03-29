@@ -2,35 +2,18 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import ProductPrices from './ProductPrices';
 import ReactHtmlParser from 'react-html-parser';
-import history from '../../helpers/history';
 
 class ProductSingle extends Component {
 
     constructor(props){
         super(props);
-
-        this.postSelectedHandler = this.postSelectedHandler.bind(this, this.props.id, this.props.title);
-    }
-
-    postSelectedHandler(id, title, e){
-        /*e.preventDefault();*/
-        
-        const name = ReactHtmlParser(title);
-        
-        console.log( history );
-
-        const name2 = 'sddsd';
-
-        const URL = `${history.location.pathname}/${name2}`;
-        
-        console.log( URL );
-        
-        history.push({pathname: '/shop/some-product', id: id });
     }
 
     render(){
 
-        const {image, title, excerpt, descrtitle, descrtext, regular_price, sale_price, discount, currency, id, matchPath} = this.props;
+        const {image, title, excerpt, descrtitle, descrtext, regular_price, sale_price, discount, currency, id, matchPath, slug} = this.props;
+
+        console.log( 'slug', slug );
 
         return (
             <div className="good__item">
@@ -45,18 +28,28 @@ class ProductSingle extends Component {
                         <div className="good__itemExcerpt">{ReactHtmlParser(excerpt)}</div>
 
                         <div className="good__itemDescr">
-                            <span
+                            <Link
+                                to={{
+                                    pathname: `${matchPath}/${slug}`,
+                                    title: title,
+                                    id: id,
+                                }}
                                 className="good__itemDescrTitle"
-                                onClick={this.postSelectedHandler}
                             >
                                 {ReactHtmlParser(descrtitle)}
-                            </span>
+                            </Link>
+
                             <Link
-                                to={`${matchPath}/${id}`}
+                                to={{
+                                    pathname: `${matchPath}/${slug}`,
+                                    title: title,
+                                    id: id,
+                                }}
                                 className="good__itemDescrText"
                             >
                                 {ReactHtmlParser(descrtext)}
                             </Link>
+
                         </div>
 
                         <ProductPrices regular_price={regular_price} sale_price={sale_price} currency={currency} />

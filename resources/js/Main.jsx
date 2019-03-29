@@ -28,7 +28,7 @@ class Main extends Component {
                             <Route exact path="/" component={HomePage} />
                             <Route exact path="/about-cosmetics" component={AboutPage} />
                             <Route exact path="/shop" component={ShopPage} />
-                            <Route exact path={`/shop/:productId`} component={ProductSinglePage} />
+                            <Route exact path={`/shop/:product`} component={ProductSinglePage} />
                             <Route exact path="/videotip" component={VideotipPage} />
                             <Route exact path="/stock" component={StockPage }/>
                             <Route exact path="/doyouknow" component={DoyouknowPage} />

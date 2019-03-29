@@ -1,11 +1,23 @@
 import React, {Component} from 'react';
 import Breadcrumbs from "../../helpers/breadcrumbs";
-import history from '../../helpers/history';
+import {setProductSingle} from '../../actions/products';
+import {connect} from 'react-redux';
 
 class ProductSinglePage extends Component {
 
+    componentDidMount() {
+
+        const {setProductSingle} = this.props;
+
+        const productSlug = this.props.match.params.product;
+
+        axios.get(`/api/products/${productSlug}`).then( ({data}) => {
+            setProductSingle(data);
+        });
+    }
+
     render(){
-        console.log( history );
+        console.log( 'this.props', this.props );
 
         return (
             <div id="primary" role="main" className="content-area twentyfifteen">
@@ -300,4 +312,13 @@ class ProductSinglePage extends Component {
 
 }
 
-export default ProductSinglePage;
+const mapStateToProps = state => ({
+    product: state.products.product,
+});
+
+const mapDispatchToProps = dispatch => ({
+    setProductSingle: product => dispatch(setProductSingle(product)),
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductSinglePage);

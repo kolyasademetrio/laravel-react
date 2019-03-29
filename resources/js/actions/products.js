@@ -5,6 +5,11 @@ export const setProducts = products => ({
     payload: products
 });
 
+export const setProductSingle = product => ({
+    type: 'SET_PRODUCT_SINGLE',
+    payload: product
+});
+
 export const CategoryFilters = {
     SHOW_ALL: 'SHOW_ALL',
     BESTSELLER: 'BESTSELLER',

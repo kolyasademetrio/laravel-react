@@ -46,7 +46,6 @@ class ProductSingle extends Component {
 
                         <div className="good__itemDescr">
                             <span
-                                href={`${matchPath}/${id}`}
                                 className="good__itemDescrTitle"
                                 onClick={this.postSelectedHandler}
                             >

@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import Breadcrumbs from "../../helpers/breadcrumbs";
+import history from '../../helpers/history';
 
 class ProductSinglePage extends Component {
 
     render(){
+        console.log( history );
+
         return (
             <div id="primary" role="main" className="content-area twentyfifteen">
                 <div id="main" className="site-main t15wc">

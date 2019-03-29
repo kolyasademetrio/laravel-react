@@ -38,6 +38,8 @@ class Breadcrumbs extends Component {
     }
 
     render(){
+        console.log( this.state );
+
         const slugsNames = this.state && this.state.slugsNames;
         const slugsProductsNames = this.state && this.state.slugsProductsNames;
 

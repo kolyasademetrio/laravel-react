@@ -13,5 +13,4 @@ const mapDispatchToProps = dispatch => ({
     setProductSingle: product => dispatch(setProductSingle(product)),
 });
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(ProductSinglePage);

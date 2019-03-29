@@ -85061,6 +85061,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      console.log(this.state);
       var slugsNames = this.state && this.state.slugsNames;
       var slugsProductsNames = this.state && this.state.slugsProductsNames;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BreadcrumbsComp, {

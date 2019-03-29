@@ -78238,7 +78238,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pages_ErrorPage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/pages/ErrorPage */ "./resources/js/components/pages/ErrorPage.jsx");
 /* harmony import */ var _components_pages_ShippingPage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/pages/ShippingPage */ "./resources/js/components/pages/ShippingPage.jsx");
 /* harmony import */ var _components_pages_TermsCooperationPage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/pages/TermsCooperationPage */ "./resources/js/components/pages/TermsCooperationPage.jsx");
-/* harmony import */ var _components_pages_ProductSinglePage__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/pages/ProductSinglePage */ "./resources/js/components/pages/ProductSinglePage.jsx");
+/* harmony import */ var _containers_pages_ProductSinglePage__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./containers/pages/ProductSinglePage */ "./resources/js/containers/pages/ProductSinglePage.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -78308,7 +78308,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/shop/:product",
-        component: _components_pages_ProductSinglePage__WEBPACK_IMPORTED_MODULE_15__["default"]
+        component: _containers_pages_ProductSinglePage__WEBPACK_IMPORTED_MODULE_15__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/videotip",
@@ -82790,8 +82790,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/breadcrumbs */ "./resources/js/helpers/breadcrumbs.js");
-/* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/products */ "./resources/js/actions/products.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -82809,8 +82807,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
 
 
 
@@ -82839,7 +82835,6 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log('this.props', this.props);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "primary",
         role: "main",
@@ -83282,21 +83277,7 @@ function (_Component) {
   return ProductSinglePage;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    product: state.products.product
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    setProductSingle: function setProductSingle(product) {
-      return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_2__["setProductSingle"])(product));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(ProductSinglePage));
+/* harmony default export */ __webpack_exports__["default"] = (ProductSinglePage);
 
 /***/ }),
 
@@ -84742,6 +84723,43 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./resources/js/containers/pages/ProductSinglePage.js":
+/*!************************************************************!*\
+  !*** ./resources/js/containers/pages/ProductSinglePage.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/products */ "./resources/js/actions/products.js");
+/* harmony import */ var _components_pages_ProductSinglePage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/pages/ProductSinglePage */ "./resources/js/components/pages/ProductSinglePage.jsx");
+
+
+
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var product = _ref.product,
+      isSingleReady = _ref.isSingleReady;
+  return {
+    product: product,
+    isSingleReady: isSingleReady
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setProductSingle: function setProductSingle(product) {
+      return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setProductSingle"])(product));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_pages_ProductSinglePage__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
 /***/ "./resources/js/containers/pages/ShopPage.js":
 /*!***************************************************!*\
   !*** ./resources/js/containers/pages/ShopPage.js ***!
@@ -85516,8 +85534,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 var INITIAL_STATE = {
   isReady: false,
+  isSingleReady: false,
   items: [],
-  product: ''
+  product: {}
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
@@ -85533,7 +85552,7 @@ var INITIAL_STATE = {
     case 'SET_PRODUCT_SINGLE':
       return _objectSpread({}, state, {
         product: action.payload,
-        isReady: true
+        isSingleReady: true
       });
 
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_IS_READY"]:

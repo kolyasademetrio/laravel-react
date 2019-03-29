@@ -15,7 +15,7 @@ import ContactsPage from './components/pages/ContactsPage';
 import ErrorPage from './components/pages/ErrorPage';
 import ShippingPage from './components/pages/ShippingPage';
 import TermsCooperationPage from './components/pages/TermsCooperationPage';
-import ProductSinglePage from './components/pages/ProductSinglePage';
+import ProductSinglePage from './containers/pages/ProductSinglePage';
 
 class Main extends Component {
     render() {

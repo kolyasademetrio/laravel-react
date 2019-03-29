@@ -1,14 +1,10 @@
 import React, {Component} from 'react';
 import Breadcrumbs from "../../helpers/breadcrumbs";
-import {setProductSingle} from '../../actions/products';
-import {connect} from 'react-redux';
 
 class ProductSinglePage extends Component {
 
     componentDidMount() {
-
         const {setProductSingle} = this.props;
-
         const productSlug = this.props.match.params.product;
 
         axios.get(`/api/products/${productSlug}`).then( ({data}) => {
@@ -17,8 +13,6 @@ class ProductSinglePage extends Component {
     }
 
     render(){
-        console.log( 'this.props', this.props );
-
         return (
             <div id="primary" role="main" className="content-area twentyfifteen">
                 <div id="main" className="site-main t15wc">
@@ -312,13 +306,5 @@ class ProductSinglePage extends Component {
 
 }
 
-const mapStateToProps = state => ({
-    product: state.products.product,
-});
 
-const mapDispatchToProps = dispatch => ({
-    setProductSingle: product => dispatch(setProductSingle(product)),
-});
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductSinglePage);
+export default ProductSinglePage;

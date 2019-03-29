@@ -2,8 +2,9 @@ import { SET_PRODUCTS, SET_IS_READY, FETCH_PRODUCTS, FETCH_PRODUCTS_SUCCESS, FET
 
 const INITIAL_STATE = {
     isReady: false,
+    isSingleReady: false,
     items: [],
-    product: '',
+    product: {},
 };
 
 
@@ -19,7 +20,7 @@ export default function (state = INITIAL_STATE,action){
             return {
                 ...state,
                 product: action.payload,
-                isReady: true
+                isSingleReady: true
             };
         case SET_IS_READY:
             return {

@@ -85025,31 +85025,21 @@ function (_Component) {
 
       axios.get('/api/pages').then(function (_ref) {
         var data = _ref.data;
-
-        _this.setState({
-          slugs: data
-        });
-
-        var slugsNames = {};
+        var slugsPagesNames = {};
         data.forEach(function (elem, index) {
           var slugEl = elem.slug;
-          slugsNames[slugEl] = elem.title;
+          slugsPagesNames[slugEl] = elem.title;
         });
 
         _this.setState({
-          slugsNames: slugsNames
+          slugsPagesNames: slugsPagesNames
         });
       });
       axios.get('/api/products').then(function (_ref2) {
         var data = _ref2.data;
-
-        _this.setState({
-          slugsProducts: data.productsList
-        });
-
         var slugsProductsNames = {};
         data.productsList.forEach(function (elem, index) {
-          var slugEl = elem.id;
+          var slugEl = elem.slug;
           slugsProductsNames[slugEl] = elem.title;
         });
 
@@ -85061,12 +85051,9 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log(this.state);
-      var slugsNames = this.state && this.state.slugsNames;
-      var slugsProductsNames = this.state && this.state.slugsProductsNames;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BreadcrumbsComp, {
-        slugsNames: slugsNames,
-        slugsProductsNames: slugsProductsNames
+        slugsPagesNames: this.state && this.state.slugsPagesNames,
+        slugsProductsNames: this.state && this.state.slugsProductsNames
       });
     }
   }]);
@@ -85076,8 +85063,9 @@ function (_Component) {
 
 /* harmony default export */ __webpack_exports__["default"] = (Breadcrumbs);
 var BreadcrumbsComp = function BreadcrumbsComp(props) {
-  var allSlugsNames = _objectSpread({}, props.slugsNames, props.slugsProductsNames);
+  var allSlugsNames = _objectSpread({}, props.slugsPagesNames, props.slugsProductsNames);
 
+  console.log(allSlugsNames);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "*",
     render: function render(props) {
@@ -85612,8 +85600,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

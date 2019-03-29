@@ -5,29 +5,21 @@ class Breadcrumbs extends Component {
 
     componentDidMount(){
         axios.get('/api/pages').then(({data}) => {
-            this.setState({
-                slugs: data
-            });
-
-            const slugsNames = {};
+            const slugsPagesNames = {};
             data.forEach((elem, index) => {
                 var slugEl = elem.slug;
-                slugsNames[slugEl] = elem.title;
+                slugsPagesNames[slugEl] = elem.title;
             });
 
             this.setState({
-                slugsNames: slugsNames,
+                slugsPagesNames: slugsPagesNames,
             });
         });
 
         axios.get('/api/products').then(({data}) => {
-            this.setState({
-                slugsProducts: data.productsList,
-            });
-
             const slugsProductsNames = {};
             data.productsList.forEach((elem, index) => {
-                var slugEl = elem.id;
+                var slugEl = elem.slug;
                 slugsProductsNames[slugEl] = elem.title;
             });
 
@@ -38,13 +30,11 @@ class Breadcrumbs extends Component {
     }
 
     render(){
-        console.log( this.state );
-
-        const slugsNames = this.state && this.state.slugsNames;
-        const slugsProductsNames = this.state && this.state.slugsProductsNames;
-
         return (
-            <BreadcrumbsComp slugsNames={slugsNames} slugsProductsNames={slugsProductsNames} />
+            <BreadcrumbsComp
+                slugsPagesNames={this.state && this.state.slugsPagesNames}
+                slugsProductsNames={this.state && this.state.slugsProductsNames}
+            />
         );
     }
 }
@@ -53,7 +43,9 @@ export default Breadcrumbs;
 
 export const BreadcrumbsComp = props => {
 
-    const allSlugsNames = {...props.slugsNames, ...props.slugsProductsNames};
+    const allSlugsNames = {...props.slugsPagesNames, ...props.slugsProductsNames};
+    
+    console.log( allSlugsNames );
 
     return (
         <Route

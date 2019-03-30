@@ -21,7 +21,9 @@ class ProductsController extends Controller
         //$categoriesRelationship = DB::table('categories_relationship')->get();
         $categoriesRelationship = DB::select("SELECT
                                                 categories.category_filter_by AS 'catFilterBy',
-                                                products.id AS 'productID'
+                                                products.id AS 'productID',
+                                                products.slug AS 'productSlug',
+                                                categories.category_name AS 'categoryName'
                                               FROM
                                                 categories, products, categories_relationship
                                               WHERE

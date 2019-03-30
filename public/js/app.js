@@ -84299,8 +84299,8 @@ function (_Component) {
           currency = _this$props.currency,
           id = _this$props.id,
           matchPath = _this$props.matchPath,
-          slug = _this$props.slug;
-      console.log('slug', slug);
+          slug = _this$props.slug; //console.log( 'slug', slug );
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "good__item"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -84673,7 +84673,7 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(_ref, ownProps) {
   var filter = _ref.filter,
       products = _ref.products;
-  var categoriesRelationship = Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_2__["default"])(products.items.categoriesRelationship);
+  var categoriesRelationship = Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_2__["getCategoryProductRelationsByCatSlug"])(products.items.categoriesRelationship);
   return {
     filterBy: filter.filterShopBy,
     categoriesToShow: ownProps.categories.filter(function (catItem) {
@@ -84830,7 +84830,7 @@ var mapStateToProps = function mapStateToProps(state, ownProps) {
   var products = state.products,
       filter = state.filter,
       pagination = state.pagination;
-  var categoriesRelationship = Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_4__["default"])(products.items.categoriesRelationship);
+  var categoriesRelationship = Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_4__["getCategoryProductRelationsByCatSlug"])(products.items.categoriesRelationship);
   var visibleProducts = getVisibleProducts(products.items.productsList, filter.filterShopBy, categoriesRelationship);
   var sortedProducts = sortBy(visibleProducts, filter.sortProductShopBy);
   /* START: Pagination */
@@ -84899,7 +84899,7 @@ var mapStateToProps = function mapStateToProps(_ref, ownProps) {
   return {
     productsList: products.items.productsList,
     categories: products.items.categories,
-    categoriesRelationship: Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__["default"])(products.items.categoriesRelationship),
+    categoriesRelationship: Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__["getCategoryProductRelationsByCatSlug"])(products.items.categoriesRelationship),
     isReady: products.isReady
   };
 };
@@ -84974,6 +84974,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/getCategoryProductRelations */ "./resources/js/helpers/getCategoryProductRelations.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
@@ -85003,6 +85004,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -85037,14 +85039,17 @@ function (_Component) {
       });
       axios.get('/api/products').then(function (_ref2) {
         var data = _ref2.data;
+        //console.log( 'data', data );
         var slugsProductsNames = {};
         data.productsList.forEach(function (elem, index) {
           var slugEl = elem.slug;
           slugsProductsNames[slugEl] = elem.title;
         });
+        var slugsProductCats = Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_2__["getCategoryProductRelationsByProductSlug"])(data.categoriesRelationship);
 
         _this.setState({
-          slugsProductsNames: slugsProductsNames
+          slugsProductsNames: slugsProductsNames,
+          slugsProductCats: slugsProductCats
         });
       });
     }
@@ -85053,7 +85058,8 @@ function (_Component) {
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(BreadcrumbsComp, {
         slugsPagesNames: this.state && this.state.slugsPagesNames,
-        slugsProductsNames: this.state && this.state.slugsProductsNames
+        slugsProductsNames: this.state && this.state.slugsProductsNames,
+        slugsProductCats: this.state && this.state.slugsProductCats
       });
     }
   }]);
@@ -85063,25 +85069,22 @@ function (_Component) {
 
 /* harmony default export */ __webpack_exports__["default"] = (Breadcrumbs);
 var BreadcrumbsComp = function BreadcrumbsComp(props) {
-  var allSlugsNames = _objectSpread({}, props.slugsPagesNames, props.slugsProductsNames);
+  var allSlugsNames = _objectSpread({}, props.slugsPagesNames, props.slugsProductsNames, props.slugsProductCats); //console.log( 'allSlugsNames', allSlugsNames );
 
-  console.log(allSlugsNames);
+
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "*",
     render: function render(props) {
       var parts = props.location.pathname.split("/");
       var place = parts[parts.length - 1];
       parts = parts.slice(1, parts.length - 1);
+      console.log(parts);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "kama_breadcrumbs"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: '/'
       }, "\u0413\u043B\u0430\u0432\u043D\u0430\u044F"), parts.map(function (part, partIndex, parts) {
         var path = [''].concat(_toConsumableArray(parts.slice(0, partIndex + 1))).join("/");
-        /*                                    console.log( 'path', path );
-                                            console.log( 'part', part );
-                                            console.log( 'slugsNames', slugsNames );*/
-
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
           key: part
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -85103,13 +85106,14 @@ var BreadcrumbsComp = function BreadcrumbsComp(props) {
 /*!*************************************************************!*\
   !*** ./resources/js/helpers/getCategoryProductRelations.js ***!
   \*************************************************************/
-/*! exports provided: default */
+/*! exports provided: getCategoryProductRelationsByCatSlug, getCategoryProductRelationsByProductSlug */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getCategoryProductRelations; });
-function getCategoryProductRelations(categoriesRelationship) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCategoryProductRelationsByCatSlug", function() { return getCategoryProductRelationsByCatSlug; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCategoryProductRelationsByProductSlug", function() { return getCategoryProductRelationsByProductSlug; });
+function getCategoryProductRelationsByCatSlug(categoriesRelationship) {
   var newRelations = [];
 
   if (categoriesRelationship !== undefined) {
@@ -85117,6 +85121,20 @@ function getCategoryProductRelations(categoriesRelationship) {
       var o = categoriesRelationship[i];
       if (!newRelations[o.catFilterBy]) newRelations[o.catFilterBy] = [];
       newRelations[o.catFilterBy].push(o.productID);
+    }
+  }
+
+  return newRelations;
+}
+function getCategoryProductRelationsByProductSlug(categoriesRelationship) {
+  //console.log( categoriesRelationship );
+  var newRelations = [];
+
+  if (categoriesRelationship !== undefined) {
+    for (var i = 0; i < categoriesRelationship.length; i++) {
+      var o = categoriesRelationship[i];
+      if (!newRelations[o.productSlug]) newRelations[o.productSlug] = [];
+      newRelations[o.productSlug].push(o.categoryName);
     }
   }
 

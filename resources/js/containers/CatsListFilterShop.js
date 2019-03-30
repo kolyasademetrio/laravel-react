@@ -1,10 +1,10 @@
 import {showProductsByCategory} from "../actions/filter";
 import {connect} from "react-redux";
-import getCategoryProductRelations from '../helpers/getCategoryProductRelations';
+import {getCategoryProductRelationsByCatSlug} from '../helpers/getCategoryProductRelations';
 import CatsListFilterShop from '../components/CatsListFilterShop';
 
 const mapStateToProps = ({filter, products}, ownProps) => {
-    const categoriesRelationship = getCategoryProductRelations( products.items.categoriesRelationship );
+    const categoriesRelationship = getCategoryProductRelationsByCatSlug( products.items.categoriesRelationship );
 
     return {
         filterBy: filter.filterShopBy,

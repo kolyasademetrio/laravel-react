@@ -1,4 +1,4 @@
-export default function getCategoryProductRelations(categoriesRelationship){
+export function getCategoryProductRelationsByCatSlug(categoriesRelationship){
     let newRelations = [];
     if ( categoriesRelationship !== undefined ) {
         for(let i=0; i<categoriesRelationship.length; i++) {
@@ -9,3 +9,19 @@ export default function getCategoryProductRelations(categoriesRelationship){
     }
     return newRelations;
 }
+
+export function getCategoryProductRelationsByProductSlug(categoriesRelationship){
+    
+    //console.log( categoriesRelationship );
+    
+    let newRelations = [];
+    if ( categoriesRelationship !== undefined ) {
+        for(let i=0; i<categoriesRelationship.length; i++) {
+            let o = categoriesRelationship[i];
+            if (!newRelations[o.productSlug]) newRelations[o.productSlug] = [];
+            newRelations[o.productSlug].push(o.categoryName);
+        }
+    }
+    return newRelations;
+}
+

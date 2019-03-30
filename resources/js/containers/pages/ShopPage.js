@@ -5,7 +5,7 @@ import ShopPage from '../../components/pages/ShopPage';
 import {setProducts} from '../../actions/products';
 import {setFilter, setPagination} from '../../actions/filter';
 
-import getCategoryProductRelations from '../../helpers/getCategoryProductRelations';
+import {getCategoryProductRelationsByCatSlug} from '../../helpers/getCategoryProductRelations';
 import {getPager} from "../../helpers/pagination";
 
 
@@ -51,7 +51,7 @@ function getPages(visibleProducts, perPage){
 const mapStateToProps = (state, ownProps) => {
     const {products, filter, pagination} = state;
 
-    const categoriesRelationship = getCategoryProductRelations( products.items.categoriesRelationship );
+    const categoriesRelationship = getCategoryProductRelationsByCatSlug( products.items.categoriesRelationship );
 
     const visibleProducts = getVisibleProducts(
         products.items.productsList,

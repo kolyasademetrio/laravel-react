@@ -13,7 +13,7 @@ class ProductSingle extends Component {
 
         const {image, title, excerpt, descrtitle, descrtext, regular_price, sale_price, discount, currency, id, matchPath, slug} = this.props;
 
-        console.log( 'slug', slug );
+        //console.log( 'slug', slug );
 
         return (
             <div className="good__item">

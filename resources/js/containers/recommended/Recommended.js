@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 import {setProducts} from '../../actions/products';
 import {setFilter} from '../../actions/filter';
-import getCategoryProductRelations from '../../helpers/getCategoryProductRelations';
+import {getCategoryProductRelationsByCatSlug} from '../../helpers/getCategoryProductRelations';
 import Recommended from '../../components/recomended/Recommended';
 
 
@@ -9,7 +9,7 @@ import Recommended from '../../components/recomended/Recommended';
 const mapStateToProps = ({products},ownProps) => ({
     productsList: products.items.productsList,
     categories: products.items.categories,
-    categoriesRelationship: getCategoryProductRelations( products.items.categoriesRelationship ),
+    categoriesRelationship: getCategoryProductRelationsByCatSlug( products.items.categoriesRelationship ),
     isReady: products.isReady,
 });
 

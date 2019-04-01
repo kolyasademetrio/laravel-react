@@ -41,12 +41,13 @@ class ShopPage extends Component {
                                     </div>
 
                                     <div className="products__list">
-                                        
                                         {isReady && (
                                             productsList ? (
                                                 productsList.map( ( productData ) => {
                                                     return (
-                                                        <ProductSingle key={productData.id} {...productData} matchPath={matchPath} />
+                                                        <div className={'good__item'}>
+                                                            <ProductSingle key={productData.id} {...productData} matchPath={matchPath} />
+                                                        </div>
                                                     );
                                                 })) : (
                                                 <div className="products__list-empty">В этой категории товаров нет</div>

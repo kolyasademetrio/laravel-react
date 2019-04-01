@@ -11,6 +11,8 @@
     <link rel='stylesheet' href='/plugins/magnific-popup/magnific-popup.css' type='text/css' media='all' />
     <link rel='stylesheet' href='/css/fonts.css' type='text/css' media='all' />
     <link rel='stylesheet' href='/plugins/datetimepicker/jquery.datetimepicker.min.css' type='text/css' media='all' />
+    <link rel="stylesheet" href="/css/custom-css/woocommerce.css" media='all' />
+    <link rel="stylesheet" href="/css/custom-css/woocommerce-layout.css" media='all' />
     <link rel='stylesheet'  href='/css/custom-css/style.css' type='text/css' media='all' />
 </head>
 

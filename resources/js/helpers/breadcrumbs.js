@@ -18,9 +18,6 @@ class Breadcrumbs extends Component {
         });
 
         axios.get('/api/products').then(({data}) => {
-            
-            //console.log( 'data', data );
-            
             const slugsProductsNames = {};
             data.productsList.forEach((elem, index) => {
                 var slugEl = elem.slug;
@@ -28,7 +25,7 @@ class Breadcrumbs extends Component {
             });
 
             const slugsProductCats = getCategoryProductRelationsByProductSlug(data.categoriesRelationship);
-            
+
             this.setState({
                 slugsProductsNames: slugsProductsNames,
                 slugsProductCats: slugsProductCats,
@@ -51,27 +48,22 @@ export default Breadcrumbs;
 
 export const BreadcrumbsComp = props => {
 
-    const allSlugsNames = {...props.slugsPagesNames, ...props.slugsProductsNames, ...props.slugsProductCats};
-    
-    //console.log( 'allSlugsNames', allSlugsNames );
+    const allSlugsNames = {...props.slugsPagesNames, ...props.slugsProductsNames};
+    const productCatsSlugNames = props.slugsProductCats;
 
     return (
         <Route
             path="*"
             render={ props => {
-
                     let parts = props.location.pathname.split("/");
                     
                     const place = parts[parts.length - 1];
 
                     parts = parts.slice(1, parts.length - 1);
-                    
-                    console.log( parts );
 
                     return (
                         <div className="kama_breadcrumbs">
                             {<Link to={'/'}>Главная</Link>}
-                            {/*{<Link to={'/'}>allSlugsNames[]</Link>}*/}
                             {
                                 parts.map((part, partIndex, parts) => {
                                     const path = ['', ...parts.slice(0, partIndex+1)].join("/");
@@ -83,7 +75,11 @@ export const BreadcrumbsComp = props => {
                                     );
                                 })
                             }
-                            {<span className="kb_sep"> / </span>}
+                            <span className="kb_sep"> / </span>
+                            {/* START: if has category show category name*/}
+                            <span>{(productCatsSlugNames instanceof Array) && (productCatsSlugNames[place]) && productCatsSlugNames[place][0]}</span>
+                            {(productCatsSlugNames instanceof Array) && (productCatsSlugNames[place]) && <span className="kb_sep"> / </span>}
+                            {/* END: if has category show category name*/}
                             {allSlugsNames && allSlugsNames[place]}
                         </div>
                     );

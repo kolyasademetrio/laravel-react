@@ -258,7 +258,7 @@ jQuery(document).ready(function($) {
     })();*/
 
     /* -------------- Slick Slider on content-single-product.php ------------------- */
-    $('.good__gallerySlider').slick({
+    /*$('.good__gallerySlider').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
@@ -275,7 +275,7 @@ jQuery(document).ready(function($) {
         focusOnSelect: true,
         vertical: true,
 
-    });
+    });*/
     /* -------------- Slick Slider on content-single-product.php END --------------- */
 
 

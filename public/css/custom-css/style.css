@@ -8000,7 +8000,13 @@ nav.pagination ul li.active span {
     transition: opacity 150ms linear;
 }
 
+.good__gallerySliderItem {
+    z-index: 998;
+}
 
+.good__gallerySliderItem.slick-current {
+    z-index: 999;
+}
 
 
 

@@ -11,9 +11,6 @@ export function getCategoryProductRelationsByCatSlug(categoriesRelationship){
 }
 
 export function getCategoryProductRelationsByProductSlug(categoriesRelationship){
-    
-    //console.log( categoriesRelationship );
-    
     let newRelations = [];
     if ( categoriesRelationship !== undefined ) {
         for(let i=0; i<categoriesRelationship.length; i++) {

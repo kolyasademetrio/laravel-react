@@ -1,7 +1,17 @@
 import React, {Component} from 'react';
-import Breadcrumbs from "../../helpers/breadcrumbs";
+import Breadcrumbs from "../../../helpers/breadcrumbs";
+import Slider from 'react-slick';
+import {goodGallerySliderSettings, goodGallerySliderNavSettings} from '../productSinglePage/productSinglePageSliderSettings';
 
 class ProductSinglePage extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            nav1: null,
+            nav2: null
+        };
+    }
 
     componentDidMount() {
         const {setProductSingle} = this.props;
@@ -10,134 +20,169 @@ class ProductSinglePage extends Component {
         axios.get(`/api/products/${productSlug}`).then( ({data}) => {
             setProductSingle(data);
         });
+
+        this.setState({
+            nav1: this.slider1,
+            nav2: this.slider2
+        });
     }
 
     render(){
+
+        const {product, isSingleReady} = this.props;
+
         return (
-            <div id="primary" role="main" className="content-area twentyfifteen">
+            <div id="primary" role="main" className="single-product content-area twentyfifteen woocommerce-page woocommerce">
                 <div id="main" className="site-main t15wc">
                     <div className="container woocomm__container">
                         <div className="row woocomm__row">
                             <div className="col-xs-12">
                                 <div className="woocomm__col">
-                                    {/*<div className="kama_breadcrumbs"><span href="https://algaph.com" itemProp="item"><span
-                                        itemProp="name">Главная</span></a></span><span className="kb_sep"> / </span>
-                                        <span itemProp="itemListElement" itemScope=""
-                                              itemType="http://schema.org/ListItem"><a href="https://algaph.com/shop/"
-                                                                                       itemProp="item"><span
-                                            itemProp="name">Товары</span></a></span><span className="kb_sep"> / </span>
-                                        <span itemProp="itemListElement" itemScope=""
-                                              itemType="http://schema.org/ListItem"><a
-                                            href="https://algaph.com/product-category/cosmeticiviso/"
-                                            itemProp="item"><span
-                                            itemProp="name">Косметика для лица</span></a></span><span
-                                            className="kb_sep"> / </span>
-                                        <span className="kb_title">Детский крем</span></div>*/}
 
                                     <Breadcrumbs />
 
                                     <div id="product-107" className="post-107 product type-product status-publish has-post-thumbnail product_cat-cosmeticiviso first instock shipping-taxable purchasable product-type-simple">
                                         <div className="good_gallery">
                                             <div className="good_galleryWrap has_galleryNav">
-                                                <div className="good__gallerySlider">
-                                                    <a href="https://algaph.com/wp-content/uploads/2018/08/5-ml_0001.jpg" className="good__gallerySliderItem image">
-                                                        <img alt="alt" src="https://algaph.com/wp-content/uploads/2018/08/5-ml_0001.jpg" className="good__gallerySliderFeaturedImg"/>
-                                                    </a>
-                                                    <a href="https://algaph.com/wp-content/uploads/2018/07/5-ml_0002.jpg" className="good__gallerySliderItem image">
-                                                        <img alt="alt" src="https://algaph.com/wp-content/uploads/2018/07/5-ml_0002.jpg" className="good__gallerySliderFeaturedImg"/>
-                                                    </a>
-                                                    <a href="https://algaph.com/wp-content/uploads/2018/08/50-ml_0007.jpg" className="good__gallerySliderItem image">
-                                                        <img alt="alt" src="https://algaph.com/wp-content/uploads/2018/08/50-ml_0007.jpg" className="good__gallerySliderFeaturedImg"/>
-                                                    </a>
-                                                    <a href="https://www.youtube.com/watch?v=Df-Wo48P-M8" className="good__gallerySliderItem video slick-slide">
-                                                        <img alt="alt" src="https://algaph.com/wp-content/uploads/2018/08/youtube_4.jpg" className="good__gallerySliderFeaturedImg video" video="https://www.youtube.com/watch?v=Df-Wo48P-M8"/>
-                                                    </a>
-                                                </div>
 
-                                                <div className="good__gallerySliderNav">
+                                                <Slider
+                                                    {...goodGallerySliderSettings}
+                                                    className={'good__gallerySlider'}
+                                                    asNavFor={this.state.nav2}
+                                                    ref={slider => (this.slider1 = slider)}
+                                                >
+                                                    <a href="https://algaph.com/wp-content/uploads/2018/08/5-ml_0001.jpg"
+                                                       className="good__gallerySliderItem image" data-type="image"
+                                                    >
+                                                        <img
+                                                            src="https://algaph.com/wp-content/uploads/2018/08/5-ml_0001.jpg"
+                                                            alt="" className="good__gallerySliderFeaturedImg"
+                                                        />
+                                                    </a>
+
+                                                    <a href="https://algaph.com/wp-content/uploads/2018/07/5-ml_0002.jpg"
+                                                       className="good__gallerySliderItem image" data-type="image"
+                                                    >
+                                                        <img
+                                                            src="https://algaph.com/wp-content/uploads/2018/07/5-ml_0002.jpg"
+                                                            alt="" className="good__gallerySliderFeaturedImg"
+                                                        />
+                                                    </a>
+                                                    <a href="https://algaph.com/wp-content/uploads/2018/08/50-ml_0007.jpg"
+                                                       className="good__gallerySliderItem image" data-type="image"
+                                                    >
+                                                        <img
+                                                            src="https://algaph.com/wp-content/uploads/2018/08/50-ml_0007.jpg"
+                                                            alt="" className="good__gallerySliderFeaturedImg"
+                                                        />
+                                                    </a>
+
+                                                    <a href="https://www.youtube.com/watch?v=Df-Wo48P-M8"
+                                                       className="good__gallerySliderItem video" data-type="video"
+                                                    >
+                                                        <img
+                                                            src="https://algaph.com/wp-content/uploads/2018/08/youtube_4.jpg"
+                                                            alt="" className="good__gallerySliderFeaturedImg video"
+                                                            video="https://www.youtube.com/watch?v=Df-Wo48P-M8"
+                                                        />
+                                                    </a>
+                                                </Slider>
+
+                                                <Slider
+                                                    {...goodGallerySliderNavSettings}
+                                                    className={'good__gallerySliderNav'}
+                                                    asNavFor={this.state.nav1}
+                                                    ref={slider => (this.slider2 = slider)}
+                                                >
                                                     <div className="good__gallerySliderItemNav">
-                                                        <img alt="alt" src="https://algaph.com/wp-content/uploads/2018/08/5-ml_0001-150x147.jpg" className="good__gallerySliderFeaturedImgNav"/>
+                                                        <img
+                                                            src="https://algaph.com/wp-content/uploads/2018/08/5-ml_0001-150x147.jpg"
+                                                            alt="" className="good__gallerySliderFeaturedImgNav"
+                                                        />
+                                                    </div>
+
+                                                    <div className="good__gallerySliderItemNav">
+                                                        <img
+                                                            src="https://algaph.com/wp-content/uploads/2018/07/5-ml_0002-150x147.jpg"
+                                                            alt="" className="good__gallerySliderFeaturedImgNav"
+                                                        />
                                                     </div>
                                                     <div className="good__gallerySliderItemNav">
-                                                        <img alt="alt" src="https://algaph.com/wp-content/uploads/2018/07/5-ml_0002-150x147.jpg" className="good__gallerySliderFeaturedImgNav"/>
+                                                        <img
+                                                            src="https://algaph.com/wp-content/uploads/2018/08/50-ml_0007-150x147.jpg"
+                                                            alt="" className="good__gallerySliderFeaturedImgNav"
+                                                        />
                                                     </div>
+
                                                     <div className="good__gallerySliderItemNav">
-                                                        <img alt="alt" src="https://algaph.com/wp-content/uploads/2018/08/50-ml_0007-150x147.jpg" className="good__gallerySliderFeaturedImgNav"/>
+                                                        <img
+                                                            src="https://algaph.com/wp-content/uploads/2018/08/youtube_4.jpg"
+                                                            alt="" className="good__gallerySliderFeaturedImgNav"
+                                                        />
                                                     </div>
-                                                    <div className="good__gallerySliderItemNav">
-                                                        <img alt="alt" src="https://algaph.com/wp-content/uploads/2018/08/youtube_4.jpg" className="good__gallerySliderFeaturedImgNav"/>
-                                                    </div>
-                                                </div>
+                                                </Slider>
+
                                             </div>
                                         </div>
-                                    </div>
 
-                                    <div className="summary entry-summary">
-                                        <h1 className="product_title entry-title">Детский крем</h1>
-                                        <div className="goodSingle__excerpt">
-                                            гипоалергенный крем 5 мл
-                                        </div>
-
-                                        <div className="goodSingle__descr">
-                                            Гипоаллергенный крем Alga Ph великолепно подойдет для особо
-                                            чувствительной нежной кожи. Крем быстро заживляет и увлажняет кожу, а
-                                            его состав дает возможность использоваться крем с первых месяцев жизни.
-                                        </div>
-
-                                        <div className="goodSingle__table">
-                                            <div className="tr">
-                                                <div className="th">Цена</div>
-                                                <div className="th">Количество</div>
-                                                <div className="th">Доставка</div>
-                                            </div>
-                                            <div className="tr">
-                                                <div className="td">
-                                                    <div className="price"><span
-                                                        className="woocommerce-Price-amount amount">185<span
-                                                        className="woocommerce-Price-currencySymbol">грн</span></span>
-                                                    </div>
+                                        <div className="summary entry-summary">
+                                            <h1 className="product_title entry-title">{product.title}</h1>
+                                            <div className="goodSingle__excerpt">{product.excerpt}</div>
+                                            <div className="goodSingle__descr">{product.descr}</div>
+                                            <div className="goodSingle__table">
+                                                <div className="tr">
+                                                    <div className="th">Цена</div>
+                                                    <div className="th">Количество</div>
+                                                    <div className="th">Доставка</div>
                                                 </div>
-                                                <div className="td">
-                                                    <form className="cart" method="post">
-                                                        <div className="quantity__wrap">
-                                                            <div className="quantity">
-                                                                <label className="screen-reader-text">Количество</label>
-                                                                <input type="number" className="input-text qty text"
-                                                                       step="1" min="0" max="" name="quantity" defaultValue="1"
-                                                                       title="Кол-во" size="4" pattern="[0-9]*"
-                                                                       inputMode="numeric"/>
+                                                <div className="tr">
+                                                    <div className="td">
+                                                        <div className="price">
+                                                            <span className="woocommerce-Price-amount amount">185<span className="woocommerce-Price-currencySymbol">грн</span></span>
+                                                        </div>
+                                                    </div>
+                                                    <div className="td">
+                                                        <form className="cart" method="post">
+                                                            <div className="quantity__wrap">
+                                                                <div className="quantity">
+                                                                    <label className="screen-reader-text">Количество</label>
+                                                                    <input type="number" className="input-text qty text"
+                                                                           step="1" min="0" max="" name="quantity" defaultValue="1"
+                                                                           title="Кол-во" size="4" pattern="[0-9]*"
+                                                                           inputMode="numeric"/>
                                                                     <div className="inc button">+</div>
                                                                     <div className="dec button">-</div>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div className="td terms">
-                                                    <div className="good_shipping_terms">
-                                                        <div className="good_shipping_imgWrap">
-                                                            <img src="https://algaph.com/wp-content/uploads/2018/08/shipping-e1535634026174.png"/>
-                                                        </div>
-                                                        <div className="good_shipping_text">
-                                                            Бесплатная при<br/> заказе от 299 грн
+                                                        </form>
+                                                    </div>
+                                                    <div className="td terms">
+                                                        <div className="good_shipping_terms">
+                                                            <div className="good_shipping_imgWrap">
+                                                                <img src="https://algaph.com/wp-content/uploads/2018/08/shipping-e1535634026174.png"/>
+                                                            </div>
+                                                            <div className="good_shipping_text">
+                                                                Бесплатная при<br/> заказе от 299 грн
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div className="tr">
-                                                <div className="td">&nbsp;</div>
-                                                <div className="td">
-                                                    <button type="submit" data-product_id="107" data-product_sku="ss"
-                                                            data-quantity="1" className="button product_type_simple">В
-                                                        корзину
-                                                    </button>
+                                                <div className="tr">
+                                                    <div className="td">&nbsp;</div>
+                                                    <div className="td">
+                                                        <button type="submit" data-product_id="107" data-product_sku="ss"
+                                                                data-quantity="1" className="button product_type_simple">В
+                                                            корзину
+                                                        </button>
+                                                    </div>
+                                                    <div className="td">&nbsp;</div>
                                                 </div>
-                                                <div className="td">&nbsp;</div>
+                                            </div>
+                                            <div className="woocommerce-product-details__short-description">
+                                                <p>Крем для</p>
                                             </div>
                                         </div>
-                                        <div className="woocommerce-product-details__short-description">
-                                            <p>Крем для</p>
-                                        </div>
-                                    </div>
+
                                         <div className="woocommerce-tabs wc-tabs-wrapper">
                                             <ul className="tabs wc-tabs" role="tablist">
                                                 <li className="description_tab active">
@@ -295,6 +340,10 @@ class ProductSinglePage extends Component {
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+
+
+
                                     </div>
                                 </div>
                             </div>

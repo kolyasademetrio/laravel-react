@@ -13,10 +13,7 @@ class ProductSingle extends Component {
 
         const {image, title, excerpt, descrtitle, descrtext, regular_price, sale_price, discount, currency, id, matchPath, slug} = this.props;
 
-        //console.log( 'slug', slug );
-
         return (
-            <div className="good__item">
                 <div className="good__itemInner">
                     <div className="good__itemContent">
                         <div className="good__itemHeader">
@@ -61,7 +58,6 @@ class ProductSingle extends Component {
                            data-product_id={id} data-product_sku="" rel="nofollow">В корзину</a>
                     </div>
                 </div>
-            </div>
         );
     }
 }

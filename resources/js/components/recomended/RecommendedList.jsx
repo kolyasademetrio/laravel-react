@@ -8,18 +8,20 @@ const RecommendedList = ({productsRecommended}) => {
     const showSlider = setSliderVisibility( productsRecommended.length, window.innerWidth );
 
     const productsRecommendedList = productsRecommended.map(productData => (
-                <ProductSingle key={productData.id} {...productData} matchPath={'shop'} />
+        <div className={'good__item'}>
+            <ProductSingle key={productData.id} {...productData} matchPath={'shop'} />
+        </div>
     ));
 
     return (
         <div className="recommended__products">
             {showSlider ? (
                     <Slider {...settings} className={'recommended__categoryWrapper active'}>
-                        { productsRecommendedList }
+                        {productsRecommendedList}
                     </Slider>
                 ) : (
                     <div className="recommended__categoryWrapper active no_slider">
-                        { productsRecommendedList }
+                        {productsRecommendedList}
                     </div>
                 )
             }

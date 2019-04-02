@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Breadcrumbs from "../../../helpers/breadcrumbs";
 import Slider from 'react-slick';
 import {goodGallerySliderSettings, goodGallerySliderNavSettings} from '../productSinglePage/productSinglePageSliderSettings';
+import ReactHtmlParser from 'react-html-parser';
 
 class ProductSinglePage extends Component {
 
@@ -9,7 +10,7 @@ class ProductSinglePage extends Component {
         super(props);
         this.state = {
             nav1: null,
-            nav2: null
+            nav2: null,
         };
     }
 
@@ -17,19 +18,29 @@ class ProductSinglePage extends Component {
         const {setProductSingle} = this.props;
         const productSlug = this.props.match.params.product;
 
-        axios.get(`/api/products/${productSlug}`).then( ({data}) => {
-            setProductSingle(data);
-        });
+        axios.get(`/api/products/${productSlug}`)
+            .then( ({data}) => {
+
+                //console.log( 'data', data );
+
+                setProductSingle(data);
+            });
 
         this.setState({
             nav1: this.slider1,
-            nav2: this.slider2
+            nav2: this.slider2,
         });
     }
 
     render(){
 
-        const {product, isSingleReady} = this.props;
+        const {isSingleReady} = this.props;
+
+        console.log( isSingleReady );
+
+        const {title, excerpt, descr, regular_price, sale_price, currency} = this.props.product;
+
+        const hasSalePrice = isSingleReady && sale_price == 0 ? false : true;
 
         return (
             <div id="primary" role="main" className="single-product content-area twentyfifteen woocommerce-page woocommerce">
@@ -126,9 +137,9 @@ class ProductSinglePage extends Component {
                                         </div>
 
                                         <div className="summary entry-summary">
-                                            <h1 className="product_title entry-title">{product.title}</h1>
-                                            <div className="goodSingle__excerpt">{product.excerpt}</div>
-                                            <div className="goodSingle__descr">{product.descr}</div>
+                                            <h1 className="product_title entry-title">{ReactHtmlParser(title)}</h1>
+                                            <div className="goodSingle__excerpt">{ReactHtmlParser(excerpt)}</div>
+                                            <div className="goodSingle__descr">{ReactHtmlParser(descr)}</div>
                                             <div className="goodSingle__table">
                                                 <div className="tr">
                                                     <div className="th">Цена</div>
@@ -138,7 +149,10 @@ class ProductSinglePage extends Component {
                                                 <div className="tr">
                                                     <div className="td">
                                                         <div className="price">
-                                                            <span className="woocommerce-Price-amount amount">185<span className="woocommerce-Price-currencySymbol">грн</span></span>
+                                                            <span className="woocommerce-Price-amount amount">
+                                                                {ReactHtmlParser(hasSalePrice ? sale_price : regular_price)}
+                                                                <span className="woocommerce-Price-currencySymbol">{ReactHtmlParser(currency)}</span>
+                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div className="td">
@@ -159,7 +173,7 @@ class ProductSinglePage extends Component {
                                                     <div className="td terms">
                                                         <div className="good_shipping_terms">
                                                             <div className="good_shipping_imgWrap">
-                                                                <img src="https://algaph.com/wp-content/uploads/2018/08/shipping-e1535634026174.png"/>
+                                                                <img src="/uploads/2018/08/shipping-e1535634026174.png"/>
                                                             </div>
                                                             <div className="good_shipping_text">
                                                                 Бесплатная при<br/> заказе от 299 грн

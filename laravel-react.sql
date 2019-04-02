@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 01 2019 г., 17:57
+-- Время создания: Апр 02 2019 г., 18:31
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.1.22
 
@@ -89,9 +89,9 @@ INSERT INTO `categories_relationship` (`id`, `object_id`, `category_id`) VALUES
 
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(191) NOT NULL,
   `batch` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `migrations`
@@ -99,7 +99,9 @@ CREATE TABLE `migrations` (
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_resets_table', 1);
+(2, '2014_10_12_100000_create_password_resets_table', 1),
+(4, '2019_04_02_123152_create_product_images_table', 2),
+(5, '2019_04_02_144946_create_product_attachments_table', 3);
 
 -- --------------------------------------------------------
 
@@ -133,10 +135,10 @@ INSERT INTO `pages` (`id`, `slug`, `title`, `menu_order`) VALUES
 --
 
 CREATE TABLE `password_resets` (
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `token` varchar(191) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -183,19 +185,44 @@ INSERT INTO `products` (`id`, `slug`, `title`, `excerpt`, `content`, `descrtitle
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `product_attachments`
+--
+
+CREATE TABLE `product_attachments` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `product_id` bigint(20) NOT NULL,
+  `product_slug` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `attachment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `product_attachments`
+--
+
+INSERT INTO `product_attachments` (`id`, `product_id`, `product_slug`, `attachment`, `type`) VALUES
+(1, 1, 'крем-для-рук-и-ногтей', '/uploads/2018/08/5-ml_0001.jpg', 'image'),
+(2, 1, 'крем-для-рук-и-ногтей', '/uploads/2018/07/5-ml_0002.jpg', 'image'),
+(3, 1, 'крем-для-рук-и-ногтей', '/uploads/2018/08/50-ml_0007.jpg', 'image'),
+(4, 1, 'крем-для-рук-и-ногтей', 'https://www.youtube.com/watch?v=Df-Wo48P-M8', 'video'),
+(5, 2, 'крем-для-век', '/uploads/2018/08/5-ml_0004.jpg', 'image');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `users`
 --
 
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(191) NOT NULL,
+  `email` varchar(191) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(191) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `users`
@@ -257,6 +284,12 @@ ALTER TABLE `products`
   ADD UNIQUE KEY `slug` (`slug`);
 
 --
+-- Индексы таблицы `product_attachments`
+--
+ALTER TABLE `product_attachments`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Индексы таблицы `users`
 --
 ALTER TABLE `users`
@@ -283,7 +316,7 @@ ALTER TABLE `categories_relationship`
 -- AUTO_INCREMENT для таблицы `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `pages`
@@ -296,6 +329,12 @@ ALTER TABLE `pages`
 --
 ALTER TABLE `products`
   MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT для таблицы `product_attachments`
+--
+ALTER TABLE `product_attachments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `users`

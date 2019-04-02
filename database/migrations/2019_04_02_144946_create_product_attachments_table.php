@@ -15,6 +15,7 @@ class CreateProductAttachmentsTable extends Migration
     {
         Schema::create('product_attachments', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('product_slug');
             $table->bigInteger('product_id');
             $table->string('attachment', 255);
             $table->string('type', 255);

@@ -83393,7 +83393,7 @@ function (_Component) {
       var productSlug = this.props.match.params.product;
       axios.get("/api/products/".concat(productSlug)).then(function (_ref) {
         var data = _ref.data;
-        setProductSingle(data);
+        console.log('data', data); //setProductSingle(data);
       });
       this.setState({
         nav1: this.slider1,

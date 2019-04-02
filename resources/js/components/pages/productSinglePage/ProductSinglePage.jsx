@@ -20,7 +20,10 @@ class ProductSinglePage extends Component {
 
         axios.get(`/api/products/${productSlug}`)
             .then( ({data}) => {
-                setProductSingle(data);
+
+                console.log( 'data', data );
+
+                //setProductSingle(data);
             });
 
         this.setState({

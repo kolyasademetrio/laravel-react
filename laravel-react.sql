@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 02 2019 г., 18:03
+-- Время создания: Апр 02 2019 г., 18:31
 -- Версия сервера: 10.3.13-MariaDB
 -- Версия PHP: 7.1.22
 
@@ -191,6 +191,7 @@ INSERT INTO `products` (`id`, `slug`, `title`, `excerpt`, `content`, `descrtitle
 CREATE TABLE `product_attachments` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_id` bigint(20) NOT NULL,
+  `product_slug` varchar(200) CHARACTER SET utf8 NOT NULL,
   `attachment` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -199,11 +200,12 @@ CREATE TABLE `product_attachments` (
 -- Дамп данных таблицы `product_attachments`
 --
 
-INSERT INTO `product_attachments` (`id`, `product_id`, `attachment`, `type`) VALUES
-(1, 1, '/uploads/2018/08/5-ml_0001.jpg', 'image'),
-(2, 1, '/uploads/2018/07/5-ml_0002.jpg', 'image'),
-(3, 1, '/uploads/2018/08/50-ml_0007.jpg', 'image'),
-(4, 1, 'https://www.youtube.com/watch?v=Df-Wo48P-M8', 'video');
+INSERT INTO `product_attachments` (`id`, `product_id`, `product_slug`, `attachment`, `type`) VALUES
+(1, 1, 'крем-для-рук-и-ногтей', '/uploads/2018/08/5-ml_0001.jpg', 'image'),
+(2, 1, 'крем-для-рук-и-ногтей', '/uploads/2018/07/5-ml_0002.jpg', 'image'),
+(3, 1, 'крем-для-рук-и-ногтей', '/uploads/2018/08/50-ml_0007.jpg', 'image'),
+(4, 1, 'крем-для-рук-и-ногтей', 'https://www.youtube.com/watch?v=Df-Wo48P-M8', 'video'),
+(5, 2, 'крем-для-век', '/uploads/2018/08/5-ml_0004.jpg', 'image');
 
 -- --------------------------------------------------------
 
@@ -332,7 +334,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT для таблицы `product_attachments`
 --
 ALTER TABLE `product_attachments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT для таблицы `users`

@@ -83340,6 +83340,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-slick */ "./node_modules/react-slick/lib/index.js");
 /* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _productSinglePage_productSinglePageSliderSettings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../productSinglePage/productSinglePageSliderSettings */ "./resources/js/components/pages/productSinglePage/productSinglePageSliderSettings.js");
+/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
+/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -83359,6 +83361,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -83402,9 +83405,15 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var _this$props = this.props,
-          product = _this$props.product,
-          isSingleReady = _this$props.isSingleReady;
+      var isSingleReady = this.props.isSingleReady;
+      var _this$props$product = this.props.product,
+          title = _this$props$product.title,
+          excerpt = _this$props$product.excerpt,
+          descr = _this$props$product.descr,
+          regular_price = _this$props$product.regular_price,
+          sale_price = _this$props$product.sale_price,
+          currency = _this$props$product.currency;
+      var hasSalePrice = isSingleReady && sale_price == 0 ? false : true;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "primary",
         role: "main",
@@ -83500,11 +83509,11 @@ function (_Component) {
         className: "summary entry-summary"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "product_title entry-title"
-      }, product.title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react_html_parser__WEBPACK_IMPORTED_MODULE_4___default()(title)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "goodSingle__excerpt"
-      }, product.excerpt), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react_html_parser__WEBPACK_IMPORTED_MODULE_4___default()(excerpt)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "goodSingle__descr"
-      }, product.descr), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react_html_parser__WEBPACK_IMPORTED_MODULE_4___default()(descr)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "goodSingle__table"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "tr"
@@ -83522,9 +83531,9 @@ function (_Component) {
         className: "price"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "woocommerce-Price-amount amount"
-      }, "185", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      }, react_html_parser__WEBPACK_IMPORTED_MODULE_4___default()(hasSalePrice ? sale_price : regular_price), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "woocommerce-Price-currencySymbol"
-      }, "\u0433\u0440\u043D")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react_html_parser__WEBPACK_IMPORTED_MODULE_4___default()(currency))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "td"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         className: "cart",
@@ -83558,7 +83567,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "good_shipping_imgWrap"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://algaph.com/wp-content/uploads/2018/08/shipping-e1535634026174.png"
+        src: "/uploads/2018/08/shipping-e1535634026174.png"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "good_shipping_text"
       }, "\u0411\u0435\u0441\u043F\u043B\u0430\u0442\u043D\u0430\u044F \u043F\u0440\u0438", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), " \u0437\u0430\u043A\u0430\u0437\u0435 \u043E\u0442 299 \u0433\u0440\u043D")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

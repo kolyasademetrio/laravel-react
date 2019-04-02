@@ -8,8 +8,10 @@ const mapStateToProps = (state) => {
 
 const {product, isSingleReady} = state.products;
 
+const product1 = product.product;
+
 return {
-    product,
+    product: product1,
     isSingleReady,
 }};
 

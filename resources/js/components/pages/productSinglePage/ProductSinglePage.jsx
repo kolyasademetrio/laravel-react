@@ -21,9 +21,9 @@ class ProductSinglePage extends Component {
         axios.get(`/api/products/${productSlug}`)
             .then( ({data}) => {
 
-                console.log( 'data', data );
+                //console.log( 'data', data );
 
-                //setProductSingle(data);
+                setProductSingle(data);
             });
 
         this.setState({
@@ -33,7 +33,10 @@ class ProductSinglePage extends Component {
     }
 
     render(){
+
         const {isSingleReady} = this.props;
+
+        console.log( isSingleReady );
 
         const {title, excerpt, descr, regular_price, sale_price, currency} = this.props.product;
 

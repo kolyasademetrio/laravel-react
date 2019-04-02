@@ -83393,7 +83393,8 @@ function (_Component) {
       var productSlug = this.props.match.params.product;
       axios.get("/api/products/".concat(productSlug)).then(function (_ref) {
         var data = _ref.data;
-        console.log('data', data); //setProductSingle(data);
+        //console.log( 'data', data );
+        setProductSingle(data);
       });
       this.setState({
         nav1: this.slider1,
@@ -83406,6 +83407,7 @@ function (_Component) {
       var _this2 = this;
 
       var isSingleReady = this.props.isSingleReady;
+      console.log(isSingleReady);
       var _this$props$product = this.props.product,
           title = _this$props$product.title,
           excerpt = _this$props$product.excerpt,
@@ -84497,8 +84499,9 @@ var mapStateToProps = function mapStateToProps(state) {
   var _state$products = state.products,
       product = _state$products.product,
       isSingleReady = _state$products.isSingleReady;
+  var product1 = product.product;
   return {
-    product: product,
+    product: product1,
     isSingleReady: isSingleReady
   };
 };

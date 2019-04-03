@@ -12,6 +12,7 @@ class ProductSinglePage extends Component {
         this.state = {
             nav1: null,
             nav2: null,
+            test: 'sddsds'
         };
     }
 
@@ -22,12 +23,13 @@ class ProductSinglePage extends Component {
         axios.get(`/api/products/${productSlug}`)
             .then( ({data}) => {
                 setProductSingle(data);
+            })
+            .then(() => {
+                this.setState({
+                    nav1: this.slider1,
+                    nav2: this.slider2,
+                });
             });
-
-        this.setState({
-            nav1: this.slider1,
-            nav2: this.slider2,
-        });
     }
 
     render(){
@@ -135,7 +137,8 @@ class ProductSinglePage extends Component {
                                                             productAttachments.map(({attachment, type, id}) =>(
                                                                 <div className="good__gallerySliderItemNav" key={id}>
                                                                     <img
-                                                                        src={type=='image' ? getThumbnail(attachment,[150, 147]) :
+                                                                        src={type=='image' ?
+                                                                            getThumbnail(attachment,[150, 147]) :
                                                                             '/uploads/2018/08/youtube_4.jpg'}
                                                                         alt="" className="good__gallerySliderFeaturedImgNav"
                                                                     />

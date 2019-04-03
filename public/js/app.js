@@ -69480,7 +69480,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83383,7 +83383,8 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductSinglePage).call(this, props));
     _this.state = {
       nav1: null,
-      nav2: null
+      nav2: null,
+      test: 'sddsds'
     };
     return _this;
   }
@@ -83391,21 +83392,24 @@ function (_Component) {
   _createClass(ProductSinglePage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       var setProductSingle = this.props.setProductSingle;
       var productSlug = this.props.match.params.product;
       axios.get("/api/products/".concat(productSlug)).then(function (_ref) {
         var data = _ref.data;
         setProductSingle(data);
-      });
-      this.setState({
-        nav1: this.slider1,
-        nav2: this.slider2
+      }).then(function () {
+        _this2.setState({
+          nav1: _this2.slider1,
+          nav2: _this2.slider2
+        });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (!this.props.isSingleReady) {
         return null;
@@ -83447,7 +83451,7 @@ function (_Component) {
         className: 'good__gallerySlider',
         asNavFor: this.state.nav2,
         ref: function ref(slider) {
-          return _this2.slider1 = slider;
+          return _this3.slider1 = slider;
         }
       }), productAttachments.map(function (_ref2) {
         var attachment = _ref2.attachment,
@@ -83468,7 +83472,7 @@ function (_Component) {
         className: 'good__gallerySliderNav',
         asNavFor: this.state.nav1,
         ref: function ref(slider) {
-          return _this2.slider2 = slider;
+          return _this3.slider2 = slider;
         }
       }), productAttachments.map(function (_ref3) {
         var attachment = _ref3.attachment,

@@ -4,6 +4,8 @@ import Slider from 'react-slick';
 import {goodGallerySliderSettings, goodGallerySliderNavSettings} from '../productSinglePage/productSinglePageSliderSettings';
 import ReactHtmlParser from 'react-html-parser';
 import {getThumbnail} from '../../../helpers/image';
+import $ from 'jquery';
+import singleProductPopupInit from './productSinglePageMagnificPopupInit';
 
 class ProductSinglePage extends Component {
 
@@ -27,9 +29,25 @@ class ProductSinglePage extends Component {
             .then(() => {
                 this.setState({
                     nav1: this.slider1,
-                    nav2: this.slider2,
+                    nav2: this.slider2
                 });
+
+                this.$el = $('.good__gallerySlider .slick-track');
+
+                singleProductPopupInit( this.$el );
+
+                console.log( this.$el );
             });
+    }
+
+    destroyPopup(){
+        console.log( $('.good__gallerySliderItem', this.$el) );
+
+        $.fn.off('click.magnificpopup');
+        $.fn.removeData('magnificPopup');
+
+        /*$('.good__gallerySliderItem', this.$el).off('click');
+        $('.good__gallerySliderItem', this.$el).removeData('magnificPopup');*/
     }
 
     render(){
@@ -227,7 +245,7 @@ class ProductSinglePage extends Component {
                                                 <div className="tr">
                                                     <div className="td">&nbsp;</div>
                                                     <div className="td">
-                                                        <button type="submit" data-product_id="107" data-product_sku="ss"
+                                                        <button onClick={this.destroyPopup.bind(this)} type="submit" data-product_id="107" data-product_sku="ss"
                                                                 data-quantity="1" className="button product_type_simple">В
                                                             корзину
                                                         </button>

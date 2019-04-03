@@ -83343,6 +83343,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _helpers_image__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../helpers/image */ "./resources/js/helpers/image.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _productSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./productSinglePageMagnificPopupInit */ "./resources/js/components/pages/productSinglePage/productSinglePageMagnificPopupInit.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -83362,6 +83365,8 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
 
 
 
@@ -83404,7 +83409,20 @@ function (_Component) {
           nav1: _this2.slider1,
           nav2: _this2.slider2
         });
+
+        _this2.$el = jquery__WEBPACK_IMPORTED_MODULE_6___default()('.good__gallerySlider .slick-track');
+        Object(_productSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_7__["default"])(_this2.$el);
+        console.log(_this2.$el);
       });
+    }
+  }, {
+    key: "destroyPopup",
+    value: function destroyPopup() {
+      console.log(jquery__WEBPACK_IMPORTED_MODULE_6___default()('.good__gallerySliderItem', this.$el));
+      jquery__WEBPACK_IMPORTED_MODULE_6___default.a.fn.off('click.magnificpopup');
+      jquery__WEBPACK_IMPORTED_MODULE_6___default.a.fn.removeData('magnificPopup');
+      /*$('.good__gallerySliderItem', this.$el).off('click');
+      $('.good__gallerySliderItem', this.$el).removeData('magnificPopup');*/
     }
   }, {
     key: "render",
@@ -83558,6 +83576,7 @@ function (_Component) {
       }, "\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "td"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: this.destroyPopup.bind(this),
         type: "submit",
         "data-product_id": "107",
         "data-product_sku": "ss",
@@ -83850,6 +83869,98 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (ProductSinglePage);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/productSinglePage/productSinglePageMagnificPopupInit.js":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/pages/productSinglePage/productSinglePageMagnificPopupInit.js ***!
+  \***********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return singleProductPopupInit; });
+function singleProductPopupInit($elem) {
+  $elem.each(function () {
+    $(this).magnificPopup({
+      type: 'image',
+      removalDelay: 500,
+      mainClass: 'mfp-fade popup_inline',
+      showCloseBtn: true,
+      closeMarkup: '<div class="mfp-close">&times;</div>',
+      closeBtnInside: true,
+      closeOnContentClick: false,
+      closeOnBgClick: true,
+      alignTop: false,
+      fixedContentPos: true,
+      callbacks: {
+        open: function open() {
+          var headerHeight = $('.header__top').innerHeight();
+          $('.mfp-content').css({
+            'marginTop': headerHeight
+          });
+          var mp = $.magnificPopup.instance,
+              t = $(mp.currItem.el[0]);
+
+          if (t.data('type') === 'video') {
+            if (!$(this.wrap[0]).find('img.mfp-img').hasClass('has__video')) {
+              var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+                  $dataVideo = $(this.currItem.el).attr('href');
+              $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+              $imgVideo.parent('figure').addClass('wrap__hasVideo');
+
+              if (!$imgVideo.parent('figure').find('.hasVideo__play').length) {
+                $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+              }
+            }
+          }
+        },
+        close: function close() {},
+        beforeOpen: function beforeOpen() {
+          var $triggerEl = $(this.st.el),
+              newClass = 'productsSingle__gallery';
+          this.st.mainClass = this.st.mainClass + ' ' + newClass;
+          this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+        },
+        elementParse: function elementParse(item) {
+          item.src = item.el.find('img').attr('src');
+        },
+        markupParse: function markupParse(template, values, item) {},
+        change: function change() {
+          var mp = $.magnificPopup.instance,
+              t = $(mp.currItem.el[0]);
+
+          if (!$(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
+            $(this.content[0]).find('img.mfp-img').parent('figure').find('iframe').remove();
+          }
+
+          if (t.data('type') === 'video') {
+            if (!$(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
+              var $imgVideo = $(this.content[0]).find('img.mfp-img'),
+                  $dataVideo = $(this.currItem.el).attr('href');
+              $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+              $imgVideo.parent('figure').addClass('wrap__hasVideo');
+
+              if (!$imgVideo.parent('figure').find('.hasVideo__play').length) {
+                $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+              }
+            }
+          } else {
+            $(this.content[0]).find('img.mfp-img').parent('figure').removeClass('wrap__hasVideo');
+            $(this.content[0]).find('img.mfp-img').parent('figure').find('.hasVideo__play').remove();
+          }
+        }
+      },
+      gallery: {
+        enabled: true,
+        navigateByImgClick: false
+      },
+      delegate: '.good__gallerySliderItem'
+    });
+  });
+}
 
 /***/ }),
 
@@ -85378,8 +85489,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

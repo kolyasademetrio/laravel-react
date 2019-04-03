@@ -6,12 +6,12 @@ import ProductSinglePage from '../../components/pages/productSinglePage/ProductS
 
 const mapStateToProps = (state) => {
 
-const {product, isSingleReady} = state.products;
-
-const product1 = product.product;
+const {isSingleReady} = state.products;
+const {product, productAttachments} = state.products.product;
 
 return {
-    product: product1,
+    product: product,
+    productAttachments: productAttachments,
     isSingleReady,
 }};
 

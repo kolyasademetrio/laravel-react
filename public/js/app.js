@@ -69480,7 +69480,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83393,7 +83393,6 @@ function (_Component) {
       var productSlug = this.props.match.params.product;
       axios.get("/api/products/".concat(productSlug)).then(function (_ref) {
         var data = _ref.data;
-        //console.log( 'data', data );
         setProductSingle(data);
       });
       this.setState({
@@ -83406,8 +83405,10 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var isSingleReady = this.props.isSingleReady;
-      console.log(isSingleReady);
+      if (!this.props.isSingleReady) {
+        return null;
+      }
+
       var _this$props$product = this.props.product,
           title = _this$props$product.title,
           excerpt = _this$props$product.excerpt,
@@ -83415,7 +83416,9 @@ function (_Component) {
           regular_price = _this$props$product.regular_price,
           sale_price = _this$props$product.sale_price,
           currency = _this$props$product.currency;
-      var hasSalePrice = isSingleReady && sale_price == 0 ? false : true;
+      var productAttachments = this.props.productAttachments;
+      var hasGalleryNav = productAttachments.length > 1 ? true : false;
+      var hasSalePrice = this.props.isSingleReady && sale_price == 0 ? false : true;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "primary",
         role: "main",
@@ -83437,77 +83440,47 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "good_gallery"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "good_galleryWrap has_galleryNav"
+        className: "good_galleryWrap " + (hasGalleryNav ? 'has_galleryNav' : 'hasnot_galleryNav')
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, _productSinglePage_productSinglePageSliderSettings__WEBPACK_IMPORTED_MODULE_3__["goodGallerySliderSettings"], {
         className: 'good__gallerySlider',
         asNavFor: this.state.nav2,
         ref: function ref(slider) {
           return _this2.slider1 = slider;
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://algaph.com/wp-content/uploads/2018/08/5-ml_0001.jpg",
-        className: "good__gallerySliderItem image",
-        "data-type": "image"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://algaph.com/wp-content/uploads/2018/08/5-ml_0001.jpg",
-        alt: "",
-        className: "good__gallerySliderFeaturedImg"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://algaph.com/wp-content/uploads/2018/07/5-ml_0002.jpg",
-        className: "good__gallerySliderItem image",
-        "data-type": "image"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://algaph.com/wp-content/uploads/2018/07/5-ml_0002.jpg",
-        alt: "",
-        className: "good__gallerySliderFeaturedImg"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://algaph.com/wp-content/uploads/2018/08/50-ml_0007.jpg",
-        className: "good__gallerySliderItem image",
-        "data-type": "image"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://algaph.com/wp-content/uploads/2018/08/50-ml_0007.jpg",
-        alt: "",
-        className: "good__gallerySliderFeaturedImg"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://www.youtube.com/watch?v=Df-Wo48P-M8",
-        className: "good__gallerySliderItem video",
-        "data-type": "video"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://algaph.com/wp-content/uploads/2018/08/youtube_4.jpg",
-        alt: "",
-        className: "good__gallerySliderFeaturedImg video",
-        video: "https://www.youtube.com/watch?v=Df-Wo48P-M8"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, _productSinglePage_productSinglePageSliderSettings__WEBPACK_IMPORTED_MODULE_3__["goodGallerySliderNavSettings"], {
+      }), productAttachments.map(function (_ref2) {
+        var attachment = _ref2.attachment,
+            type = _ref2.type,
+            id = _ref2.id;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          href: attachment,
+          className: 'good__gallerySliderItem ' + type,
+          "data-type": type,
+          key: id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: type == 'image' ? attachment : '/uploads/2018/08/youtube_4.jpg',
+          alt: "",
+          className: "good__gallerySliderFeaturedImg " + (type == 'video' ? 'video' : ''),
+          video: type == 'video' ? attachment : ''
+        }));
+      })), hasGalleryNav && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_2___default.a, _extends({}, _productSinglePage_productSinglePageSliderSettings__WEBPACK_IMPORTED_MODULE_3__["goodGallerySliderNavSettings"], {
         className: 'good__gallerySliderNav',
         asNavFor: this.state.nav1,
         ref: function ref(slider) {
           return _this2.slider2 = slider;
         }
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "good__gallerySliderItemNav"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://algaph.com/wp-content/uploads/2018/08/5-ml_0001-150x147.jpg",
-        alt: "",
-        className: "good__gallerySliderFeaturedImgNav"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "good__gallerySliderItemNav"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://algaph.com/wp-content/uploads/2018/07/5-ml_0002-150x147.jpg",
-        alt: "",
-        className: "good__gallerySliderFeaturedImgNav"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "good__gallerySliderItemNav"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://algaph.com/wp-content/uploads/2018/08/50-ml_0007-150x147.jpg",
-        alt: "",
-        className: "good__gallerySliderFeaturedImgNav"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "good__gallerySliderItemNav"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://algaph.com/wp-content/uploads/2018/08/youtube_4.jpg",
-        alt: "",
-        className: "good__gallerySliderFeaturedImgNav"
-      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }), productAttachments.map(function (_ref3) {
+        var attachment = _ref3.attachment,
+            type = _ref3.type,
+            id = _ref3.id;
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "good__gallerySliderItemNav",
+          key: id
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: "https://algaph.com/wp-content/uploads/2018/07/5-ml_0002-150x147.jpg",
+          alt: "",
+          className: "good__gallerySliderFeaturedImgNav"
+        }));
+      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "summary entry-summary"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
         className: "product_title entry-title"
@@ -84496,12 +84469,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  var _state$products = state.products,
-      product = _state$products.product,
-      isSingleReady = _state$products.isSingleReady;
-  var product1 = product.product;
+  var isSingleReady = state.products.isSingleReady;
+  var _state$products$produ = state.products.product,
+      product = _state$products$produ.product,
+      productAttachments = _state$products$produ.productAttachments;
   return {
-    product: product1,
+    product: product,
+    productAttachments: productAttachments,
     isSingleReady: isSingleReady
   };
 };

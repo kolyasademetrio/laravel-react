@@ -20,9 +20,6 @@ class ProductSinglePage extends Component {
 
         axios.get(`/api/products/${productSlug}`)
             .then( ({data}) => {
-
-                //console.log( 'data', data );
-
                 setProductSingle(data);
             });
 
@@ -33,14 +30,17 @@ class ProductSinglePage extends Component {
     }
 
     render(){
-
-        const {isSingleReady} = this.props;
-
-        console.log( isSingleReady );
-
+        if (!this.props.isSingleReady) {
+            return null;
+        }
+        
         const {title, excerpt, descr, regular_price, sale_price, currency} = this.props.product;
+        
+        const {productAttachments} = this.props;
+        
+        const hasGalleryNav =  productAttachments.length > 1 ? true : false;
 
-        const hasSalePrice = isSingleReady && sale_price == 0 ? false : true;
+        const hasSalePrice = this.props.isSingleReady && sale_price == 0 ? false : true;
 
         return (
             <div id="primary" role="main" className="single-product content-area twentyfifteen woocommerce-page woocommerce">
@@ -54,7 +54,9 @@ class ProductSinglePage extends Component {
 
                                     <div id="product-107" className="post-107 product type-product status-publish has-post-thumbnail product_cat-cosmeticiviso first instock shipping-taxable purchasable product-type-simple">
                                         <div className="good_gallery">
-                                            <div className="good_galleryWrap has_galleryNav">
+                                            <div
+                                                className={"good_galleryWrap "+(hasGalleryNav ? 'has_galleryNav' : 'hasnot_galleryNav')}
+                                            >
 
                                                 <Slider
                                                     {...goodGallerySliderSettings}
@@ -62,7 +64,27 @@ class ProductSinglePage extends Component {
                                                     asNavFor={this.state.nav2}
                                                     ref={slider => (this.slider1 = slider)}
                                                 >
-                                                    <a href="https://algaph.com/wp-content/uploads/2018/08/5-ml_0001.jpg"
+                                                    {
+                                                        productAttachments.map(({attachment, type, id}) =>(
+                                                            <a href={attachment}
+                                                               className={'good__gallerySliderItem ' + type}
+                                                               data-type={type}
+                                                               key={id}
+                                                            >
+                                                                <img
+                                                                    src={(type == 'image') ?
+                                                                            attachment : '/uploads/2018/08/youtube_4.jpg'
+                                                                        }
+                                                                    alt=""
+                                                                    className={"good__gallerySliderFeaturedImg "+(type == 'video'?'video':'')}
+                                                                    video={(type == 'video'?attachment:'')}
+                                                                />
+                                                            </a>
+                                                        ))
+                                                    }
+
+
+                                                    {/*<a href="https://algaph.com/wp-content/uploads/2018/08/5-ml_0001.jpg"
                                                        className="good__gallerySliderItem image" data-type="image"
                                                     >
                                                         <img
@@ -96,42 +118,56 @@ class ProductSinglePage extends Component {
                                                             alt="" className="good__gallerySliderFeaturedImg video"
                                                             video="https://www.youtube.com/watch?v=Df-Wo48P-M8"
                                                         />
-                                                    </a>
+                                                    </a>*/}
                                                 </Slider>
 
-                                                <Slider
-                                                    {...goodGallerySliderNavSettings}
-                                                    className={'good__gallerySliderNav'}
-                                                    asNavFor={this.state.nav1}
-                                                    ref={slider => (this.slider2 = slider)}
-                                                >
-                                                    <div className="good__gallerySliderItemNav">
-                                                        <img
-                                                            src="https://algaph.com/wp-content/uploads/2018/08/5-ml_0001-150x147.jpg"
-                                                            alt="" className="good__gallerySliderFeaturedImgNav"
-                                                        />
-                                                    </div>
+                                                {hasGalleryNav && (
+                                                    <Slider
+                                                        {...goodGallerySliderNavSettings}
+                                                        className={'good__gallerySliderNav'}
+                                                        asNavFor={this.state.nav1}
+                                                        ref={slider => (this.slider2 = slider)}
+                                                    >
+                                                        {
+                                                            productAttachments.map(({attachment, type, id}) =>(
+                                                                <div className="good__gallerySliderItemNav" key={id}>
+                                                                    <img
+                                                                        src="https://algaph.com/wp-content/uploads/2018/07/5-ml_0002-150x147.jpg"
+                                                                        alt="" className="good__gallerySliderFeaturedImgNav"
+                                                                    />
+                                                                </div>
+                                                            ))
+                                                        }
 
-                                                    <div className="good__gallerySliderItemNav">
-                                                        <img
-                                                            src="https://algaph.com/wp-content/uploads/2018/07/5-ml_0002-150x147.jpg"
-                                                            alt="" className="good__gallerySliderFeaturedImgNav"
-                                                        />
-                                                    </div>
-                                                    <div className="good__gallerySliderItemNav">
-                                                        <img
-                                                            src="https://algaph.com/wp-content/uploads/2018/08/50-ml_0007-150x147.jpg"
-                                                            alt="" className="good__gallerySliderFeaturedImgNav"
-                                                        />
-                                                    </div>
+                                                        {/*<div className="good__gallerySliderItemNav">
+                                                            <img
+                                                                src="https://algaph.com/wp-content/uploads/2018/08/5-ml_0001-150x147.jpg"
+                                                                alt="" className="good__gallerySliderFeaturedImgNav"
+                                                            />
+                                                        </div>
 
-                                                    <div className="good__gallerySliderItemNav">
-                                                        <img
-                                                            src="https://algaph.com/wp-content/uploads/2018/08/youtube_4.jpg"
-                                                            alt="" className="good__gallerySliderFeaturedImgNav"
-                                                        />
-                                                    </div>
-                                                </Slider>
+                                                        <div className="good__gallerySliderItemNav">
+                                                            <img
+                                                                src="https://algaph.com/wp-content/uploads/2018/07/5-ml_0002-150x147.jpg"
+                                                                alt="" className="good__gallerySliderFeaturedImgNav"
+                                                            />
+                                                        </div>
+                                                        <div className="good__gallerySliderItemNav">
+                                                            <img
+                                                                src="https://algaph.com/wp-content/uploads/2018/08/50-ml_0007-150x147.jpg"
+                                                                alt="" className="good__gallerySliderFeaturedImgNav"
+                                                            />
+                                                        </div>
+
+                                                        <div className="good__gallerySliderItemNav">
+                                                            <img
+                                                                src="https://algaph.com/wp-content/uploads/2018/08/youtube_4.jpg"
+                                                                alt="" className="good__gallerySliderFeaturedImgNav"
+                                                            />
+                                                        </div>*/}
+                                                    </Slider>
+                                                )}
+
 
                                             </div>
                                         </div>

@@ -47,7 +47,7 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $product_attachments = DB::table('product_attachments')->where('product_slug', $id)->select('attachment', 'type')->get();
+        $productAttachments = DB::table('product_attachments')->where('product_slug', $id)->select('attachment', 'type', 'id')->get();
 
         $product = Products::where('slug', $id)->first();
 
@@ -55,7 +55,7 @@ class ProductsController extends Controller
 
         return response()->json([
             'product' => $product,
-            'product_attachments' => $product_attachments,
+            'productAttachments' => $productAttachments,
         ]);
 
         /*return response()->json([

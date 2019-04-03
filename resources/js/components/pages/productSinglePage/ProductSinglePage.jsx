@@ -56,25 +56,15 @@ class ProductSinglePage extends Component {
                                                         <div className="price">
                                                             <span className="woocommerce-Price-amount amount">
                                                                 {ReactHtmlParser(hasSalePrice ? sale_price : regular_price)}
-                                                                <span className="woocommerce-Price-currencySymbol">{ReactHtmlParser(currency)}</span>
+                                                                <span className="woocommerce-Price-currencySymbol">
+                                                                    {ReactHtmlParser(currency)}
+                                                                </span>
                                                             </span>
                                                         </div>
                                                     </div>
                                                     <div className="td">
                                                         <div className="form cart">
-
                                                             <Quantity />
-                                                            {/*<div className="quantity__wrap">
-                                                                <div className="quantity">
-                                                                    <label className="screen-reader-text">Количество</label>
-                                                                    <input type="number" className="input-text qty text"
-                                                                           step="1" min="0" max="" name="quantity" defaultValue="1"
-                                                                           title="Кол-во" size="4" pattern="[0-9]*"
-                                                                           inputMode="numeric"/>
-                                                                    <div className="inc button">+</div>
-                                                                    <div className="dec button">-</div>
-                                                                </div>
-                                                            </div>*/}
                                                         </div>
                                                     </div>
                                                     <div className="td terms">
@@ -91,9 +81,13 @@ class ProductSinglePage extends Component {
                                                 <div className="tr">
                                                     <div className="td">&nbsp;</div>
                                                     <div className="td">
-                                                        <button type="submit" data-product_id="107" data-product_sku="ss"
-                                                                data-quantity="1" className="button product_type_simple">В
-                                                            корзину
+                                                        <button
+                                                            type="submit" data-product_id="107"
+                                                            data-product_sku="ss"
+                                                            data-quantity="1"
+                                                            className="button product_type_simple"
+                                                        >
+                                                            В корзину
                                                         </button>
                                                     </div>
                                                     <div className="td">&nbsp;</div>

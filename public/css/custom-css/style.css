@@ -3359,7 +3359,7 @@ body.single-product.woocommerce-page .woocommerce-product-details__short-descrip
     margin-left: 0;
 }
 
-.woocommerce div.product form.cart {
+.woocommerce div.product .form.cart {
     margin-bottom: 0;
 }
 

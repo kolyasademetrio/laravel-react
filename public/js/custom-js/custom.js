@@ -62,35 +62,29 @@ $(document).on('click', '[name="woocommerce_checkout_place_order"]', function(){
 });*/
 
 /* ------------------------>>> +/- <<<------------------------------------------------- */
-$(document).on('click', '.button', function(){
-    if ( $(this).parent('.quantity').length ) {
-        var $button = $(this),
-            oldValue = $button.parent().find("input").val();
-
-        if ( $button.hasClass('inc') ) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 0;
-            }
-        }
-        $button.parent().find("input").val(newVal);
-
-        if ( $button.parents('.cart__popup').length ) {
-            $button.parents('.cart__popup').find('button[name="update_cart"]').click();
-        }
-
-       /* if ( $button.closest('form[name="checkout"]').length ) {
-            $(document.body).trigger("wc_update_cart");
-            $(document.body).trigger("update_checkout");
-        }*/
-
-        addLoaderPopupCart( $button );
-    }
-});
+// $(document).on('click', '.button', function(){
+//     if ( $(this).parent('.quantity').length ) {
+//         var $button = $(this),
+//             oldValue = $button.parent().find("input").val();
+//
+//         if ( $button.hasClass('inc') ) {
+//             var newVal = parseFloat(oldValue) + 1;
+//         } else {
+//             // Don't allow decrementing below zero
+//             if (oldValue > 0) {
+//                 var newVal = parseFloat(oldValue) - 1;
+//             } else {
+//                 newVal = 0;
+//             }
+//         }
+//         $button.parent().find("input").val(newVal);
+//
+//         if ( $button.parents('.cart__popup').length ) {
+//             $button.parents('.cart__popup').find('button[name="update_cart"]').click();
+//         }
+//         addLoaderPopupCart( $button );
+//     }
+// });
 
 $(document).on('click', '.woocommerce-cart-form .remove', function(){
     addLoaderPopupCart( $(this) );

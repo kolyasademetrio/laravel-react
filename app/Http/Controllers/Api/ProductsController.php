@@ -51,16 +51,10 @@ class ProductsController extends Controller
 
         $product = Products::where('slug', $id)->first();
 
-        //return $product->toJson();
-
         return response()->json([
             'product' => $product,
             'productAttachments' => $productAttachments,
         ]);
-
-        /*return response()->json([
-            'product' => $product,
-        ]);*/
     }
 
     /**

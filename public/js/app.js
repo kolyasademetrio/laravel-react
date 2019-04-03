@@ -69480,7 +69480,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83342,6 +83342,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _productSinglePage_productSinglePageSliderSettings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../productSinglePage/productSinglePageSliderSettings */ "./resources/js/components/pages/productSinglePage/productSinglePageSliderSettings.js");
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _helpers_image__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../helpers/image */ "./resources/js/helpers/image.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -83361,6 +83362,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -83476,7 +83478,7 @@ function (_Component) {
           className: "good__gallerySliderItemNav",
           key: id
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: "https://algaph.com/wp-content/uploads/2018/07/5-ml_0002-150x147.jpg",
+          src: type == 'image' ? Object(_helpers_image__WEBPACK_IMPORTED_MODULE_5__["getThumbnail"])(attachment, [150, 147]) : '/uploads/2018/08/youtube_4.jpg',
           alt: "",
           className: "good__gallerySliderFeaturedImgNav"
         }));
@@ -84886,6 +84888,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var history__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! history */ "./node_modules/history/esm/history.js");
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(history__WEBPACK_IMPORTED_MODULE_0__["createBrowserHistory"])());
+
+/***/ }),
+
+/***/ "./resources/js/helpers/image.js":
+/*!***************************************!*\
+  !*** ./resources/js/helpers/image.js ***!
+  \***************************************/
+/*! exports provided: getThumbnail */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getThumbnail", function() { return getThumbnail; });
+var getThumbnail = function getThumbnail(path, size) {
+  var pathArray = path.split('/');
+  var filename = pathArray.pop();
+  var targetPath = pathArray.join('/');
+  var fileNameWithoutExt = filename.split('.').slice(0, -1).join('.');
+  var re = /(?:\.([^.]+))?$/;
+  var ext = re.exec(filename)[1];
+  var thumbnailNameWithPostfix = "".concat(targetPath, "/").concat(fileNameWithoutExt, "-").concat(size[0], "x").concat(size[1], ".").concat(ext);
+  return thumbnailNameWithPostfix;
+};
 
 /***/ }),
 

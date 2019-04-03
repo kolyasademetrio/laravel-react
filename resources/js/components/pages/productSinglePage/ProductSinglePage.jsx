@@ -3,6 +3,7 @@ import Breadcrumbs from "../../../helpers/breadcrumbs";
 import Slider from 'react-slick';
 import {goodGallerySliderSettings, goodGallerySliderNavSettings} from '../productSinglePage/productSinglePageSliderSettings';
 import ReactHtmlParser from 'react-html-parser';
+import {getThumbnail} from '../../../helpers/image';
 
 class ProductSinglePage extends Component {
 
@@ -121,6 +122,8 @@ class ProductSinglePage extends Component {
                                                     </a>*/}
                                                 </Slider>
 
+
+
                                                 {hasGalleryNav && (
                                                     <Slider
                                                         {...goodGallerySliderNavSettings}
@@ -132,7 +135,8 @@ class ProductSinglePage extends Component {
                                                             productAttachments.map(({attachment, type, id}) =>(
                                                                 <div className="good__gallerySliderItemNav" key={id}>
                                                                     <img
-                                                                        src="https://algaph.com/wp-content/uploads/2018/07/5-ml_0002-150x147.jpg"
+                                                                        src={type=='image' ? getThumbnail(attachment,[150, 147]) :
+                                                                            '/uploads/2018/08/youtube_4.jpg'}
                                                                         alt="" className="good__gallerySliderFeaturedImgNav"
                                                                     />
                                                                 </div>

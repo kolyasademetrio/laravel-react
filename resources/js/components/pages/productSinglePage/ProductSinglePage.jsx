@@ -21,7 +21,7 @@ class ProductSinglePage extends Component {
             return null;
         }
         
-        const {id, title, excerpt, descr, regular_price, sale_price, currency} = this.props.product;
+        const {id, title, excerpt, descr, regular_price, sale_price, currency, product_description_tab_content, product_ingredients_tab_content, product_usage_tab_content} = this.props.product;
         
         const {productAttachments} = this.props;
         
@@ -115,101 +115,16 @@ class ProductSinglePage extends Component {
                                             </ul>
 
                                             <div className="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab" style={{background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat', minHeight: '480px', display: 'block'}}>
-                                                <p style={{textAlign: 'left'}} align="center">
-                                                    <strong>Крем для самой чувствительной кожи</strong>
-                                                </p>
-                                                <p style={{textAlign: 'left'}} align="center">
-                                                    <strong>Использование защитного детского крема&nbsp;
-                                                        <span>Crema</span>
-                                                        <span>&nbsp;</span>
-                                                        <span>Protettiva</span>
-                                                        <span>&nbsp;</span>
-                                                        <span>dei</span><span>&nbsp;</span>
-                                                        <span>Piccoli</span>
-                                                    </strong>
-                                                </p>
-                                                <p style={{textAlign: 'left'}} align="center">
-                                                    <strong>может стать отличным способом профилактики многих дерматологических симптомов.</strong>
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    <em>Детская кожа нуждается в бережном уходе с первых дней жизни.</em>
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    <em>Правильный выбор косметических средств позволит надёжно защитить ещё неокрепший слой эпидермиса</em>
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    <em>от негативного влияния бактерий и сохранить ее естественную увлажнённость.</em>
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    Главными функциями, которые выполняет крем является увлажнение и защита кожи малыша
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    от воздействия внешних факторов. Крем насыщает эпидермис питательными веществами и влагой,
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    восстанавливая и сохраняя их естественный запас. В его состав входят специальные смягчающие кожу
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    компоненты на основе природных ингредиентов.
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    Благодаря витаминам, минералам и маслам она остаётся гладкой и нежной.
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    <strong>Результаты:</strong>
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    — уменьшилось количество покраснений – 97%
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    — ранки на коже быстрее заживаются – 85%
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    — исчезло раздражение на коже – 88%
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    * По результатам потребительского тестирования, подводимого в течении 6 недель
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>
-                                                    с участием 52 женщин, которые использовали Защитный детский крем Alga Ph при уходе за кожей дитей.
-                                                </p>
-                                                <p style={{textAlign: 'left'}}>&nbsp;</p>
-                                                <p style={{textAlign: 'left'}}>&nbsp;</p>
-                                                <p style={{textAlign: 'left'}}>&nbsp;</p>
-                                                <p style={{textAlign: 'left'}}>&nbsp;</p>
+                                                {ReactHtmlParser(product_description_tab_content)}
                                             </div>
 
                                             <div className="woocommerce-Tabs-panel woocommerce-Tabs-panel--ingredients panel entry-content wc-tab" id="tab-ingredients" role="tabpanel" style={{background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat', minHeight: '480px', display: 'none'}}>
-                                                <p style={{textAlign: 'left'}}><strong>Состав крема:</strong></p>
-                                                <p style={{textAlign: 'left'}}>— гидролат ромашки</p>
-                                                <p style={{textAlign: 'left'}}>— масло абрикосовых косточек</p>
-                                                <p style={{textAlign: 'left'}}>— OLIVEM 1000</p>
-                                                <p style={{textAlign: 'left'}}>— масло ши</p>
-                                                <p style={{textAlign: 'left'}}>— масло виноградных косточек</p>
-                                                <p style={{textAlign: 'left'}}>— Д-пантенол</p>
-                                                <p style={{textAlign: 'left'}}>— витамин F</p>
-                                                <p style={{textAlign: 'left'}}>— экстракт календулы</p>
-                                                <p style={{textAlign: 'left'}}>— Euxyl PE 9010</p>
-                                                <p style={{textAlign: 'left'}}>&nbsp;</p>
-                                                <p style={{textAlign: 'left'}}>&nbsp;</p>
-                                                <p style={{textAlign: 'left'}}>&nbsp;</p>
+                                                {ReactHtmlParser(product_ingredients_tab_content)}
                                             </div>
 
 
                                             <div className="woocommerce-Tabs-panel woocommerce-Tabs-panel--usage panel entry-content wc-tab" id="tab-usage" style={{background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat', minHeight: '480px', display: 'none'}}>
-                                                <p><strong>Способ нанесения:</strong></p>
-                                                <p>
-                                                    Крем необходимо нанести тонким слоем на внутреннюю поверхность собственных ладоней,
-                                                </p>
-                                                <p>
-                                                    после чего дайте ему нагреться 15-20 секунд. Теперь крем можно наносить на лицо и тело ребенка.
-                                                </p>
-                                                <p>
-                                                    Особое внимание уделите участкам кожи с явными признаками покраснением или шелушением.
-                                                </p>
-                                                <p>
-                                                    При использовании подгузников, крем <strong><span>Crema</span> <span lang="EN-US">Protettiva</span> <span>dei</span> <span>Piccoli</span></strong> рекомендуется применять ежедневно.
-                                                </p>
+                                                {ReactHtmlParser(product_usage_tab_content)}
                                             </div>
 
                                             <div className="woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel entry-content wc-tab" id="tab-reviews" style={{display: 'none'}}>

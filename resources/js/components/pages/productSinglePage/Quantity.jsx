@@ -36,7 +36,6 @@ class Quantity extends Component {
             <div className="quantity__wrap">
                 <div className="quantity">
                     <label className="screen-reader-text">Количество</label>
-                    {/*<div className="input_type_number">{this.state.qty}</div>*/}
                     <input
                         type="number" className="input-text qty text"
                         step="1" min="0" max="" name="quantity"

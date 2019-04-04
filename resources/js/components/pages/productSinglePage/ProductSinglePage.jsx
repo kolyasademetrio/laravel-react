@@ -23,7 +23,7 @@ class ProductSinglePage extends Component {
         }
         
         const {id, title, excerpt, descr, regular_price, sale_price, currency, product_description_tab_content, product_ingredients_tab_content, product_usage_tab_content} = this.props.product;
-        
+
         const {productAttachments} = this.props;
         
         const hasSalePrice = this.props.isSingleReady && sale_price == 0 ? false : true;

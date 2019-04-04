@@ -3828,7 +3828,9 @@ body.single-product.woocommerce-page .woocommerce-product-details__short-descrip
     text-align: center;
 }
 
-.woocommerce div.product .woocommerce-tabs ul.tabs li a {
+.woocommerce div.product .woocommerce-tabs ul.tabs li span {
+    display: inline-block;
+    padding: .5em 0;
     font-family: "ArimoRegular", sans-serif;
     font-weight: normal;
     font-style: normal;
@@ -3837,7 +3839,7 @@ body.single-product.woocommerce-page .woocommerce-product-details__short-descrip
     text-transform: uppercase;
 }
 
-.woocommerce div.product .woocommerce-tabs ul.tabs li.active a {
+.woocommerce div.product .woocommerce-tabs ul.tabs li.active span {
     color: #f15900;
 }
 

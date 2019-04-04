@@ -83657,9 +83657,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -83673,13 +83673,34 @@ var ProductTabs =
 function (_Component) {
   _inherits(ProductTabs, _Component);
 
-  function ProductTabs() {
+  function ProductTabs(props) {
+    var _this;
+
     _classCallCheck(this, ProductTabs);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProductTabs).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductTabs).call(this, props));
+    _this.state = {
+      activeIndex: 0,
+      data: [{
+        'descr': _this.props.descr
+      }, {
+        'ingredients': _this.props.ingredients
+      }, {
+        'usage': _this.props.usage
+      }]
+    };
+    _this.changeTabOnClick = _this.changeTabOnClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(ProductTabs, [{
+    key: "changeTabOnClick",
+    value: function changeTabOnClick(index) {
+      this.setState({
+        activeIndex: 1
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
@@ -83689,33 +83710,28 @@ function (_Component) {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "woocommerce-tabs wc-tabs-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "tabs wc-tabs",
-        role: "tablist"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "description_tab active"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#tab-description"
-      }, "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "ingredients_tab"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#tab-ingredients"
-      }, "\u0421\u043E\u0441\u0442\u0430\u0432")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "usage_tab"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#tab-usage"
-      }, "\u041F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "reviews_tab"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#tab-reviews"
-      }, "\u041E\u0442\u0437\u044B\u0432\u044B (0)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab",
+        className: "tabs wc-tabs"
+      }, descr && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "description_tab active",
+        onClick: this.changeTabOnClick
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435")), ingredients && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "ingredients_tab",
+        onClick: this.changeTabOnClick
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0421\u043E\u0441\u0442\u0430\u0432")), usage && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "usage_tab",
+        onClick: this.changeTabOnClick
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u041F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "reviews_tab",
+        onClick: this.changeTabOnClick
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u041E\u0442\u0437\u044B\u0432\u044B (0)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.activeIndex), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "panel",
         style: {
           background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat',
           minHeight: '480px',
           display: 'block'
         }
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(descr)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "woocommerce-Tabs-panel woocommerce-Tabs-panel--ingredients panel entry-content wc-tab",
+        className: "panel",
         id: "tab-ingredients",
         role: "tabpanel",
         style: {
@@ -83724,7 +83740,7 @@ function (_Component) {
           display: 'none'
         }
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(ingredients)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "woocommerce-Tabs-panel woocommerce-Tabs-panel--usage panel entry-content wc-tab",
+        className: "panel",
         id: "tab-usage",
         style: {
           background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat',
@@ -83732,7 +83748,7 @@ function (_Component) {
           display: 'none'
         }
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(usage)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel entry-content wc-tab",
+        className: "panel",
         id: "tab-reviews",
         style: {
           display: 'none'

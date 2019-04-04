@@ -2,40 +2,72 @@ import React, {Component} from 'react';
 import ReactHtmlParser from "react-html-parser";
 
 class ProductTabs extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            activeIndex: 0,
+            data: [
+                {'descr': this.props.descr},
+                {'ingredients': this.props.ingredients},
+                {'usage': this.props.usage},
+            ]
+        };
+
+        this.changeTabOnClick = this.changeTabOnClick.bind(this)
+    }
+
+    changeTabOnClick(index){
+        this.setState({
+            activeIndex: 1
+        });
+    }
+
     render(){
         const {descr, ingredients, usage} = this.props;
 
         return (
             <div className="woocommerce-tabs wc-tabs-wrapper">
-                <ul className="tabs wc-tabs" role="tablist">
-                    <li className="description_tab active">
-                        <a href="#tab-description">Описание</a>
-                    </li>
-                    <li className="ingredients_tab">
-                        <a href="#tab-ingredients">Состав</a>
-                    </li>
-                    <li className="usage_tab">
-                        <a href="#tab-usage">Применение</a>
-                    </li>
-                    <li className="reviews_tab">
-                        <a href="#tab-reviews">Отзывы (0)</a>
+                <ul className="tabs wc-tabs">
+                    {descr && (
+                        <li className="description_tab active" onClick={this.changeTabOnClick}>
+                            <span>Описание</span>
+                        </li>
+                    )}
+
+                    {ingredients && (
+                        <li className="ingredients_tab" onClick={this.changeTabOnClick}>
+                            <span>Состав</span>
+                        </li>
+                    )}
+
+                    {usage && (
+                        <li className="usage_tab" onClick={this.changeTabOnClick}>
+                            <span>Применение</span>
+                        </li>
+                    )}
+
+                    <li className="reviews_tab" onClick={this.changeTabOnClick}>
+                        <span>Отзывы (0)</span>
                     </li>
                 </ul>
 
-                <div className="woocommerce-Tabs-panel woocommerce-Tabs-panel--description panel entry-content wc-tab" style={{background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat', minHeight: '480px', display: 'block'}}>
+                <div>{this.state.activeIndex}</div>
+
+                <div className="panel" style={{background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat', minHeight: '480px', display: 'block'}}>
                     {ReactHtmlParser(descr)}
                 </div>
 
-                <div className="woocommerce-Tabs-panel woocommerce-Tabs-panel--ingredients panel entry-content wc-tab" id="tab-ingredients" role="tabpanel" style={{background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat', minHeight: '480px', display: 'none'}}>
+                <div className="panel" id="tab-ingredients" role="tabpanel" style={{background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat', minHeight: '480px', display: 'none'}}>
                     {ReactHtmlParser(ingredients)}
                 </div>
 
 
-                <div className="woocommerce-Tabs-panel woocommerce-Tabs-panel--usage panel entry-content wc-tab" id="tab-usage" style={{background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat', minHeight: '480px', display: 'none'}}>
+                <div className="panel" id="tab-usage" style={{background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat', minHeight: '480px', display: 'none'}}>
                     {ReactHtmlParser(usage)}
                 </div>
 
-                <div className="woocommerce-Tabs-panel woocommerce-Tabs-panel--reviews panel entry-content wc-tab" id="tab-reviews" style={{display: 'none'}}>
+                <div className="panel" id="tab-reviews" style={{display: 'none'}}>
                     <div id="reviews" className="woocommerce-Reviews">
                         <div id="comments" className="comments">
                             <h2 className="woocommerce-Reviews-title">Отзывы</h2>
@@ -45,9 +77,9 @@ class ProductTabs extends Component {
                         <div id="review_form_wrapper" className="review_form_wrapper">
                             <div id="review_form">
                                 <div id="respond" className="comment-respond">
-                                                                <span id="reply-title" className="comment-reply-title">
-                                                                    Будьте первым, кто оставил отзыв на “Детский крем” <small><a id="cancel-comment-reply-link" href="#" style={{display:'none'}}>Отменить ответ</a></small>
-                                                                </span>
+                                    <span id="reply-title" className="comment-reply-title">
+                                        Будьте первым, кто оставил отзыв на “Детский крем” <small><a id="cancel-comment-reply-link" href="#" style={{display:'none'}}>Отменить ответ</a></small>
+                                    </span>
                                     <form method="post" id="commentform" className="comment-form" noValidate="">
                                         <div className="reply-title-after">Используйте
                                             данную форму, чтобы оставить отзыв о товаре или

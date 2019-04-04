@@ -83474,7 +83474,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _ProductGallery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductGallery */ "./resources/js/components/pages/productSinglePage/ProductGallery.js");
 /* harmony import */ var _Quantity__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Quantity */ "./resources/js/components/pages/productSinglePage/Quantity.jsx");
-/* harmony import */ var _ProductTabs_ProductTabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ProductTabs/ProductTabs */ "./resources/js/components/pages/productSinglePage/ProductTabs/ProductTabs.jsx");
+/* harmony import */ var _ProductTabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ProductTabs */ "./resources/js/components/pages/productSinglePage/ProductTabs/index.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -83619,7 +83619,7 @@ function (_Component) {
         className: "td"
       }, "\xA0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "woocommerce-product-details__short-description"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041A\u0440\u0435\u043C \u0434\u043B\u044F"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductTabs_ProductTabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041A\u0440\u0435\u043C \u0434\u043B\u044F"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductTabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
         descr: product_description_tab_content,
         ingredients: product_ingredients_tab_content,
         usage: product_usage_tab_content
@@ -83634,10 +83634,10 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/pages/productSinglePage/ProductTabs/ProductTabs.jsx":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/pages/productSinglePage/ProductTabs/ProductTabs.jsx ***!
-  \*************************************************************************************/
+/***/ "./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx ***!
+  \******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -83645,8 +83645,6 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
-/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -83657,9 +83655,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -83667,181 +83665,189 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
-var ProductTabs =
+var Tabs =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(ProductTabs, _Component);
+  _inherits(Tabs, _Component);
 
-  function ProductTabs(props) {
+  function Tabs(props) {
     var _this;
 
-    _classCallCheck(this, ProductTabs);
+    _classCallCheck(this, Tabs);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductTabs).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Tabs).call(this, props));
     _this.state = {
-      activeIndex: 0,
-      data: [{
-        'descr': _this.props.descr
-      }, {
-        'ingredients': _this.props.ingredients
-      }, {
-        'usage': _this.props.usage
-      }]
+      activeIndex: 0
     };
-    _this.changeTabOnClick = _this.changeTabOnClick.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(ProductTabs, [{
-    key: "changeTabOnClick",
-    value: function changeTabOnClick(index) {
+  _createClass(Tabs, [{
+    key: "setActiveIndex",
+    value: function setActiveIndex(index) {
       this.setState({
-        activeIndex: 1
+        activeIndex: index
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          descr = _this$props.descr,
-          ingredients = _this$props.ingredients,
-          usage = _this$props.usage;
+      var _this2 = this;
+
+      var children = this.props.children;
+      console.log(children);
+      var tabNodes = children.map(function (child, index) {
+        var classNames = _this2.state.activeIndex === index ? ' active' : '';
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "description_tab" + classNames,
+          onClick: _this2.setActiveIndex.bind(_this2, index),
+          key: 'tabnode-' + index
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, child.props.title));
+      });
+      var contentNodes = children.map(function (child, index) {
+        if (_this2.state.activeIndex === index) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: 'contentnode-' + index
+          }, child.props.children);
+        } else {
+          return null;
+        }
+      });
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "woocommerce-tabs wc-tabs-wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "tabs wc-tabs"
-      }, descr && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "description_tab active",
-        onClick: this.changeTabOnClick
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435")), ingredients && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "ingredients_tab",
-        onClick: this.changeTabOnClick
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0421\u043E\u0441\u0442\u0430\u0432")), usage && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "usage_tab",
-        onClick: this.changeTabOnClick
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u041F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "reviews_tab",
-        onClick: this.changeTabOnClick
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u041E\u0442\u0437\u044B\u0432\u044B (0)"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.activeIndex), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, tabNodes), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "panel",
         style: {
-          background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat',
+          background: 'url(/uploads/2018/08/Nastojka-pri-miome-matki.jpg) right bottom/auto 385px no-repeat',
           minHeight: '480px',
           display: 'block'
         }
-      }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(descr)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "panel",
-        id: "tab-ingredients",
-        role: "tabpanel",
-        style: {
-          background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat',
-          minHeight: '480px',
-          display: 'none'
-        }
-      }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(ingredients)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "panel",
-        id: "tab-usage",
-        style: {
-          background: 'url(&quot;https://algaph.com/wp-content/uploads/2018/08/Nastojka-pri-miome-matki.jpg&quot;) right bottom / auto 385px no-repeat',
-          minHeight: '480px',
-          display: 'none'
-        }
-      }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(usage)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "panel",
-        id: "tab-reviews",
-        style: {
-          display: 'none'
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "reviews",
-        className: "woocommerce-Reviews"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "comments",
-        className: "comments"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        className: "woocommerce-Reviews-title"
-      }, "\u041E\u0442\u0437\u044B\u0432\u044B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "woocommerce-noreviews"
-      }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "review_form_wrapper",
-        className: "review_form_wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "review_form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "respond",
-        className: "comment-respond"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        id: "reply-title",
-        className: "comment-reply-title"
-      }, "\u0411\u0443\u0434\u044C\u0442\u0435 \u043F\u0435\u0440\u0432\u044B\u043C, \u043A\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0442\u0437\u044B\u0432 \u043D\u0430 \u201C\u0414\u0435\u0442\u0441\u043A\u0438\u0439 \u043A\u0440\u0435\u043C\u201D ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        id: "cancel-comment-reply-link",
-        href: "#",
-        style: {
-          display: 'none'
-        }
-      }, "\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0442\u0432\u0435\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        method: "post",
-        id: "commentform",
-        className: "comment-form",
-        noValidate: ""
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reply-title-after"
-      }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0434\u0430\u043D\u043D\u0443\u044E \u0444\u043E\u0440\u043C\u0443, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u0437\u044B\u0432 \u043E \u0442\u043E\u0432\u0430\u0440\u0435 \u0438\u043B\u0438 \u0437\u0430\u0434\u0430\u0442\u044C \u0432\u043E\u043F\u0440\u043E\u0441"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "comment-form-author"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "required"
-      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        id: "author",
-        name: "author",
-        type: "text",
-        size: "30",
-        "aria-required": "true",
-        required: ""
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "comment-form-email"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "E-mail \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "required"
-      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        id: "email",
-        name: "email",
-        type: "email",
-        size: "30",
-        "aria-required": "true",
-        required: ""
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "comment-form-comment"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0422\u0435\u043A\u0441\u0442 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "required"
-      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        id: "comment",
-        name: "comment",
-        cols: "45",
-        rows: "8"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "form-submit"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        name: "submit",
-        type: "submit",
-        id: "submit",
-        className: "submit",
-        value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "hidden",
-        name: "comment_post_ID",
-        id: "comment_post_ID"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "hidden",
-        name: "comment_parent",
-        id: "comment_parent"
-      })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "clear"
-      }))));
+      }, contentNodes));
     }
   }]);
 
-  return ProductTabs;
+  return Tabs;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Tabs);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/productSinglePage/ProductTabs/index.jsx":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/pages/productSinglePage/ProductTabs/index.jsx ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
+/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Tabs */ "./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx");
+
+
+
+
+var ProductTabs = function ProductTabs(props) {
+  console.log(props.descr);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_2__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    title: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
+  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.descr)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    title: "\u0421\u043E\u0441\u0442\u0430\u0432"
+  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.ingredients)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    title: "\u041F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435"
+  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.usage)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    title: "\u041E\u0442\u0437\u044B\u0432\u044B (0)"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "reviews",
+    className: "woocommerce-Reviews"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "comments",
+    className: "comments"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "woocommerce-Reviews-title"
+  }, "\u041E\u0442\u0437\u044B\u0432\u044B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "woocommerce-noreviews"
+  }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "review_form_wrapper",
+    className: "review_form_wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "review_form"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "respond",
+    className: "comment-respond"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    id: "reply-title",
+    className: "comment-reply-title"
+  }, "\u0411\u0443\u0434\u044C\u0442\u0435 \u043F\u0435\u0440\u0432\u044B\u043C, \u043A\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0442\u0437\u044B\u0432 \u043D\u0430 \u201C\u0414\u0435\u0442\u0441\u043A\u0438\u0439 \u043A\u0440\u0435\u043C\u201D ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    id: "cancel-comment-reply-link",
+    href: "#",
+    style: {
+      display: 'none'
+    }
+  }, "\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0442\u0432\u0435\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    method: "post",
+    id: "commentform",
+    className: "comment-form",
+    noValidate: ""
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "reply-title-after"
+  }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0434\u0430\u043D\u043D\u0443\u044E \u0444\u043E\u0440\u043C\u0443, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u0437\u044B\u0432 \u043E \u0442\u043E\u0432\u0430\u0440\u0435 \u0438\u043B\u0438 \u0437\u0430\u0434\u0430\u0442\u044C \u0432\u043E\u043F\u0440\u043E\u0441"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "comment-form-author"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "required"
+  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "author",
+    name: "author",
+    type: "text",
+    size: "30",
+    "aria-required": "true",
+    required: ""
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "comment-form-email"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "E-mail \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "required"
+  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    id: "email",
+    name: "email",
+    type: "email",
+    size: "30",
+    "aria-required": "true",
+    required: ""
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "comment-form-comment"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0422\u0435\u043A\u0441\u0442 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "required"
+  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    id: "comment",
+    name: "comment",
+    cols: "45",
+    rows: "8"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "form-submit"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    name: "submit",
+    type: "submit",
+    id: "submit",
+    className: "submit",
+    value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "hidden",
+    name: "comment_post_ID",
+    id: "comment_post_ID"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "hidden",
+    name: "comment_parent",
+    id: "comment_parent"
+  })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "clear"
+  }))));
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (ProductTabs);
 
@@ -85578,8 +85584,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

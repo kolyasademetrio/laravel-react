@@ -82756,10 +82756,9 @@ function (_Component) {
         className: "products__list"
       }, isReady && (productsList ? productsList.map(function (productData) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: 'good__item'
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
+          className: 'good__item',
           key: productData.id
-        }, productData, {
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_products_ProductSingle__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({}, productData, {
           matchPath: matchPath
         })));
       }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83683,7 +83682,6 @@ function (_Component) {
   _createClass(ProductTabs, [{
     key: "render",
     value: function render() {
-      console.log(this.props);
       var _this$props = this.props,
           descr = _this$props.descr,
           ingredients = _this$props.ingredients,

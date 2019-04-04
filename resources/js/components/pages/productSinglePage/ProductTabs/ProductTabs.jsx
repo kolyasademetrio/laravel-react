@@ -3,9 +3,6 @@ import ReactHtmlParser from "react-html-parser";
 
 class ProductTabs extends Component {
     render(){
-
-        console.log( this.props );
-
         const {descr, ingredients, usage} = this.props;
 
         return (

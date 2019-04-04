@@ -45,8 +45,8 @@ class ShopPage extends Component {
                                             productsList ? (
                                                 productsList.map( ( productData ) => {
                                                     return (
-                                                        <div className={'good__item'}>
-                                                            <ProductSingle key={productData.id} {...productData} matchPath={matchPath} />
+                                                        <div className={'good__item'} key={productData.id}>
+                                                            <ProductSingle {...productData} matchPath={matchPath} />
                                                         </div>
                                                     );
                                                 })) : (

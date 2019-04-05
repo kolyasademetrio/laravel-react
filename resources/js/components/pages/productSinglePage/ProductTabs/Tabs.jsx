@@ -17,8 +17,10 @@ class Tabs extends Component {
 
     render(){
         const {children,tabBg} = this.props;
+        
+        const visibleChildren = children.filter(chldrn => chldrn !== '');
 
-        const tabNodes = children.map((child, index) => {
+        const tabNodes = visibleChildren.map((child, index) => {
             const classNames = this.state.activeIndex === index ? ' active' : '';
 
             return (
@@ -30,7 +32,7 @@ class Tabs extends Component {
             );
         });
 
-        const contentNodes = children.map((child, index) => {
+        const contentNodes = visibleChildren.map((child, index) => {
             if ( this.state.activeIndex === index ) {
                 return (
                     <div key={'contentnode-'+index}>

@@ -83657,11 +83657,11 @@ __webpack_require__.r(__webpack_exports__);
 var ProductTabs = function ProductTabs(props) {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_2__["default"], {
     tabBg: props.tabBg
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, props.descr && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     title: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
-  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.descr)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.descr)), props.ingredients && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     title: "\u0421\u043E\u0441\u0442\u0430\u0432"
-  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.ingredients)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.ingredients)), props.usage && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     title: "\u041F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435"
   }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.usage)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     title: "\u041E\u0442\u0437\u044B\u0432\u044B (0)"
@@ -83818,7 +83818,10 @@ function (_Component) {
       var _this$props = this.props,
           children = _this$props.children,
           tabBg = _this$props.tabBg;
-      var tabNodes = children.map(function (child, index) {
+      var visibleChildren = children.filter(function (chldrn) {
+        return chldrn !== '';
+      });
+      var tabNodes = visibleChildren.map(function (child, index) {
         var classNames = _this2.state.activeIndex === index ? ' active' : '';
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
           className: "description_tab" + classNames,
@@ -83826,7 +83829,7 @@ function (_Component) {
           key: 'tabnode-' + index
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, child.props.title));
       });
-      var contentNodes = children.map(function (child, index) {
+      var contentNodes = visibleChildren.map(function (child, index) {
         if (_this2.state.activeIndex === index) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: 'contentnode-' + index

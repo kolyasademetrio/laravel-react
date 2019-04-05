@@ -2,20 +2,26 @@ import React from 'react';
 import ReactHtmlParser from "react-html-parser";
 import Tabs from './Tabs';
 
-const ProductTabs = (props) => {
+const ProductTabs = props => {
     return (
         <Tabs tabBg={props.tabBg}>
-            <div title="Описание">
-                {ReactHtmlParser(props.descr)}
-            </div>
+            {props.descr && (
+                <div title="Описание">
+                    {ReactHtmlParser(props.descr)}
+                </div>
+            )}
 
-            <div title="Состав">
-                {ReactHtmlParser(props.ingredients)}
-            </div>
+            {props.ingredients && (
+                <div title="Состав">
+                    {ReactHtmlParser(props.ingredients)}
+                </div>
+            )}
 
-            <div title="Применение">
-                {ReactHtmlParser(props.usage)}
-            </div>
+            {props.usage && (
+                <div title="Применение">
+                    {ReactHtmlParser(props.usage)}
+                </div>
+            )}
 
             <div title="Отзывы (0)">
                 <div id="reviews" className="woocommerce-Reviews">

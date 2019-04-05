@@ -83474,7 +83474,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _ProductGallery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductGallery */ "./resources/js/components/pages/productSinglePage/ProductGallery.js");
 /* harmony import */ var _Quantity__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Quantity */ "./resources/js/components/pages/productSinglePage/Quantity.jsx");
-/* harmony import */ var _ProductTabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ProductTabs */ "./resources/js/components/pages/productSinglePage/ProductTabs/index.jsx");
+/* harmony import */ var _ProductTabs_ProductTabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ProductTabs/ProductTabs */ "./resources/js/components/pages/productSinglePage/ProductTabs/ProductTabs.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -83538,7 +83538,8 @@ function (_Component) {
           currency = _this$props$product.currency,
           product_description_tab_content = _this$props$product.product_description_tab_content,
           product_ingredients_tab_content = _this$props$product.product_ingredients_tab_content,
-          product_usage_tab_content = _this$props$product.product_usage_tab_content;
+          product_usage_tab_content = _this$props$product.product_usage_tab_content,
+          tab_bg = _this$props$product.tab_bg;
       var productAttachments = this.props.productAttachments;
       var hasSalePrice = this.props.isSingleReady && sale_price == 0 ? false : true;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83619,10 +83620,11 @@ function (_Component) {
         className: "td"
       }, "\xA0"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "woocommerce-product-details__short-description"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041A\u0440\u0435\u043C \u0434\u043B\u044F"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductTabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u041A\u0440\u0435\u043C \u0434\u043B\u044F"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductTabs_ProductTabs__WEBPACK_IMPORTED_MODULE_5__["default"], {
         descr: product_description_tab_content,
         ingredients: product_ingredients_tab_content,
-        usage: product_usage_tab_content
+        usage: product_usage_tab_content,
+        tabBg: tab_bg
       }))))))));
     }
   }]);
@@ -83634,111 +83636,10 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx":
-/*!******************************************************************************!*\
-  !*** ./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx ***!
-  \******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-var Tabs =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Tabs, _Component);
-
-  function Tabs(props) {
-    var _this;
-
-    _classCallCheck(this, Tabs);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(Tabs).call(this, props));
-    _this.state = {
-      activeIndex: 0
-    };
-    return _this;
-  }
-
-  _createClass(Tabs, [{
-    key: "setActiveIndex",
-    value: function setActiveIndex(index) {
-      this.setState({
-        activeIndex: index
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this2 = this;
-
-      var children = this.props.children;
-      console.log(children);
-      var tabNodes = children.map(function (child, index) {
-        var classNames = _this2.state.activeIndex === index ? ' active' : '';
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          className: "description_tab" + classNames,
-          onClick: _this2.setActiveIndex.bind(_this2, index),
-          key: 'tabnode-' + index
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, child.props.title));
-      });
-      var contentNodes = children.map(function (child, index) {
-        if (_this2.state.activeIndex === index) {
-          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-            key: 'contentnode-' + index
-          }, child.props.children);
-        } else {
-          return null;
-        }
-      });
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "woocommerce-tabs wc-tabs-wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
-        className: "tabs wc-tabs"
-      }, tabNodes), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "panel",
-        style: {
-          background: 'url(/uploads/2018/08/Nastojka-pri-miome-matki.jpg) right bottom/auto 385px no-repeat',
-          minHeight: '480px',
-          display: 'block'
-        }
-      }, contentNodes));
-    }
-  }]);
-
-  return Tabs;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (Tabs);
-
-/***/ }),
-
-/***/ "./resources/js/components/pages/productSinglePage/ProductTabs/index.jsx":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/pages/productSinglePage/ProductTabs/index.jsx ***!
-  \*******************************************************************************/
+/***/ "./resources/js/components/pages/productSinglePage/ProductTabs/ProductTabs.jsx":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/pages/productSinglePage/ProductTabs/ProductTabs.jsx ***!
+  \*************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -83754,8 +83655,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ProductTabs = function ProductTabs(props) {
-  console.log(props.descr);
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_2__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    tabBg: props.tabBg
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     title: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
   }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.descr)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     title: "\u0421\u043E\u0441\u0442\u0430\u0432"
@@ -83850,6 +83752,108 @@ var ProductTabs = function ProductTabs(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ProductTabs);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var Tabs =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Tabs, _Component);
+
+  function Tabs(props) {
+    var _this;
+
+    _classCallCheck(this, Tabs);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Tabs).call(this, props));
+    _this.state = {
+      activeIndex: 0
+    };
+    return _this;
+  }
+
+  _createClass(Tabs, [{
+    key: "setActiveIndex",
+    value: function setActiveIndex(index) {
+      this.setState({
+        activeIndex: index
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          children = _this$props.children,
+          tabBg = _this$props.tabBg;
+      var tabNodes = children.map(function (child, index) {
+        var classNames = _this2.state.activeIndex === index ? ' active' : '';
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          className: "description_tab" + classNames,
+          onClick: _this2.setActiveIndex.bind(_this2, index),
+          key: 'tabnode-' + index
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, child.props.title));
+      });
+      var contentNodes = children.map(function (child, index) {
+        if (_this2.state.activeIndex === index) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: 'contentnode-' + index
+          }, child.props.children);
+        } else {
+          return null;
+        }
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "woocommerce-tabs wc-tabs-wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "tabs wc-tabs"
+      }, tabNodes), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "panel",
+        style: {
+          background: "url(".concat(tabBg, ") right bottom/auto 385px no-repeat"),
+          minHeight: '480px',
+          display: 'block'
+        }
+      }, contentNodes));
+    }
+  }]);
+
+  return Tabs;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Tabs);
 
 /***/ }),
 

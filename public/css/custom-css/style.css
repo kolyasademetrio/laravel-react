@@ -3826,6 +3826,7 @@ body.single-product.woocommerce-page .woocommerce-product-details__short-descrip
     padding-left: 17px;
     padding-right: 17px;
     text-align: center;
+    cursor: pointer;
 }
 
 .woocommerce div.product .woocommerce-tabs ul.tabs li span {

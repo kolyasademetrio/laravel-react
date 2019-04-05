@@ -14,10 +14,16 @@ class AddColumnsToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->longText('product_description_tab_content');
-            $table->longText('product_ingredients_tab_content');
-            $table->longText('product_usage_tab_content');
+            $table->string('tab_bg', 255);
         });
+
+        DB::table('products')->where('id', 1)->update(Array(
+            'tab_bg' => '/uploads/2018/08/Nastojka-pri-miome-matki.jpg',
+        ));
+
+        DB::table('products')->where('id', 2)->update(Array(
+            'tab_bg' => '/uploads/2018/08/1_1276029262_C7E5EBE5EDFBE920F7E0E9203035.jpg',
+        ));
     }
 
     /**

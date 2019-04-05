@@ -3,7 +3,7 @@ import Breadcrumbs from "../../../helpers/breadcrumbs";
 import ReactHtmlParser from 'react-html-parser';
 import ProductGallery from './ProductGallery';
 import Quantity from './Quantity';
-import ProductTabs from './ProductTabs';
+import ProductTabs from './ProductTabs/ProductTabs';
 
 class ProductSinglePage extends Component {
 
@@ -22,7 +22,10 @@ class ProductSinglePage extends Component {
             return null;
         }
         
-        const {id, title, excerpt, descr, regular_price, sale_price, currency, product_description_tab_content, product_ingredients_tab_content, product_usage_tab_content} = this.props.product;
+        const {
+            id, title, excerpt, descr, regular_price, sale_price, currency,
+            product_description_tab_content, product_ingredients_tab_content, product_usage_tab_content, tab_bg
+        } = this.props.product;
 
         const {productAttachments} = this.props;
         
@@ -103,6 +106,7 @@ class ProductSinglePage extends Component {
                                             descr={product_description_tab_content}
                                             ingredients={product_ingredients_tab_content}
                                             usage={product_usage_tab_content}
+                                            tabBg={tab_bg}
                                         />
                                     </div>
                                 </div>

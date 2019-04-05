@@ -16,10 +16,7 @@ class Tabs extends Component {
     }
 
     render(){
-
-        const {children} = this.props;
-        
-        console.log( children );
+        const {children,tabBg} = this.props;
 
         const tabNodes = children.map((child, index) => {
             const classNames = this.state.activeIndex === index ? ' active' : '';
@@ -51,7 +48,11 @@ class Tabs extends Component {
                     {tabNodes}
                 </ul>
 
-                <div className="panel" style={{background: 'url(/uploads/2018/08/Nastojka-pri-miome-matki.jpg) right bottom/auto 385px no-repeat', minHeight: '480px', display: 'block'}}>
+                <div className="panel" style={{
+                    background: `url(${tabBg}) right bottom/auto 385px no-repeat`,
+                    minHeight: '480px',
+                    display: 'block'
+                }}>
                     {contentNodes}
                 </div>
             </div>

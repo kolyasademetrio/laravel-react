@@ -3,11 +3,8 @@ import ReactHtmlParser from "react-html-parser";
 import Tabs from './Tabs';
 
 const ProductTabs = (props) => {
-    
-    console.log( props.descr );
-    
     return (
-        <Tabs>
+        <Tabs tabBg={props.tabBg}>
             <div title="Описание">
                 {ReactHtmlParser(props.descr)}
             </div>

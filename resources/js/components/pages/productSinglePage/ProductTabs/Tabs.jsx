@@ -22,7 +22,6 @@ class Tabs extends Component {
 
         const tabNodes = visibleChildren.map((child, index) => {
             const classNames = this.state.activeIndex === index ? ' active' : '';
-
             return (
                 <li className={"description_tab" + classNames} onClick={this.setActiveIndex.bind(this, index)} key={'tabnode-'+index}>
                     <span>

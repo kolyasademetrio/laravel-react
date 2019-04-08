@@ -28,6 +28,50 @@ const ProductTabs = props => {
                     <div id="comments" className="comments">
                         <h2 className="woocommerce-Reviews-title">Отзывы</h2>
                         <p className="woocommerce-noreviews">Отзывов пока нет.</p>
+
+                        <ol className="commentlist">
+                            <li className="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-11">
+                                <div id="comment-11" className="comment_container">
+                                    <img alt="user1"
+                                         src="/images/user.png"
+                                         className="avatar avatar-60 photo" height="60" width="60"
+                                    />
+                                    <div className="comment-text">
+                                        <p className="meta">
+                                            <strong className="woocommerce-review__author">admin </strong>
+                                            <span className="woocommerce-review__dash">–</span>
+                                            <time className="woocommerce-review__published-date"
+                                                  dateTime="2018-08-09T11:53:52+00:00">Август 9, 2018
+                                            </time>
+                                        </p>
+                                        <div className="description">
+                                            <p>zdzd</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li className="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-24">
+                                <div id="comment-24" className="comment_container">
+                                    <img alt=""
+                                         src="/images/user.png"
+                                         className="avatar avatar-60 photo" height="60" width="60"
+                                    />
+                                    <div className="comment-text">
+                                        <p className="meta">
+                                            <strong className="woocommerce-review__author">admin </strong>
+                                            <em className="woocommerce-review__verified verified">(проверенный владелец)</em>
+                                            <span className="woocommerce-review__dash">–</span>
+                                            <time className="woocommerce-review__published-date" dateTime="2018-08-22T07:43:02+00:00">
+                                                Август 22, 2018
+                                            </time>
+                                        </p>
+                                        <div className="description">
+                                            <p>ghgh</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
                     </div>
 
                     <div id="review_form_wrapper" className="review_form_wrapper">

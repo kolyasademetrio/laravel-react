@@ -14,10 +14,14 @@ class CreateProductCommentsTable extends Migration
     public function up()
     {
         Schema::create('product_comments', function (Blueprint $table) {
-            $table->increments('id');
+            $table->engine = 'InnoDB';
+            $table->charset = 'utf8';
+            $table->collation = 'utf8_general_ci';
+
+            $table->increments('id')->unsigned();
             $table->string('product_slug', 200);
-            $table->bigInteger('product_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+            $table->integer('product_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
             $table->longText('content');
         });

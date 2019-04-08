@@ -25,12 +25,6 @@ class CreateProductCommentsTable extends Migration
             $table->timestamps();
             $table->longText('content');
         });
-
-        /*Schema::table('product_comments', function(Blueprint $table) {
-            $table->foreign('product_slug')->references('slug')->on('products')->unsigned()->index();
-            $table->foreign('product_id')->references('id')->on('products')->unsigned()->index();
-            $table->foreign('user_id')->references('id')->on('users')->unsigned()->index();
-        });*/
     }
 
     /**

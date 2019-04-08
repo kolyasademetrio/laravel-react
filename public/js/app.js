@@ -69480,7 +69480,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83675,7 +83675,61 @@ var ProductTabs = function ProductTabs(props) {
     className: "woocommerce-Reviews-title"
   }, "\u041E\u0442\u0437\u044B\u0432\u044B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "woocommerce-noreviews"
-  }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
+    className: "commentlist"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "comment byuser comment-author-admin bypostauthor even thread-even depth-1",
+    id: "li-comment-11"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "comment-11",
+    className: "comment_container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    alt: "user1",
+    src: "/images/user.png",
+    className: "avatar avatar-60 photo",
+    height: "60",
+    width: "60"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "comment-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "meta"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+    className: "woocommerce-review__author"
+  }, "admin "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "woocommerce-review__dash"
+  }, "\u2013"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
+    className: "woocommerce-review__published-date",
+    dateTime: "2018-08-09T11:53:52+00:00"
+  }, "\u0410\u0432\u0433\u0443\u0441\u0442 9, 2018")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "description"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "zdzd"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1",
+    id: "li-comment-24"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "comment-24",
+    className: "comment_container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    alt: "",
+    src: "/images/user.png",
+    className: "avatar avatar-60 photo",
+    height: "60",
+    width: "60"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "comment-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "meta"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+    className: "woocommerce-review__author"
+  }, "admin "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", {
+    className: "woocommerce-review__verified verified"
+  }, "(\u043F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u043D\u044B\u0439 \u0432\u043B\u0430\u0434\u0435\u043B\u0435\u0446)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "woocommerce-review__dash"
+  }, "\u2013"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
+    className: "woocommerce-review__published-date",
+    dateTime: "2018-08-22T07:43:02+00:00"
+  }, "\u0410\u0432\u0433\u0443\u0441\u0442 22, 2018")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "description"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ghgh"))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "review_form_wrapper",
     className: "review_form_wrapper"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85591,8 +85645,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

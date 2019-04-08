@@ -7,9 +7,17 @@ import ProductTabs from './ProductTabs/ProductTabs';
 
 class ProductSinglePage extends Component {
 
+    constructor(props){
+        super(props);
+
+        this.state = {
+            'productSlug': this.props.match.params.product,
+        };
+    }
+
     componentDidMount() {
         const {setProductSingle} = this.props;
-        const productSlug = this.props.match.params.product;
+        const productSlug = this.state.productSlug;
 
         axios.get(`/api/products/${productSlug}`)
             .then( ({data}) => {
@@ -107,6 +115,7 @@ class ProductSinglePage extends Component {
                                             ingredients={product_ingredients_tab_content}
                                             usage={product_usage_tab_content}
                                             tabBg={tab_bg}
+                                            productSlug={this.state.productSlug}
                                         />
                                     </div>
                                 </div>

@@ -69480,7 +69480,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83505,17 +83505,23 @@ var ProductSinglePage =
 function (_Component) {
   _inherits(ProductSinglePage, _Component);
 
-  function ProductSinglePage() {
+  function ProductSinglePage(props) {
+    var _this;
+
     _classCallCheck(this, ProductSinglePage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProductSinglePage).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductSinglePage).call(this, props));
+    _this.state = {
+      'productSlug': _this.props.match.params.product
+    };
+    return _this;
   }
 
   _createClass(ProductSinglePage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var setProductSingle = this.props.setProductSingle;
-      var productSlug = this.props.match.params.product;
+      var productSlug = this.state.productSlug;
       axios.get("/api/products/".concat(productSlug)).then(function (_ref) {
         var data = _ref.data;
         setProductSingle(data);
@@ -83624,7 +83630,8 @@ function (_Component) {
         descr: product_description_tab_content,
         ingredients: product_ingredients_tab_content,
         usage: product_usage_tab_content,
-        tabBg: tab_bg
+        tabBg: tab_bg,
+        productSlug: this.state.productSlug
       }))))))));
     }
   }]);
@@ -83650,106 +83657,218 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Tabs */ "./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
 
 
-var ProductTabs = function ProductTabs(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    tabBg: props.tabBg
-  }, props.descr && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    title: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
-  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.descr)), props.ingredients && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    title: "\u0421\u043E\u0441\u0442\u0430\u0432"
-  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.ingredients)), props.usage && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    title: "\u041F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435"
-  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(props.usage)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    title: "\u041E\u0442\u0437\u044B\u0432\u044B (0)"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "reviews",
-    className: "woocommerce-Reviews"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "comments",
-    className: "comments"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-    className: "woocommerce-Reviews-title"
-  }, "\u041E\u0442\u0437\u044B\u0432\u044B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "woocommerce-noreviews"
-  }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "review_form_wrapper",
-    className: "review_form_wrapper"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "review_form"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "respond",
-    className: "comment-respond"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    id: "reply-title",
-    className: "comment-reply-title"
-  }, "\u0411\u0443\u0434\u044C\u0442\u0435 \u043F\u0435\u0440\u0432\u044B\u043C, \u043A\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0442\u0437\u044B\u0432 \u043D\u0430 \u201C\u0414\u0435\u0442\u0441\u043A\u0438\u0439 \u043A\u0440\u0435\u043C\u201D ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    id: "cancel-comment-reply-link",
-    href: "#",
-    style: {
-      display: 'none'
+
+var ProductTabs =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ProductTabs, _Component);
+
+  function ProductTabs() {
+    _classCallCheck(this, ProductTabs);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(ProductTabs).apply(this, arguments));
+  }
+
+  _createClass(ProductTabs, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var productSlug = this.props.productSlug;
+      axios.get("/api/product-comments/".concat(productSlug)).then(function (data) {
+        var _data$data = data.data,
+            allComments = _data$data.allComments,
+            allUsers = _data$data.allUsers;
+        console.log(allComments);
+        console.log(allUsers);
+        var users = allUsers.map(function (user) {
+          var userObj = {};
+          userObj[user.id] = user;
+          return userObj;
+        });
+        console.log('users', users);
+      });
     }
-  }, "\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0442\u0432\u0435\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    method: "post",
-    id: "commentform",
-    className: "comment-form",
-    noValidate: ""
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "reply-title-after"
-  }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0434\u0430\u043D\u043D\u0443\u044E \u0444\u043E\u0440\u043C\u0443, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u0437\u044B\u0432 \u043E \u0442\u043E\u0432\u0430\u0440\u0435 \u0438\u043B\u0438 \u0437\u0430\u0434\u0430\u0442\u044C \u0432\u043E\u043F\u0440\u043E\u0441"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "comment-form-author"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "required"
-  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    id: "author",
-    name: "author",
-    type: "text",
-    size: "30",
-    "aria-required": "true",
-    required: ""
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "comment-form-email"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "E-mail \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "required"
-  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    id: "email",
-    name: "email",
-    type: "email",
-    size: "30",
-    "aria-required": "true",
-    required: ""
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "comment-form-comment"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0422\u0435\u043A\u0441\u0442 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "required"
-  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-    id: "comment",
-    name: "comment",
-    cols: "45",
-    rows: "8"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "form-submit"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    name: "submit",
-    type: "submit",
-    id: "submit",
-    className: "submit",
-    value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "hidden",
-    name: "comment_post_ID",
-    id: "comment_post_ID"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "hidden",
-    name: "comment_parent",
-    id: "comment_parent"
-  })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "clear"
-  }))));
-};
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          tabBg = _this$props.tabBg,
+          descr = _this$props.descr,
+          ingredients = _this$props.ingredients,
+          usage = _this$props.usage;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        tabBg: tabBg
+      }, descr && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        title: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
+      }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(descr)), ingredients && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        title: "\u0421\u043E\u0441\u0442\u0430\u0432"
+      }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(ingredients)), usage && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        title: "\u041F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435"
+      }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(usage)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        title: "\u041E\u0442\u0437\u044B\u0432\u044B (0)"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "reviews",
+        className: "woocommerce-Reviews"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "comments",
+        className: "comments"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+        className: "woocommerce-Reviews-title"
+      }, "\u041E\u0442\u0437\u044B\u0432\u044B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "woocommerce-noreviews"
+      }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
+        className: "commentlist"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "comment byuser comment-author-admin bypostauthor even thread-even depth-1",
+        id: "li-comment-11"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "comment-11",
+        className: "comment_container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        alt: "user1",
+        src: "/images/user.png",
+        className: "avatar avatar-60 photo",
+        height: "60",
+        width: "60"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-text"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "meta"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+        className: "woocommerce-review__author"
+      }, "admin "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "woocommerce-review__dash"
+      }, "\u2013"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
+        className: "woocommerce-review__published-date",
+        dateTime: "2018-08-09T11:53:52+00:00"
+      }, "\u0410\u0432\u0433\u0443\u0441\u0442 9, 2018")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "description"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "zdzd"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+        className: "comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1",
+        id: "li-comment-24"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "comment-24",
+        className: "comment_container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        alt: "",
+        src: "/images/user.png",
+        className: "avatar avatar-60 photo",
+        height: "60",
+        width: "60"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "comment-text"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "meta"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+        className: "woocommerce-review__author"
+      }, "admin "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", {
+        className: "woocommerce-review__verified verified"
+      }, "(\u043F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u043D\u044B\u0439 \u0432\u043B\u0430\u0434\u0435\u043B\u0435\u0446)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "woocommerce-review__dash"
+      }, "\u2013"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
+        className: "woocommerce-review__published-date",
+        dateTime: "2018-08-22T07:43:02+00:00"
+      }, "\u0410\u0432\u0433\u0443\u0441\u0442 22, 2018")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "description"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ghgh"))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "review_form_wrapper",
+        className: "review_form_wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "review_form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "respond",
+        className: "comment-respond"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        id: "reply-title",
+        className: "comment-reply-title"
+      }, "\u0411\u0443\u0434\u044C\u0442\u0435 \u043F\u0435\u0440\u0432\u044B\u043C, \u043A\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0442\u0437\u044B\u0432 \u043D\u0430 \u201C\u0414\u0435\u0442\u0441\u043A\u0438\u0439 \u043A\u0440\u0435\u043C\u201D ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        id: "cancel-comment-reply-link",
+        href: "#",
+        style: {
+          display: 'none'
+        }
+      }, "\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0442\u0432\u0435\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        method: "post",
+        id: "commentform",
+        className: "comment-form",
+        noValidate: ""
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reply-title-after"
+      }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0434\u0430\u043D\u043D\u0443\u044E \u0444\u043E\u0440\u043C\u0443, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u0437\u044B\u0432 \u043E \u0442\u043E\u0432\u0430\u0440\u0435 \u0438\u043B\u0438 \u0437\u0430\u0434\u0430\u0442\u044C \u0432\u043E\u043F\u0440\u043E\u0441"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "comment-form-author"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "required"
+      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "author",
+        name: "author",
+        type: "text",
+        size: "30",
+        "aria-required": "true",
+        required: ""
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "comment-form-email"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "E-mail \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "required"
+      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        id: "email",
+        name: "email",
+        type: "email",
+        size: "30",
+        "aria-required": "true",
+        required: ""
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "comment-form-comment"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0422\u0435\u043A\u0441\u0442 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "required"
+      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        id: "comment",
+        name: "comment",
+        cols: "45",
+        rows: "8"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "form-submit"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "submit",
+        type: "submit",
+        id: "submit",
+        className: "submit",
+        value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "hidden",
+        name: "comment_post_ID",
+        id: "comment_post_ID"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "hidden",
+        name: "comment_parent",
+        id: "comment_parent"
+      })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "clear"
+      }))));
+    }
+  }]);
+
+  return ProductTabs;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (ProductTabs);
 
@@ -85591,8 +85710,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

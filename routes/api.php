@@ -25,8 +25,8 @@ Route::resource('pages', 'Api\PagesController');
 Route::resource('menu', 'Api\MenuController');
 Route::resource('products', 'Api\ProductsController');
 Route::get('products/{slug}', 'Api\ProductsController@show');
+Route::resource('product-comments', 'Api\ProductCommentsController');
 Route::get('product-comments/{slug}', 'Api\ProductCommentsController@show');
-
 
 
 //Route::resource('/products/reccomended', 'Api\ProductsController@reccomended');

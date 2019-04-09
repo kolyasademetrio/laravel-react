@@ -9,7 +9,12 @@ class ProductTabs extends Component {
         this.state = {
             comments: [],
             users: {},
+            productCommentContent: '',
+            productSlug: this.props.productSlug,
+            productID: this.props.productID,
         };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
@@ -25,6 +30,24 @@ class ProductTabs extends Component {
                 comments: allComments,
                 users: users,
             });
+        });
+    }
+
+    handleChange(e){
+        this.setState({
+            productCommentContent: e.target.value,
+        });
+    }
+
+    handleSubmit(e){
+        e.preventDefault();
+        const productComment = {
+            content: this.state.productCommentContent,
+            productSlug: this.state.productSlug,
+            productID: this.state.productID
+        }
+        axios.post('/api/product-comments', productComment).then(response => {
+            console.log( response );
         });
     }
 
@@ -104,7 +127,13 @@ class ProductTabs extends Component {
                                 <span id="reply-title" className="comment-reply-title">
                                     {commentslength ? 'Ваша оценка' : `Будьте первым, кто оставил отзыв на “${title}”`} <small><a id="cancel-comment-reply-link" href="#" style={{display:'none'}}>Отменить ответ</a></small>
                                 </span>
-                                    <form method="post" id="commentform" className="comment-form" noValidate="">
+                                    <form
+                                        onSubmit={this.handleSubmit}
+                                        method="post"
+                                        id="commentform"
+                                        className="comment-form"
+                                        noValidate=""
+                                    >
                                         <div className="reply-title-after">
                                             Используйте данную форму, чтобы оставить отзыв о товаре или задать вопрос
                                         </div>
@@ -118,7 +147,13 @@ class ProductTabs extends Component {
                                         </p>
                                         <p className="comment-form-comment">
                                             <label>Текст сообщения &nbsp;<span className="required">*</span></label>
-                                            <textarea id="comment" name="comment" cols="45" rows="8"></textarea>
+                                            <textarea
+                                                onChange={this.handleChange}
+                                                id="comment"
+                                                name="comment"
+                                                cols="45" rows="8"
+                                            >
+                                            </textarea>
                                         </p>
                                         <p className="form-submit">
                                             <input name="submit" type="submit" id="submit" className="submit" value="Отправить"/>

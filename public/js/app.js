@@ -83631,7 +83631,8 @@ function (_Component) {
         ingredients: product_ingredients_tab_content,
         usage: product_usage_tab_content,
         tabBg: tab_bg,
-        productSlug: this.state.productSlug
+        productSlug: this.state.productSlug,
+        title: title
       }))))))));
     }
   }]);
@@ -83659,6 +83660,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Tabs */ "./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -83684,38 +83687,52 @@ var ProductTabs =
 function (_Component) {
   _inherits(ProductTabs, _Component);
 
-  function ProductTabs() {
+  function ProductTabs(props) {
+    var _this;
+
     _classCallCheck(this, ProductTabs);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(ProductTabs).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductTabs).call(this, props));
+    _this.state = {
+      comments: [],
+      users: {}
+    };
+    return _this;
   }
 
   _createClass(ProductTabs, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       var productSlug = this.props.productSlug;
       axios.get("/api/product-comments/".concat(productSlug)).then(function (data) {
         var _data$data = data.data,
             allComments = _data$data.allComments,
             allUsers = _data$data.allUsers;
-        console.log(allComments);
-        console.log(allUsers);
-        var users = allUsers.map(function (user) {
-          var userObj = {};
-          userObj[user.id] = user;
-          return userObj;
+        var users = allUsers.reduce(function (acc, el) {
+          return acc[el.id] = el, acc;
+        }, {});
+
+        _this2.setState({
+          comments: allComments,
+          users: users
         });
-        console.log('users', users);
       });
     }
   }, {
     key: "render",
     value: function render() {
       var _this$props = this.props,
+          title = _this$props.title,
           tabBg = _this$props.tabBg,
           descr = _this$props.descr,
           ingredients = _this$props.ingredients,
           usage = _this$props.usage;
+      var _this$state = this.state,
+          comments = _this$state.comments,
+          users = _this$state.users;
+      var commentslength = comments.length ? comments.length : 0;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_2__["default"], {
         tabBg: tabBg
       }, descr && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83725,7 +83742,7 @@ function (_Component) {
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(ingredients)), usage && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         title: "\u041F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435"
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(usage)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        title: "\u041E\u0442\u0437\u044B\u0432\u044B (0)"
+        title: "\u041E\u0442\u0437\u044B\u0432\u044B (".concat(commentslength, ")")
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "reviews",
         className: "woocommerce-Reviews"
@@ -83734,63 +83751,37 @@ function (_Component) {
         className: "comments"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
         className: "woocommerce-Reviews-title"
-      }, "\u041E\u0442\u0437\u044B\u0432\u044B"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "woocommerce-noreviews"
-      }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
+      }, "\u041E\u0442\u0437\u044B\u0432\u044B"), commentslength ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
         className: "commentlist"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "comment byuser comment-author-admin bypostauthor even thread-even depth-1",
-        id: "li-comment-11"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "comment-11",
-        className: "comment_container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        alt: "user1",
-        src: "/images/user.png",
-        className: "avatar avatar-60 photo",
-        height: "60",
-        width: "60"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comment-text"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "meta"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
-        className: "woocommerce-review__author"
-      }, "admin "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "woocommerce-review__dash"
-      }, "\u2013"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
-        className: "woocommerce-review__published-date",
-        dateTime: "2018-08-09T11:53:52+00:00"
-      }, "\u0410\u0432\u0433\u0443\u0441\u0442 9, 2018")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "description"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "zdzd"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-        className: "comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1",
-        id: "li-comment-24"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "comment-24",
-        className: "comment_container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        alt: "",
-        src: "/images/user.png",
-        className: "avatar avatar-60 photo",
-        height: "60",
-        width: "60"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "comment-text"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "meta"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
-        className: "woocommerce-review__author"
-      }, "admin "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("em", {
-        className: "woocommerce-review__verified verified"
-      }, "(\u043F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u043D\u044B\u0439 \u0432\u043B\u0430\u0434\u0435\u043B\u0435\u0446)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "woocommerce-review__dash"
-      }, "\u2013"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
-        className: "woocommerce-review__published-date",
-        dateTime: "2018-08-22T07:43:02+00:00"
-      }, "\u0410\u0432\u0433\u0443\u0441\u0442 22, 2018")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "description"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ghgh"))))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, comments.map(function (comment) {
+        var _React$createElement;
+
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+          key: comment.id,
+          className: "comment byuser comment-author-admin bypostauthor even thread-even depth-1",
+          id: "li-comment-11"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "comment-11",
+          className: "comment_container"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", (_React$createElement = {
+          alt: "user"
+        }, _defineProperty(_React$createElement, "alt", users[comment.user_id].name), _defineProperty(_React$createElement, "src", users[comment.user_id].logo), _defineProperty(_React$createElement, "className", "avatar avatar-60 photo"), _defineProperty(_React$createElement, "height", "60"), _defineProperty(_React$createElement, "width", "60"), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "comment-text"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+          className: "meta"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+          className: "woocommerce-review__author"
+        }, users[comment.user_id].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "woocommerce-review__dash"
+        }, "\xA0\u2013\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
+          className: "woocommerce-review__published-date",
+          dateTime: comment.updated_at
+        }, comment.updated_at)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "description"
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.content)))));
+      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "woocommerce-noreviews"
+      }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         id: "review_form_wrapper",
         className: "review_form_wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83801,7 +83792,7 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         id: "reply-title",
         className: "comment-reply-title"
-      }, "\u0411\u0443\u0434\u044C\u0442\u0435 \u043F\u0435\u0440\u0432\u044B\u043C, \u043A\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0442\u0437\u044B\u0432 \u043D\u0430 \u201C\u0414\u0435\u0442\u0441\u043A\u0438\u0439 \u043A\u0440\u0435\u043C\u201D ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      }, commentslength ? 'Ваша оценка' : "\u0411\u0443\u0434\u044C\u0442\u0435 \u043F\u0435\u0440\u0432\u044B\u043C, \u043A\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0442\u0437\u044B\u0432 \u043D\u0430 \u201C".concat(title, "\u201D"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         id: "cancel-comment-reply-link",
         href: "#",
         style: {

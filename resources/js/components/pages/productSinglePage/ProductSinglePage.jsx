@@ -116,6 +116,7 @@ class ProductSinglePage extends Component {
                                             usage={product_usage_tab_content}
                                             tabBg={tab_bg}
                                             productSlug={this.state.productSlug}
+                                            title={title}
                                         />
                                     </div>
                                 </div>

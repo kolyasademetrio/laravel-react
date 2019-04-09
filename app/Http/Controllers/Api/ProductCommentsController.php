@@ -35,8 +35,25 @@ class ProductCommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $comment = new ProductComments([
+            'content' => $request->get('content'),
+        ]);
+        $comment->save();
+
+        return response()->json('Комментарий успешно добавлен');
     }
+
+    /*public function store(Request $request)
+    {
+        $product = new Product([
+            'title' => $request->get('title'),
+            'body' => $request->get('body')
+        ]);
+        $product->save();
+
+
+        return response()->json('Product Added Successfully.');
+    }*/
 
     /**
      * Display the specified resource.
@@ -46,7 +63,7 @@ class ProductCommentsController extends Controller
      */
     public function show($id)
     {
-        $product_comments = DB::table('product_comments')->where('product_slug', $id)->select('user_id', 'content', 'updated_at')->get();
+        $product_comments = DB::table('product_comments')->where('product_slug', $id)->select('id', 'user_id', 'content', 'updated_at')->get();
         $user_info = DB::table('users')->select('id', 'name', 'updated_at', 'logo')->get();
 
         return response()->json([

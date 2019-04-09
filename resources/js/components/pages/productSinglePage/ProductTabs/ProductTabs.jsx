@@ -4,26 +4,36 @@ import Tabs from './Tabs';
 
 class ProductTabs extends Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+            comments: [],
+            users: {},
+        };
+    }
+
     componentDidMount(){
         const {productSlug} = this.props;
 
         axios.get(`/api/product-comments/${productSlug}`).then(data => {
             let {allComments, allUsers} = data.data;
-            console.log( allComments );
-            console.log( allUsers );
-            const users = allUsers.map(user => {
-                let userObj = {};
-                userObj[user.id] = user;
+            const users = allUsers.reduce((acc, el) => (
+                acc[el.id] = el, acc
+            ), {});
 
-                return userObj;
+            this.setState({
+                comments: allComments,
+                users: users,
             });
-
-            console.log( 'users', users );
         });
     }
 
     render(){
-        const {tabBg, descr, ingredients, usage} = this.props;
+        const {title, tabBg, descr, ingredients, usage} = this.props;
+
+        const {comments, users} = this.state;
+
+        const commentslength = comments.length ? comments.length : 0;
 
         return (
             <Tabs tabBg={tabBg}>
@@ -45,67 +55,58 @@ class ProductTabs extends Component {
                     </div>
                 )}
 
-                <div title="Отзывы (0)">
+                <div title={`Отзывы (${commentslength})`}>
                     <div id="reviews" className="woocommerce-Reviews">
                         <div id="comments" className="comments">
                             <h2 className="woocommerce-Reviews-title">Отзывы</h2>
-                            <p className="woocommerce-noreviews">Отзывов пока нет.</p>
-
-                            <ol className="commentlist">
-                                <li className="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-11">
-                                    <div id="comment-11" className="comment_container">
-                                        <img alt="user1"
-                                             src="/images/user.png"
-                                             className="avatar avatar-60 photo" height="60" width="60"
-                                        />
-                                        <div className="comment-text">
-                                            <p className="meta">
-                                                <strong className="woocommerce-review__author">admin </strong>
-                                                <span className="woocommerce-review__dash">–</span>
-                                                <time className="woocommerce-review__published-date"
-                                                      dateTime="2018-08-09T11:53:52+00:00">Август 9, 2018
-                                                </time>
-                                            </p>
-                                            <div className="description">
-                                                <p>zdzd</p>
+                            {commentslength ? (
+                                <ol className="commentlist">
+                                    {comments.map(comment => (
+                                        <li key={comment.id} className="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-11">
+                                            <div id="comment-11" className="comment_container">
+                                                <img
+                                                    alt="user"
+                                                    alt={users[comment.user_id].name}
+                                                    src={users[comment.user_id].logo}
+                                                    className="avatar avatar-60 photo" height="60" width="60"
+                                                />
+                                                <div className="comment-text">
+                                                    <p className="meta">
+                                                        <strong className="woocommerce-review__author">
+                                                            {users[comment.user_id].name}
+                                                        </strong>
+                                                        <span className="woocommerce-review__dash">
+                                                            &nbsp;–&nbsp;
+                                                        </span>
+                                                        <time
+                                                            className="woocommerce-review__published-date"
+                                                            dateTime={comment.updated_at}
+                                                        >
+                                                            {comment.updated_at}
+                                                        </time>
+                                                    </p>
+                                                    <div className="description">
+                                                        <p>{comment.content}</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li className="comment byuser comment-author-admin bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-24">
-                                    <div id="comment-24" className="comment_container">
-                                        <img alt=""
-                                             src="/images/user.png"
-                                             className="avatar avatar-60 photo" height="60" width="60"
-                                        />
-                                        <div className="comment-text">
-                                            <p className="meta">
-                                                <strong className="woocommerce-review__author">admin </strong>
-                                                <em className="woocommerce-review__verified verified">(проверенный владелец)</em>
-                                                <span className="woocommerce-review__dash">–</span>
-                                                <time className="woocommerce-review__published-date" dateTime="2018-08-22T07:43:02+00:00">
-                                                    Август 22, 2018
-                                                </time>
-                                            </p>
-                                            <div className="description">
-                                                <p>ghgh</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ol>
+                                        </li>
+                                    ))}
+                                </ol>
+                            ) : (
+                                <p className="woocommerce-noreviews">Отзывов пока нет.</p>
+                            )}
                         </div>
 
                         <div id="review_form_wrapper" className="review_form_wrapper">
                             <div id="review_form">
                                 <div id="respond" className="comment-respond">
                                 <span id="reply-title" className="comment-reply-title">
-                                    Будьте первым, кто оставил отзыв на “Детский крем” <small><a id="cancel-comment-reply-link" href="#" style={{display:'none'}}>Отменить ответ</a></small>
+                                    {commentslength ? 'Ваша оценка' : `Будьте первым, кто оставил отзыв на “${title}”`} <small><a id="cancel-comment-reply-link" href="#" style={{display:'none'}}>Отменить ответ</a></small>
                                 </span>
                                     <form method="post" id="commentform" className="comment-form" noValidate="">
-                                        <div className="reply-title-after">Используйте
-                                            данную форму, чтобы оставить отзыв о товаре или
-                                            задать вопрос
+                                        <div className="reply-title-after">
+                                            Используйте данную форму, чтобы оставить отзыв о товаре или задать вопрос
                                         </div>
                                         <p className="comment-form-author">
                                             <label>Ваше имя &nbsp;<span className="required">*</span></label>

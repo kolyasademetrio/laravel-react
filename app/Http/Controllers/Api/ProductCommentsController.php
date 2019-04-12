@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+use App\ProductComments;
 
 class ProductCommentsController extends Controller
 {
@@ -37,23 +40,14 @@ class ProductCommentsController extends Controller
     {
         $comment = new ProductComments([
             'content' => $request->get('content'),
+            'product_slug' => $request->get('productSlug'),
+            'product_id' => $request->get('productID'),
+            'user_id' => '12',
         ]);
         $comment->save();
 
         return response()->json('Комментарий успешно добавлен');
     }
-
-    /*public function store(Request $request)
-    {
-        $product = new Product([
-            'title' => $request->get('title'),
-            'body' => $request->get('body')
-        ]);
-        $product->save();
-
-
-        return response()->json('Product Added Successfully.');
-    }*/
 
     /**
      * Display the specified resource.

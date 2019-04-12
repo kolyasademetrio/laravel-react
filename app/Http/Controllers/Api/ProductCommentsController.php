@@ -50,7 +50,15 @@ class ProductCommentsController extends Controller
         $comment = new ProductComments($new_comment);
         $comment->save();
 
-        return response()->json($new_comment);
+        //$id = DB::table('product_comments')->where('product_slug', $request->get('productSlug'))->select('id')->first();
+
+        return response()->json([
+            'content' => $request->get('content'),
+            'user_id' => $request->get('userID'),
+            'id' => $request->get('productID'),
+            'user_name' => $request->get('userName'),
+            'user_email' => $request->get('userEmail'),
+        ]);
     }
 
     /**

@@ -83738,6 +83738,8 @@ function (_Component) {
           userEmail: users[USER_ID]['email'],
           userLogo: users[USER_ID]['logo']
         });
+
+        console.log('allComments', allComments);
       });
     }
   }, {
@@ -83756,11 +83758,10 @@ function (_Component) {
           productSlug: this.state.productSlug,
           productID: this.state.productID,
           userID: this.state.userID,
-          userName: this.state.userName,
-          userEmail: this.state.userEmail
+          userName: this.state.userName
         };
         axios.post('/api/product-comments', productComment).then(function (response) {
-          console.log(response);
+          console.log('response.data', response.data);
         });
       }
     }

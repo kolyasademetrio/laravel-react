@@ -44,6 +44,8 @@ class ProductTabs extends Component {
                 userEmail: users[USER_ID]['email'],
                 userLogo: users[USER_ID]['logo'],
             });
+
+            console.log( 'allComments', allComments );
         });
     }
 
@@ -63,10 +65,9 @@ class ProductTabs extends Component {
                 productID: this.state.productID,
                 userID: this.state.userID,
                 userName: this.state.userName,
-                userEmail: this.state.userEmail,
             }
             axios.post('/api/product-comments', productComment).then(response => {
-                console.log( response );
+                console.log( 'response.data', response.data );
             });
         }
     }

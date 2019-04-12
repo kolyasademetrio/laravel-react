@@ -9,7 +9,11 @@ class ProductTabs extends Component {
         this.state = {
             comments: [],
             users: {},
+            userID: null,
             productCommentContent: '',
+            userName: '',
+            userEmail: '',
+            userLogo: '',
             productSlug: this.props.productSlug,
             productID: this.props.productID,
         };
@@ -26,29 +30,45 @@ class ProductTabs extends Component {
                 acc[el.id] = el, acc
             ), {});
 
+            /*
+            if current user is logged out -> userID is id of the guest user users.id = 11
+            while authorization does not work the variable is declared here
+            */
+            const USER_ID = this.state.userID ? this.state.userID : 11
+
             this.setState({
                 comments: allComments,
                 users: users,
+                userID: USER_ID,
+                userName: users[USER_ID]['name'],
+                userEmail: users[USER_ID]['email'],
+                userLogo: users[USER_ID]['logo'],
             });
         });
     }
 
     handleChange(e){
         this.setState({
-            productCommentContent: e.target.value,
+            [`${e.target.name}`]: e.target.value,
         });
     }
 
     handleSubmit(e){
         e.preventDefault();
-        const productComment = {
-            content: this.state.productCommentContent,
-            productSlug: this.state.productSlug,
-            productID: this.state.productID
+
+        if ( this.state.productCommentContent ) {
+            const productComment = {
+                content: this.state.productCommentContent,
+                productSlug: this.state.productSlug,
+                productID: this.state.productID,
+                userID: this.state.userID,
+                userName: this.state.userName,
+                userEmail: this.state.userEmail,
+            }
+            axios.post('/api/product-comments', productComment).then(response => {
+                console.log( response );
+            });
         }
-        axios.post('/api/product-comments', productComment).then(response => {
-            console.log( response );
-        });
     }
 
     render(){
@@ -139,18 +159,34 @@ class ProductTabs extends Component {
                                         </div>
                                         <p className="comment-form-author">
                                             <label>Ваше имя &nbsp;<span className="required">*</span></label>
-                                            <input id="author" name="author" type="text" size="30" aria-required="true" required=""/>
+                                            <input
+                                                onChange={this.handleChange}
+                                                id="author"
+                                                name="userName"
+                                                type="text"
+                                                size="30"
+                                                aria-required="true"
+                                                required=""
+                                            />
                                         </p>
                                         <p className="comment-form-email">
                                             <label>E-mail &nbsp;<span className="required">*</span></label>
-                                            <input id="email" name="email" type="email" size="30" aria-required="true" required=""/>
+                                            <input
+                                                onChange={this.handleChange}
+                                                id="email"
+                                                name="userEmail"
+                                                type="email"
+                                                size="30"
+                                                aria-required="true"
+                                                required=""
+                                            />
                                         </p>
                                         <p className="comment-form-comment">
                                             <label>Текст сообщения &nbsp;<span className="required">*</span></label>
                                             <textarea
                                                 onChange={this.handleChange}
                                                 id="comment"
-                                                name="comment"
+                                                name="productCommentContent"
                                                 cols="45" rows="8"
                                             >
                                             </textarea>

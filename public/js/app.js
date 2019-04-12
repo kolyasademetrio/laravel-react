@@ -69480,7 +69480,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83697,7 +83697,11 @@ function (_Component) {
     _this.state = {
       comments: [],
       users: {},
+      userID: null,
       productCommentContent: '',
+      userName: '',
+      userEmail: '',
+      userLogo: '',
       productSlug: _this.props.productSlug,
       productID: _this.props.productID
     };
@@ -83719,32 +83723,46 @@ function (_Component) {
         var users = allUsers.reduce(function (acc, el) {
           return acc[el.id] = el, acc;
         }, {});
+        /*
+        if current user is logged out -> userID is id of the guest user users.id = 11
+        while authorization does not work the variable is declared here
+        */
+
+        var USER_ID = _this2.state.userID ? _this2.state.userID : 11;
 
         _this2.setState({
           comments: allComments,
-          users: users
+          users: users,
+          userID: USER_ID,
+          userName: users[USER_ID]['name'],
+          userEmail: users[USER_ID]['email'],
+          userLogo: users[USER_ID]['logo']
         });
       });
     }
   }, {
     key: "handleChange",
     value: function handleChange(e) {
-      this.setState({
-        productCommentContent: e.target.value
-      });
+      this.setState(_defineProperty({}, "".concat(e.target.name), e.target.value));
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
       e.preventDefault();
-      var productComment = {
-        content: this.state.productCommentContent,
-        productSlug: this.state.productSlug,
-        productID: this.state.productID
-      };
-      axios.post('/api/product-comments', productComment).then(function (response) {
-        console.log(response);
-      });
+
+      if (this.state.productCommentContent) {
+        var productComment = {
+          content: this.state.productCommentContent,
+          productSlug: this.state.productSlug,
+          productID: this.state.productID,
+          userID: this.state.userID,
+          userName: this.state.userName,
+          userEmail: this.state.userEmail
+        };
+        axios.post('/api/product-comments', productComment).then(function (response) {
+          console.log(response);
+        });
+      }
     }
   }, {
     key: "render",
@@ -83837,8 +83855,9 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "required"
       }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleChange,
         id: "author",
-        name: "author",
+        name: "userName",
         type: "text",
         size: "30",
         "aria-required": "true",
@@ -83848,8 +83867,9 @@ function (_Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "E-mail \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "required"
       }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleChange,
         id: "email",
-        name: "email",
+        name: "userEmail",
         type: "email",
         size: "30",
         "aria-required": "true",
@@ -83861,7 +83881,7 @@ function (_Component) {
       }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
         onChange: this.handleChange,
         id: "comment",
-        name: "comment",
+        name: "productCommentContent",
         cols: "45",
         rows: "8"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -85729,8 +85749,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

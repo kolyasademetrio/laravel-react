@@ -38,15 +38,27 @@ class ProductCommentsController extends Controller
      */
     public function store(Request $request)
     {
-        $comment = new ProductComments([
-            'content' => $request->get('content'),
+        $new_comment = [
             'product_slug' => $request->get('productSlug'),
             'product_id' => $request->get('productID'),
-            'user_id' => '12',
-        ]);
+            'user_id' => $request->get('userID'),
+            'content' => $request->get('content'),
+            'user_name' => $request->get('userName'),
+            'user_email' => $request->get('userEmail'),
+        ];
+
+        $comment = new ProductComments($new_comment);
         $comment->save();
 
-        return response()->json('Комментарий успешно добавлен');
+        //$id = DB::table('product_comments')->where('product_slug', $request->get('productSlug'))->select('id')->first();
+
+        return response()->json([
+            'content' => $request->get('content'),
+            'user_id' => $request->get('userID'),
+            'id' => $request->get('productID'),
+            'user_name' => $request->get('userName'),
+            'user_email' => $request->get('userEmail'),
+        ]);
     }
 
     /**
@@ -57,8 +69,8 @@ class ProductCommentsController extends Controller
      */
     public function show($id)
     {
-        $product_comments = DB::table('product_comments')->where('product_slug', $id)->select('id', 'user_id', 'content', 'updated_at')->get();
-        $user_info = DB::table('users')->select('id', 'name', 'updated_at', 'logo')->get();
+        $product_comments = DB::table('product_comments')->where('product_slug', $id)->select('id', 'user_id', 'content', 'updated_at', 'user_name', 'user_email')->get();
+        $user_info = DB::table('users')->select('id', 'name', 'email', 'updated_at', 'logo')->get();
 
         return response()->json([
             'allComments' => $product_comments,

@@ -12,6 +12,6 @@ class ProductComments extends Model
      * @var array
      */
     protected $fillable = [
-        'content','product_slug','product_id','user_id'
+        'content','product_slug','product_id','user_id','user_name','user_email',
     ];
 }

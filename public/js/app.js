@@ -69480,7 +69480,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83658,8 +83658,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Tabs */ "./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx");
+/* harmony import */ var _helpers_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../helpers/validation */ "./resources/js/helpers/validation.js");
+/* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Tabs */ "./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -83683,6 +83692,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var ProductTabs =
 /*#__PURE__*/
 function (_Component) {
@@ -83698,9 +83708,9 @@ function (_Component) {
       comments: [],
       users: {},
       userID: null,
-      productCommentContent: '',
       userName: '',
       userEmail: '',
+      productCommentContent: '',
       userLogo: '',
       productSlug: _this.props.productSlug,
       productID: _this.props.productID
@@ -83732,14 +83742,16 @@ function (_Component) {
 
         _this2.setState({
           comments: allComments,
+          //is Array
           users: users,
+          // is Object
           userID: USER_ID,
-          userName: users[USER_ID]['name'],
+          // if current user is logged out then userName is empty string
+          // is for empty string validation before send request to server
+          userName: USER_ID === 11 ? '' : users[USER_ID]['name'],
           userEmail: users[USER_ID]['email'],
           userLogo: users[USER_ID]['logo']
         });
-
-        console.log('allComments', allComments);
       });
     }
   }, {
@@ -83750,18 +83762,26 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
+      var _this3 = this;
+
       e.preventDefault();
 
-      if (this.state.productCommentContent) {
+      if (this.state.productCommentContent && Object(_helpers_validation__WEBPACK_IMPORTED_MODULE_2__["validateEmail"])(this.state.userEmail) && this.state.userName) {
         var productComment = {
           content: this.state.productCommentContent,
           productSlug: this.state.productSlug,
           productID: this.state.productID,
           userID: this.state.userID,
-          userName: this.state.userName
+          userName: this.state.userName,
+          userEmail: this.state.userEmail
         };
         axios.post('/api/product-comments', productComment).then(function (response) {
-          console.log('response.data', response.data);
+          var newComment = response.data;
+          var newCommentsList = [].concat(_toConsumableArray(_this3.state.comments), [newComment]);
+
+          _this3.setState({
+            comments: newCommentsList
+          });
         });
       }
     }
@@ -83778,7 +83798,7 @@ function (_Component) {
           comments = _this$state.comments,
           users = _this$state.users;
       var commentslength = comments.length ? comments.length : 0;
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_3__["default"], {
         tabBg: tabBg
       }, descr && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         title: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
@@ -83810,13 +83830,13 @@ function (_Component) {
           className: "comment_container"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", (_React$createElement = {
           alt: "user"
-        }, _defineProperty(_React$createElement, "alt", users[comment.user_id].name), _defineProperty(_React$createElement, "src", users[comment.user_id].logo), _defineProperty(_React$createElement, "className", "avatar avatar-60 photo"), _defineProperty(_React$createElement, "height", "60"), _defineProperty(_React$createElement, "width", "60"), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        }, _defineProperty(_React$createElement, "alt", comment.user_name ? comment.user_name : users[comment.user_id].name), _defineProperty(_React$createElement, "src", users[comment.user_id].logo), _defineProperty(_React$createElement, "className", "avatar avatar-60 photo"), _defineProperty(_React$createElement, "height", "60"), _defineProperty(_React$createElement, "width", "60"), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: "comment-text"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
           className: "meta"
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
           className: "woocommerce-review__author"
-        }, users[comment.user_id].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        }, comment.user_name ? comment.user_name : users[comment.user_id].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           className: "woocommerce-review__dash"
         }, "\xA0\u2013\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
           className: "woocommerce-review__published-date",
@@ -83862,7 +83882,8 @@ function (_Component) {
         type: "text",
         size: "30",
         "aria-required": "true",
-        required: ""
+        required: "",
+        defaultValue: this.state.userName
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "comment-form-email"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "E-mail \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -83874,7 +83895,8 @@ function (_Component) {
         type: "email",
         size: "30",
         "aria-required": "true",
-        required: ""
+        required: "",
+        defaultValue: this.state.userEmail
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
         className: "comment-form-comment"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0422\u0435\u043A\u0441\u0442 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -85461,6 +85483,23 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/helpers/validation.js":
+/*!********************************************!*\
+  !*** ./resources/js/helpers/validation.js ***!
+  \********************************************/
+/*! exports provided: validateEmail */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateEmail", function() { return validateEmail; });
+function validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
+
+/***/ }),
+
 /***/ "./resources/js/index.jsx":
 /*!********************************!*\
   !*** ./resources/js/index.jsx ***!
@@ -85750,8 +85789,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

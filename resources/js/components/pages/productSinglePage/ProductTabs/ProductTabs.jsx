@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactHtmlParser from "react-html-parser";
+import {validateEmail} from '../../../../helpers/validation';
 import Tabs from './Tabs';
 
 class ProductTabs extends Component {
@@ -10,9 +11,9 @@ class ProductTabs extends Component {
             comments: [],
             users: {},
             userID: null,
-            productCommentContent: '',
             userName: '',
             userEmail: '',
+            productCommentContent: '',
             userLogo: '',
             productSlug: this.props.productSlug,
             productID: this.props.productID,
@@ -37,15 +38,15 @@ class ProductTabs extends Component {
             const USER_ID = this.state.userID ? this.state.userID : 11
 
             this.setState({
-                comments: allComments,
-                users: users,
+                comments: allComments,//is Array
+                users: users,// is Object
                 userID: USER_ID,
-                userName: users[USER_ID]['name'],
+                // if current user is logged out then userName is empty string
+                // is for empty string validation before send request to server
+                userName: (USER_ID === 11) ? '' : users[USER_ID]['name'],
                 userEmail: users[USER_ID]['email'],
                 userLogo: users[USER_ID]['logo'],
             });
-
-            console.log( 'allComments', allComments );
         });
     }
 
@@ -58,16 +59,25 @@ class ProductTabs extends Component {
     handleSubmit(e){
         e.preventDefault();
 
-        if ( this.state.productCommentContent ) {
+        if ( this.state.productCommentContent && validateEmail(this.state.userEmail) && this.state.userName ) {
             const productComment = {
                 content: this.state.productCommentContent,
                 productSlug: this.state.productSlug,
                 productID: this.state.productID,
                 userID: this.state.userID,
                 userName: this.state.userName,
+                userEmail: this.state.userEmail,
             }
+            
             axios.post('/api/product-comments', productComment).then(response => {
-                console.log( 'response.data', response.data );
+
+                const newComment = response.data;
+
+                const newCommentsList = [...this.state.comments, newComment];
+
+                this.setState({
+                    comments: newCommentsList,
+                });
             });
         }
     }
@@ -110,14 +120,14 @@ class ProductTabs extends Component {
                                             <div id="comment-11" className="comment_container">
                                                 <img
                                                     alt="user"
-                                                    alt={users[comment.user_id].name}
+                                                    alt={comment.user_name ? comment.user_name : users[comment.user_id].name}
                                                     src={users[comment.user_id].logo}
                                                     className="avatar avatar-60 photo" height="60" width="60"
                                                 />
                                                 <div className="comment-text">
                                                     <p className="meta">
                                                         <strong className="woocommerce-review__author">
-                                                            {users[comment.user_id].name}
+                                                            {comment.user_name ? comment.user_name : users[comment.user_id].name}
                                                         </strong>
                                                         <span className="woocommerce-review__dash">
                                                             &nbsp;–&nbsp;
@@ -168,6 +178,7 @@ class ProductTabs extends Component {
                                                 size="30"
                                                 aria-required="true"
                                                 required=""
+                                                defaultValue={this.state.userName}
                                             />
                                         </p>
                                         <p className="comment-form-email">
@@ -180,6 +191,7 @@ class ProductTabs extends Component {
                                                 size="30"
                                                 aria-required="true"
                                                 required=""
+                                                defaultValue={this.state.userEmail}
                                             />
                                         </p>
                                         <p className="comment-form-comment">

@@ -69480,7 +69480,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83769,11 +83769,11 @@ function (_Component) {
       if (this.state.productCommentContent && Object(_helpers_validation__WEBPACK_IMPORTED_MODULE_2__["validateEmail"])(this.state.userEmail) && this.state.userName) {
         var productComment = {
           content: this.state.productCommentContent,
-          productSlug: this.state.productSlug,
-          productID: this.state.productID,
-          userID: this.state.userID,
-          userName: this.state.userName,
-          userEmail: this.state.userEmail
+          product_slug: this.state.productSlug,
+          product_id: this.state.productID,
+          user_id: this.state.userID,
+          user_name: this.state.userName,
+          user_email: this.state.userEmail
         };
         axios.post('/api/product-comments', productComment).then(function (response) {
           var newComment = response.data;

@@ -62,11 +62,11 @@ class ProductTabs extends Component {
         if ( this.state.productCommentContent && validateEmail(this.state.userEmail) && this.state.userName ) {
             const productComment = {
                 content: this.state.productCommentContent,
-                productSlug: this.state.productSlug,
-                productID: this.state.productID,
-                userID: this.state.userID,
-                userName: this.state.userName,
-                userEmail: this.state.userEmail,
+                product_slug: this.state.productSlug,
+                product_id: this.state.productID,
+                user_id: this.state.userID,
+                user_name: this.state.userName,
+                user_email: this.state.userEmail,
             }
             
             axios.post('/api/product-comments', productComment).then(response => {

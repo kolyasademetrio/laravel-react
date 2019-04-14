@@ -42,7 +42,7 @@ class ProductCommentsController extends Controller
     {
         $current_time = Carbon::now()->toDateTimeString();
 
-        $new_comment = [
+        /*$new_comment = [
             'product_slug' => $request->get('productSlug'),
             'product_id' => $request->get('productID'),
             'user_id' => $request->get('userID'),
@@ -51,26 +51,19 @@ class ProductCommentsController extends Controller
             'updated_at' => $current_time,
             'user_name' => $request->get('userName'),
             'user_email' => $request->get('userEmail'),
-        ];
+        ];*/
 
-        //$comment = ProductComments::create($request->all());
+        $comment = ProductComments::create($request->all());
 
-        $comment = new ProductComments($new_comment);
-        $saved = $comment->save();
+        /*$comment = new ProductComments($new_comment);
+        $saved = $comment->save();*/
 
-        if ($saved) {
+        if ($comment) {
             //id: 7, user_id: 11, content: "sss", updated_at: "2019-04-12 19:23:11", user_name: "Dima"
-            return response()->json([
-                'id' => $comment->id,// get last inserted id if used save() method
-                'user_id' => $request->get('userID'),
-                'content' => $request->get('content'),
-                'updated_at' => $current_time,
-                'user_name' => $request->get('userName'),
-            ]);
+            return response()->json($comment);
         } else {
             return 'Произошла ошибка при сохранении комментария. Попробуйте ещё раз.';
         }
-
     }
 
     /**

@@ -70,11 +70,7 @@ class ProductTabs extends Component {
             }
             
             axios.post('/api/product-comments', productComment).then(response => {
-
-                const newComment = response.data;
-
-                const newCommentsList = [...this.state.comments, newComment];
-
+                const newCommentsList = [...this.state.comments, response.data];
                 this.setState({
                     comments: newCommentsList,
                 });

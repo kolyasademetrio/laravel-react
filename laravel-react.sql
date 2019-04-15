@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 05 2019 г., 23:20
+-- Время создания: Апр 15 2019 г., 09:27
 -- Версия сервера: 5.7.23
 -- Версия PHP: 7.2.10
 
@@ -28,14 +28,13 @@ SET time_zone = "+00:00";
 -- Структура таблицы `categories`
 --
 
-CREATE TABLE IF NOT EXISTS `categories` (
-  `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `categories` (
+  `category_id` int(10) UNSIGNED NOT NULL,
   `category_name` varchar(200) NOT NULL,
   `category_slug` varchar(200) NOT NULL,
   `show_on_homepage` tinyint(1) NOT NULL DEFAULT '0',
-  `category_filter_by` varchar(200) NOT NULL,
-  PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+  `category_filter_by` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `categories`
@@ -53,14 +52,11 @@ INSERT INTO `categories` (`category_id`, `category_name`, `category_slug`, `show
 -- Структура таблицы `categories_relationship`
 --
 
-CREATE TABLE IF NOT EXISTS `categories_relationship` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `categories_relationship` (
+  `id` int(10) UNSIGNED NOT NULL,
   `object_id` int(10) UNSIGNED DEFAULT NULL,
-  `category_id` int(10) UNSIGNED DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `object_id` (`object_id`),
-  KEY `category_id` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+  `category_id` int(10) UNSIGNED DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `categories_relationship`
@@ -91,12 +87,11 @@ INSERT INTO `categories_relationship` (`id`, `object_id`, `category_id`) VALUES
 -- Структура таблицы `migrations`
 --
 
-CREATE TABLE IF NOT EXISTS `migrations` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `migrations`
@@ -108,7 +103,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (3, '2019_04_02_144946_create_product_attachments_table', 2),
 (4, '2019_04_04_044934_add_columns_to_products_table', 3),
 (8, '2019_04_05_051213_add_columns_to_products_table', 4),
-(10, '2019_04_05_131509_create_products_table', 5);
+(10, '2019_04_05_131509_create_products_table', 5),
+(11, '2019_04_05_095235_create_product_comments_table', 6),
+(12, '2019_04_06_045011_create_products_table', 7),
+(13, '2019_04_08_095447_addimagecolumn_users_table', 8),
+(14, '2019_04_08_112708_add_comments_to_product_comments_table', 8),
+(15, '2019_04_12_124803_add_default_user_to_users_table', 9),
+(16, '2019_04_12_142347_add_row_user_name_user_email_product_comments_table', 9);
 
 -- --------------------------------------------------------
 
@@ -116,13 +117,12 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Структура таблицы `pages`
 --
 
-CREATE TABLE IF NOT EXISTS `pages` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `pages` (
+  `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(200) NOT NULL,
   `title` text NOT NULL,
-  `menu_order` int(11) UNSIGNED NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+  `menu_order` int(11) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `pages`
@@ -142,11 +142,10 @@ INSERT INTO `pages` (`id`, `slug`, `title`, `menu_order`) VALUES
 -- Структура таблицы `password_resets`
 --
 
-CREATE TABLE IF NOT EXISTS `password_resets` (
+CREATE TABLE `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  KEY `password_resets_email_index` (`email`)
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -155,8 +154,8 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
 -- Структура таблицы `products`
 --
 
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `products` (
+  `id` int(10) UNSIGNED NOT NULL,
   `slug` varchar(200) NOT NULL,
   `title` text NOT NULL,
   `excerpt` text NOT NULL,
@@ -173,9 +172,8 @@ CREATE TABLE IF NOT EXISTS `products` (
   `product_description_tab_content` longtext NOT NULL,
   `product_ingredients_tab_content` longtext NOT NULL,
   `product_usage_tab_content` longtext NOT NULL,
-  `tab_bg` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+  `tab_bg` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `products`
@@ -202,14 +200,13 @@ INSERT INTO `products` (`id`, `slug`, `title`, `excerpt`, `content`, `descrtitle
 -- Структура таблицы `product_attachments`
 --
 
-CREATE TABLE IF NOT EXISTS `product_attachments` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `product_attachments` (
+  `id` int(10) UNSIGNED NOT NULL,
   `product_slug` varchar(191) CHARACTER SET utf8 NOT NULL,
   `product_id` int(10) UNSIGNED NOT NULL,
   `attachment` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `type` varchar(255) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `product_attachments`
@@ -225,37 +222,183 @@ INSERT INTO `product_attachments` (`id`, `product_slug`, `product_id`, `attachme
 -- --------------------------------------------------------
 
 --
+-- Структура таблицы `product_comments`
+--
+
+CREATE TABLE `product_comments` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `product_slug` varchar(200) NOT NULL,
+  `product_id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `content` longtext,
+  `user_name` varchar(191) DEFAULT NULL,
+  `user_email` varchar(191) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `product_comments`
+--
+
+INSERT INTO `product_comments` (`id`, `product_slug`, `product_id`, `user_id`, `created_at`, `updated_at`, `content`, `user_name`, `user_email`) VALUES
+(1, 'крем-для-рук-и-ногтей', 1, 1, '2019-04-08 07:15:31', '2019-04-08 01:15:31', 'Это очень хороший крем', '', ''),
+(2, 'крем-для-рук-и-ногтей', 1, 2, '2019-04-08 07:25:31', '2019-04-08 07:25:31', 'Крем вообще супер.', '', ''),
+(3, 'крем-для-век', 2, 10, '2019-04-04 07:25:31', '2019-04-04 07:25:31', 'Веки прям молодеют на глазах.', '', ''),
+(57, 'крем-для-рук-и-ногтей', 1, 11, '2019-04-14 14:23:01', '2019-04-14 14:23:01', 'счсчс', 'Dima', 'ddimonn8080@mail.ru'),
+(58, 'детский-крем', 6, 11, '2019-04-15 06:09:17', '2019-04-15 06:09:17', 'zcxzx', 'Dima', 'ddimonn8080@mail.ru'),
+(59, 'крем-для-рук-и-ногтей', 6, 11, '2019-04-15 06:09:46', '2019-04-15 06:09:46', 'llllllllll', 'gfdgf', 'ddimonn8080@mail.ru');
+
+-- --------------------------------------------------------
+
+--
 -- Структура таблицы `users`
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE `users` (
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) CHARACTER SET utf8 NOT NULL,
-  `email` varchar(191) CHARACTER SET utf8 NOT NULL,
+  `email` varchar(191) CHARACTER SET utf8 DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) CHARACTER SET utf8 NOT NULL,
   `remember_token` varchar(100) CHARACTER SET utf8 DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Дамп данных таблицы `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Jake Weber', 'randal12@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'jUblahTfQa', '2019-02-17 07:11:18', '2019-02-17 07:11:18'),
-(2, 'Lonie Senger DVM', 'skylar36@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'OlM8Orm1Cg', '2019-02-17 07:11:18', '2019-02-17 07:11:18'),
-(3, 'Ms. Alessandra Prohaska', 'maye54@example.org', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'KbWSBAjTKt', '2019-02-17 07:11:18', '2019-02-17 07:11:18'),
-(4, 'Mr. Leo Legros', 'iconn@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'ztObSRsyXf', '2019-02-17 07:11:18', '2019-02-17 07:11:18'),
-(5, 'Stephan Goodwin Jr.', 'schmitt.lera@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'ShNTGxlME3', '2019-02-17 07:11:18', '2019-02-17 07:11:18'),
-(6, 'Phyllis Pouros', 'lavada25@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'vX6cWACdo7', '2019-02-17 07:11:18', '2019-02-17 07:11:18'),
-(7, 'Rhett Murazik', 'sdickens@example.org', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'u77HXN1BW0', '2019-02-17 07:11:18', '2019-02-17 07:11:18'),
-(8, 'Barton Bartell', 'schmeler.dandre@example.org', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Wc9jmRkNdU', '2019-02-17 07:11:18', '2019-02-17 07:11:18'),
-(9, 'Arden Erdman', 'erling24@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'WI7qDJOUUw', '2019-02-17 07:11:18', '2019-02-17 07:11:18'),
-(10, 'Mr. Morton Stracke Sr.', 'concepcion.cormier@example.com', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', '5OdlOJnWyx', '2019-02-17 07:11:18', '2019-02-17 07:11:18');
+INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `logo`) VALUES
+(1, 'Jake Weber', 'randal12@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'jUblahTfQa', '2019-02-17 07:11:18', '2019-02-17 07:11:18', '/images/user.png'),
+(2, 'Lonie Senger DVM', 'skylar36@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'OlM8Orm1Cg', '2019-02-17 07:11:18', '2019-02-17 07:11:18', '/images/user.png'),
+(3, 'Ms. Alessandra Prohaska', 'maye54@example.org', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'KbWSBAjTKt', '2019-02-17 07:11:18', '2019-02-17 07:11:18', '/images/user.png'),
+(4, 'Mr. Leo Legros', 'iconn@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'ztObSRsyXf', '2019-02-17 07:11:18', '2019-02-17 07:11:18', '/images/user.png'),
+(5, 'Stephan Goodwin Jr.', 'schmitt.lera@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'ShNTGxlME3', '2019-02-17 07:11:18', '2019-02-17 07:11:18', '/images/user.png'),
+(6, 'Phyllis Pouros', 'lavada25@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'vX6cWACdo7', '2019-02-17 07:11:18', '2019-02-17 07:11:18', '/images/user.png'),
+(7, 'Rhett Murazik', 'sdickens@example.org', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'u77HXN1BW0', '2019-02-17 07:11:18', '2019-02-17 07:11:18', '/images/user.png'),
+(8, 'Barton Bartell', 'schmeler.dandre@example.org', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'Wc9jmRkNdU', '2019-02-17 07:11:18', '2019-02-17 07:11:18', '/images/user.png'),
+(9, 'Arden Erdman', 'erling24@example.net', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', 'WI7qDJOUUw', '2019-02-17 07:11:18', '2019-02-17 07:11:18', '/images/user.png'),
+(10, 'Mr. Morton Stracke Sr.', 'concepcion.cormier@example.com', '2019-02-17 07:11:18', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', '5OdlOJnWyx', '2019-02-17 07:11:18', '2019-02-17 07:11:18', '/images/user.png'),
+(11, 'Гость', NULL, NULL, '$2y$10$oeTN9LDZnavt72pcpvGQh.DT6fRqx8qUr3LbDQ2NHf9/1ANEfX5UO', NULL, NULL, NULL, '/images/user.png');
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Индексы таблицы `categories_relationship`
+--
+ALTER TABLE `categories_relationship`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `object_id` (`object_id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- Индексы таблицы `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `pages`
+--
+ALTER TABLE `pages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `password_resets`
+--
+ALTER TABLE `password_resets`
+  ADD KEY `password_resets_email_index` (`email`);
+
+--
+-- Индексы таблицы `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `products_slug_unique` (`slug`);
+
+--
+-- Индексы таблицы `product_attachments`
+--
+ALTER TABLE `product_attachments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_attachments_1` (`product_id`);
+
+--
+-- Индексы таблицы `product_comments`
+--
+ALTER TABLE `product_comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `comments_rels_1` (`product_id`);
+
+--
+-- Индексы таблицы `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `category_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `categories_relationship`
+--
+ALTER TABLE `categories_relationship`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT для таблицы `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT для таблицы `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT для таблицы `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT для таблицы `product_attachments`
+--
+ALTER TABLE `product_attachments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT для таблицы `product_comments`
+--
+ALTER TABLE `product_comments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT для таблицы `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

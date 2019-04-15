@@ -69480,7 +69480,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83776,8 +83776,7 @@ function (_Component) {
           user_email: this.state.userEmail
         };
         axios.post('/api/product-comments', productComment).then(function (response) {
-          var newComment = response.data;
-          var newCommentsList = [].concat(_toConsumableArray(_this3.state.comments), [newComment]);
+          var newCommentsList = [].concat(_toConsumableArray(_this3.state.comments), [response.data]);
 
           _this3.setState({
             comments: newCommentsList

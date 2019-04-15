@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
-import {setProductSingle} from '../../actions/products';
-import ProductSinglePage from '../../components/pages/productSinglePage/ProductSinglePage';
+import {setProductSingle} from '../../../actions/products';
+import ProductSinglePage from '../../../components/pages/productSinglePage/ProductSinglePage';
 
 
 

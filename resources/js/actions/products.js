@@ -10,6 +10,11 @@ export const setProductSingle = product => ({
     payload: product
 });
 
+export const setProductComments = comments => ({
+    type: 'SET_PRODUCT_COMMENTS',
+    payload: comments
+});
+
 export const CategoryFilters = {
     SHOW_ALL: 'SHOW_ALL',
     BESTSELLER: 'BESTSELLER',

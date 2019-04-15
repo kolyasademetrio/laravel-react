@@ -3,8 +3,10 @@ import { SET_PRODUCTS, SET_IS_READY, FETCH_PRODUCTS, FETCH_PRODUCTS_SUCCESS, FET
 const INITIAL_STATE = {
     isReady: false,
     isSingleReady: false,
+    isCommentsReady: false,
     items: [],
     product: {},
+    comments: [],
 };
 
 export default function (state = INITIAL_STATE,action){
@@ -20,6 +22,15 @@ export default function (state = INITIAL_STATE,action){
                 ...state,
                 product: action.payload,
                 isSingleReady: true
+            };
+        case 'SET_PRODUCT_COMMENTS':
+
+            console.log( 'dadada' );
+
+            return {
+                ...state,
+                comments: action.payload,
+                isCommentsReady: true,
             };
         case SET_IS_READY:
             return {

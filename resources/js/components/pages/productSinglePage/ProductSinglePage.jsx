@@ -3,7 +3,7 @@ import Breadcrumbs from "../../../helpers/breadcrumbs";
 import ReactHtmlParser from 'react-html-parser';
 import ProductGallery from './ProductGallery';
 import Quantity from './Quantity';
-import ProductTabs from './ProductTabs/ProductTabs';
+import ProductTabs from '../../../containers/pages/ProductSinglePage/ProductTabs/ProductTabs';
 
 class ProductSinglePage extends Component {
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ReactHtmlParser from "react-html-parser";
 import {validateEmail} from '../../../../helpers/validation';
 import Tabs from './Tabs';
+import ProductComments from '../../../ProductComments';
 
 class ProductTabs extends Component {
 
@@ -10,19 +11,21 @@ class ProductTabs extends Component {
         this.state = {
             comments: [],
             users: {},
+            commentsLength: 0,
+            /* states for creating new comment */
+            productCommentContent: '',
+            productSlug: this.props.productSlug,
+            productID: this.props.productID,
             userID: null,
             userName: '',
             userEmail: '',
-            productCommentContent: '',
-            userLogo: '',
-            productSlug: this.props.productSlug,
-            productID: this.props.productID,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
+
         const {productSlug} = this.props;
 
         axios.get(`/api/product-comments/${productSlug}`).then(data => {
@@ -46,6 +49,7 @@ class ProductTabs extends Component {
                 userName: (USER_ID === 11) ? '' : users[USER_ID]['name'],
                 userEmail: users[USER_ID]['email'],
                 userLogo: users[USER_ID]['logo'],
+                commentsLength: allComments.length ? allComments.length : 0,
             });
         });
     }
@@ -68,22 +72,19 @@ class ProductTabs extends Component {
                 user_name: this.state.userName,
                 user_email: this.state.userEmail,
             }
-            
+
             axios.post('/api/product-comments', productComment).then(response => {
                 const newCommentsList = [...this.state.comments, response.data];
                 this.setState({
                     comments: newCommentsList,
+                    commentsLength: newCommentsList.length,
                 });
             });
         }
     }
 
     render(){
-        const {title, tabBg, descr, ingredients, usage} = this.props;
-
-        const {comments, users} = this.state;
-
-        const commentslength = comments.length ? comments.length : 0;
+        const {tabBg, descr, ingredients, usage, title } = this.props;
 
         return (
             <Tabs tabBg={tabBg}>
@@ -105,112 +106,14 @@ class ProductTabs extends Component {
                     </div>
                 )}
 
-                <div title={`Отзывы (${commentslength})`}>
-                    <div id="reviews" className="woocommerce-Reviews">
-                        <div id="comments" className="comments">
-                            <h2 className="woocommerce-Reviews-title">Отзывы</h2>
-                            {commentslength ? (
-                                <ol className="commentlist">
-                                    {comments.map(comment => (
-                                        <li key={comment.id} className="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-11">
-                                            <div id="comment-11" className="comment_container">
-                                                <img
-                                                    alt="user"
-                                                    alt={comment.user_name ? comment.user_name : users[comment.user_id].name}
-                                                    src={users[comment.user_id].logo}
-                                                    className="avatar avatar-60 photo" height="60" width="60"
-                                                />
-                                                <div className="comment-text">
-                                                    <p className="meta">
-                                                        <strong className="woocommerce-review__author">
-                                                            {comment.user_name ? comment.user_name : users[comment.user_id].name}
-                                                        </strong>
-                                                        <span className="woocommerce-review__dash">
-                                                            &nbsp;–&nbsp;
-                                                        </span>
-                                                        <time
-                                                            className="woocommerce-review__published-date"
-                                                            dateTime={comment.updated_at}
-                                                        >
-                                                            {comment.updated_at}
-                                                        </time>
-                                                    </p>
-                                                    <div className="description">
-                                                        <p>{comment.content}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    ))}
-                                </ol>
-                            ) : (
-                                <p className="woocommerce-noreviews">Отзывов пока нет.</p>
-                            )}
-                        </div>
-
-                        <div id="review_form_wrapper" className="review_form_wrapper">
-                            <div id="review_form">
-                                <div id="respond" className="comment-respond">
-                                <span id="reply-title" className="comment-reply-title">
-                                    {commentslength ? 'Ваша оценка' : `Будьте первым, кто оставил отзыв на “${title}”`} <small><a id="cancel-comment-reply-link" href="#" style={{display:'none'}}>Отменить ответ</a></small>
-                                </span>
-                                    <form
-                                        onSubmit={this.handleSubmit}
-                                        method="post"
-                                        id="commentform"
-                                        className="comment-form"
-                                        noValidate=""
-                                    >
-                                        <div className="reply-title-after">
-                                            Используйте данную форму, чтобы оставить отзыв о товаре или задать вопрос
-                                        </div>
-                                        <p className="comment-form-author">
-                                            <label>Ваше имя &nbsp;<span className="required">*</span></label>
-                                            <input
-                                                onChange={this.handleChange}
-                                                id="author"
-                                                name="userName"
-                                                type="text"
-                                                size="30"
-                                                aria-required="true"
-                                                required=""
-                                                defaultValue={this.state.userName}
-                                            />
-                                        </p>
-                                        <p className="comment-form-email">
-                                            <label>E-mail &nbsp;<span className="required">*</span></label>
-                                            <input
-                                                onChange={this.handleChange}
-                                                id="email"
-                                                name="userEmail"
-                                                type="email"
-                                                size="30"
-                                                aria-required="true"
-                                                required=""
-                                                defaultValue={this.state.userEmail}
-                                            />
-                                        </p>
-                                        <p className="comment-form-comment">
-                                            <label>Текст сообщения &nbsp;<span className="required">*</span></label>
-                                            <textarea
-                                                onChange={this.handleChange}
-                                                id="comment"
-                                                name="productCommentContent"
-                                                cols="45" rows="8"
-                                            >
-                                            </textarea>
-                                        </p>
-                                        <p className="form-submit">
-                                            <input name="submit" type="submit" id="submit" className="submit" value="Отправить"/>
-                                            <input type="hidden" name="comment_post_ID" id="comment_post_ID"/>
-                                            <input type="hidden" name="comment_parent" id="comment_parent"/>
-                                        </p>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="clear"></div>
-                    </div>
+                {/*<div title={`Отзывы (${commentslength})`}>*/}
+                <div title={`Отзывы (${this.state.commentsLength})`}>
+                    <ProductComments
+                        title={title}
+                        state={this.state}
+                        handleChange={this.handleChange}
+                        handleSubmit={this.handleSubmit}
+                    />
                 </div>
             </Tabs>
         );

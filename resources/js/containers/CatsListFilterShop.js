@@ -8,8 +8,8 @@ const mapStateToProps = ({filter, products}, ownProps) => {
 
     return {
         filterBy: filter.filterShopBy,
-        categoriesToShow: ownProps.categories.filter( catItem => categoriesRelationship[catItem.category_filter_by] !== undefined ),
         categoriesRelationship: categoriesRelationship,
+        categoriesToShow: ownProps.categories.filter( catItem => categoriesRelationship[catItem.category_filter_by] !== undefined ),
     }
 };
 

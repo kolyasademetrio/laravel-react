@@ -78541,6 +78541,216 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/ProductComments.jsx":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/ProductComments.jsx ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_ProductCommentsForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/ProductCommentsForm */ "./resources/js/components/ProductCommentsForm.jsx");
+/* harmony import */ var _components_ProductCommentsList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ProductCommentsList */ "./resources/js/components/ProductCommentsList.jsx");
+
+
+
+
+function ProductComments(props) {
+  var title = props.title,
+      handleChange = props.handleChange,
+      handleSubmit = props.handleSubmit;
+  var _props$state = props.state,
+      comments = _props$state.comments,
+      users = _props$state.users,
+      commentsLength = _props$state.commentsLength,
+      userName = _props$state.userName,
+      userEmail = _props$state.userEmail;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "reviews",
+    className: "woocommerce-Reviews"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ProductCommentsList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    comments: comments,
+    users: users,
+    commentsLength: commentsLength
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_ProductCommentsForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    title: title,
+    commentsLength: commentsLength,
+    handleChange: handleChange,
+    handleSubmit: handleSubmit,
+    userName: userName,
+    userEmail: userEmail
+  }));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (ProductComments);
+
+/***/ }),
+
+/***/ "./resources/js/components/ProductCommentsForm.jsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/ProductCommentsForm.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function ProductCommentsForm(props) {
+  var commentsLength = props.commentsLength,
+      title = props.title,
+      userName = props.userName,
+      userEmail = props.userEmail,
+      handleSubmit = props.handleSubmit,
+      handleChange = props.handleChange;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "review_form_wrapper",
+    className: "review_form_wrapper"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "review_form"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "respond",
+    className: "comment-respond"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    id: "reply-title",
+    className: "comment-reply-title"
+  }, commentsLength ? 'Ваша оценка' : "\u0411\u0443\u0434\u044C\u0442\u0435 \u043F\u0435\u0440\u0432\u044B\u043C, \u043A\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0442\u0437\u044B\u0432 \u043D\u0430 \u201C".concat(title, "\u201D"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    id: "cancel-comment-reply-link",
+    href: "#",
+    style: {
+      display: 'none'
+    }
+  }, "\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0442\u0432\u0435\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: handleSubmit,
+    method: "post",
+    id: "commentform",
+    className: "comment-form",
+    noValidate: ""
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "reply-title-after"
+  }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0434\u0430\u043D\u043D\u0443\u044E \u0444\u043E\u0440\u043C\u0443, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u0437\u044B\u0432 \u043E \u0442\u043E\u0432\u0430\u0440\u0435 \u0438\u043B\u0438 \u0437\u0430\u0434\u0430\u0442\u044C \u0432\u043E\u043F\u0440\u043E\u0441"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "comment-form-author"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "required"
+  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: handleChange,
+    id: "author",
+    name: "userName",
+    type: "text",
+    size: "30",
+    "aria-required": "true",
+    required: "",
+    defaultValue: userName
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "comment-form-email"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "E-mail \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "required"
+  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: handleChange,
+    id: "email",
+    name: "userEmail",
+    type: "email",
+    size: "30",
+    "aria-required": "true",
+    required: "",
+    defaultValue: userEmail
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "comment-form-comment"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0422\u0435\u043A\u0441\u0442 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "required"
+  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    onChange: handleChange,
+    id: "comment",
+    name: "productCommentContent",
+    cols: "45",
+    rows: "8"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "form-submit"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    name: "submit",
+    type: "submit",
+    id: "submit",
+    className: "submit",
+    value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"
+  }))))));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (ProductCommentsForm);
+
+/***/ }),
+
+/***/ "./resources/js/components/ProductCommentsList.jsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/ProductCommentsList.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function ProductCommentsList(props) {
+  var comments = props.comments,
+      users = props.users,
+      commentsLength = props.commentsLength;
+
+  var NoReviewMessage = function NoReviewMessage() {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "woocommerce-noreviews"
+    }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.");
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "comments",
+    className: "comments"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
+    className: "woocommerce-Reviews-title"
+  }, "\u041E\u0442\u0437\u044B\u0432\u044B"), commentsLength ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
+    className: "commentlist"
+  }, comments.map(function (comment) {
+    var _React$createElement;
+
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: comment.id,
+      className: "comment byuser comment-author-admin bypostauthor even thread-even depth-1",
+      id: "li-comment-11"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      id: "comment-11",
+      className: "comment_container"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", (_React$createElement = {
+      alt: "user"
+    }, _defineProperty(_React$createElement, "alt", comment.user_name ? comment.user_name : users[comment.user_id].name), _defineProperty(_React$createElement, "src", users[comment.user_id].logo), _defineProperty(_React$createElement, "className", "avatar avatar-60 photo"), _defineProperty(_React$createElement, "height", "60"), _defineProperty(_React$createElement, "width", "60"), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "comment-text"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "meta"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+      className: "woocommerce-review__author"
+    }, comment.user_name ? comment.user_name : users[comment.user_id].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "woocommerce-review__dash"
+    }, "\xA0\u2013\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
+      className: "woocommerce-review__published-date",
+      dateTime: comment.updated_at
+    }, comment.updated_at)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "description"
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.content)))));
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NoReviewMessage, null));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (ProductCommentsList);
+
+/***/ }),
+
 /***/ "./resources/js/components/ProductsSortShop.jsx":
 /*!******************************************************!*\
   !*** ./resources/js/components/ProductsSortShop.jsx ***!
@@ -83660,6 +83870,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _helpers_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../helpers/validation */ "./resources/js/helpers/validation.js");
 /* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Tabs */ "./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx");
+/* harmony import */ var _ProductComments__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../ProductComments */ "./resources/js/components/ProductComments.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -83693,6 +83904,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var ProductTabs =
 /*#__PURE__*/
 function (_Component) {
@@ -83707,13 +83919,15 @@ function (_Component) {
     _this.state = {
       comments: [],
       users: {},
+      commentsLength: 0,
+
+      /* states for creating new comment */
+      productCommentContent: '',
+      productSlug: _this.props.productSlug,
+      productID: _this.props.productID,
       userID: null,
       userName: '',
-      userEmail: '',
-      productCommentContent: '',
-      userLogo: '',
-      productSlug: _this.props.productSlug,
-      productID: _this.props.productID
+      userEmail: ''
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -83750,7 +83964,8 @@ function (_Component) {
           // is for empty string validation before send request to server
           userName: USER_ID === 11 ? '' : users[USER_ID]['name'],
           userEmail: users[USER_ID]['email'],
-          userLogo: users[USER_ID]['logo']
+          userLogo: users[USER_ID]['logo'],
+          commentsLength: allComments.length ? allComments.length : 0
         });
       });
     }
@@ -83779,7 +83994,8 @@ function (_Component) {
           var newCommentsList = [].concat(_toConsumableArray(_this3.state.comments), [response.data]);
 
           _this3.setState({
-            comments: newCommentsList
+            comments: newCommentsList,
+            commentsLength: newCommentsList.length
           });
         });
       }
@@ -83788,15 +84004,11 @@ function (_Component) {
     key: "render",
     value: function render() {
       var _this$props = this.props,
-          title = _this$props.title,
           tabBg = _this$props.tabBg,
           descr = _this$props.descr,
           ingredients = _this$props.ingredients,
-          usage = _this$props.usage;
-      var _this$state = this.state,
-          comments = _this$state.comments,
-          users = _this$state.users;
-      var commentslength = comments.length ? comments.length : 0;
+          usage = _this$props.usage,
+          title = _this$props.title;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_3__["default"], {
         tabBg: tabBg
       }, descr && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -83806,125 +84018,13 @@ function (_Component) {
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(ingredients)), usage && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         title: "\u041F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435"
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(usage)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        title: "\u041E\u0442\u0437\u044B\u0432\u044B (".concat(commentslength, ")")
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "reviews",
-        className: "woocommerce-Reviews"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "comments",
-        className: "comments"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-        className: "woocommerce-Reviews-title"
-      }, "\u041E\u0442\u0437\u044B\u0432\u044B"), commentslength ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
-        className: "commentlist"
-      }, comments.map(function (comment) {
-        var _React$createElement;
-
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-          key: comment.id,
-          className: "comment byuser comment-author-admin bypostauthor even thread-even depth-1",
-          id: "li-comment-11"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "comment-11",
-          className: "comment_container"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", (_React$createElement = {
-          alt: "user"
-        }, _defineProperty(_React$createElement, "alt", comment.user_name ? comment.user_name : users[comment.user_id].name), _defineProperty(_React$createElement, "src", users[comment.user_id].logo), _defineProperty(_React$createElement, "className", "avatar avatar-60 photo"), _defineProperty(_React$createElement, "height", "60"), _defineProperty(_React$createElement, "width", "60"), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "comment-text"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-          className: "meta"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
-          className: "woocommerce-review__author"
-        }, comment.user_name ? comment.user_name : users[comment.user_id].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "woocommerce-review__dash"
-        }, "\xA0\u2013\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
-          className: "woocommerce-review__published-date",
-          dateTime: comment.updated_at
-        }, comment.updated_at)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "description"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.content)))));
-      })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "woocommerce-noreviews"
-      }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "review_form_wrapper",
-        className: "review_form_wrapper"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "review_form"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        id: "respond",
-        className: "comment-respond"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        id: "reply-title",
-        className: "comment-reply-title"
-      }, commentslength ? 'Ваша оценка' : "\u0411\u0443\u0434\u044C\u0442\u0435 \u043F\u0435\u0440\u0432\u044B\u043C, \u043A\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0442\u0437\u044B\u0432 \u043D\u0430 \u201C".concat(title, "\u201D"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        id: "cancel-comment-reply-link",
-        href: "#",
-        style: {
-          display: 'none'
-        }
-      }, "\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0442\u0432\u0435\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit,
-        method: "post",
-        id: "commentform",
-        className: "comment-form",
-        noValidate: ""
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "reply-title-after"
-      }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0434\u0430\u043D\u043D\u0443\u044E \u0444\u043E\u0440\u043C\u0443, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u0437\u044B\u0432 \u043E \u0442\u043E\u0432\u0430\u0440\u0435 \u0438\u043B\u0438 \u0437\u0430\u0434\u0430\u0442\u044C \u0432\u043E\u043F\u0440\u043E\u0441"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "comment-form-author"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "required"
-      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.handleChange,
-        id: "author",
-        name: "userName",
-        type: "text",
-        size: "30",
-        "aria-required": "true",
-        required: "",
-        defaultValue: this.state.userName
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "comment-form-email"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "E-mail \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "required"
-      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        onChange: this.handleChange,
-        id: "email",
-        name: "userEmail",
-        type: "email",
-        size: "30",
-        "aria-required": "true",
-        required: "",
-        defaultValue: this.state.userEmail
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "comment-form-comment"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0422\u0435\u043A\u0441\u0442 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "required"
-      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-        onChange: this.handleChange,
-        id: "comment",
-        name: "productCommentContent",
-        cols: "45",
-        rows: "8"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-        className: "form-submit"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        name: "submit",
-        type: "submit",
-        id: "submit",
-        className: "submit",
-        value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "hidden",
-        name: "comment_post_ID",
-        id: "comment_post_ID"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "hidden",
-        name: "comment_parent",
-        id: "comment_parent"
-      })))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "clear"
-      }))));
+        title: "\u041E\u0442\u0437\u044B\u0432\u044B (".concat(this.state.commentsLength, ")")
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductComments__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        title: title,
+        state: this.state,
+        handleChange: this.handleChange,
+        handleSubmit: this.handleSubmit
+      })));
     }
   }]);
 
@@ -84804,10 +84904,10 @@ var mapStateToProps = function mapStateToProps(_ref, ownProps) {
   var categoriesRelationship = Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_2__["getCategoryProductRelationsByCatSlug"])(products.items.categoriesRelationship);
   return {
     filterBy: filter.filterShopBy,
+    categoriesRelationship: categoriesRelationship,
     categoriesToShow: ownProps.categories.filter(function (catItem) {
       return categoriesRelationship[catItem.category_filter_by] !== undefined;
-    }),
-    categoriesRelationship: categoriesRelationship
+    })
   };
 };
 
@@ -85788,8 +85888,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

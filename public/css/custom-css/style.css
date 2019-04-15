@@ -8011,7 +8011,11 @@ nav.pagination ul li.active span {
     z-index: 999;
 }
 
-
+#reviews.woocommerce-Reviews:after {
+    content: '';
+    display: table;
+    clear: both;
+}
 
 
 

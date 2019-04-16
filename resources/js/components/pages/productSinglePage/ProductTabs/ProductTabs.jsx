@@ -3,7 +3,6 @@ import ReactHtmlParser from "react-html-parser";
 import {validateEmail} from '../../../../helpers/validation';
 import Tabs from './Tabs';
 import ProductComments from '../../../ProductComments';
-import {setProductComments} from '../../../../actions/products';
 
 class ProductTabs extends Component {
 
@@ -27,15 +26,11 @@ class ProductTabs extends Component {
 
     componentDidMount(){
 
-        const {productSlug} = this.props;
+        const {productSlug, setProductComments} = this.props;
 
         axios.get(`/api/product-comments/${productSlug}`).then(data => {
 
-            console.log( data.data.allComments );
-
-            setProductComments(data.data.allComments);
-
-            console.log( 'this.props', this.props );
+            setProductComments(data.data);
 
             let {allComments, allUsers} = data.data;
             const users = allUsers.reduce((acc, el) => (

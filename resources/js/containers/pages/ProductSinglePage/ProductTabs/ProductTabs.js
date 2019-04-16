@@ -4,17 +4,16 @@ import ProductTabs from '../../../../components/pages/productSinglePage/ProductT
 
 
 
-const mapStateToProps = state => {
-
-    console.log( state );
-
-    return {
-        comments: state.products.comments
-    };
-};
+const mapStateToProps = (state, ownProps) => {
+    
+    console.log( 'ownProps', ownProps );
+    
+    return{
+    comments: state
+}};
 
 const mapDispatchToProps = dispatch => ({
-    setProductComments
+    setProductComments: comments => dispatch(setProductComments(comments))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductTabs);

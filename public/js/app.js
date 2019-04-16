@@ -83878,7 +83878,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../helpers/validation */ "./resources/js/helpers/validation.js");
 /* harmony import */ var _Tabs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Tabs */ "./resources/js/components/pages/productSinglePage/ProductTabs/Tabs.jsx");
 /* harmony import */ var _ProductComments__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../ProductComments */ "./resources/js/components/ProductComments.jsx");
-/* harmony import */ var _actions_products__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../actions/products */ "./resources/js/actions/products.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -83906,7 +83905,6 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -83948,11 +83946,11 @@ function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var productSlug = this.props.productSlug;
+      var _this$props = this.props,
+          productSlug = _this$props.productSlug,
+          setProductComments = _this$props.setProductComments;
       axios.get("/api/product-comments/".concat(productSlug)).then(function (data) {
-        console.log(data.data.allComments);
-        Object(_actions_products__WEBPACK_IMPORTED_MODULE_5__["setProductComments"])(data.data.allComments);
-        console.log('this.props', _this2.props);
+        setProductComments(data.data);
         var _data$data = data.data,
             allComments = _data$data.allComments,
             allUsers = _data$data.allUsers;
@@ -84015,12 +84013,12 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          tabBg = _this$props.tabBg,
-          descr = _this$props.descr,
-          ingredients = _this$props.ingredients,
-          usage = _this$props.usage,
-          title = _this$props.title;
+      var _this$props2 = this.props,
+          tabBg = _this$props2.tabBg,
+          descr = _this$props2.descr,
+          ingredients = _this$props2.ingredients,
+          usage = _this$props2.usage,
+          title = _this$props2.title;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_3__["default"], {
         tabBg: tabBg
       }, descr && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85019,16 +85017,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(state) {
-  console.log(state);
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  console.log('ownProps', ownProps);
   return {
-    comments: state.products.comments
+    comments: state
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    setProductComments: _actions_products__WEBPACK_IMPORTED_MODULE_1__["setProductComments"]
+    setProductComments: function setProductComments(comments) {
+      return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setProductComments"])(comments));
+    }
   };
 };
 
@@ -85880,7 +85880,6 @@ var INITIAL_STATE = {
       });
 
     case 'SET_PRODUCT_COMMENTS':
-      console.log('dadada');
       return _objectSpread({}, state, {
         comments: action.payload,
         isCommentsReady: true
@@ -85942,8 +85941,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

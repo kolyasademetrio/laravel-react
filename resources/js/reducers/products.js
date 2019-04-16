@@ -24,9 +24,6 @@ export default function (state = INITIAL_STATE,action){
                 isSingleReady: true
             };
         case 'SET_PRODUCT_COMMENTS':
-
-            console.log( 'dadada' );
-
             return {
                 ...state,
                 comments: action.payload,

@@ -1,3 +1,5 @@
+import {SORT_PRODUCTS_SHOP, SHOW_PRODUCTS_BY_CATEGORY_SHOP, SET_FILTER, SET_PAGINATION} from '../actions/types';
+
 const initialState = {
     searchQuery: "",
     filterBy: "",
@@ -7,23 +9,23 @@ const initialState = {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-        case "SORT_PRODUCTS_SHOP":
+        case SORT_PRODUCTS_SHOP:
             return {
                 ...state,
                 sortProductShopBy: action.payload
             }
-        case "SHOW_PRODUCTS_BY_CATEGORY_SHOP":
+        case SHOW_PRODUCTS_BY_CATEGORY_SHOP:
             return {
                 ...state,
                 filterShopBy: action.payload,
                 page: 1,
             };
-        case "SET_FILTER":
+        case SET_FILTER:
             return {
                 ...state,
                 filterBy: action.payload
             };
-        case 'SET_PAGINATION':
+        case SET_PAGINATION:
             return {
                 ...state,
                 page: action.payload

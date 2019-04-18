@@ -69480,7 +69480,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -78623,88 +78623,207 @@ function ProductComments(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _helpers_validation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/validation */ "./resources/js/helpers/validation.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
-function ProductCommentsForm(props) {
-  var commentsLength = props.commentsLength,
-      title = props.title,
-      userName = props.userName,
-      userEmail = props.userEmail,
-      handleSubmit = props.handleSubmit,
-      handleChange = props.handleChange;
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "review_form_wrapper",
-    className: "review_form_wrapper"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "review_form"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: "respond",
-    className: "comment-respond"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    id: "reply-title",
-    className: "comment-reply-title"
-  }, commentsLength ? 'Ваша оценка' : "\u0411\u0443\u0434\u044C\u0442\u0435 \u043F\u0435\u0440\u0432\u044B\u043C, \u043A\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0442\u0437\u044B\u0432 \u043D\u0430 \u201C".concat(title, "\u201D"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    id: "cancel-comment-reply-link",
-    href: "#",
-    style: {
-      display: 'none'
+
+
+
+var ProductCommentsForm =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(ProductCommentsForm, _Component);
+
+  function ProductCommentsForm(props) {
+    var _this;
+
+    _classCallCheck(this, ProductCommentsForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductCommentsForm).call(this, props));
+    _this.state = {
+      // START: input fields initional value
+      userName: '',
+      userEmail: '',
+      productCommentContent: '',
+      // END: input fields initional value
+      productSlug: null,
+      productID: null,
+      userID: null
+    };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(ProductCommentsForm, [{
+    key: "handleChange",
+    value: function handleChange(e) {
+      this.setState(_defineProperty({}, "".concat(e.target.name), e.target.value));
     }
-  }, "\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0442\u0432\u0435\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    onSubmit: handleSubmit,
-    method: "post",
-    id: "commentform",
-    className: "comment-form",
-    noValidate: ""
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "reply-title-after"
-  }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0434\u0430\u043D\u043D\u0443\u044E \u0444\u043E\u0440\u043C\u0443, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u0437\u044B\u0432 \u043E \u0442\u043E\u0432\u0430\u0440\u0435 \u0438\u043B\u0438 \u0437\u0430\u0434\u0430\u0442\u044C \u0432\u043E\u043F\u0440\u043E\u0441"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "comment-form-author"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "required"
-  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    onChange: handleChange,
-    id: "author",
-    name: "userName",
-    type: "text",
-    size: "30",
-    "aria-required": "true",
-    required: "",
-    defaultValue: userName
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "comment-form-email"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "E-mail \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "required"
-  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    onChange: handleChange,
-    id: "email",
-    name: "userEmail",
-    type: "email",
-    size: "30",
-    "aria-required": "true",
-    required: "",
-    defaultValue: userEmail
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "comment-form-comment"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0422\u0435\u043A\u0441\u0442 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "required"
-  }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
-    onChange: handleChange,
-    id: "comment",
-    name: "productCommentContent",
-    cols: "45",
-    rows: "8"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "form-submit"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    name: "submit",
-    type: "submit",
-    id: "submit",
-    className: "submit",
-    value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"
-  }))))));
-}
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      var _this2 = this;
 
-/* harmony default export */ __webpack_exports__["default"] = (ProductCommentsForm);
+      e.preventDefault();
+
+      if (this.state.productCommentContent && Object(_helpers_validation__WEBPACK_IMPORTED_MODULE_2__["validateEmail"])(this.state.userEmail) && this.state.userName) {
+        var productComment = {
+          content: this.state.productCommentContent,
+          user_name: this.state.userName,
+          user_email: this.state.userEmail,
+          product_slug: this.refs.productSlug.value,
+          product_id: this.refs.productID.value,
+          user_id: this.refs.userID.value
+        };
+        axios.post('/api/product-comments', productComment).then(function (response) {
+          var newCommentsList = [].concat(_toConsumableArray(_this2.state.comments), [response.data]);
+
+          _this2.setState({
+            comments: newCommentsList,
+            commentsLength: newCommentsList.length
+          });
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          commentsLength = _this$props.commentsLength,
+          title = _this$props.title,
+          userName = _this$props.userName,
+          userEmail = _this$props.userEmail; //const {userName, userEmail, handleSubmit, handleChange} = this.state;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "review_form_wrapper",
+        className: "review_form_wrapper"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "review_form"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        id: "respond",
+        className: "comment-respond"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        id: "reply-title",
+        className: "comment-reply-title"
+      }, commentsLength ? 'Ваша оценка' : "\u0411\u0443\u0434\u044C\u0442\u0435 \u043F\u0435\u0440\u0432\u044B\u043C, \u043A\u0442\u043E \u043E\u0441\u0442\u0430\u0432\u0438\u043B \u043E\u0442\u0437\u044B\u0432 \u043D\u0430 \u201C".concat(title, "\u201D"), " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        id: "cancel-comment-reply-link",
+        href: "#",
+        style: {
+          display: 'none'
+        }
+      }, "\u041E\u0442\u043C\u0435\u043D\u0438\u0442\u044C \u043E\u0442\u0432\u0435\u0442"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit,
+        method: "post",
+        id: "commentform",
+        className: "comment-form",
+        noValidate: ""
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "reply-title-after"
+      }, "\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 \u0434\u0430\u043D\u043D\u0443\u044E \u0444\u043E\u0440\u043C\u0443, \u0447\u0442\u043E\u0431\u044B \u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u0437\u044B\u0432 \u043E \u0442\u043E\u0432\u0430\u0440\u0435 \u0438\u043B\u0438 \u0437\u0430\u0434\u0430\u0442\u044C \u0432\u043E\u043F\u0440\u043E\u0441"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "comment-form-author"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0412\u0430\u0448\u0435 \u0438\u043C\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "required"
+      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleChange,
+        id: "author",
+        name: "userName",
+        type: "text",
+        size: "30",
+        "aria-required": "true",
+        required: "",
+        defaultValue: userName,
+        ref: "test"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "comment-form-email"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "E-mail \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "required"
+      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: this.handleChange,
+        id: "email",
+        name: "userEmail",
+        type: "email",
+        size: "30",
+        "aria-required": "true",
+        required: "",
+        defaultValue: userEmail
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "comment-form-comment"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "\u0422\u0435\u043A\u0441\u0442 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F \xA0", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "required"
+      }, "*")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        onChange: this.handleChange,
+        id: "comment",
+        name: "productCommentContent",
+        cols: "45",
+        rows: "8"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+        className: "form-submit"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        name: "submit",
+        type: "submit",
+        id: "submit",
+        className: "submit",
+        value: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"
+      }))))));
+    }
+  }]);
+
+  return ProductCommentsForm;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+var mapStateToProps = function mapStateToProps(state) {
+  var USER_ID = 10;
+  var _state$products$comme = state.products.comments,
+      allUsers = _state$products$comme.allUsers,
+      allComments = _state$products$comme.allComments;
+  var users = allUsers && allUsers.reduce(function (acc, el) {
+    return acc[el.id] = el, acc;
+  }, {});
+  var _state$products$produ = state.products.product.product,
+      id = _state$products$produ.id,
+      slug = _state$products$produ.slug,
+      title = _state$products$produ.title;
+  return {
+    productID: id,
+    productSlug: slug,
+    userID: 11,
+    userName: USER_ID === 11 ? '' : users && users[USER_ID]['name'],
+    userEmail: users && users[USER_ID]['email'],
+    commentsLength: allComments && allComments.length,
+    title: title
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(ProductCommentsForm));
 
 /***/ }),
 
@@ -83896,16 +84015,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProductComments__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../ProductComments */ "./resources/js/components/ProductComments.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -83914,9 +84023,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -83942,18 +84051,20 @@ function (_Component) {
     _this.state = {
       comments: [],
       users: {},
-      commentsLength: 0,
-
+      commentsLength: 0
       /* states for creating new comment */
-      productCommentContent: '',
-      productSlug: _this.props.productSlug,
-      productID: _this.props.productID,
+
+      /*productCommentContent: '',
+      productSlug: this.props.productSlug,
+      productID: this.props.productID,
       userID: null,
       userName: '',
-      userEmail: ''
+      userEmail: '',*/
+
     };
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    /*this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);*/
+
     return _this;
   }
 
@@ -83995,37 +84106,32 @@ function (_Component) {
         });
       });
     }
-  }, {
-    key: "handleChange",
-    value: function handleChange(e) {
-      this.setState(_defineProperty({}, "".concat(e.target.name), e.target.value));
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(e) {
-      var _this3 = this;
-
-      e.preventDefault();
-
-      if (this.state.productCommentContent && Object(_helpers_validation__WEBPACK_IMPORTED_MODULE_2__["validateEmail"])(this.state.userEmail) && this.state.userName) {
-        var productComment = {
-          content: this.state.productCommentContent,
-          product_slug: this.state.productSlug,
-          product_id: this.state.productID,
-          user_id: this.state.userID,
-          user_name: this.state.userName,
-          user_email: this.state.userEmail
-        };
-        axios.post('/api/product-comments', productComment).then(function (response) {
-          var newCommentsList = [].concat(_toConsumableArray(_this3.state.comments), [response.data]);
-
-          _this3.setState({
-            comments: newCommentsList,
-            commentsLength: newCommentsList.length
-          });
+    /*handleChange(e){
+        this.setState({
+            [`${e.target.name}`]: e.target.value,
         });
-      }
     }
+      handleSubmit(e){
+        e.preventDefault();
+          if ( this.state.productCommentContent && validateEmail(this.state.userEmail) && this.state.userName ) {
+            const productComment = {
+                content: this.state.productCommentContent,
+                product_slug: this.state.productSlug,
+                product_id: this.state.productID,
+                user_id: this.state.userID,
+                user_name: this.state.userName,
+                user_email: this.state.userEmail,
+            }
+              axios.post('/api/product-comments', productComment).then(response => {
+                const newCommentsList = [...this.state.comments, response.data];
+                this.setState({
+                    comments: newCommentsList,
+                    commentsLength: newCommentsList.length,
+                });
+            });
+        }
+    }*/
+
   }, {
     key: "render",
     value: function render() {
@@ -84047,9 +84153,10 @@ function (_Component) {
         title: "\u041E\u0442\u0437\u044B\u0432\u044B (".concat(this.state.commentsLength, ")")
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductComments__WEBPACK_IMPORTED_MODULE_4__["default"], {
         title: title,
-        state: this.state,
-        handleChange: this.handleChange,
-        handleSubmit: this.handleSubmit
+        state: this.state
+        /*handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}*/
+
       })));
     }
   }]);
@@ -85958,8 +86065,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

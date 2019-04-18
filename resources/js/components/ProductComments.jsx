@@ -3,9 +3,7 @@ import ProductCommentsForm from '../components/ProductCommentsForm';
 import ProductCommentsList from '../components/ProductCommentsList';
 
 function ProductComments (props) {
-
     const {title, handleChange, handleSubmit} = props;
-
     const {comments, users, commentsLength, userName, userEmail} = props.state;
 
     return (

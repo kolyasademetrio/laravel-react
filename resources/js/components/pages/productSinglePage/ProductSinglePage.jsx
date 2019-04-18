@@ -9,7 +9,6 @@ class ProductSinglePage extends Component {
 
     constructor(props){
         super(props);
-
         this.state = {
             'productSlug': this.props.match.params.product,
         };

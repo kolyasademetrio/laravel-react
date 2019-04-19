@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProductCommentsList(props){
+const ProductCommentsList = props => {
 
     const {comments, users, commentsLength} = props;
 

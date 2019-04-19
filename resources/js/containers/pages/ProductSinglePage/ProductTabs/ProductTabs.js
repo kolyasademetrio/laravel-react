@@ -9,7 +9,8 @@ const mapStateToProps = (state, ownProps) => {
     console.log( 'ownProps', ownProps );
     
     return{
-    comments: state
+    comments: state,
+    test: state,
 }};
 
 const mapDispatchToProps = dispatch => ({

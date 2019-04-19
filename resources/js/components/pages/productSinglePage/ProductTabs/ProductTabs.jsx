@@ -13,15 +13,15 @@ class ProductTabs extends Component {
             users: {},
             commentsLength: 0,
             /* states for creating new comment */
-            /*productCommentContent: '',
+            productCommentContent: '',
             productSlug: this.props.productSlug,
             productID: this.props.productID,
             userID: null,
             userName: '',
-            userEmail: '',*/
+            userEmail: '',
         };
-        /*this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);*/
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount(){
@@ -57,7 +57,7 @@ class ProductTabs extends Component {
         });
     }
 
-    /*handleChange(e){
+    handleChange(e){
         this.setState({
             [`${e.target.name}`]: e.target.value,
         });
@@ -84,7 +84,7 @@ class ProductTabs extends Component {
                 });
             });
         }
-    }*/
+    }
 
     render(){
         const {tabBg, descr, ingredients, usage, title } = this.props;
@@ -113,8 +113,8 @@ class ProductTabs extends Component {
                     <ProductComments
                         title={title}
                         state={this.state}
-                        /*handleChange={this.handleChange}
-                        handleSubmit={this.handleSubmit}*/
+                        handleChange={this.handleChange}
+                        handleSubmit={this.handleSubmit}
                     />
                 </div>
             </Tabs>

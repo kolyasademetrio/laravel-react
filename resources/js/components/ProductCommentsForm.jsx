@@ -9,7 +9,7 @@ const ProductCommentsForm = props => {
             <div id="review_form">
                 <div id="respond" className="comment-respond">
                     <span id="reply-title" className="comment-reply-title">
-                        {commentsLength ? 'Ваша оценка' : `Будьте первым, кто оставил отзыв на “${title}”`} <small><a id="cancel-comment-reply-link" href="#" style={{display:'inline-block'}}>Отменить ответ</a></small>
+                        {commentsLength ? 'Ваша оценка' : `Будьте первым, кто оставил отзыв на “${title}”`}
                     </span>
                     <form onSubmit={handleSubmit}>
                         <div className="reply-title-after">

@@ -56,11 +56,11 @@ class ProductCommentsController extends Controller
     {
         $product_comments = DB::table('product_comments')->where('product_slug', $id)->get();
 
-        $user_info = DB::table('users')->select('id', 'name', 'email', 'updated_at', 'logo')->get();
+        $all_users = DB::table('users')->select('id', 'name', 'email', 'updated_at', 'logo')->get();
 
         return response()->json([
             'allComments' => $product_comments,
-            'allUsers' => $user_info,
+            'allUsers' => $all_users,
         ]);
     }
 

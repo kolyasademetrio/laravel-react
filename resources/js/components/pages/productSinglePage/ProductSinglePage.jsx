@@ -14,14 +14,24 @@ class ProductSinglePage extends Component {
         };
     }
 
-    componentDidMount() {
-        const {setProductSingle} = this.props;
-        const productSlug = this.state.productSlug;
+   /* axios.get(`/api/products/${productSlug}`)
+    .then( ({data}) => {
+    setProductSingle(data);
+    });*/
 
-        axios.get(`/api/products/${productSlug}`)
+    /*fetchProductData(url, action){
+        axios.get(url)
             .then( ({data}) => {
-                setProductSingle(data);
+                action(data);
             });
+    }*/
+
+    componentDidMount() {
+        const {setProductSingle, fetchProductData} = this.props;
+        const productSlug = this.state.productSlug;
+        const url = `/api/products/${productSlug}`;
+
+        fetchProductData(url);
     }
 
     render(){
@@ -30,6 +40,7 @@ class ProductSinglePage extends Component {
         }
         
         const {
+            slug,
             id, title, excerpt, descr, regular_price, sale_price, currency,
             product_description_tab_content, product_ingredients_tab_content, product_usage_tab_content, tab_bg
         } = this.props.product;
@@ -114,7 +125,7 @@ class ProductSinglePage extends Component {
                                             ingredients={product_ingredients_tab_content}
                                             usage={product_usage_tab_content}
                                             tabBg={tab_bg}
-                                            productSlug={this.state.productSlug}
+                                            productSlug={slug}
                                             productID={id}
                                             title={title}
                                         />

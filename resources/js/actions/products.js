@@ -15,6 +15,15 @@ export const setProductComments = comments => ({
     payload: comments
 });
 
+export const fetchProductData = url => {
+    return dispatch => {
+        axios.get(url)
+            .then(({data}) => {
+                dispatch(setProductSingle(data))
+            });
+    }
+};
+
 export const CategoryFilters = {
     SHOW_ALL: SHOW_ALL,
     BESTSELLER: BESTSELLER,

@@ -5,13 +5,11 @@ import ProductTabs from '../../../../components/pages/productSinglePage/ProductT
 
 
 const mapStateToProps = (state, ownProps) => {
-    
-    console.log( 'ownProps', ownProps );
-    
     return{
-    comments: state,
-    test: state,
-}};
+        comments: state,
+        test: state,
+    }
+};
 
 const mapDispatchToProps = dispatch => ({
     setProductComments: comments => dispatch(setProductComments(comments))

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {setProductSingle} from '../../../actions/products';
+import {setProductSingle, fetchProductData} from '../../../actions/products';
 import ProductSinglePage from '../../../components/pages/productSinglePage/ProductSinglePage';
 
 
@@ -17,6 +17,7 @@ return {
 
 const mapDispatchToProps = dispatch => ({
     setProductSingle: product => dispatch(setProductSingle(product)),
+    fetchProductData: url => dispatch(fetchProductData(url)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductSinglePage);

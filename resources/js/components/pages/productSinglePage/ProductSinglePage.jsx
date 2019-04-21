@@ -9,35 +9,26 @@ class ProductSinglePage extends Component {
 
     constructor(props){
         super(props);
+        
+        console.log( 'this.props.match.params.product', this.props.match.params.product );
+        
         this.state = {
             'productSlug': this.props.match.params.product,
         };
     }
 
-   /* axios.get(`/api/products/${productSlug}`)
-    .then( ({data}) => {
-    setProductSingle(data);
-    });*/
-
-    /*fetchProductData(url, action){
-        axios.get(url)
-            .then( ({data}) => {
-                action(data);
-            });
-    }*/
-
     componentDidMount() {
-        const {setProductSingle, fetchProductData} = this.props;
-        const productSlug = this.state.productSlug;
-        const url = `/api/products/${productSlug}`;
-
-        fetchProductData(url);
+        const {setProductBySlug} = this.props;
+        const {productSlug} = this.state;
+        setProductBySlug(productSlug);
     }
 
     render(){
         if (!this.props.isSingleReady) {
             return null;
         }
+        
+        console.log( 'this.props in render', this.props );
         
         const {
             slug,

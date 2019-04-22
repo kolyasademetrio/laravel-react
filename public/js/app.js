@@ -78941,10 +78941,14 @@ var setProductBySlug = function setProductBySlug(slug) {
               case 4:
                 _ref2 = _context.sent;
                 data = _ref2.data;
-                dispatch({
-                  type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_BY_SLUG_SUCCEEDED"],
-                  payload: data
-                });
+
+                if (data.product) {
+                  dispatch({
+                    type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_BY_SLUG_SUCCEEDED"],
+                    payload: data
+                  });
+                }
+
                 _context.next = 12;
                 break;
 
@@ -85870,7 +85874,8 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     setProductBySlug: function setProductBySlug(slug) {
       return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setProductBySlug"])(slug));
-    }
+    } // fetchProductData: slug => dispatch(fetchProductData(slug)),
+
   };
 };
 
@@ -86756,6 +86761,12 @@ var INITIAL_STATE = {
       return _objectSpread({}, state, {
         items: action.payload,
         isReady: true
+      });
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCT_SINGLE"]:
+      return _objectSpread({}, state, {
+        product: action.payload,
+        isSingleReady: true
       });
 
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCT_BY_SLUG"]:

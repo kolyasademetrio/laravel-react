@@ -49,7 +49,10 @@ export const setProductBySlug = slug => {
 
         try {
             const { data } = await axios.get(`/api/products/${slug}`);
-            dispatch({ type: SET_PRODUCT_BY_SLUG_SUCCEEDED, payload: data });
+
+            if(data.product){
+                dispatch({ type: SET_PRODUCT_BY_SLUG_SUCCEEDED, payload: data });
+            }
         } catch (err) {
             dispatch({ type: SET_PRODUCT_BY_SLUG_FAILED, payload: err });
         }

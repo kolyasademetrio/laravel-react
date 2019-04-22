@@ -78918,8 +78918,6 @@ var setProductBySlug = function setProductBySlug(slug) {
       var _ref = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(dispatch) {
-        var _ref2, data;
-
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -78927,45 +78925,43 @@ var setProductBySlug = function setProductBySlug(slug) {
                 dispatch({
                   type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_BY_SLUG"]
                 });
-                /*axios.get(`/api/products/${slug}`)
-                    .then(({data}) => {
-                        dispatch({ type: SET_PRODUCT_BY_SLUG_SUCCEEDED, payload: data });
-                    }).catch(err => {
-                        dispatch({ type: SET_PRODUCT_BY_SLUG_FAILED, payload: err });
-                    });*/
+                axios.get("/api/products/".concat(slug)).then(function (_ref2) {
+                  var data = _ref2.data;
 
-                _context.prev = 1;
-                _context.next = 4;
-                return axios.get("/api/products/".concat(slug));
-
-              case 4:
-                _ref2 = _context.sent;
-                data = _ref2.data;
-
-                if (data.product) {
+                  if (data.product) {
+                    dispatch({
+                      type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_BY_SLUG_SUCCEEDED"],
+                      payload: data
+                    });
+                  } else {
+                    dispatch({
+                      type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_BY_SLUG_FAILED"],
+                      payload: 404
+                    });
+                  }
+                }).catch(function (err) {
                   dispatch({
-                    type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_BY_SLUG_SUCCEEDED"],
-                    payload: data
+                    type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_BY_SLUG_FAILED"],
+                    payload: err
                   });
-                }
-
-                _context.next = 12;
-                break;
-
-              case 9:
-                _context.prev = 9;
-                _context.t0 = _context["catch"](1);
-                dispatch({
-                  type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_BY_SLUG_FAILED"],
-                  payload: _context.t0
                 });
+                /*try {
+                    const { data } = await axios.get(`/api/products/${slug}`);
+                      if(data.product){
+                        dispatch({ type: SET_PRODUCT_BY_SLUG_SUCCEEDED, payload: data });
+                    } else {
+                        dispatch({ type: SET_PRODUCT_BY_SLUG_FAILED, payload: 404 });
+                    }
+                } catch (err) {
+                    dispatch({ type: SET_PRODUCT_BY_SLUG_FAILED, payload: err });
+                }*/
 
-              case 12:
+              case 2:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[1, 9]]);
+        }, _callee);
       }));
 
       return function (_x) {
@@ -84568,6 +84564,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProductGallery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductGallery */ "./resources/js/components/pages/productSinglePage/ProductGallery.js");
 /* harmony import */ var _Quantity__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Quantity */ "./resources/js/components/pages/productSinglePage/Quantity.jsx");
 /* harmony import */ var _containers_pages_ProductSinglePage_ProductTabs_ProductTabs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../containers/pages/ProductSinglePage/ProductTabs/ProductTabs */ "./resources/js/containers/pages/ProductSinglePage/ProductTabs/ProductTabs.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _ErrorPage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../ErrorPage */ "./resources/js/components/pages/ErrorPage.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84592,6 +84590,12 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
+var Preloader = function Preloader() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Preloader...");
+};
 
 var ProductSinglePage =
 /*#__PURE__*/
@@ -84621,11 +84625,25 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      if (!this.props.isSingleReady) {
+      var _this$props = this.props,
+          error = _this$props.error,
+          isSingleLoading = _this$props.isSingleLoading,
+          isSingleReady = _this$props.isSingleReady;
+
+      if (error === 404) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Route"], {
+          component: _ErrorPage__WEBPACK_IMPORTED_MODULE_7__["default"]
+        });
+      }
+
+      if (isSingleLoading) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Preloader, null);
+      }
+
+      if (!isSingleReady) {
         return null;
       }
 
-      console.log('this.props in render', this.props);
       var _this$props$product = this.props.product,
           slug = _this$props$product.slug,
           id = _this$props$product.id,
@@ -85858,6 +85876,7 @@ __webpack_require__.r(__webpack_exports__);
 var mapStateToProps = function mapStateToProps(state) {
   var _state$products = state.products,
       isSingleReady = _state$products.isSingleReady,
+      isSingleLoading = _state$products.isSingleLoading,
       error = _state$products.error;
   var _state$products$produ = state.products.product,
       product = _state$products$produ.product,
@@ -85865,6 +85884,7 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     product: product,
     productAttachments: productAttachments,
+    isSingleLoading: isSingleLoading,
     isSingleReady: isSingleReady,
     error: error
   };
@@ -85874,8 +85894,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     setProductBySlug: function setProductBySlug(slug) {
       return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setProductBySlug"])(slug));
-    } // fetchProductData: slug => dispatch(fetchProductData(slug)),
-
+    }
   };
 };
 
@@ -86763,12 +86782,6 @@ var INITIAL_STATE = {
         isReady: true
       });
 
-    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCT_SINGLE"]:
-      return _objectSpread({}, state, {
-        product: action.payload,
-        isSingleReady: true
-      });
-
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCT_BY_SLUG"]:
       return _objectSpread({}, state, {
         isSingleReady: false,
@@ -86848,8 +86861,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

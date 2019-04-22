@@ -26,12 +26,6 @@ export default function (state = INITIAL_STATE,action){
                 items: action.payload,
                 isReady: true
             };
-        case SET_PRODUCT_SINGLE:
-            return {
-                ...state,
-                product: action.payload,
-                isSingleReady: true,
-            };
         case SET_PRODUCT_BY_SLUG:
             return {
                 ...state,

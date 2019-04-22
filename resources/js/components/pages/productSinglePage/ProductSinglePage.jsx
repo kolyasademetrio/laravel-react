@@ -4,6 +4,14 @@ import ReactHtmlParser from 'react-html-parser';
 import ProductGallery from './ProductGallery';
 import Quantity from './Quantity';
 import ProductTabs from '../../../containers/pages/ProductSinglePage/ProductTabs/ProductTabs';
+import {Route} from 'react-router-dom';
+import ErrorPage from "../ErrorPage";
+
+const Preloader = () => {
+    return (
+        <div>Preloader...</div>
+    );
+};
 
 class ProductSinglePage extends Component {
 
@@ -24,12 +32,21 @@ class ProductSinglePage extends Component {
     }
 
     render(){
-        if (!this.props.isSingleReady) {
+
+        const {error, isSingleLoading, isSingleReady} = this.props;
+
+        if (error === 404) {
+            return <Route component={ErrorPage} />
+        }
+
+        if (isSingleLoading) {
+           return <Preloader/>;
+        }
+
+        if (!isSingleReady) {
             return null;
         }
-        
-        console.log( 'this.props in render', this.props );
-        
+
         const {
             slug,
             id, title, excerpt, descr, regular_price, sale_price, currency,

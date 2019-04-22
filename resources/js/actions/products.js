@@ -40,22 +40,28 @@ export const setProductBySlug = slug => {
     return async dispatch => {
         dispatch({ type: SET_PRODUCT_BY_SLUG });
 
-        /*axios.get(`/api/products/${slug}`)
+        axios.get(`/api/products/${slug}`)
             .then(({data}) => {
-                dispatch({ type: SET_PRODUCT_BY_SLUG_SUCCEEDED, payload: data });
+                if(data.product){
+                    dispatch({ type: SET_PRODUCT_BY_SLUG_SUCCEEDED, payload: data });
+                } else {
+                    dispatch({ type: SET_PRODUCT_BY_SLUG_FAILED, payload: 404 });
+                }
             }).catch(err => {
                 dispatch({ type: SET_PRODUCT_BY_SLUG_FAILED, payload: err });
-            });*/
+            });
 
-        try {
+        /*try {
             const { data } = await axios.get(`/api/products/${slug}`);
 
             if(data.product){
                 dispatch({ type: SET_PRODUCT_BY_SLUG_SUCCEEDED, payload: data });
+            } else {
+                dispatch({ type: SET_PRODUCT_BY_SLUG_FAILED, payload: 404 });
             }
         } catch (err) {
             dispatch({ type: SET_PRODUCT_BY_SLUG_FAILED, payload: err });
-        }
+        }*/
     };
 }
 

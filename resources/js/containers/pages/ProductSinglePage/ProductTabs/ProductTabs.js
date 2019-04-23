@@ -1,18 +1,18 @@
 import {connect} from 'react-redux';
-import {setProductComments} from '../../../../actions/products';
+import {setProductComments, removeProductCommentById} from '../../../../actions/products';
 import ProductTabs from '../../../../components/pages/productSinglePage/ProductTabs/ProductTabs';
 
 
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return{
         comments: state,
-        test: state,
     }
 };
 
 const mapDispatchToProps = dispatch => ({
-    setProductComments: comments => dispatch(setProductComments(comments))
+    setProductComments: comments => dispatch(setProductComments(comments)),
+    removeProductCommentById: id => dispatch(removeProductCommentById(id)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProductTabs);

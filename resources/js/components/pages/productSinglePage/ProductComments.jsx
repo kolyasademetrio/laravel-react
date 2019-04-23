@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import ProductCommentsForm from '../components/ProductCommentsForm';
-import ProductCommentsList from '../components/ProductCommentsList';
+import ProductCommentsForm from './ProductCommentsForm';
+import ProductCommentsList from './ProductCommentsList';
 
 function ProductComments (props) {
-    const {title, handleChange, handleSubmit} = props;
+    const {title, handleChange, handleSubmit, handleRemove} = props;
     const {comments, users, commentsLength, userName, userEmail} = props.state;
 
     return (
@@ -12,6 +12,7 @@ function ProductComments (props) {
                 comments={comments}
                 users={users}
                 commentsLength={commentsLength}
+                handleRemove={handleRemove}
             />
 
             <ProductCommentsForm

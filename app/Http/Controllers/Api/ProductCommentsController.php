@@ -95,6 +95,7 @@ class ProductCommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //ProductComments::destroy($id);
+        ProductComments::findOrFail($id)->delete();
     }
 }

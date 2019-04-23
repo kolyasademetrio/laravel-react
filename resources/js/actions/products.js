@@ -1,10 +1,11 @@
 import {
     SET_PRODUCTS,
-    SET_PRODUCT_SINGLE,
     SET_PRODUCT_BY_SLUG,
     SET_PRODUCT_BY_SLUG_SUCCEEDED,
     SET_PRODUCT_BY_SLUG_FAILED,
     SET_PRODUCT_COMMENTS,
+    REMOVE_COMMENT_BY_ID,
+    REMOVE_COMMENT_BY_ID_SUCCEEDED,
     SHOW_ALL,
     BESTSELLER,
     FACE,
@@ -21,6 +22,14 @@ export const setProductComments = comments => ({
     type: SET_PRODUCT_COMMENTS,
     payload: comments
 });
+
+export const removeProductCommentById = id => {
+    return async dispatch => {
+        axios.delete(`/api/product-comments/${id}`).then(() => {
+            dispatch({ type: REMOVE_COMMENT_BY_ID, payload: id });
+        });
+    };
+};
 
 export const setProductBySlug = slug => {
     return async dispatch => {

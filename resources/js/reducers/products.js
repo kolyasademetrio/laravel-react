@@ -1,10 +1,10 @@
 import {
     SET_PRODUCTS,
-    SET_PRODUCT_SINGLE,
     SET_PRODUCT_BY_SLUG,
     SET_PRODUCT_BY_SLUG_SUCCEEDED,
     SET_PRODUCT_BY_SLUG_FAILED,
-    SET_PRODUCT_COMMENTS
+    SET_PRODUCT_COMMENTS,
+    REMOVE_COMMENT_BY_ID,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -56,6 +56,16 @@ export default function (state = INITIAL_STATE,action){
                 ...state,
                 comments: action.payload,
                 isCommentsReady: true,
+            };
+        case REMOVE_COMMENT_BY_ID:
+
+            console.log( 'state.comments.allComments', state.comments.allComments );
+
+            console.log( 'action.payload', action.payload );
+
+            return {
+                ...state,
+                allComments: state.comments.allComments.filter(comment => comment.id != action.payload),
             };
         default:
             return state;

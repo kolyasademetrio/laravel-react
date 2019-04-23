@@ -8030,6 +8030,19 @@ nav.pagination ul li.active span {
     min-height: 100px;
 }
 
+.remove_comment {
+    font-size: 25px;
+    color: #f15900;
+    right: 7px;
+    top: 0;
+    cursor: pointer;
+    position: absolute;
+}
+
+.woocommerce #reviews #comments ol.commentlist li .comment-text {
+    position: relative;
+}
+
 
 /* advanced - enter transition 800ms, exit 150ms */
 /* .fade-appear,

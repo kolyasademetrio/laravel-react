@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ReactHtmlParser from "react-html-parser";
 import {validateEmail} from '../../../../helpers/validation';
 import Tabs from './Tabs';
-import ProductComments from '../../../ProductComments';
+import ProductComments from '../ProductComments';
 
 class ProductTabs extends Component {
 
@@ -22,9 +22,12 @@ class ProductTabs extends Component {
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
     }
 
     componentDidMount(){
+
+        console.log( 'this.props', this.props );
 
         const {productSlug, setProductComments} = this.props;
 
@@ -86,6 +89,19 @@ class ProductTabs extends Component {
         }
     }
 
+    handleRemove(id){
+        const {removeProductCommentById} = this.props;
+
+        const newCommentsList = this.state.comments.filter(comment => comment.id !== id);
+
+        this.setState({
+            comments: newCommentsList,
+            commentsLength: newCommentsList.length,
+        });
+
+        removeProductCommentById(id);
+    }
+
     render(){
         const {tabBg, descr, ingredients, usage, title } = this.props;
 
@@ -115,6 +131,7 @@ class ProductTabs extends Component {
                         state={this.state}
                         handleChange={this.handleChange}
                         handleSubmit={this.handleSubmit}
+                        handleRemove={this.handleRemove}
                     />
                 </div>
             </Tabs>

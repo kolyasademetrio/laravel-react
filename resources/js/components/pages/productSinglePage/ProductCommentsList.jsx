@@ -2,9 +2,11 @@ import React from 'react';
 
 const ProductCommentsList = props => {
 
-    const {comments, users, commentsLength} = props;
+    const {comments, users, commentsLength, handleRemove} = props;
 
     const NoReviewMessage = () =>  <p className="woocommerce-noreviews">Отзывов пока нет.</p>;
+
+    console.log( comments );
 
     return (
         <div id="comments" className="comments">
@@ -36,6 +38,9 @@ const ProductCommentsList = props => {
                                     <div className="description">
                                         <p>{comment.content}</p>
                                     </div>
+                                    <div
+                                        className="remove_comment" onClick={() => handleRemove(comment.id)}
+                                    >&times;</div>
                                 </div>
                             </div>
                         </li>

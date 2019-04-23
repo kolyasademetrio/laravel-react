@@ -4,8 +4,10 @@ import {
     SET_PRODUCT_BY_SLUG_SUCCEEDED,
     SET_PRODUCT_BY_SLUG_FAILED,
     SET_PRODUCT_COMMENTS,
+    SET_PRODUCT_COMMENTS_SUCCEEDED,
+    SET_PRODUCT_COMMENTS_FAILED,
     REMOVE_COMMENT_BY_ID,
-    REMOVE_COMMENT_BY_ID_SUCCEEDED,
+    ADD_PRODUCT_COMMENT,
     SHOW_ALL,
     BESTSELLER,
     FACE,
@@ -23,10 +25,50 @@ export const setProductComments = comments => ({
     payload: comments
 });
 
+export const setProductCommentsBySlug = slug => {
+    return async dispatch => {
+        dispatch({type: SET_PRODUCT_COMMENTS});
+
+        axios.get(`/api/product-comments/${slug}`).then(data => {
+
+            let {allComments, allUsers} = data.data;
+            const users = allUsers && allUsers.reduce((acc, el) => (
+                acc[el.id] = el, acc
+            ), {});
+
+            // while authorization does not work user_id
+            // if current user is logged out -> userID is id of the guest user users.id = 11
+            const USER_ID = 11;
+
+            const payloadData = {
+                userID: USER_ID,
+                allComments: allComments,
+                commentsLength: allComments.length,
+                allUsers: users,
+                userLogo: users[USER_ID]['logo'],
+                userName: (USER_ID === 11) ? '' : users[USER_ID]['name'],
+                userEmail: users[USER_ID]['email']
+            };
+
+            dispatch({type: SET_PRODUCT_COMMENTS_SUCCEEDED, payload: payloadData});
+        }).catch(err => {
+            dispatch({ type: SET_PRODUCT_COMMENTS_FAILED, payload: err });
+        });
+    }
+};
+
 export const removeProductCommentById = id => {
     return async dispatch => {
         axios.delete(`/api/product-comments/${id}`).then(() => {
             dispatch({ type: REMOVE_COMMENT_BY_ID, payload: id });
+        });
+    };
+};
+
+export const addProductComment = newComment => {
+    return async dispatch => {
+        axios.post('/api/product-comments', newComment).then(response => {
+            dispatch({type: ADD_PRODUCT_COMMENT, payload: newComment});
         });
     };
 };

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 const ProductCommentsForm = props => {
 
@@ -52,4 +53,14 @@ const ProductCommentsForm = props => {
     );
 }
 
-export default ProductCommentsForm;
+const mapStateToProps = state => {
+    const {commentsLength, userName, userEmail} = state.products.comments;
+    return {
+        commentsLength: commentsLength,
+        userName: userName,
+        userEmail: userEmail,
+        title: '',
+    };
+};
+
+export default connect(mapStateToProps)(ProductCommentsForm);

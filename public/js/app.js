@@ -78864,14 +78864,16 @@ var setPagination = function setPagination(page) {
 /*!******************************************!*\
   !*** ./resources/js/actions/products.js ***!
   \******************************************/
-/*! exports provided: setProducts, setProductComments, removeProductCommentById, setProductBySlug, CategoryFilters */
+/*! exports provided: setProducts, setProductComments, setProductCommentsBySlug, removeProductCommentById, addProductComment, setProductBySlug, CategoryFilters */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProducts", function() { return setProducts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProductComments", function() { return setProductComments; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProductCommentsBySlug", function() { return setProductCommentsBySlug; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeProductCommentById", function() { return removeProductCommentById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addProductComment", function() { return addProductComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProductBySlug", function() { return setProductBySlug; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CategoryFilters", function() { return CategoryFilters; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -78896,7 +78898,7 @@ var setProductComments = function setProductComments(comments) {
     payload: comments
   };
 };
-var removeProductCommentById = function removeProductCommentById(id) {
+var setProductCommentsBySlug = function setProductCommentsBySlug(slug) {
   return (
     /*#__PURE__*/
     function () {
@@ -78907,14 +78909,40 @@ var removeProductCommentById = function removeProductCommentById(id) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                axios.delete("/api/product-comments/".concat(id)).then(function () {
+                dispatch({
+                  type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_COMMENTS"]
+                });
+                axios.get("/api/product-comments/".concat(slug)).then(function (data) {
+                  var _data$data = data.data,
+                      allComments = _data$data.allComments,
+                      allUsers = _data$data.allUsers;
+                  var users = allUsers && allUsers.reduce(function (acc, el) {
+                    return acc[el.id] = el, acc;
+                  }, {}); // while authorization does not work user_id
+                  // if current user is logged out -> userID is id of the guest user users.id = 11
+
+                  var USER_ID = 11;
+                  var payloadData = {
+                    userID: USER_ID,
+                    allComments: allComments,
+                    commentsLength: allComments.length,
+                    allUsers: users,
+                    userLogo: users[USER_ID]['logo'],
+                    userName: USER_ID === 11 ? '' : users[USER_ID]['name'],
+                    userEmail: users[USER_ID]['email']
+                  };
                   dispatch({
-                    type: _types__WEBPACK_IMPORTED_MODULE_1__["REMOVE_COMMENT_BY_ID"],
-                    payload: id
+                    type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_COMMENTS_SUCCEEDED"],
+                    payload: payloadData
+                  });
+                }).catch(function (err) {
+                  dispatch({
+                    type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_COMMENTS_FAILED"],
+                    payload: err
                   });
                 });
 
-              case 1:
+              case 2:
               case "end":
                 return _context.stop();
             }
@@ -78928,7 +78956,7 @@ var removeProductCommentById = function removeProductCommentById(id) {
     }()
   );
 };
-var setProductBySlug = function setProductBySlug(slug) {
+var removeProductCommentById = function removeProductCommentById(id) {
   return (
     /*#__PURE__*/
     function () {
@@ -78939,11 +78967,75 @@ var setProductBySlug = function setProductBySlug(slug) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                axios.delete("/api/product-comments/".concat(id)).then(function () {
+                  dispatch({
+                    type: _types__WEBPACK_IMPORTED_MODULE_1__["REMOVE_COMMENT_BY_ID"],
+                    payload: id
+                  });
+                });
+
+              case 1:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function (_x2) {
+        return _ref2.apply(this, arguments);
+      };
+    }()
+  );
+};
+var addProductComment = function addProductComment(newComment) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref3 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(dispatch) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                axios.post('/api/product-comments', newComment).then(function (response) {
+                  dispatch({
+                    type: _types__WEBPACK_IMPORTED_MODULE_1__["ADD_PRODUCT_COMMENT"],
+                    payload: newComment
+                  });
+                });
+
+              case 1:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function (_x3) {
+        return _ref3.apply(this, arguments);
+      };
+    }()
+  );
+};
+var setProductBySlug = function setProductBySlug(slug) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref4 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(dispatch) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
                 dispatch({
                   type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_BY_SLUG"]
                 });
-                axios.get("/api/products/".concat(slug)).then(function (_ref3) {
-                  var data = _ref3.data;
+                axios.get("/api/products/".concat(slug)).then(function (_ref5) {
+                  var data = _ref5.data;
 
                   if (data.product) {
                     dispatch({
@@ -78975,14 +79067,14 @@ var setProductBySlug = function setProductBySlug(slug) {
 
               case 2:
               case "end":
-                return _context2.stop();
+                return _context4.stop();
             }
           }
-        }, _callee2);
+        }, _callee4);
       }));
 
-      return function (_x2) {
-        return _ref2.apply(this, arguments);
+      return function (_x4) {
+        return _ref4.apply(this, arguments);
       };
     }()
   );
@@ -79001,7 +79093,7 @@ var CategoryFilters = {
 /*!***************************************!*\
   !*** ./resources/js/actions/types.js ***!
   \***************************************/
-/*! exports provided: SET_PRODUCTS, SET_PRODUCT_SINGLE, SET_PRODUCT_BY_SLUG, SET_PRODUCT_BY_SLUG_SUCCEEDED, SET_PRODUCT_BY_SLUG_FAILED, SET_CURRENT_PRODUCT_SLUG, SET_PRODUCT_COMMENTS, SET_PRODUCT_COMMENTS_BY_SLUG, SET_PRODUCT_COMMENTS_BY_SLUG_SUCCEEDED, SET_PRODUCT_COMMENTS_BY_SLUG_FAILED, REMOVE_COMMENT_BY_ID, REMOVE_COMMENT_BY_ID_SUCCEEDED, SHOW_ALL, SCRUB, BESTSELLER, FACE, BODY, SET_PAGINATION, SET_FILTER, SHOW_PRODUCTS_BY_CATEGORY_SHOP, SORT_PRODUCTS_SHOP, ADD_TO_CART, REMOVE_FROM_CART */
+/*! exports provided: SET_PRODUCTS, SET_PRODUCT_SINGLE, SET_PRODUCT_BY_SLUG, SET_PRODUCT_BY_SLUG_SUCCEEDED, SET_PRODUCT_BY_SLUG_FAILED, SET_CURRENT_PRODUCT_SLUG, SET_PRODUCT_COMMENTS, SET_PRODUCT_COMMENTS_SUCCEEDED, SET_PRODUCT_COMMENTS_FAILED, SET_PRODUCT_COMMENTS_BY_SLUG, SET_PRODUCT_COMMENTS_BY_SLUG_SUCCEEDED, SET_PRODUCT_COMMENTS_BY_SLUG_FAILED, REMOVE_COMMENT_BY_ID, ADD_PRODUCT_COMMENT, SHOW_ALL, SCRUB, BESTSELLER, FACE, BODY, SET_PAGINATION, SET_FILTER, SHOW_PRODUCTS_BY_CATEGORY_SHOP, SORT_PRODUCTS_SHOP, ADD_TO_CART, REMOVE_FROM_CART */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -79013,11 +79105,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCT_BY_SLUG_FAILED", function() { return SET_PRODUCT_BY_SLUG_FAILED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_CURRENT_PRODUCT_SLUG", function() { return SET_CURRENT_PRODUCT_SLUG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCT_COMMENTS", function() { return SET_PRODUCT_COMMENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCT_COMMENTS_SUCCEEDED", function() { return SET_PRODUCT_COMMENTS_SUCCEEDED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCT_COMMENTS_FAILED", function() { return SET_PRODUCT_COMMENTS_FAILED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCT_COMMENTS_BY_SLUG", function() { return SET_PRODUCT_COMMENTS_BY_SLUG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCT_COMMENTS_BY_SLUG_SUCCEEDED", function() { return SET_PRODUCT_COMMENTS_BY_SLUG_SUCCEEDED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCT_COMMENTS_BY_SLUG_FAILED", function() { return SET_PRODUCT_COMMENTS_BY_SLUG_FAILED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COMMENT_BY_ID", function() { return REMOVE_COMMENT_BY_ID; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_COMMENT_BY_ID_SUCCEEDED", function() { return REMOVE_COMMENT_BY_ID_SUCCEEDED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_PRODUCT_COMMENT", function() { return ADD_PRODUCT_COMMENT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SHOW_ALL", function() { return SHOW_ALL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SCRUB", function() { return SCRUB; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "BESTSELLER", function() { return BESTSELLER; });
@@ -79036,11 +79130,13 @@ var SET_PRODUCT_BY_SLUG_SUCCEEDED = "SET_PRODUCT_BY_SLUG_SUCCEEDED";
 var SET_PRODUCT_BY_SLUG_FAILED = "SET_PRODUCT_BY_SLUG_FAILED";
 var SET_CURRENT_PRODUCT_SLUG = "SET_CURRENT_PRODUCT_SLUG";
 var SET_PRODUCT_COMMENTS = "SET_PRODUCT_COMMENTS";
+var SET_PRODUCT_COMMENTS_SUCCEEDED = "SET_PRODUCT_COMMENTS_SUCCEEDED";
+var SET_PRODUCT_COMMENTS_FAILED = "SET_PRODUCT_COMMENTS_FAILED";
 var SET_PRODUCT_COMMENTS_BY_SLUG = "SET_PRODUCT_COMMENTS_BY_SLUG";
 var SET_PRODUCT_COMMENTS_BY_SLUG_SUCCEEDED = "SET_PRODUCT_COMMENTS_BY_SLUG_SUCCEEDED";
 var SET_PRODUCT_COMMENTS_BY_SLUG_FAILED = "SET_PRODUCT_COMMENTS_BY_SLUG_FAILED";
 var REMOVE_COMMENT_BY_ID = "REMOVE_COMMENT_BY_ID";
-var REMOVE_COMMENT_BY_ID_SUCCEEDED = "REMOVE_COMMENT_BY_ID_SUCCEEDED";
+var ADD_PRODUCT_COMMENT = "ADD_PRODUCT_COMMENT";
 var SHOW_ALL = 'SHOW_ALL';
 var SCRUB = 'SCRUB';
 var BESTSELLER = 'BESTSELLER';
@@ -84272,31 +84368,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function ProductComments(props) {
-  var title = props.title,
-      handleChange = props.handleChange,
+  var handleChange = props.handleChange,
       handleSubmit = props.handleSubmit,
       handleRemove = props.handleRemove;
-  var _props$state = props.state,
-      comments = _props$state.comments,
-      users = _props$state.users,
-      commentsLength = _props$state.commentsLength,
-      userName = _props$state.userName,
-      userEmail = _props$state.userEmail;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "reviews",
     className: "woocommerce-Reviews"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductCommentsList__WEBPACK_IMPORTED_MODULE_2__["default"], {
-    comments: comments,
-    users: users,
-    commentsLength: commentsLength,
     handleRemove: handleRemove
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductCommentsForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    title: title,
-    commentsLength: commentsLength,
     handleChange: handleChange,
-    handleSubmit: handleSubmit,
-    userName: userName,
-    userEmail: userEmail
+    handleSubmit: handleSubmit
   }));
 }
 
@@ -84315,6 +84397,8 @@ function ProductComments(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
 
 
 var ProductCommentsForm = function ProductCommentsForm(props) {
@@ -84377,7 +84461,20 @@ var ProductCommentsForm = function ProductCommentsForm(props) {
   }))))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (ProductCommentsForm);
+var mapStateToProps = function mapStateToProps(state) {
+  var _state$products$comme = state.products.comments,
+      commentsLength = _state$products$comme.commentsLength,
+      userName = _state$products$comme.userName,
+      userEmail = _state$products$comme.userEmail;
+  return {
+    commentsLength: commentsLength,
+    userName: userName,
+    userEmail: userEmail,
+    title: ''
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(ProductCommentsForm));
 
 /***/ }),
 
@@ -84392,7 +84489,9 @@ var ProductCommentsForm = function ProductCommentsForm(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -84408,7 +84507,6 @@ var ProductCommentsList = function ProductCommentsList(props) {
     }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.");
   };
 
-  console.log(comments);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "comments",
     className: "comments"
@@ -84450,7 +84548,23 @@ var ProductCommentsList = function ProductCommentsList(props) {
   })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NoReviewMessage, null));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (ProductCommentsList);
+var mapStateToProps = function mapStateToProps(state) {
+  var _state$products$comme = state.products.comments,
+      allUsers = _state$products$comme.allUsers,
+      allComments = _state$products$comme.allComments,
+      commentsLength = _state$products$comme.commentsLength;
+  return {
+    users: allUsers,
+    comments: allComments,
+    commentsLength: commentsLength
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(ProductCommentsList));
 
 /***/ }),
 
@@ -84644,7 +84758,6 @@ function (_Component) {
     _classCallCheck(this, ProductSinglePage);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductSinglePage).call(this, props));
-    console.log('aaaaaaaaaa', _this.props.match.params.product);
     _this.state = {
       'productSlug': _this.props.match.params.product
     };
@@ -84849,14 +84962,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ProductComments__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ProductComments */ "./resources/js/components/pages/productSinglePage/ProductComments.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84893,15 +84998,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductTabs).call(this, props));
     _this.state = {
-      comments: [],
-      users: {},
-      commentsLength: 0,
-
-      /* states for creating new comment */
       productCommentContent: '',
-      productSlug: _this.props.productSlug,
-      productID: _this.props.productID,
-      userID: null,
       userName: '',
       userEmail: ''
     };
@@ -84914,41 +85011,10 @@ function (_Component) {
   _createClass(ProductTabs, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
-      console.log('this.props', this.props);
       var _this$props = this.props,
           productSlug = _this$props.productSlug,
-          setProductComments = _this$props.setProductComments;
-      axios.get("/api/product-comments/".concat(productSlug)).then(function (data) {
-        setProductComments(data.data);
-        var _data$data = data.data,
-            allComments = _data$data.allComments,
-            allUsers = _data$data.allUsers;
-        var users = allUsers.reduce(function (acc, el) {
-          return acc[el.id] = el, acc;
-        }, {});
-        /*
-        if current user is logged out -> userID is id of the guest user users.id = 11
-        while authorization does not work the variable is declared here
-        */
-
-        var USER_ID = _this2.state.userID ? _this2.state.userID : 11;
-
-        _this2.setState({
-          comments: allComments,
-          //is Array
-          users: users,
-          // is Object
-          userID: USER_ID,
-          // if current user is logged out then userName is empty string
-          // is for empty string validation before send request to server
-          userName: USER_ID === 11 ? '' : users[USER_ID]['name'],
-          userEmail: users[USER_ID]['email'],
-          userLogo: users[USER_ID]['logo'],
-          commentsLength: allComments.length ? allComments.length : 0
-        });
-      });
+          setProductCommentsBySlug = _this$props.setProductCommentsBySlug;
+      setProductCommentsBySlug(productSlug);
     }
   }, {
     key: "handleChange",
@@ -84958,41 +85024,27 @@ function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(e) {
-      var _this3 = this;
-
       e.preventDefault();
+      var comment = this.state.productCommentContent;
+      var useremail = this.state.userEmail ? this.state.userEmail : this.props.userEmail;
+      var username = this.state.userName ? this.state.userName : this.props.userName;
 
-      if (this.state.productCommentContent && Object(_helpers_validation__WEBPACK_IMPORTED_MODULE_2__["validateEmail"])(this.state.userEmail) && this.state.userName) {
+      if (comment && Object(_helpers_validation__WEBPACK_IMPORTED_MODULE_2__["validateEmail"])(useremail) && username) {
         var productComment = {
-          content: this.state.productCommentContent,
-          product_slug: this.state.productSlug,
-          product_id: this.state.productID,
-          user_id: this.state.userID,
-          user_name: this.state.userName,
-          user_email: this.state.userEmail
+          content: comment,
+          user_name: useremail,
+          user_email: username,
+          product_slug: this.props.productSlug,
+          product_id: this.props.productID,
+          user_id: this.props.userID
         };
-        axios.post('/api/product-comments', productComment).then(function (response) {
-          var newCommentsList = [].concat(_toConsumableArray(_this3.state.comments), [response.data]);
-
-          _this3.setState({
-            comments: newCommentsList,
-            commentsLength: newCommentsList.length
-          });
-        });
+        this.props.addProductComment(productComment);
       }
     }
   }, {
     key: "handleRemove",
     value: function handleRemove(id) {
-      var removeProductCommentById = this.props.removeProductCommentById;
-      var newCommentsList = this.state.comments.filter(function (comment) {
-        return comment.id !== id;
-      });
-      this.setState({
-        comments: newCommentsList,
-        commentsLength: newCommentsList.length
-      });
-      removeProductCommentById(id);
+      this.props.removeProductCommentById(id);
     }
   }, {
     key: "render",
@@ -85002,7 +85054,7 @@ function (_Component) {
           descr = _this$props2.descr,
           ingredients = _this$props2.ingredients,
           usage = _this$props2.usage,
-          title = _this$props2.title;
+          commentsLength = _this$props2.commentsLength;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Tabs__WEBPACK_IMPORTED_MODULE_3__["default"], {
         tabBg: tabBg
       }, descr && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85012,10 +85064,8 @@ function (_Component) {
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(ingredients)), usage && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         title: "\u041F\u0440\u0438\u043C\u0435\u043D\u0435\u043D\u0438\u0435"
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(usage)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        title: "\u041E\u0442\u0437\u044B\u0432\u044B (".concat(this.state.commentsLength, ")")
+        title: "\u041E\u0442\u0437\u044B\u0432\u044B (".concat(commentsLength, ")")
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductComments__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        title: title,
-        state: this.state,
         handleChange: this.handleChange,
         handleSubmit: this.handleSubmit,
         handleRemove: this.handleRemove
@@ -86008,15 +86058,37 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
+  var _state$products$comme = state.products.comments,
+      userID = _state$products$comme.userID,
+      allUsers = _state$products$comme.allUsers,
+      allComments = _state$products$comme.allComments,
+      commentsLength = _state$products$comme.commentsLength,
+      userLogo = _state$products$comme.userLogo,
+      userName = _state$products$comme.userName,
+      userEmail = _state$products$comme.userEmail;
+  var _state$products$produ = state.products.product.product,
+      product_slug = _state$products$produ.product_slug,
+      product_id = _state$products$produ.product_id;
   return {
-    comments: state
+    userID: userID,
+    productSlug: product_slug,
+    productID: product_id,
+    users: allUsers,
+    comments: allComments,
+    commentsLength: commentsLength,
+    userLogo: userLogo,
+    userName: userName,
+    userEmail: userEmail
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    setProductComments: function setProductComments(comments) {
-      return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setProductComments"])(comments));
+    setProductCommentsBySlug: function setProductCommentsBySlug(slug) {
+      return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setProductCommentsBySlug"])(slug));
+    },
+    addProductComment: function addProductComment(id) {
+      return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["addProductComment"])(id));
     },
     removeProductCommentById: function removeProductCommentById(id) {
       return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["removeProductCommentById"])(id));
@@ -86922,13 +86994,27 @@ var INITIAL_STATE = {
 
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCT_COMMENTS"]:
       return _objectSpread({}, state, {
+        isCommentsReady: false,
+        isCommentsLoading: true,
+        error: null
+      });
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCT_COMMENTS_SUCCEEDED"]:
+      return _objectSpread({}, state, {
         comments: action.payload,
-        isCommentsReady: true
+        isCommentsReady: true,
+        isCommentsLoading: false,
+        error: null
+      });
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCT_COMMENTS_FAILED"]:
+      return _objectSpread({}, state, {
+        isCommentsReady: false,
+        isCommentsLoading: false,
+        error: action.payload
       });
 
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT_BY_ID"]:
-      console.log('state.comments.allComments', state.comments.allComments);
-      console.log('action.payload', action.payload);
       return _objectSpread({}, state, {
         allComments: state.comments.allComments.filter(function (comment) {
           return comment.id != action.payload;
@@ -86986,8 +87072,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

@@ -6,12 +6,7 @@ import Quantity from './Quantity';
 import ProductTabs from '../../../containers/pages/ProductSinglePage/ProductTabs/ProductTabs';
 import {Route} from 'react-router-dom';
 import ErrorPage from "../ErrorPage";
-
-const Preloader = () => {
-    return (
-        <div>Preloader...</div>
-    );
-};
+import Preloader from '../../../helpers/preloader';
 
 class ProductSinglePage extends Component {
 
@@ -32,17 +27,16 @@ class ProductSinglePage extends Component {
     }
 
     render(){
-
         const {error, isSingleLoading, isSingleReady} = this.props;
 
         if (error === 404) {
             return <Route component={ErrorPage} />
         }
-
         if (isSingleLoading) {
-           return <Preloader/>;
+           return (
+               <Preloader />
+           );
         }
-
         if (!isSingleReady) {
             return null;
         }

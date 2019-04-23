@@ -8017,7 +8017,18 @@ nav.pagination ul li.active span {
     clear: both;
 }
 
-
+.preloader {
+    display: -webkit-box;
+    display: -ms-flexbox;
+           display: flex;
+    -webkit-box-pack: center;
+       -ms-flex-pack: center;
+     justify-content: center;
+    -webkit-box-align: center;
+       -ms-flex-align: center;
+          align-items: center;
+    min-height: 100px;
+}
 
 
 /* advanced - enter transition 800ms, exit 150ms */

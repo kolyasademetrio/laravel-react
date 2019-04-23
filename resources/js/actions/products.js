@@ -17,24 +17,10 @@ export const setProducts = products => ({
     payload: products
 });
 
-export const setProductSingle = product => ({
-    type: SET_PRODUCT_SINGLE,
-    payload: product
-});
-
 export const setProductComments = comments => ({
     type: SET_PRODUCT_COMMENTS,
     payload: comments
 });
-
-/*export const fetchProductData = url => {
-    return dispatch => {
-        axios.get(url)
-            .then(({data}) => {
-                dispatch(setProductSingle(data))
-            });
-    }
-};*/
 
 export const setProductBySlug = slug => {
     return async dispatch => {

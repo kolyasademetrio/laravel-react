@@ -37,9 +37,6 @@ class ProductTabs extends Component {
                 acc[el.id] = el, acc
             ), {});
 
-            console.log( 'allUsers', allUsers );
-            console.log( 'users', users );
-
             /*
             if current user is logged out -> userID is id of the guest user users.id = 11
             while authorization does not work the variable is declared here

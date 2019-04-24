@@ -3,11 +3,9 @@ import {setProductCommentsBySlug, addProductComment, removeProductCommentById, }
 import ProductTabs from '../../../../components/pages/productSinglePage/ProductTabs/ProductTabs';
 
 
-
 const mapStateToProps = (state) => {
 
     const {userID, allUsers, allComments, commentsLength, userLogo, userName, userEmail} = state.products.comments;
-    
     const {slug, id} = state.products.product.product;
     
     return{

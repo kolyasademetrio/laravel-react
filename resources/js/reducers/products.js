@@ -84,14 +84,17 @@ export default function (state = INITIAL_STATE,action){
                 },
             };
         case ADD_PRODUCT_COMMENT:
+            const allCommentsNew = [
+                ...state.comments.allComments,
+                action.payload,
+            ];
+
             return {
                 ...state,
                 comments: {
                     ...state.comments,
-                    allComments: [
-                        ...state.comments.allComments,
-                        action.payload,
-                    ],
+                    allComments: allCommentsNew,
+                    commentsLength: allCommentsNew.length,
                 },
             };
         default:

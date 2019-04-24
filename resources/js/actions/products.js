@@ -20,11 +20,6 @@ export const setProducts = products => ({
     payload: products
 });
 
-export const setProductComments = comments => ({
-    type: SET_PRODUCT_COMMENTS,
-    payload: comments
-});
-
 export const setProductCommentsBySlug = slug => {
     return async dispatch => {
         dispatch({type: SET_PRODUCT_COMMENTS});
@@ -67,8 +62,8 @@ export const removeProductCommentById = id => {
 
 export const addProductComment = newComment => {
     return async dispatch => {
-        axios.post('/api/product-comments', newComment).then(response => {
-            dispatch({type: ADD_PRODUCT_COMMENT, payload: newComment});
+        axios.post('/api/product-comments', newComment).then(({data}) => {
+            dispatch({type: ADD_PRODUCT_COMMENT, payload: data});
         });
     };
 };

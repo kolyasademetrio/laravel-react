@@ -7,6 +7,8 @@ const ProductCommentsList = props => {
 
     const NoReviewMessage = () =>  <p className="woocommerce-noreviews">Отзывов пока нет.</p>;
 
+    console.log( 'comments in ProductCommentsList.jsx', comments );
+
     return (
         <div id="comments" className="comments">
             <h2 className="woocommerce-Reviews-title">Отзывы</h2>

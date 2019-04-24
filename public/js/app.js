@@ -78864,13 +78864,12 @@ var setPagination = function setPagination(page) {
 /*!******************************************!*\
   !*** ./resources/js/actions/products.js ***!
   \******************************************/
-/*! exports provided: setProducts, setProductComments, setProductCommentsBySlug, removeProductCommentById, addProductComment, setProductBySlug, CategoryFilters */
+/*! exports provided: setProducts, setProductCommentsBySlug, removeProductCommentById, addProductComment, setProductBySlug, CategoryFilters */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProducts", function() { return setProducts; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProductComments", function() { return setProductComments; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProductCommentsBySlug", function() { return setProductCommentsBySlug; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeProductCommentById", function() { return removeProductCommentById; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addProductComment", function() { return addProductComment; });
@@ -78890,12 +78889,6 @@ var setProducts = function setProducts(products) {
   return {
     type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCTS"],
     payload: products
-  };
-};
-var setProductComments = function setProductComments(comments) {
-  return {
-    type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_COMMENTS"],
-    payload: comments
   };
 };
 var setProductCommentsBySlug = function setProductCommentsBySlug(slug) {
@@ -78999,10 +78992,11 @@ var addProductComment = function addProductComment(newComment) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                axios.post('/api/product-comments', newComment).then(function (response) {
+                axios.post('/api/product-comments', newComment).then(function (_ref4) {
+                  var data = _ref4.data;
                   dispatch({
                     type: _types__WEBPACK_IMPORTED_MODULE_1__["ADD_PRODUCT_COMMENT"],
-                    payload: newComment
+                    payload: data
                   });
                 });
 
@@ -79024,7 +79018,7 @@ var setProductBySlug = function setProductBySlug(slug) {
   return (
     /*#__PURE__*/
     function () {
-      var _ref4 = _asyncToGenerator(
+      var _ref5 = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(dispatch) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
@@ -79034,8 +79028,8 @@ var setProductBySlug = function setProductBySlug(slug) {
                 dispatch({
                   type: _types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_BY_SLUG"]
                 });
-                axios.get("/api/products/".concat(slug)).then(function (_ref5) {
-                  var data = _ref5.data;
+                axios.get("/api/products/".concat(slug)).then(function (_ref6) {
+                  var data = _ref6.data;
 
                   if (data.product) {
                     dispatch({
@@ -79074,7 +79068,7 @@ var setProductBySlug = function setProductBySlug(slug) {
       }));
 
       return function (_x4) {
-        return _ref4.apply(this, arguments);
+        return _ref5.apply(this, arguments);
       };
     }()
   );
@@ -84508,6 +84502,7 @@ var ProductCommentsList = function ProductCommentsList(props) {
     }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.");
   };
 
+  console.log('comments in ProductCommentsList.jsx', comments);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "comments",
     className: "comments"
@@ -84795,7 +84790,6 @@ function (_Component) {
       }
 
       var _this$props$product = this.props.product,
-          slug = _this$props$product.slug,
           id = _this$props$product.id,
           title = _this$props$product.title,
           excerpt = _this$props$product.excerpt,
@@ -84841,10 +84835,7 @@ function (_Component) {
         descr: product_description_tab_content,
         ingredients: product_ingredients_tab_content,
         usage: product_usage_tab_content,
-        tabBg: tab_bg,
-        productSlug: slug,
-        productID: id,
-        title: title
+        tabBg: tab_bg
       }))))))));
     }
   }]);
@@ -85033,8 +85024,8 @@ function (_Component) {
       if (comment && Object(_helpers_validation__WEBPACK_IMPORTED_MODULE_2__["validateEmail"])(useremail) && username) {
         var productComment = {
           content: comment,
-          user_name: useremail,
-          user_email: username,
+          user_name: username,
+          user_email: useremail,
           product_slug: this.props.productSlug,
           product_id: this.props.productID,
           user_id: this.props.userID
@@ -87033,9 +87024,11 @@ var INITIAL_STATE = {
       });
 
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["ADD_PRODUCT_COMMENT"]:
+      var allCommentsNew = [].concat(_toConsumableArray(state.comments.allComments), [action.payload]);
       return _objectSpread({}, state, {
         comments: _objectSpread({}, state.comments, {
-          allComments: [].concat(_toConsumableArray(state.comments.allComments), [action.payload])
+          allComments: allCommentsNew,
+          commentsLength: allCommentsNew.length
         })
       });
 
@@ -87090,8 +87083,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

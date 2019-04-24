@@ -20,7 +20,6 @@ class ProductTabs extends Component {
 
     componentDidMount(){
         const {productSlug, setProductCommentsBySlug} = this.props;
-        
         setProductCommentsBySlug(productSlug);
     }
 
@@ -40,8 +39,8 @@ class ProductTabs extends Component {
         if ( comment && validateEmail(useremail) && username ) {
             const productComment = {
                 content: comment,
-                user_name: useremail,
-                user_email: username,
+                user_name: username,
+                user_email: useremail,
 
                 product_slug: this.props.productSlug,
                 product_id: this.props.productID,

@@ -11,7 +11,6 @@ class ProductSinglePage extends Component {
 
     constructor(props){
         super(props);
-
         this.state = {
             'productSlug': this.props.match.params.product,
         };
@@ -39,9 +38,9 @@ class ProductSinglePage extends Component {
         }
 
         const {
-            slug,
-            id, title, excerpt, descr, regular_price, sale_price, currency,
-            product_description_tab_content, product_ingredients_tab_content, product_usage_tab_content, tab_bg
+            id,
+            title, excerpt, descr, regular_price, sale_price, currency,
+            product_description_tab_content, product_ingredients_tab_content, product_usage_tab_content, tab_bg// for ProductTabs
         } = this.props.product;
 
         const {productAttachments} = this.props;
@@ -76,9 +75,6 @@ class ProductSinglePage extends Component {
                                             ingredients={product_ingredients_tab_content}
                                             usage={product_usage_tab_content}
                                             tabBg={tab_bg}
-                                            productSlug={slug}
-                                            productID={id}
-                                            title={title}
                                         />
                                     </div>
                                 </div>

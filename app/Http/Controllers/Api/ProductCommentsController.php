@@ -38,7 +38,6 @@ class ProductCommentsController extends Controller
     public function store(Request $request)
     {
         $comment = ProductComments::create($request->all());
-
         if ($comment) {
             return response()->json($comment);
         } else {

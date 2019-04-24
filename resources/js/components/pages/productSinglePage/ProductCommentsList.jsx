@@ -31,19 +31,7 @@ const ProductCommentsList = props => {
             )}
         </div>
     );
-}
-
-const mapStateToProps = state => {
-    const {allUsers, allComments, commentsLength} = state.products.comments;
-    return {
-        users: allUsers,
-        comments: allComments,
-        commentsLength: commentsLength,
-    };
 };
 
-const mapDispatchToProps = dispatch => ({
 
-});
-
-export default connect(mapStateToProps)(ProductCommentsList);
+export default ProductCommentsList;

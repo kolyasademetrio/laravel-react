@@ -84415,19 +84415,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _ProductCommentsForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductCommentsForm */ "./resources/js/components/pages/productSinglePage/ProductCommentsForm.jsx");
-/* harmony import */ var _ProductCommentsList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductCommentsList */ "./resources/js/components/pages/productSinglePage/ProductCommentsList.jsx");
+/* harmony import */ var _containers_pages_ProductSinglePage_ProductCommentsList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../containers/pages/ProductSinglePage/ProductCommentsList */ "./resources/js/containers/pages/ProductSinglePage/ProductCommentsList.js");
 
 
 
 
-function ProductComments(props) {
-  var handleChange = props.handleChange,
-      handleSubmit = props.handleSubmit,
-      handleRemove = props.handleRemove;
+function ProductComments(_ref) {
+  var handleChange = _ref.handleChange,
+      handleSubmit = _ref.handleSubmit,
+      handleRemove = _ref.handleRemove;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "reviews",
     className: "woocommerce-Reviews"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductCommentsList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_pages_ProductSinglePage_ProductCommentsList__WEBPACK_IMPORTED_MODULE_2__["default"], {
     handleRemove: handleRemove
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductCommentsForm__WEBPACK_IMPORTED_MODULE_1__["default"], {
     handleChange: handleChange,
@@ -84582,23 +84582,7 @@ var ProductCommentsList = function ProductCommentsList(props) {
   })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NoCommentsMessage, null));
 };
 
-var mapStateToProps = function mapStateToProps(state) {
-  var _state$products$comme = state.products.comments,
-      allUsers = _state$products$comme.allUsers,
-      allComments = _state$products$comme.allComments,
-      commentsLength = _state$products$comme.commentsLength;
-  return {
-    users: allUsers,
-    comments: allComments,
-    commentsLength: commentsLength
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(ProductCommentsList));
+/* harmony default export */ __webpack_exports__["default"] = (ProductCommentsList);
 
 /***/ }),
 
@@ -86023,6 +86007,40 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mapDispatchToProps)(_components_ProductsSortShop__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./resources/js/containers/pages/ProductSinglePage/ProductCommentsList.js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/containers/pages/ProductSinglePage/ProductCommentsList.js ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _components_pages_productSinglePage_ProductCommentsList__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/pages/productSinglePage/ProductCommentsList */ "./resources/js/components/pages/productSinglePage/ProductCommentsList.jsx");
+
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  var _state$products$comme = state.products.comments,
+      allUsers = _state$products$comme.allUsers,
+      allComments = _state$products$comme.allComments,
+      commentsLength = _state$products$comme.commentsLength;
+  return {
+    users: allUsers,
+    comments: allComments,
+    commentsLength: commentsLength
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {};
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps)(_components_pages_productSinglePage_ProductCommentsList__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 

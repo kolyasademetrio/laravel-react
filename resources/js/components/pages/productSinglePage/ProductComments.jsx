@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import ProductCommentsForm from './ProductCommentsForm';
-import ProductCommentsList from './ProductCommentsList';
+import ProductCommentsList from '../../../containers/pages/ProductSinglePage/ProductCommentsList';
 
-function ProductComments (props) {
-    const {handleChange, handleSubmit, handleRemove} = props;
-
+function ProductComments ({handleChange, handleSubmit, handleRemove}) {
     return (
         <div id="reviews" className="woocommerce-Reviews">
             <ProductCommentsList

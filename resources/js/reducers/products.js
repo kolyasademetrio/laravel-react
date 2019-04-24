@@ -76,25 +76,26 @@ export default function (state = INITIAL_STATE,action){
                 error: action.payload,
             };
         case REMOVE_COMMENT_BY_ID:
+            const allCommentsWithoutRemoved = state.comments.allComments.filter(c => c.id != action.payload);
             return {
                 ...state,
                 comments: {
                     ...state.comments,
-                    allComments: state.comments.allComments.filter(c => c.id != action.payload),
+                    allComments: allCommentsWithoutRemoved,
+                    commentsLength: allCommentsWithoutRemoved.length,
                 },
             };
         case ADD_PRODUCT_COMMENT:
-            const allCommentsNew = [
+            const allCommentsWithAdded = [
                 ...state.comments.allComments,
                 action.payload,
             ];
-
             return {
                 ...state,
                 comments: {
                     ...state.comments,
-                    allComments: allCommentsNew,
-                    commentsLength: allCommentsNew.length,
+                    allComments: allCommentsWithAdded,
+                    commentsLength: allCommentsWithAdded.length,
                 },
             };
         default:

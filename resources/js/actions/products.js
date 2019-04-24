@@ -52,18 +52,18 @@ export const setProductCommentsBySlug = slug => {
     }
 };
 
-export const removeProductCommentById = id => {
-    return async dispatch => {
-        axios.delete(`/api/product-comments/${id}`).then(() => {
-            dispatch({ type: REMOVE_COMMENT_BY_ID, payload: id });
-        });
-    };
-};
-
 export const addProductComment = newComment => {
     return async dispatch => {
         axios.post('/api/product-comments', newComment).then(({data}) => {
             dispatch({type: ADD_PRODUCT_COMMENT, payload: data});
+        });
+    };
+};
+
+export const removeProductCommentById = id => {
+    return async dispatch => {
+        axios.delete(`/api/product-comments/${id}`).then(() => {
+            dispatch({ type: REMOVE_COMMENT_BY_ID, payload: id });
         });
     };
 };

@@ -78864,15 +78864,15 @@ var setPagination = function setPagination(page) {
 /*!******************************************!*\
   !*** ./resources/js/actions/products.js ***!
   \******************************************/
-/*! exports provided: setProducts, setProductCommentsBySlug, removeProductCommentById, addProductComment, setProductBySlug, CategoryFilters */
+/*! exports provided: setProducts, setProductCommentsBySlug, addProductComment, removeProductCommentById, setProductBySlug, CategoryFilters */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProducts", function() { return setProducts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProductCommentsBySlug", function() { return setProductCommentsBySlug; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeProductCommentById", function() { return removeProductCommentById; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addProductComment", function() { return addProductComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeProductCommentById", function() { return removeProductCommentById; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProductBySlug", function() { return setProductBySlug; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CategoryFilters", function() { return CategoryFilters; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -78949,7 +78949,7 @@ var setProductCommentsBySlug = function setProductCommentsBySlug(slug) {
     }()
   );
 };
-var removeProductCommentById = function removeProductCommentById(id) {
+var addProductComment = function addProductComment(newComment) {
   return (
     /*#__PURE__*/
     function () {
@@ -78960,10 +78960,11 @@ var removeProductCommentById = function removeProductCommentById(id) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                axios.delete("/api/product-comments/".concat(id)).then(function () {
+                axios.post('/api/product-comments', newComment).then(function (_ref3) {
+                  var data = _ref3.data;
                   dispatch({
-                    type: _types__WEBPACK_IMPORTED_MODULE_1__["REMOVE_COMMENT_BY_ID"],
-                    payload: id
+                    type: _types__WEBPACK_IMPORTED_MODULE_1__["ADD_PRODUCT_COMMENT"],
+                    payload: data
                   });
                 });
 
@@ -78981,22 +78982,21 @@ var removeProductCommentById = function removeProductCommentById(id) {
     }()
   );
 };
-var addProductComment = function addProductComment(newComment) {
+var removeProductCommentById = function removeProductCommentById(id) {
   return (
     /*#__PURE__*/
     function () {
-      var _ref3 = _asyncToGenerator(
+      var _ref4 = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(dispatch) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                axios.post('/api/product-comments', newComment).then(function (_ref4) {
-                  var data = _ref4.data;
+                axios.delete("/api/product-comments/".concat(id)).then(function () {
                   dispatch({
-                    type: _types__WEBPACK_IMPORTED_MODULE_1__["ADD_PRODUCT_COMMENT"],
-                    payload: data
+                    type: _types__WEBPACK_IMPORTED_MODULE_1__["REMOVE_COMMENT_BY_ID"],
+                    payload: id
                   });
                 });
 
@@ -79009,7 +79009,7 @@ var addProductComment = function addProductComment(newComment) {
       }));
 
       return function (_x3) {
-        return _ref3.apply(this, arguments);
+        return _ref4.apply(this, arguments);
       };
     }()
   );
@@ -87015,20 +87015,22 @@ var INITIAL_STATE = {
       });
 
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT_BY_ID"]:
+      var allCommentsWithoutRemoved = state.comments.allComments.filter(function (c) {
+        return c.id != action.payload;
+      });
       return _objectSpread({}, state, {
         comments: _objectSpread({}, state.comments, {
-          allComments: state.comments.allComments.filter(function (c) {
-            return c.id != action.payload;
-          })
+          allComments: allCommentsWithoutRemoved,
+          commentsLength: allCommentsWithoutRemoved.length
         })
       });
 
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["ADD_PRODUCT_COMMENT"]:
-      var allCommentsNew = [].concat(_toConsumableArray(state.comments.allComments), [action.payload]);
+      var allCommentsWithAdded = [].concat(_toConsumableArray(state.comments.allComments), [action.payload]);
       return _objectSpread({}, state, {
         comments: _objectSpread({}, state.comments, {
-          allComments: allCommentsNew,
-          commentsLength: allCommentsNew.length
+          allComments: allCommentsWithAdded,
+          commentsLength: allCommentsWithAdded.length
         })
       });
 

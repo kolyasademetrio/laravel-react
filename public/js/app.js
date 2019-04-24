@@ -78921,7 +78921,7 @@ var setProductCommentsBySlug = function setProductCommentsBySlug(slug) {
                   }, {}); // while authorization does not work user_id
                   // if current user is logged out -> userID is id of the guest user users.id = 11
 
-                  var USER_ID = 11;
+                  var USER_ID = 9;
                   var payloadData = {
                     userID: USER_ID,
                     allComments: allComments,
@@ -84466,11 +84466,12 @@ var mapStateToProps = function mapStateToProps(state) {
       commentsLength = _state$products$comme.commentsLength,
       userName = _state$products$comme.userName,
       userEmail = _state$products$comme.userEmail;
+  var title = state.products.product.product.title;
   return {
     commentsLength: commentsLength,
     userName: userName,
     userEmail: userEmail,
-    title: ''
+    title: title
   };
 };
 
@@ -86067,12 +86068,12 @@ var mapStateToProps = function mapStateToProps(state) {
       userName = _state$products$comme.userName,
       userEmail = _state$products$comme.userEmail;
   var _state$products$produ = state.products.product.product,
-      product_slug = _state$products$produ.product_slug,
-      product_id = _state$products$produ.product_id;
+      slug = _state$products$produ.slug,
+      id = _state$products$produ.id;
   return {
     userID: userID,
-    productSlug: product_slug,
-    productID: product_id,
+    productSlug: slug,
+    productID: id,
     users: allUsers,
     comments: allComments,
     commentsLength: commentsLength,
@@ -86944,6 +86945,14 @@ var initialState = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types */ "./resources/js/actions/types.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -87016,8 +87025,17 @@ var INITIAL_STATE = {
 
     case _actions_types__WEBPACK_IMPORTED_MODULE_0__["REMOVE_COMMENT_BY_ID"]:
       return _objectSpread({}, state, {
-        allComments: state.comments.allComments.filter(function (comment) {
-          return comment.id != action.payload;
+        comments: _objectSpread({}, state.comments, {
+          allComments: state.comments.allComments.filter(function (c) {
+            return c.id != action.payload;
+          })
+        })
+      });
+
+    case _actions_types__WEBPACK_IMPORTED_MODULE_0__["ADD_PRODUCT_COMMENT"]:
+      return _objectSpread({}, state, {
+        comments: _objectSpread({}, state.comments, {
+          allComments: [].concat(_toConsumableArray(state.comments.allComments), [action.payload])
         })
       });
 

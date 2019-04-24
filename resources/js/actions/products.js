@@ -38,7 +38,7 @@ export const setProductCommentsBySlug = slug => {
 
             // while authorization does not work user_id
             // if current user is logged out -> userID is id of the guest user users.id = 11
-            const USER_ID = 11;
+            const USER_ID = 9;
 
             const payloadData = {
                 userID: USER_ID,

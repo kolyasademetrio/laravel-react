@@ -55,11 +55,12 @@ const ProductCommentsForm = props => {
 
 const mapStateToProps = state => {
     const {commentsLength, userName, userEmail} = state.products.comments;
+    const {title} = state.products.product.product;
     return {
         commentsLength: commentsLength,
         userName: userName,
         userEmail: userEmail,
-        title: '',
+        title: title,
     };
 };
 

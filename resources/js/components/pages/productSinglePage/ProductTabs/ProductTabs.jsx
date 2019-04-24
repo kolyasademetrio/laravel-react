@@ -20,7 +20,7 @@ class ProductTabs extends Component {
 
     componentDidMount(){
         const {productSlug, setProductCommentsBySlug} = this.props;
-
+        
         setProductCommentsBySlug(productSlug);
     }
 
@@ -47,7 +47,7 @@ class ProductTabs extends Component {
                 product_id: this.props.productID,
                 user_id: this.props.userID,
             }
-
+            
             this.props.addProductComment(productComment);
         }
     }

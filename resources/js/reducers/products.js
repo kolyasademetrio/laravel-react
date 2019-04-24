@@ -6,7 +6,7 @@ import {
     SET_PRODUCT_COMMENTS,
     SET_PRODUCT_COMMENTS_SUCCEEDED,
     SET_PRODUCT_COMMENTS_FAILED,
-    REMOVE_COMMENT_BY_ID,
+    REMOVE_COMMENT_BY_ID, ADD_PRODUCT_COMMENT,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -78,7 +78,21 @@ export default function (state = INITIAL_STATE,action){
         case REMOVE_COMMENT_BY_ID:
             return {
                 ...state,
-                allComments: state.comments.allComments.filter(comment => comment.id != action.payload),
+                comments: {
+                    ...state.comments,
+                    allComments: state.comments.allComments.filter(c => c.id != action.payload),
+                },
+            };
+        case ADD_PRODUCT_COMMENT:
+            return {
+                ...state,
+                comments: {
+                    ...state.comments,
+                    allComments: [
+                        ...state.comments.allComments,
+                        action.payload,
+                    ],
+                },
             };
         default:
             return state;

@@ -8,12 +8,12 @@ const mapStateToProps = (state) => {
 
     const {userID, allUsers, allComments, commentsLength, userLogo, userName, userEmail} = state.products.comments;
     
-    const {product_slug, product_id} = state.products.product.product;
-
+    const {slug, id} = state.products.product.product;
+    
     return{
         userID: userID,
-        productSlug: product_slug,
-        productID: product_id,
+        productSlug: slug,
+        productID: id,
         users: allUsers,
         comments: allComments,
         commentsLength: commentsLength,

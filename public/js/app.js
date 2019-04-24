@@ -84549,11 +84549,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var ProductCommentsList = function ProductCommentsList(props) {
-  var comments = props.comments,
-      users = props.users,
-      commentsLength = props.commentsLength,
-      handleRemove = props.handleRemove;
+var ProductCommentsList = function ProductCommentsList(_ref) {
+  var comments = _ref.comments,
+      users = _ref.users,
+      commentsLength = _ref.commentsLength,
+      handleRemove = _ref.handleRemove;
 
   var NoCommentsMessage = function NoCommentsMessage() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -86034,10 +86034,6 @@ var mapStateToProps = function mapStateToProps(state) {
     comments: allComments,
     commentsLength: commentsLength
   };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps)(_components_pages_productSinglePage_ProductCommentsList__WEBPACK_IMPORTED_MODULE_1__["default"]));

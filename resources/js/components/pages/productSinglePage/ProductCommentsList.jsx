@@ -2,9 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import ProductCommentSingle from './ProductCommentSingle';
 
-const ProductCommentsList = props => {
-
-    const {comments, users, commentsLength, handleRemove} = props;
+const ProductCommentsList = ({comments, users, commentsLength, handleRemove}) => {
 
     const NoCommentsMessage = () =>  <p className="woocommerce-noreviews">Отзывов пока нет.</p>;
 

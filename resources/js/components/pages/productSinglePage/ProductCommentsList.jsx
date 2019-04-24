@@ -1,13 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import ProductCommentSingle from './ProductCommentSingle';
 
 const ProductCommentsList = props => {
 
     const {comments, users, commentsLength, handleRemove} = props;
 
-    const NoReviewMessage = () =>  <p className="woocommerce-noreviews">Отзывов пока нет.</p>;
-
-    console.log( 'comments in ProductCommentsList.jsx', comments );
+    const NoCommentsMessage = () =>  <p className="woocommerce-noreviews">Отзывов пока нет.</p>;
 
     return (
         <div id="comments" className="comments">
@@ -15,40 +14,20 @@ const ProductCommentsList = props => {
             {commentsLength ? (
                 <ol className="commentlist">
                     {comments.map(comment => (
-                        <li key={comment.id} className="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="li-comment-11">
-                            <div id="comment-11" className="comment_container">
-                                <img
-                                    alt="user"
-                                    alt={comment.user_name ? comment.user_name : users[comment.user_id].name}
-                                    src={users[comment.user_id].logo}
-                                    className="avatar avatar-60 photo" height="60" width="60"
-                                />
-                                <div className="comment-text">
-                                    <p className="meta">
-                                        <strong className="woocommerce-review__author">
-                                            {comment.user_name ? comment.user_name : users[comment.user_id].name}
-                                        </strong>
-                                        <span className="woocommerce-review__dash">&nbsp;–&nbsp;</span>
-                                        <time
-                                            className="woocommerce-review__published-date"
-                                            dateTime={comment.updated_at}
-                                        >
-                                            {comment.updated_at}
-                                        </time>
-                                    </p>
-                                    <div className="description">
-                                        <p>{comment.content}</p>
-                                    </div>
-                                    <div
-                                        className="remove_comment" onClick={() => handleRemove(comment.id)}
-                                    >&times;</div>
-                                </div>
-                            </div>
-                        </li>
+                        <ProductCommentSingle
+                            key={comment.id}
+                            id={comment.id}
+                            userName={comment.user_name}
+                            users={users}
+                            userID={comment.user_id}
+                            updatedAt={comment.updated_at}
+                            content={comment.content}
+                            handleRemoveComment={handleRemove}
+                        />
                     ))}
                 </ol>
             ) : (
-                <NoReviewMessage />
+                <NoCommentsMessage />
             )}
         </div>
     );

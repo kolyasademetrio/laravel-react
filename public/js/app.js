@@ -84344,6 +84344,65 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/productSinglePage/ProductCommentSingle.jsx":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/pages/productSinglePage/ProductCommentSingle.jsx ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var ProductCommentSingle = function ProductCommentSingle(_ref) {
+  var _React$createElement;
+
+  var id = _ref.id,
+      userName = _ref.userName,
+      users = _ref.users,
+      userID = _ref.userID,
+      updatedAt = _ref.updatedAt,
+      content = _ref.content,
+      handleRemoveComment = _ref.handleRemoveComment;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    key: id,
+    className: "comment byuser comment-author-admin bypostauthor even thread-even depth-1",
+    id: "li-comment-".concat(id)
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "comment-".concat(id),
+    className: "comment_container"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", (_React$createElement = {
+    alt: "user"
+  }, _defineProperty(_React$createElement, "alt", userName ? userName : users[userID].name), _defineProperty(_React$createElement, "src", users[userID].logo), _defineProperty(_React$createElement, "className", "avatar avatar-60 photo"), _defineProperty(_React$createElement, "height", "60"), _defineProperty(_React$createElement, "width", "60"), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "comment-text"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "meta"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
+    className: "woocommerce-review__author"
+  }, userName ? userName : users[userID].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "woocommerce-review__dash"
+  }, "\xA0\u2013\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
+    className: "woocommerce-review__published-date",
+    dateTime: updatedAt
+  }, updatedAt)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "description"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, content)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "remove_comment",
+    onClick: function onClick() {
+      return handleRemoveComment(id);
+    }
+  }, "\xD7"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ProductCommentSingle);
+
+/***/ }),
+
 /***/ "./resources/js/components/pages/productSinglePage/ProductComments.jsx":
 /*!*****************************************************************************!*\
   !*** ./resources/js/components/pages/productSinglePage/ProductComments.jsx ***!
@@ -84485,7 +84544,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+/* harmony import */ var _ProductCommentSingle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductCommentSingle */ "./resources/js/components/pages/productSinglePage/ProductCommentSingle.jsx");
 
 
 
@@ -84496,13 +84555,12 @@ var ProductCommentsList = function ProductCommentsList(props) {
       commentsLength = props.commentsLength,
       handleRemove = props.handleRemove;
 
-  var NoReviewMessage = function NoReviewMessage() {
+  var NoCommentsMessage = function NoCommentsMessage() {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
       className: "woocommerce-noreviews"
     }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.");
   };
 
-  console.log('comments in ProductCommentsList.jsx', comments);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "comments",
     className: "comments"
@@ -84511,37 +84569,17 @@ var ProductCommentsList = function ProductCommentsList(props) {
   }, "\u041E\u0442\u0437\u044B\u0432\u044B"), commentsLength ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
     className: "commentlist"
   }, comments.map(function (comment) {
-    var _React$createElement;
-
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductCommentSingle__WEBPACK_IMPORTED_MODULE_2__["default"], {
       key: comment.id,
-      className: "comment byuser comment-author-admin bypostauthor even thread-even depth-1",
-      id: "li-comment-11"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      id: "comment-11",
-      className: "comment_container"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", (_React$createElement = {
-      alt: "user"
-    }, _defineProperty(_React$createElement, "alt", comment.user_name ? comment.user_name : users[comment.user_id].name), _defineProperty(_React$createElement, "src", users[comment.user_id].logo), _defineProperty(_React$createElement, "className", "avatar avatar-60 photo"), _defineProperty(_React$createElement, "height", "60"), _defineProperty(_React$createElement, "width", "60"), _React$createElement)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "comment-text"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-      className: "meta"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", {
-      className: "woocommerce-review__author"
-    }, comment.user_name ? comment.user_name : users[comment.user_id].name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "woocommerce-review__dash"
-    }, "\xA0\u2013\xA0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("time", {
-      className: "woocommerce-review__published-date",
-      dateTime: comment.updated_at
-    }, comment.updated_at)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "description"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, comment.content)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "remove_comment",
-      onClick: function onClick() {
-        return handleRemove(comment.id);
-      }
-    }, "\xD7"))));
-  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NoReviewMessage, null));
+      id: comment.id,
+      userName: comment.user_name,
+      users: users,
+      userID: comment.user_id,
+      updatedAt: comment.updated_at,
+      content: comment.content,
+      handleRemoveComment: handleRemove
+    });
+  })) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NoCommentsMessage, null));
 };
 
 var mapStateToProps = function mapStateToProps(state) {

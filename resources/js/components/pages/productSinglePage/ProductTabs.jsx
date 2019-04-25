@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactHtmlParser from "react-html-parser";
 import Tabs from './Tabs';
-import ProductComments from '../ProductComments';
+import ProductComments from './ProductComments';
 
 class ProductTabs extends Component {
 

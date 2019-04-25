@@ -3,7 +3,6 @@ import {setProductBySlug} from '../../../actions/products';
 import ProductSinglePage from '../../../components/pages/productSinglePage/ProductSinglePage';
 
 
-
 const mapStateToProps = (state) => {
     const {product} = state.products.product;
     const id = product && product.id;

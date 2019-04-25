@@ -5,17 +5,17 @@ import ProductSinglePage from '../../../components/pages/productSinglePage/Produ
 
 
 const mapStateToProps = (state) => {
+    const {product} = state.products.product;
+    const id = product && product.id;
+    const {isSingleReady, isSingleLoading, singleProductError} = state.products;
 
-const {isSingleReady, isSingleLoading, error} = state.products;
-const {product, productAttachments} = state.products.product;
-
-return {
-    product: product,
-    productAttachments: productAttachments,
-    isSingleLoading,
-    isSingleReady,
-    error,
-}};
+    return {
+        id,
+        isSingleLoading,
+        isSingleReady,
+        error: singleProductError,
+    };
+};
 
 const mapDispatchToProps = dispatch => ({
     setProductBySlug: slug => dispatch(setProductBySlug(slug)),

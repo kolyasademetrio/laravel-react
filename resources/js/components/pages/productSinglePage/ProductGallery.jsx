@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import Slider from "react-slick";
 import {goodGallerySliderNavSettings, goodGallerySliderSettings} from "./productSinglePageSliderSettings";
+import singleProductPopupInit from "./productSinglePageMagnificPopupInit";
 import {getThumbnail} from "../../../helpers/image";
 import $ from "jquery";
-import singleProductPopupInit from "./productSinglePageMagnificPopupInit";
 
 
 class ProductGallery extends Component {
@@ -20,19 +20,12 @@ class ProductGallery extends Component {
             nav1: this.slider1,
             nav2: this.slider2
         });
-
         this.$el = $('.good__gallerySlider .slick-track');
-
         singleProductPopupInit( this.$el );
     }
 
     render(){
-
-        return null;
-
-        const {productAttachments} = this.props;
-
-        const hasGalleryNav =  productAttachments.length > 1 ? true : false;
+        const {productAttachments, hasGalleryNav} = this.props;
 
         return (
             <div className="good_gallery">

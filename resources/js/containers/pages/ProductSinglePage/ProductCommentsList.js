@@ -1,4 +1,5 @@
 import {connect} from 'react-redux';
+import {removeProductCommentById} from '../../../actions/products';
 import ProductCommentsList from '../../../components/pages/productSinglePage/ProductCommentsList';
 
 
@@ -11,4 +12,8 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(ProductCommentsList);
+const mapDispatchToProps = dispatch => ({
+    removeProductCommentById: id => dispatch(removeProductCommentById(id)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductCommentsList);

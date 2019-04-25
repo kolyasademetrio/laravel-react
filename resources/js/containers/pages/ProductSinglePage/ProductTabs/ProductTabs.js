@@ -4,7 +4,6 @@ import ProductTabs from '../../../../components/pages/productSinglePage/ProductT
 
 
 const mapStateToProps = (state) => {
-
     const {userID, allUsers, allComments, commentsLength, userLogo, userName, userEmail} = state.products.comments;
     const {
         slug, id,
@@ -12,17 +11,7 @@ const mapStateToProps = (state) => {
     } = state.products.product.product;
     
     return{
-        userID: userID,
-        productSlug: slug,
-        productID: id,
-        users: allUsers,
-        comments: allComments,
         commentsLength: commentsLength,
-        userLogo: userLogo,
-
-        userName: userName,
-        userEmail: userEmail,
-
         tabBg: tab_bg,
         descr: product_description_tab_content,
         ingredients: product_ingredients_tab_content,
@@ -30,10 +19,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = dispatch => ({
-    setProductCommentsBySlug: slug => dispatch(setProductCommentsBySlug(slug)),
-    addProductComment: id => dispatch(addProductComment(id)),
-    removeProductCommentById: id => dispatch(removeProductCommentById(id)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductTabs);
+export default connect(mapStateToProps)(ProductTabs);

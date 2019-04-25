@@ -8043,6 +8043,14 @@ nav.pagination ul li.active span {
     position: relative;
 }
 
+.productSingleTabContent {
+    display: none;
+}
+
+.productSingleTabContent.active {
+    display: block;
+}
+
 
 /* advanced - enter transition 800ms, exit 150ms */
 /* .fade-appear,

@@ -2,17 +2,12 @@ import React from 'react';
 import ProductCommentsForm from '../../../containers/pages/ProductSinglePage/ProductCommentsForm';
 import ProductCommentsList from '../../../containers/pages/ProductSinglePage/ProductCommentsList';
 
-function ProductComments ({handleChange, handleSubmit, handleRemove}) {
+const ProductComments = () => {
     return (
         <div id="reviews" className="woocommerce-Reviews">
-            <ProductCommentsList
-                handleRemove={handleRemove}
-            />
+            <ProductCommentsList />
 
-            <ProductCommentsForm
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-            />
+            <ProductCommentsForm />
         </div>
     );
 }

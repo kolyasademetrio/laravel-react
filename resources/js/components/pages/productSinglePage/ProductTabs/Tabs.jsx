@@ -17,13 +17,13 @@ class Tabs extends Component {
 
     render(){
         const {children,tabBg} = this.props;
-        
+
         const visibleChildren = children.filter(chldrn => chldrn !== '');
 
         const tabNodes = visibleChildren.map((child, index) => {
-            const classNames = this.state.activeIndex === index ? ' active' : '';
+            const activeClassName = this.state.activeIndex === index ? 'active' : '';
             return (
-                <li className={"description_tab" + classNames} onClick={this.setActiveIndex.bind(this, index)} key={'tabnode-'+index}>
+                <li className={`description_tab ${activeClassName}`} onClick={this.setActiveIndex.bind(this, index)} key={`tabnode-${index}`}>
                     <span>
                         {child.props.title}
                     </span>
@@ -32,15 +32,12 @@ class Tabs extends Component {
         });
 
         const contentNodes = visibleChildren.map((child, index) => {
-            if ( this.state.activeIndex === index ) {
-                return (
-                    <div key={'contentnode-'+index}>
-                        {child.props.children}
-                    </div>
-                );
-            } else {
-                return null;
-            }
+            const activeClassName = this.state.activeIndex === index ? 'active' : '';
+            return (
+                <div key={'contentnode-'+index} className={`productSingleTabContent ${activeClassName}`}>
+                    {child.props.children}
+                </div>
+            );
         });
 
         return (

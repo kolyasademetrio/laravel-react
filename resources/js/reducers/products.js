@@ -17,7 +17,8 @@ const INITIAL_STATE = {
     items: [],
     product: {},
     comments: [],
-    error: null,
+    singleProductError: null,
+    productCommentsError: null,
 };
 
 export default function (state = INITIAL_STATE,action){
@@ -33,7 +34,7 @@ export default function (state = INITIAL_STATE,action){
                 ...state,
                 isSingleReady: false,
                 isSingleLoading: true,
-                error: null,
+                singleProductError: null,
             };
 
         case SET_PRODUCT_BY_SLUG_SUCCEEDED:
@@ -42,7 +43,7 @@ export default function (state = INITIAL_STATE,action){
                 product: action.payload,
                 isSingleReady: true,
                 isSingleLoading: false,
-                error: null,
+                singleProductError: null,
             };
 
         case SET_PRODUCT_BY_SLUG_FAILED:
@@ -50,7 +51,7 @@ export default function (state = INITIAL_STATE,action){
                 ...state,
                 isSingleReady: false,
                 isSingleLoading: false,
-                error: action.payload,
+                singleProductError: action.payload,
             };
 
         case SET_PRODUCT_COMMENTS:
@@ -58,7 +59,7 @@ export default function (state = INITIAL_STATE,action){
                 ...state,
                 isCommentsReady: false,
                 isCommentsLoading: true,
-                error: null,
+                productCommentsError: null,
             };
         case SET_PRODUCT_COMMENTS_SUCCEEDED:
             return {
@@ -66,14 +67,14 @@ export default function (state = INITIAL_STATE,action){
                 comments: action.payload,
                 isCommentsReady: true,
                 isCommentsLoading: false,
-                error: null,
+                productCommentsError: null,
             };
         case SET_PRODUCT_COMMENTS_FAILED:
             return {
                 ...state,
                 isCommentsReady: false,
                 isCommentsLoading: false,
-                error: action.payload,
+                productCommentsError: action.payload,
             };
         case REMOVE_COMMENT_BY_ID:
             const allCommentsWithoutRemoved = state.comments.allComments.filter(c => c.id != action.payload);

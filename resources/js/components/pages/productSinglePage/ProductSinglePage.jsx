@@ -52,7 +52,7 @@ class ProductSinglePage extends Component {
                                     <Breadcrumbs />
 
                                     <div id={"product-" + id} className="product">
-                                        {/*<ProductGallery productAttachments={productAttachments} />*/}
+                                        <ProductGallery productAttachments={productAttachments} />
 
                                         <ProductSummary />
 

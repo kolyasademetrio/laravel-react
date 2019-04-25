@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import ProductCommentSingle from './ProductCommentSingle';
 
 const ProductCommentsList = ({comments, users, commentsLength, handleRemove}) => {
@@ -30,6 +29,5 @@ const ProductCommentsList = ({comments, users, commentsLength, handleRemove}) =>
         </div>
     );
 };
-
 
 export default ProductCommentsList;

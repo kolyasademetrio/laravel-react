@@ -47,12 +47,14 @@ class ProductTabs extends Component {
                 user_id: this.props.userID,
             }
 
-            this.props.addProductComment(productComment);
+            const {addProductComment} = this.props;
+            addProductComment(productComment);
         }
     }
 
     handleRemove(id){
-        this.props.removeProductCommentById(id);
+        const {removeProductCommentById} = this.props;
+        removeProductCommentById(id);
     }
 
     render(){

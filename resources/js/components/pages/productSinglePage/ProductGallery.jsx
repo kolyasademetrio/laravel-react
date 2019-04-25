@@ -5,6 +5,7 @@ import {getThumbnail} from "../../../helpers/image";
 import $ from "jquery";
 import singleProductPopupInit from "./productSinglePageMagnificPopupInit";
 
+
 class ProductGallery extends Component {
     constructor(props) {
         super(props);
@@ -26,6 +27,9 @@ class ProductGallery extends Component {
     }
 
     render(){
+
+        return null;
+
         const {productAttachments} = this.props;
 
         const hasGalleryNav =  productAttachments.length > 1 ? true : false;

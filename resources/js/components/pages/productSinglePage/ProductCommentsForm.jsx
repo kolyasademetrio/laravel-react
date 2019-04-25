@@ -1,8 +1,7 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React from 'react';
+
 
 const ProductCommentsForm = props => {
-
     const {commentsLength, title, userName, userEmail, handleChange, handleSubmit} = props;
 
     return (
@@ -53,15 +52,4 @@ const ProductCommentsForm = props => {
     );
 }
 
-const mapStateToProps = state => {
-    const {commentsLength, userName, userEmail} = state.products.comments;
-    const {title} = state.products.product.product;
-    return {
-        commentsLength: commentsLength,
-        userName: userName,
-        userEmail: userEmail,
-        title: title,
-    };
-};
-
-export default connect(mapStateToProps)(ProductCommentsForm);
+export default ProductCommentsForm;

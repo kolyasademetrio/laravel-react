@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import ProductCommentsForm from './ProductCommentsForm';
+import React from 'react';
+import ProductCommentsForm from '../../../containers/pages/ProductSinglePage/ProductCommentsForm';
 import ProductCommentsList from '../../../containers/pages/ProductSinglePage/ProductCommentsList';
 
 function ProductComments ({handleChange, handleSubmit, handleRemove}) {

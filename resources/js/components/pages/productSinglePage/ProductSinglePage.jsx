@@ -5,7 +5,7 @@ import ProductTabs from '../../../containers/pages/ProductSinglePage/ProductTabs
 import {Route} from 'react-router-dom';
 import ErrorPage from "../ErrorPage";
 import Preloader from '../../../helpers/preloader';
-import ProductSummary from "./ProductSummary";
+import ProductSummary from "../../../containers/pages/ProductSinglePage/ProductSummary";
 
 class ProductSinglePage extends Component {
 
@@ -37,16 +37,10 @@ class ProductSinglePage extends Component {
             return null;
         }
 
-        const {
-            id,
-            title, excerpt, descr, regular_price, sale_price, currency,
-            product_description_tab_content, product_ingredients_tab_content, product_usage_tab_content, tab_bg// for ProductTabs
-        } = this.props.product;
+        const {id} = this.props.product;
 
         const {productAttachments} = this.props;
         
-        const hasSalePrice = this.props.isSingleReady && sale_price == 0 ? false : true;
-
         return (
             <div id="primary" role="main" className="single-product content-area twentyfifteen woocommerce-page woocommerce">
                 <div id="main" className="site-main">
@@ -58,24 +52,11 @@ class ProductSinglePage extends Component {
                                     <Breadcrumbs />
 
                                     <div id={"product-" + id} className="product">
-                                        <ProductGallery productAttachments={productAttachments} />
+                                        {/*<ProductGallery productAttachments={productAttachments} />*/}
 
-                                        <ProductSummary
-                                            title={title}
-                                            excerpt={excerpt}
-                                            descr={descr}
-                                            hasSalePrice={hasSalePrice}
-                                            regular_price={regular_price}
-                                            sale_price={sale_price}
-                                            currency={currency}
-                                        />
+                                        <ProductSummary />
 
-                                        <ProductTabs
-                                            descr={product_description_tab_content}
-                                            ingredients={product_ingredients_tab_content}
-                                            usage={product_usage_tab_content}
-                                            tabBg={tab_bg}
-                                        />
+                                        <ProductTabs />
                                     </div>
                                 </div>
                             </div>

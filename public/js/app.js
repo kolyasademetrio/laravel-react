@@ -83785,9 +83785,6 @@ function (_Component) {
           setProducts = _this$props.setProducts,
           setAllProducts = _this$props.setAllProducts;
       setAllProducts();
-      /*axios.get('/api/products').then( ({data}) => {
-          setProducts(data);
-      });*/
     }
   }, {
     key: "render",

@@ -11,10 +11,6 @@ class ShopPage extends Component {
     componentDidMount() {
         const { setProducts, setAllProducts } = this.props;
         setAllProducts();
-
-        /*axios.get('/api/products').then( ({data}) => {
-            setProducts(data);
-        });*/
     }
 
     render(){

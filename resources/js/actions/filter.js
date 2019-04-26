@@ -1,4 +1,4 @@
-import {SET_FILTER, SHOW_PRODUCTS_BY_CATEGORY_SHOP, SORT_PRODUCTS_SHOP, SET_PAGINATION} from './types';
+import {SET_FILTER, SHOW_PRODUCTS_BY_CATEGORY_SHOP, SORT_PRODUCTS_SHOP, SET_PAGINATION} from './types/product-types';
 
 export const setFilter = filter => ({
     type: SET_FILTER,

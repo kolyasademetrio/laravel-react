@@ -1,4 +1,4 @@
-import {SET_PAGINATION} from '../actions/types';
+import {SET_PAGINATION} from '../actions/types/product-types';
 
 const initialState = {
     page: 1,

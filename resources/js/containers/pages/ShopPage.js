@@ -1,13 +1,9 @@
 import {connect} from 'react-redux';
-import ShopPage from '../../components/pages/ShopPage';
-
-
 import {setProducts} from '../../actions/products';
 import {setFilter, setPagination} from '../../actions/filter';
-
-import {getCategoryProductRelationsByCatSlug} from '../../helpers/getCategoryProductRelations';
+import ShopPage from '../../components/pages/ShopPage';
 import {getPager} from "../../helpers/pagination";
-
+import {getCategoryProductRelationsByCatSlug} from '../../helpers/getCategoryProductRelations';
 
 
 function sortBy(products, sortBy){
@@ -31,7 +27,6 @@ function getVisibleProducts(products, filterBy, catsRelation){
     }
 }
 
-
 function getPaginatedProducts(products, page, perPage){
     const end = page * perPage;
     const begin = end - perPage;
@@ -45,12 +40,7 @@ function getPages(visibleProducts, perPage){
 
 
 
-
-
-
-const mapStateToProps = (state, ownProps) => {
-    const {products, filter, pagination} = state;
-
+const mapStateToProps = ({products, filter}) => {
     const categoriesRelationship = getCategoryProductRelationsByCatSlug( products.items.categoriesRelationship );
 
     const visibleProducts = getVisibleProducts(
@@ -80,13 +70,6 @@ const mapStateToProps = (state, ownProps) => {
         currentPage,
         perPage
     );
-
-    /*const pages = getPages(
-        visibleProducts && visibleProducts,
-        perPage
-    );*/
-
-
     /* END: Pagination */
 
     return {

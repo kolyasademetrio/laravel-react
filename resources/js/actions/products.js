@@ -13,7 +13,7 @@ import {
     FACE,
     BODY,
     SCRUB
-} from './types';
+} from './types/product-types';
 
 export const setProducts = products => ({
     type: SET_PRODUCTS,

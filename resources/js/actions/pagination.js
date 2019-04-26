@@ -1,4 +1,4 @@
-import {SET_PAGINATION} from './types';
+import {SET_PAGINATION} from './types/product-types';
 
 export const setPagination = (page) => ({
     type: SET_PAGINATION,

@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
-import {setProductCommentsBySlug, addProductComment, removeProductCommentById, } from '../../../../actions/products';
-import ProductTabs from '../../../../components/pages/productSinglePage/ProductTabs';
+import {setProductCommentsBySlug, addProductComment, removeProductCommentById, } from '../../../actions/products';
+import ProductTabs from '../../../components/pages/productSinglePage/ProductTabs';
 
 
 const mapStateToProps = (state) => {

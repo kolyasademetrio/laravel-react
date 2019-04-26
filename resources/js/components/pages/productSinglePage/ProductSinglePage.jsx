@@ -5,7 +5,7 @@ import Breadcrumbs        from "../../../helpers/breadcrumbs";
 import Preloader          from '../../../helpers/preloader';
 import ProductGallery     from '../../../containers/pages/ProductSinglePage/ProductGallery';
 import ProductSummary     from "../../../containers/pages/ProductSinglePage/ProductSummary";
-import ProductTabs        from '../../../containers/pages/ProductSinglePage/ProductTabs/ProductTabs';
+import ProductTabs        from '../../../containers/pages/ProductSinglePage/ProductTabs';
 
 
 

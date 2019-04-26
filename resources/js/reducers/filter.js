@@ -1,4 +1,4 @@
-import {SORT_PRODUCTS_SHOP, SHOW_PRODUCTS_BY_CATEGORY_SHOP, SET_FILTER, SET_PAGINATION} from '../actions/types';
+import {SORT_PRODUCTS_SHOP, SHOW_PRODUCTS_BY_CATEGORY_SHOP, SET_FILTER, SET_PAGINATION} from '../actions/types/product-types';
 
 const initialState = {
     searchQuery: "",

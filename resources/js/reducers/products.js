@@ -7,7 +7,7 @@ import {
     SET_PRODUCT_COMMENTS_SUCCEEDED,
     SET_PRODUCT_COMMENTS_FAILED,
     REMOVE_COMMENT_BY_ID, ADD_PRODUCT_COMMENT,
-} from '../actions/types';
+} from '../actions/types/product-types';
 
 const INITIAL_STATE = {
     isReady: false,

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {setProducts} from '../../actions/products';
+import {setProducts, setAllProducts} from '../../actions/products';
 import {setFilter, setPagination} from '../../actions/filter';
 import ShopPage from '../../components/pages/ShopPage';
 import {getPager} from "../../helpers/pagination";
@@ -76,7 +76,7 @@ const mapStateToProps = ({products, filter}) => {
         productsList: paginatedProducts,
         categories: products.items.categories,
         categoriesRelationship: categoriesRelationship,
-        isReady: products.isReady,
+        isProductsReady: products.isProductsReady,
         filterBy: filter.filterShopBy,
         sortProductShopBy: filter.sortProductShopBy,
         pager: pager,
@@ -85,6 +85,7 @@ const mapStateToProps = ({products, filter}) => {
 };
 
 const mapDispatchToProps = dispatch => ({
+    setAllProducts: () => dispatch(setAllProducts()),
     setProducts: products => dispatch(setProducts(products)),
     setPagination: page => dispatch(setPagination(page)),
     setFilter,

@@ -78864,12 +78864,13 @@ var setPagination = function setPagination(page) {
 /*!******************************************!*\
   !*** ./resources/js/actions/products.js ***!
   \******************************************/
-/*! exports provided: setProducts, setProductCommentsBySlug, addProductComment, removeProductCommentById, setProductBySlug, CategoryFilters */
+/*! exports provided: setProducts, setAllProducts, setProductCommentsBySlug, addProductComment, removeProductCommentById, setProductBySlug, CategoryFilters */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProducts", function() { return setProducts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setAllProducts", function() { return setAllProducts; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setProductCommentsBySlug", function() { return setProductCommentsBySlug; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addProductComment", function() { return addProductComment; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeProductCommentById", function() { return removeProductCommentById; });
@@ -78891,7 +78892,7 @@ var setProducts = function setProducts(products) {
     payload: products
   };
 };
-var setProductCommentsBySlug = function setProductCommentsBySlug(slug) {
+var setAllProducts = function setAllProducts() {
   return (
     /*#__PURE__*/
     function () {
@@ -78901,6 +78902,47 @@ var setProductCommentsBySlug = function setProductCommentsBySlug(slug) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
+              case 0:
+                dispatch({
+                  type: _types_product_types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCTS"]
+                });
+                axios.get('/api/products').then(function (_ref2) {
+                  var data = _ref2.data;
+                  dispatch({
+                    type: _types_product_types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCTS_SUCCEEDED"],
+                    payload: data
+                  });
+                }).catch(function (err) {
+                  dispatch({
+                    type: _types_product_types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCTS_FAILED"],
+                    payload: err
+                  });
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }()
+  );
+};
+var setProductCommentsBySlug = function setProductCommentsBySlug(slug) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref3 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(dispatch) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
               case 0:
                 dispatch({
                   type: _types_product_types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_COMMENTS"]
@@ -78937,39 +78979,6 @@ var setProductCommentsBySlug = function setProductCommentsBySlug(slug) {
 
               case 2:
               case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee);
-      }));
-
-      return function (_x) {
-        return _ref.apply(this, arguments);
-      };
-    }()
-  );
-};
-var addProductComment = function addProductComment(newComment) {
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref2 = _asyncToGenerator(
-      /*#__PURE__*/
-      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(dispatch) {
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
-          while (1) {
-            switch (_context2.prev = _context2.next) {
-              case 0:
-                axios.post('/api/product-comments', newComment).then(function (_ref3) {
-                  var data = _ref3.data;
-                  dispatch({
-                    type: _types_product_types__WEBPACK_IMPORTED_MODULE_1__["ADD_PRODUCT_COMMENT"],
-                    payload: data
-                  });
-                });
-
-              case 1:
-              case "end":
                 return _context2.stop();
             }
           }
@@ -78977,12 +78986,12 @@ var addProductComment = function addProductComment(newComment) {
       }));
 
       return function (_x2) {
-        return _ref2.apply(this, arguments);
+        return _ref3.apply(this, arguments);
       };
     }()
   );
 };
-var removeProductCommentById = function removeProductCommentById(id) {
+var addProductComment = function addProductComment(newComment) {
   return (
     /*#__PURE__*/
     function () {
@@ -78993,10 +79002,11 @@ var removeProductCommentById = function removeProductCommentById(id) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                axios.delete("/api/product-comments/".concat(id)).then(function () {
+                axios.post('/api/product-comments', newComment).then(function (_ref5) {
+                  var data = _ref5.data;
                   dispatch({
-                    type: _types_product_types__WEBPACK_IMPORTED_MODULE_1__["REMOVE_COMMENT_BY_ID"],
-                    payload: id
+                    type: _types_product_types__WEBPACK_IMPORTED_MODULE_1__["ADD_PRODUCT_COMMENT"],
+                    payload: data
                   });
                 });
 
@@ -79014,22 +79024,54 @@ var removeProductCommentById = function removeProductCommentById(id) {
     }()
   );
 };
-var setProductBySlug = function setProductBySlug(slug) {
+var removeProductCommentById = function removeProductCommentById(id) {
   return (
     /*#__PURE__*/
     function () {
-      var _ref5 = _asyncToGenerator(
+      var _ref6 = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee4(dispatch) {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
+                axios.delete("/api/product-comments/".concat(id)).then(function () {
+                  dispatch({
+                    type: _types_product_types__WEBPACK_IMPORTED_MODULE_1__["REMOVE_COMMENT_BY_ID"],
+                    payload: id
+                  });
+                });
+
+              case 1:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      return function (_x4) {
+        return _ref6.apply(this, arguments);
+      };
+    }()
+  );
+};
+var setProductBySlug = function setProductBySlug(slug) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref7 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee5(dispatch) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
                 dispatch({
                   type: _types_product_types__WEBPACK_IMPORTED_MODULE_1__["SET_PRODUCT_BY_SLUG"]
                 });
-                axios.get("/api/products/".concat(slug)).then(function (_ref6) {
-                  var data = _ref6.data;
+                axios.get("/api/products/".concat(slug)).then(function (_ref8) {
+                  var data = _ref8.data;
 
                   if (data.product) {
                     dispatch({
@@ -79061,14 +79103,14 @@ var setProductBySlug = function setProductBySlug(slug) {
 
               case 2:
               case "end":
-                return _context4.stop();
+                return _context5.stop();
             }
           }
-        }, _callee4);
+        }, _callee5);
       }));
 
-      return function (_x4) {
-        return _ref5.apply(this, arguments);
+      return function (_x5) {
+        return _ref7.apply(this, arguments);
       };
     }()
   );
@@ -79087,12 +79129,14 @@ var CategoryFilters = {
 /*!*****************************************************!*\
   !*** ./resources/js/actions/types/product-types.js ***!
   \*****************************************************/
-/*! exports provided: SET_PRODUCTS, SET_PRODUCT_SINGLE, SET_PRODUCT_BY_SLUG, SET_PRODUCT_BY_SLUG_SUCCEEDED, SET_PRODUCT_BY_SLUG_FAILED, SET_CURRENT_PRODUCT_SLUG, SET_PRODUCT_COMMENTS, SET_PRODUCT_COMMENTS_SUCCEEDED, SET_PRODUCT_COMMENTS_FAILED, SET_PRODUCT_COMMENTS_BY_SLUG, SET_PRODUCT_COMMENTS_BY_SLUG_SUCCEEDED, SET_PRODUCT_COMMENTS_BY_SLUG_FAILED, REMOVE_COMMENT_BY_ID, ADD_PRODUCT_COMMENT, SHOW_ALL, SCRUB, BESTSELLER, FACE, BODY, SET_PAGINATION, SET_FILTER, SHOW_PRODUCTS_BY_CATEGORY_SHOP, SORT_PRODUCTS_SHOP, ADD_TO_CART, REMOVE_FROM_CART */
+/*! exports provided: SET_PRODUCTS, SET_PRODUCTS_SUCCEEDED, SET_PRODUCTS_FAILED, SET_PRODUCT_SINGLE, SET_PRODUCT_BY_SLUG, SET_PRODUCT_BY_SLUG_SUCCEEDED, SET_PRODUCT_BY_SLUG_FAILED, SET_CURRENT_PRODUCT_SLUG, SET_PRODUCT_COMMENTS, SET_PRODUCT_COMMENTS_SUCCEEDED, SET_PRODUCT_COMMENTS_FAILED, SET_PRODUCT_COMMENTS_BY_SLUG, SET_PRODUCT_COMMENTS_BY_SLUG_SUCCEEDED, SET_PRODUCT_COMMENTS_BY_SLUG_FAILED, REMOVE_COMMENT_BY_ID, ADD_PRODUCT_COMMENT, SHOW_ALL, SCRUB, BESTSELLER, FACE, BODY, SET_PAGINATION, SET_FILTER, SHOW_PRODUCTS_BY_CATEGORY_SHOP, SORT_PRODUCTS_SHOP, ADD_TO_CART, REMOVE_FROM_CART */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCTS", function() { return SET_PRODUCTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCTS_SUCCEEDED", function() { return SET_PRODUCTS_SUCCEEDED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCTS_FAILED", function() { return SET_PRODUCTS_FAILED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCT_SINGLE", function() { return SET_PRODUCT_SINGLE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCT_BY_SLUG", function() { return SET_PRODUCT_BY_SLUG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_PRODUCT_BY_SLUG_SUCCEEDED", function() { return SET_PRODUCT_BY_SLUG_SUCCEEDED; });
@@ -79118,6 +79162,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_TO_CART", function() { return ADD_TO_CART; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_FROM_CART", function() { return REMOVE_FROM_CART; });
 var SET_PRODUCTS = "SET_PRODUCTS";
+var SET_PRODUCTS_SUCCEEDED = "SET_PRODUCTS_SUCCEEDED";
+var SET_PRODUCTS_FAILED = "SET_PRODUCTS_FAILED";
 var SET_PRODUCT_SINGLE = "SET_PRODUCT_SINGLE";
 var SET_PRODUCT_BY_SLUG = "SET_PRODUCT_BY_SLUG";
 var SET_PRODUCT_BY_SLUG_SUCCEEDED = "SET_PRODUCT_BY_SLUG_SUCCEEDED";
@@ -79131,17 +79177,17 @@ var SET_PRODUCT_COMMENTS_BY_SLUG_SUCCEEDED = "SET_PRODUCT_COMMENTS_BY_SLUG_SUCCE
 var SET_PRODUCT_COMMENTS_BY_SLUG_FAILED = "SET_PRODUCT_COMMENTS_BY_SLUG_FAILED";
 var REMOVE_COMMENT_BY_ID = "REMOVE_COMMENT_BY_ID";
 var ADD_PRODUCT_COMMENT = "ADD_PRODUCT_COMMENT";
-var SHOW_ALL = 'SHOW_ALL';
-var SCRUB = 'SCRUB';
-var BESTSELLER = 'BESTSELLER';
-var FACE = 'FACE';
-var BODY = 'BODY';
-var SET_PAGINATION = 'SET_PAGINATION';
-var SET_FILTER = 'SET_FILTER';
-var SHOW_PRODUCTS_BY_CATEGORY_SHOP = 'SHOW_PRODUCTS_BY_CATEGORY_SHOP';
-var SORT_PRODUCTS_SHOP = 'SORT_PRODUCTS_SHOP';
-var ADD_TO_CART = 'ADD_TO_CART';
-var REMOVE_FROM_CART = 'REMOVE_FROM_CART';
+var SHOW_ALL = "SHOW_ALL";
+var SCRUB = "SCRUB";
+var BESTSELLER = "BESTSELLER";
+var FACE = "FACE";
+var BODY = "BODY";
+var SET_PAGINATION = "SET_PAGINATION";
+var SET_FILTER = "SET_FILTER";
+var SHOW_PRODUCTS_BY_CATEGORY_SHOP = "SHOW_PRODUCTS_BY_CATEGORY_SHOP";
+var SORT_PRODUCTS_SHOP = "SORT_PRODUCTS_SHOP";
+var ADD_TO_CART = "ADD_TO_CART";
+var REMOVE_FROM_CART = "REMOVE_FROM_CART";
 
 /***/ }),
 
@@ -83735,22 +83781,24 @@ function (_Component) {
   _createClass(ShopPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var setProducts = this.props.setProducts;
-      axios.get('/api/products').then(function (_ref) {
-        var data = _ref.data;
-        setProducts(data);
-      });
+      var _this$props = this.props,
+          setProducts = _this$props.setProducts,
+          setAllProducts = _this$props.setAllProducts;
+      setAllProducts();
+      /*axios.get('/api/products').then( ({data}) => {
+          setProducts(data);
+      });*/
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          productsList = _this$props.productsList,
-          categories = _this$props.categories,
-          isReady = _this$props.isReady,
-          setPagination = _this$props.setPagination,
-          currentPage = _this$props.currentPage,
-          pager = _this$props.pager;
+      var _this$props2 = this.props,
+          productsList = _this$props2.productsList,
+          categories = _this$props2.categories,
+          isProductsReady = _this$props2.isProductsReady,
+          setPagination = _this$props2.setPagination,
+          currentPage = _this$props2.currentPage,
+          pager = _this$props2.pager;
       var matchPath = this.props.match.path;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container woocomm__container"
@@ -83764,7 +83812,7 @@ function (_Component) {
         className: "products__wrapper"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__sidebar"
-      }, isReady && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_CatsListFilterShop__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, isProductsReady && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_CatsListFilterShop__WEBPACK_IMPORTED_MODULE_2__["default"], {
         categories: categories
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__content"
@@ -83774,7 +83822,7 @@ function (_Component) {
         className: "products__contentHeaderTitle"
       }, "\u0412\u0435\u0441\u044C \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_ProductsSortShop__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__list"
-      }, isReady && (productsList ? productsList.map(function (productData) {
+      }, isProductsReady && (productsList ? productsList.map(function (productData) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: 'good__item',
           key: productData.id
@@ -86361,7 +86409,7 @@ var mapStateToProps = function mapStateToProps(_ref) {
     productsList: paginatedProducts,
     categories: products.items.categories,
     categoriesRelationship: categoriesRelationship,
-    isReady: products.isReady,
+    isProductsReady: products.isProductsReady,
     filterBy: filter.filterShopBy,
     sortProductShopBy: filter.sortProductShopBy,
     pager: pager,
@@ -86371,6 +86419,9 @@ var mapStateToProps = function mapStateToProps(_ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
+    setAllProducts: function setAllProducts() {
+      return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setAllProducts"])());
+    },
     setProducts: function setProducts(products) {
       return dispatch(Object(_actions_products__WEBPACK_IMPORTED_MODULE_1__["setProducts"])(products));
     },
@@ -86411,7 +86462,7 @@ var mapStateToProps = function mapStateToProps(_ref, ownProps) {
     productsList: products.items.productsList,
     categories: products.items.categories,
     categoriesRelationship: Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__["getCategoryProductRelationsByCatSlug"])(products.items.categoriesRelationship),
-    isReady: products.isReady
+    isProductsReady: products.isProductsReady
   };
 };
 /*const mapDispatchToProps = dispatch => ({
@@ -87129,15 +87180,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 var INITIAL_STATE = {
-  isReady: false,
+  isProductsReady: false,
+  isProductsLoading: false,
+  productsError: null,
+  items: [],
   isSingleReady: false,
   isSingleLoading: false,
-  isCommentsReady: false,
-  items: [],
-  product: {},
-  comments: [],
   singleProductError: null,
-  productCommentsError: null
+  product: {},
+  isCommentsReady: false,
+  isCommentsLoading: false,
+  productCommentsError: null,
+  comments: []
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
@@ -87146,23 +87200,35 @@ var INITIAL_STATE = {
   switch (action.type) {
     case _actions_types_product_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCTS"]:
       return _objectSpread({}, state, {
+        isProductsReady: false,
+        isProductsLoading: true
+      });
+
+    case _actions_types_product_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCTS_SUCCEEDED"]:
+      return _objectSpread({}, state, {
         items: action.payload,
-        isReady: true
+        isProductsReady: true,
+        isProductsLoading: false
+      });
+
+    case _actions_types_product_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCTS_FAILED"]:
+      return _objectSpread({}, state, {
+        isProductsReady: false,
+        isProductsLoading: false,
+        productsError: action.payload
       });
 
     case _actions_types_product_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCT_BY_SLUG"]:
       return _objectSpread({}, state, {
         isSingleReady: false,
-        isSingleLoading: true,
-        singleProductError: null
+        isSingleLoading: true
       });
 
     case _actions_types_product_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCT_BY_SLUG_SUCCEEDED"]:
       return _objectSpread({}, state, {
         product: action.payload,
         isSingleReady: true,
-        isSingleLoading: false,
-        singleProductError: null
+        isSingleLoading: false
       });
 
     case _actions_types_product_types__WEBPACK_IMPORTED_MODULE_0__["SET_PRODUCT_BY_SLUG_FAILED"]:

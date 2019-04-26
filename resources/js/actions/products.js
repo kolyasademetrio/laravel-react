@@ -1,5 +1,7 @@
 import {
     SET_PRODUCTS,
+    SET_PRODUCTS_SUCCEEDED,
+    SET_PRODUCTS_FAILED,
     SET_PRODUCT_BY_SLUG,
     SET_PRODUCT_BY_SLUG_SUCCEEDED,
     SET_PRODUCT_BY_SLUG_FAILED,
@@ -19,6 +21,17 @@ export const setProducts = products => ({
     type: SET_PRODUCTS,
     payload: products
 });
+
+export const setAllProducts = () => {
+    return async dispatch => {
+        dispatch({type: SET_PRODUCTS});
+        axios.get('/api/products').then(({data}) =>{
+            dispatch({type: SET_PRODUCTS_SUCCEEDED, payload: data});
+        }).catch(err => {
+            dispatch({type: SET_PRODUCTS_FAILED, payload: err});
+        });
+    };
+};
 
 export const setProductCommentsBySlug = slug => {
     return async dispatch => {

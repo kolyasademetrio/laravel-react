@@ -1,5 +1,7 @@
 import {
     SET_PRODUCTS,
+    SET_PRODUCTS_SUCCEEDED,
+    SET_PRODUCTS_FAILED,
     SET_PRODUCT_BY_SLUG,
     SET_PRODUCT_BY_SLUG_SUCCEEDED,
     SET_PRODUCT_BY_SLUG_FAILED,
@@ -10,15 +12,20 @@ import {
 } from '../actions/types/product-types';
 
 const INITIAL_STATE = {
-    isReady: false,
+    isProductsReady: false,
+    isProductsLoading: false,
+    productsError: null,
+    items: [],
+
     isSingleReady: false,
     isSingleLoading: false,
-    isCommentsReady: false,
-    items: [],
-    product: {},
-    comments: [],
     singleProductError: null,
+    product: {},
+
+    isCommentsReady: false,
+    isCommentsLoading: false,
     productCommentsError: null,
+    comments: [],
 };
 
 export default function (state = INITIAL_STATE,action){
@@ -26,15 +33,28 @@ export default function (state = INITIAL_STATE,action){
         case SET_PRODUCTS:
             return {
                 ...state,
+                isProductsReady: false,
+                isProductsLoading: true,
+            };
+        case SET_PRODUCTS_SUCCEEDED:
+            return {
+                ...state,
                 items: action.payload,
-                isReady: true
+                isProductsReady: true,
+                isProductsLoading: false,
+            };
+        case SET_PRODUCTS_FAILED:
+            return {
+                ...state,
+                isProductsReady: false,
+                isProductsLoading: false,
+                productsError: action.payload
             };
         case SET_PRODUCT_BY_SLUG:
             return {
                 ...state,
                 isSingleReady: false,
                 isSingleLoading: true,
-                singleProductError: null,
             };
 
         case SET_PRODUCT_BY_SLUG_SUCCEEDED:
@@ -43,7 +63,6 @@ export default function (state = INITIAL_STATE,action){
                 product: action.payload,
                 isSingleReady: true,
                 isSingleLoading: false,
-                singleProductError: null,
             };
 
         case SET_PRODUCT_BY_SLUG_FAILED:

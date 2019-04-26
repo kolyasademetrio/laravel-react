@@ -10,7 +10,7 @@ const mapStateToProps = ({products},ownProps) => ({
     productsList: products.items.productsList,
     categories: products.items.categories,
     categoriesRelationship: getCategoryProductRelationsByCatSlug( products.items.categoriesRelationship ),
-    isReady: products.isReady,
+    isProductsReady: products.isProductsReady,
 });
 
 /*const mapDispatchToProps = dispatch => ({

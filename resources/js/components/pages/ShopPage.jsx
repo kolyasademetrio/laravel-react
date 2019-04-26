@@ -9,14 +9,16 @@ import Breadcrumbs from "../../helpers/breadcrumbs";
 class ShopPage extends Component {
 
     componentDidMount() {
-        const { setProducts } = this.props;
-        axios.get('/api/products').then( ({data}) => {
+        const { setProducts, setAllProducts } = this.props;
+        setAllProducts();
+
+        /*axios.get('/api/products').then( ({data}) => {
             setProducts(data);
-        });
+        });*/
     }
 
     render(){
-        const {productsList, categories, isReady, setPagination, currentPage, pager} = this.props;
+        const {productsList, categories, isProductsReady, setPagination, currentPage, pager} = this.props;
         
         const matchPath = this.props.match.path;
 
@@ -30,7 +32,7 @@ class ShopPage extends Component {
 
                             <div className="products__wrapper">
                                 <div className="products__sidebar">
-                                    {isReady && <CatsListFilterShop categories={categories} />}
+                                    {isProductsReady && <CatsListFilterShop categories={categories} />}
                                 </div>
 
                                 <div className="products__content">
@@ -41,7 +43,7 @@ class ShopPage extends Component {
                                     </div>
 
                                     <div className="products__list">
-                                        {isReady && (
+                                        {isProductsReady && (
                                             productsList ? (
                                                 productsList.map( ( productData ) => {
                                                     return (

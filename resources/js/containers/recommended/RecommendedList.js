@@ -3,8 +3,8 @@ import {setAllProducts} from '../../actions/products';
 import RecommendedList from '../../components/recomended/RecommendedList';
 import {getCategoryProductRelationsByCatSlug} from '../../helpers/getCategoryProductRelations';
 
-const getVisibleProducts = (productsRecommended, filterBy, catsRelation, categories) => {
 
+const getVisibleProducts = (productsRecommended, filterBy, catsRelation, categories) => {
     const catFilterBy = filterBy ? filterBy : (categories && categories[0].category_filter_by);
 
     const productIDs = catsRelation[catFilterBy] ? catsRelation[catFilterBy] : [];

@@ -5,7 +5,6 @@ import ProductSingle from '../products/ProductSingle';
 import Preloader from '../../helpers/preloader';
 
 class RecommendedList extends Component {
-
     componentDidMount() {
         const {setAllProducts} = this.props;
         setAllProducts();
@@ -22,11 +21,11 @@ class RecommendedList extends Component {
             return null;
         }
 
-        const showSlider = setSliderVisibility( productsRecommended && productsRecommended.length, window.innerWidth );
+        const showSlider = setSliderVisibility( productsRecommended.length, window.innerWidth );
 
-        const productsRecommendedList = productsRecommended && productsRecommended.map(productData => (
-            <div className={'good__item'}>
-                <ProductSingle key={productData.id} {...productData} matchPath={'shop'} />
+        const productsRecommendedList = productsRecommended.map(product => (
+            <div key={product.id} className={'good__item'}>
+                <ProductSingle {...product} matchPath={'shop'} />
             </div>
         ));
 

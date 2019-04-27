@@ -6,15 +6,11 @@ import Recommended from '../../components/recomended/Recommended';
 
 
 
-const mapStateToProps = ({products}) => {
-    
-    console.log( products );
-    
-    return {
+const mapStateToProps = ({products}) => ({
     categories: products.items.categories,
     isProductsReady: products.isProductsReady,
     isProductsLoading: products.isProductsLoading,
-}};
+});
 
 /*const mapDispatchToProps = dispatch => ({
     setProducts: products => dispatch(setProducts(products)),

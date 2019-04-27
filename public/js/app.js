@@ -83948,22 +83948,7 @@ function (_Component) {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-xs-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "kama_breadcrumbs",
-        itemscope: ""
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        itemProp: "itemListElement",
-        itemscope: ""
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/",
-        itemProp: "item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        itemProp: "name"
-      }, "\u0413\u043B\u0430\u0432\u043D\u0430\u044F"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "kb_sep"
-      }, " / "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "kb_title"
-      }, "\u041E \u043A\u043E\u0441\u043C\u0435\u0442\u0438\u043A\u0435"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_1__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container dinamyc-page-container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
@@ -84725,6 +84710,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _containers_ProductsSortShop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../containers/ProductsSortShop */ "./resources/js/containers/ProductsSortShop.js");
 /* harmony import */ var _helpers_pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers/pagination */ "./resources/js/helpers/pagination.js");
 /* harmony import */ var _helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/breadcrumbs */ "./resources/js/helpers/breadcrumbs.js");
+/* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/preloader */ "./resources/js/helpers/preloader.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -84752,6 +84738,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var ShopPage =
 /*#__PURE__*/
 function (_Component) {
@@ -84766,21 +84753,20 @@ function (_Component) {
   _createClass(ShopPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this$props = this.props,
-          setProducts = _this$props.setProducts,
-          setAllProducts = _this$props.setAllProducts;
+      var setAllProducts = this.props.setAllProducts;
       setAllProducts();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props2 = this.props,
-          productsList = _this$props2.productsList,
-          categories = _this$props2.categories,
-          isProductsReady = _this$props2.isProductsReady,
-          setPagination = _this$props2.setPagination,
-          currentPage = _this$props2.currentPage,
-          pager = _this$props2.pager;
+      var _this$props = this.props,
+          productsList = _this$props.productsList,
+          categories = _this$props.categories,
+          isProductsReady = _this$props.isProductsReady,
+          isProductsLoading = _this$props.isProductsLoading,
+          setPagination = _this$props.setPagination,
+          currentPage = _this$props.currentPage,
+          pager = _this$props.pager;
       var matchPath = this.props.match.path;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container woocomm__container"
@@ -84804,7 +84790,7 @@ function (_Component) {
         className: "products__contentHeaderTitle"
       }, "\u0412\u0435\u0441\u044C \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_ProductsSortShop__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "products__list"
-      }, isProductsReady && (productsList ? productsList.map(function (productData) {
+      }, isProductsLoading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_preloader__WEBPACK_IMPORTED_MODULE_6__["default"], null), isProductsReady && (productsList ? productsList.map(function (productData) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           className: 'good__item',
           key: productData.id
@@ -86970,23 +86956,24 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/filter */ "./resources/js/actions/filter.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/getCategoryProductRelations */ "./resources/js/helpers/getCategoryProductRelations.js");
-/* harmony import */ var _components_CatsListFilterShop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/CatsListFilterShop */ "./resources/js/components/CatsListFilterShop.jsx");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/filter */ "./resources/js/actions/filter.js");
+/* harmony import */ var _components_CatsListFilterShop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/CatsListFilterShop */ "./resources/js/components/CatsListFilterShop.jsx");
+/* harmony import */ var _helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/getCategoryProductRelations */ "./resources/js/helpers/getCategoryProductRelations.js");
 
 
 
 
 
-var mapStateToProps = function mapStateToProps(_ref, ownProps) {
+var mapStateToProps = function mapStateToProps(_ref) {
   var filter = _ref.filter,
       products = _ref.products;
-  var categoriesRelationship = Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_2__["getCategoryProductRelationsByCatSlug"])(products.items.categoriesRelationship);
+  var categories = products.items.categories;
+  var categoriesRelationship = Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__["getCategoryProductRelationsByCatSlug"])(products.items.categoriesRelationship);
   return {
     filterBy: filter.filterShopBy,
     categoriesRelationship: categoriesRelationship,
-    categoriesToShow: ownProps.categories.filter(function (catItem) {
+    categoriesToShow: categories.filter(function (catItem) {
       return categoriesRelationship[catItem.category_filter_by] !== undefined;
     })
   };
@@ -86995,12 +86982,12 @@ var mapStateToProps = function mapStateToProps(_ref, ownProps) {
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     setFilter: function setFilter(filter) {
-      return dispatch(Object(_actions_filter__WEBPACK_IMPORTED_MODULE_0__["showProductsByCategory"])(filter));
+      return dispatch(Object(_actions_filter__WEBPACK_IMPORTED_MODULE_1__["showProductsByCategory"])(filter));
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(_components_CatsListFilterShop__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_CatsListFilterShop__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -87360,6 +87347,7 @@ var mapStateToProps = function mapStateToProps(_ref) {
     categories: products.items.categories,
     categoriesRelationship: categoriesRelationship,
     isProductsReady: products.isProductsReady,
+    isProductsLoading: products.isProductsLoading,
     filterBy: filter.filterShopBy,
     sortProductShopBy: filter.sortProductShopBy,
     pager: pager,

@@ -77,6 +77,7 @@ const mapStateToProps = ({products, filter}) => {
         categories: products.items.categories,
         categoriesRelationship: categoriesRelationship,
         isProductsReady: products.isProductsReady,
+        isProductsLoading: products.isProductsLoading,
         filterBy: filter.filterShopBy,
         sortProductShopBy: filter.sortProductShopBy,
         pager: pager,

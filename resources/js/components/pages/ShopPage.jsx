@@ -2,19 +2,19 @@ import React, { Component } from 'react';
 import ProductSingle from '../products/ProductSingle';
 import CatsListFilterShop from '../../containers/CatsListFilterShop';
 import ProductsSortShop from '../../containers/ProductsSortShop';
-import {Pagination} from "../../helpers/pagination";
-
-import Breadcrumbs from "../../helpers/breadcrumbs";
+import {Pagination} from '../../helpers/pagination';
+import Breadcrumbs from '../../helpers/breadcrumbs';
+import Preloader from '../../helpers/preloader';
 
 class ShopPage extends Component {
 
     componentDidMount() {
-        const { setProducts, setAllProducts } = this.props;
+        const {setAllProducts} = this.props;
         setAllProducts();
     }
 
     render(){
-        const {productsList, categories, isProductsReady, setPagination, currentPage, pager} = this.props;
+        const {productsList, categories, isProductsReady, isProductsLoading, setPagination, currentPage, pager} = this.props;
         
         const matchPath = this.props.match.path;
 
@@ -39,6 +39,7 @@ class ShopPage extends Component {
                                     </div>
 
                                     <div className="products__list">
+                                        {isProductsLoading && <Preloader />}
                                         {isProductsReady && (
                                             productsList ? (
                                                 productsList.map( ( productData ) => {

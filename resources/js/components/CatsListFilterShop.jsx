@@ -1,7 +1,6 @@
 import React from 'react';
 
 const CatsListFilterShop = ({categoriesToShow: categories, categoriesRelationship, filterBy, setFilter}) => {
-
     return (
         <div className="products__categories">
             <div className="products__categoryHeader">

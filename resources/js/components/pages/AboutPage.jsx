@@ -8,20 +8,10 @@ class AboutPage extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-12">
-                            <div className="kama_breadcrumbs" itemscope="">
-                                <span itemProp="itemListElement" itemscope="">
-                                    <a href="/" itemProp="item">
-                                        <span itemProp="name">Главная</span>
-                                    </a>
-                                </span>
-                                <span className="kb_sep"> / </span>
-                                <span className="kb_title">О косметике</span>
-                            </div>
+                            <Breadcrumbs />
                         </div>
                     </div>
                 </div>
-
-                <Breadcrumbs />
 
                 <div className="container dinamyc-page-container">
                     <div className="row">

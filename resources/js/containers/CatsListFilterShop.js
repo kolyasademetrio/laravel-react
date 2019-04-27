@@ -1,15 +1,17 @@
-import {showProductsByCategory} from "../actions/filter";
 import {connect} from "react-redux";
-import {getCategoryProductRelationsByCatSlug} from '../helpers/getCategoryProductRelations';
+import {showProductsByCategory} from "../actions/filter";
 import CatsListFilterShop from '../components/CatsListFilterShop';
+import {getCategoryProductRelationsByCatSlug} from '../helpers/getCategoryProductRelations';
 
-const mapStateToProps = ({filter, products}, ownProps) => {
+
+const mapStateToProps = ({filter, products}) => {
+    const {categories} = products.items;
     const categoriesRelationship = getCategoryProductRelationsByCatSlug( products.items.categoriesRelationship );
 
     return {
         filterBy: filter.filterShopBy,
         categoriesRelationship: categoriesRelationship,
-        categoriesToShow: ownProps.categories.filter( catItem => categoriesRelationship[catItem.category_filter_by] !== undefined ),
+        categoriesToShow: categories.filter( catItem => categoriesRelationship[catItem.category_filter_by] !== undefined ),
     }
 };
 

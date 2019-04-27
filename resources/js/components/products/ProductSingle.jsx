@@ -4,11 +4,6 @@ import ProductPrices from './ProductPrices';
 import ReactHtmlParser from 'react-html-parser';
 
 class ProductSingle extends Component {
-
-    constructor(props){
-        super(props);
-    }
-
     render(){
 
         const {image, title, excerpt, descrtitle, descrtext, regular_price, sale_price, discount, currency, id, matchPath, slug} = this.props;
@@ -19,11 +14,8 @@ class ProductSingle extends Component {
                         <div className="good__itemHeader">
                             <img className="good__itemImage" src={image} data-id={id} alt=""/>
                         </div>
-
                         <div className="good__itemTitle">{ReactHtmlParser(title)}</div>
-
                         <div className="good__itemExcerpt">{ReactHtmlParser(excerpt)}</div>
-
                         <div className="good__itemDescr">
                             <Link
                                 to={{
@@ -48,14 +40,16 @@ class ProductSingle extends Component {
                             </Link>
 
                         </div>
-
                         <ProductPrices regular_price={regular_price} sale_price={sale_price} currency={currency} />
                     </div>
 
                     <div className="good__itemFooter">
                         <a href="checkout/?add-to-cart=941" data-quantity="1"
                            className="good__item__add__to__cart button product_type_simple add_to_cart_button ajax_add_to_cart"
-                           data-product_id={id} data-product_sku="" rel="nofollow">В корзину</a>
+                           data-product_id={id}
+                        >
+                            В корзину
+                        </a>
                     </div>
                 </div>
         );

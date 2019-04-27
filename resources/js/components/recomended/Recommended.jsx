@@ -3,18 +3,11 @@ import {Link, NavLink} from 'react-router-dom';
 
 import CatsListFilterHome from '../../containers/CatsListFilterHome';
 import RecommendedList from '../../containers/recommended/RecommendedList';
+import Preloader from "../../helpers/preloader";
 
 class Recommended extends Component {
-    componentDidMount(){
-        const {setProducts} = this.props;
-        axios.get(`/api/products`)
-            .then(response => {
-                setProducts(response.data);
-            });
-    }
-
     render(){
-        const {productsList, categories, categoriesRelationship, isReady} = this.props;
+        const {categories, isProductsLoading, isProductsReady} = this.props;
 
         return (
             <div className="recommended">
@@ -33,15 +26,9 @@ class Recommended extends Component {
                     <div className="row recommended__row">
                         <div className="recommended__col col-xs-12">
                             <div className="recommended__inner">
-                                {isReady &&  <CatsListFilterHome categories={categories} />}
+                                {isProductsReady &&  <CatsListFilterHome categories={categories} />}
 
-                                {isReady && (
-                                    <RecommendedList
-                                        productsList={productsList}
-                                        categories={categories}
-                                        categoriesRelationship={categoriesRelationship}
-                                    />
-                                )}
+                                <RecommendedList />
                             </div>
                         </div>
                     </div>
@@ -51,7 +38,9 @@ class Recommended extends Component {
                     <div className="row recommended__row">
                         <div className="recommended__col col-xs-12">
                             <div className="recommended__btnWrap rayBtn__wrap">
-                                <Link to={'/shop'} className={'reccomended__btnLink homepage__rayBtn'}>Просмотреть все товары</Link>
+                                <Link to={'/shop'} className={'reccomended__btnLink homepage__rayBtn'}>
+                                    Просмотреть все товары
+                                </Link>
                             </div>
                         </div>
                     </div>

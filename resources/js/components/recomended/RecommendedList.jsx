@@ -1,21 +1,38 @@
-import React  from "react";
+import React, {Component}  from "react";
 import Slider from 'react-slick';
 import {settings, setSliderVisibility} from "./recommendedSliderSettings";
 import ProductSingle from '../products/ProductSingle';
+import Preloader from '../../helpers/preloader';
 
-const RecommendedList = ({productsRecommended}) => {
+class RecommendedList extends Component {
 
-    const showSlider = setSliderVisibility( productsRecommended.length, window.innerWidth );
+    componentDidMount() {
+        const {setAllProducts} = this.props;
+        setAllProducts();
+    }
 
-    const productsRecommendedList = productsRecommended.map(productData => (
-        <div className={'good__item'}>
-            <ProductSingle key={productData.id} {...productData} matchPath={'shop'} />
-        </div>
-    ));
+    render(){
+        const {productsRecommended, isProductsReady, isProductsLoading} = this.props;
 
-    return (
-        <div className="recommended__products">
-            {showSlider ? (
+        if (isProductsLoading) {
+            return <Preloader />
+        }
+
+        if (!isProductsReady) {
+            return null;
+        }
+
+        const showSlider = setSliderVisibility( productsRecommended && productsRecommended.length, window.innerWidth );
+
+        const productsRecommendedList = productsRecommended && productsRecommended.map(productData => (
+            <div className={'good__item'}>
+                <ProductSingle key={productData.id} {...productData} matchPath={'shop'} />
+            </div>
+        ));
+
+        return (
+            <div className="recommended__products">
+                {showSlider ? (
                     <Slider {...settings} className={'recommended__categoryWrapper active'}>
                         {productsRecommendedList}
                     </Slider>
@@ -24,9 +41,10 @@ const RecommendedList = ({productsRecommended}) => {
                         {productsRecommendedList}
                     </div>
                 )
-            }
-        </div>
-    );
+                }
+            </div>
+        );
+    }
 };
 
 export default RecommendedList;

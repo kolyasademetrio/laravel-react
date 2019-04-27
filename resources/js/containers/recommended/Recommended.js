@@ -1,17 +1,20 @@
 import {connect} from 'react-redux';
-import {setProducts} from '../../actions/products';
+import {setAllProducts} from '../../actions/products';
 import {setFilter} from '../../actions/filter';
 import {getCategoryProductRelationsByCatSlug} from '../../helpers/getCategoryProductRelations';
 import Recommended from '../../components/recomended/Recommended';
 
 
 
-const mapStateToProps = ({products},ownProps) => ({
-    productsList: products.items.productsList,
+const mapStateToProps = ({products}) => {
+    
+    console.log( products );
+    
+    return {
     categories: products.items.categories,
-    categoriesRelationship: getCategoryProductRelationsByCatSlug( products.items.categoriesRelationship ),
     isProductsReady: products.isProductsReady,
-});
+    isProductsLoading: products.isProductsLoading,
+}};
 
 /*const mapDispatchToProps = dispatch => ({
     setProducts: products => dispatch(setProducts(products)),
@@ -21,7 +24,7 @@ const mapStateToProps = ({products},ownProps) => ({
 /* если параметры совпадают то можно сократить до такого вида */
 /* setProducts: PRODUCTS => dispatch(setProducts(PRODUCTS)), */
 const mapDispatchToProps = {
-    setProducts,
+    setAllProducts,
     setFilter,
 };
 

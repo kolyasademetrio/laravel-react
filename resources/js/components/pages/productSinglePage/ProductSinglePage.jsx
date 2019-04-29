@@ -24,7 +24,7 @@ class ProductSinglePage extends Component {
     }
 
     render(){
-        const {error, isSingleLoading, isSingleReady} = this.props;
+        const {error, isSingleLoading, isSingleReady, id} = this.props;
 
         if (error === 404) {
             return <Route component={ErrorPage} />
@@ -37,7 +37,6 @@ class ProductSinglePage extends Component {
         if (!isSingleReady) {
             return null;
         }
-        const {id} = this.props;
 
         return (
             <div id="primary" role="main" className="single-product content-area twentyfifteen woocommerce-page woocommerce">

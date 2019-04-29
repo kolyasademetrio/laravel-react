@@ -17,10 +17,6 @@ import {
     SCRUB
 } from './types/product-types';
 
-export const setProducts = products => ({
-    type: SET_PRODUCTS,
-    payload: products
-});
 
 export const setAllProducts = () => {
     return async dispatch => {

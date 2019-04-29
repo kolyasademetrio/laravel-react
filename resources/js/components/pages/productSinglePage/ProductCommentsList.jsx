@@ -4,7 +4,6 @@ import ProductCommentSingle from './ProductCommentSingle';
 const NoCommentsMessage = () =>  <p className="woocommerce-noreviews">Отзывов пока нет.</p>;
 
 class ProductCommentsList extends Component {
-
     constructor(props){
         super(props);
         this.handleRemoveCommentByID = this.handleRemoveCommentByID.bind(this);

@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import CatsListFilterHome from '../components/CatsListFilterHome';
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     const {filterBy} = state.filter;
     const {categories} = state.products.items;
     return {

@@ -7,7 +7,6 @@ import Breadcrumbs from '../../helpers/breadcrumbs';
 import Preloader from '../../helpers/preloader';
 
 class ShopPage extends Component {
-
     componentDidMount() {
         const {setAllProducts} = this.props;
         setAllProducts();

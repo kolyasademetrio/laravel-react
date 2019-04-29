@@ -29,7 +29,7 @@ class ProductGallery extends Component {
 
         return (
             <div className="good_gallery">
-                <div className={"good_galleryWrap "+(hasGalleryNav ? 'has_galleryNav' : 'hasnot_galleryNav')}>
+                <div className={`good_galleryWrap ${hasGalleryNav ? 'has_galleryNav' : 'hasnot_galleryNav'}`}>
                     <Slider
                         {...goodGallerySliderSettings}
                         className={'good__gallerySlider'}

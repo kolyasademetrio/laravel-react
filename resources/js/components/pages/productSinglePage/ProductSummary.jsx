@@ -2,9 +2,7 @@ import React from 'react';
 import ReactHtmlParser from "react-html-parser";
 import Quantity from "./Quantity";
 
-const ProductSummary = props => {
-    const {title, excerpt, descr, hasSalePrice, regular_price, sale_price, currency} = props;
-
+const ProductSummary = ({title, excerpt, descr, hasSalePrice, regular_price, sale_price, currency}) => {
     return (
         <div className="summary entry-summary">
             <h1 className="product_title entry-title">{ReactHtmlParser(title)}</h1>

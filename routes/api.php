@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('users', 'Api\UserController');
 Route::resource('pages', 'Api\PagesController');
 Route::resource('menu', 'Api\MenuController');
+
+Route::get('videotips/{slug}', 'Api\VideotipsController@show');
 Route::resource('videotips', 'Api\VideotipsController');
 
 Route::get('products/{slug}', 'Api\ProductsController@show');

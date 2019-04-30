@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use DB;
 use App\Videotips;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -23,6 +24,21 @@ class VideotipsController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Videotips  $videotips
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $videotip = DB::table('videotips')->where('slug', $id)->first();
+
+        return response()->json([
+            'videotip' => $videotip,
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -39,17 +55,6 @@ class VideotipsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Videotips  $videotips
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Videotips $videotips)
     {
         //
     }

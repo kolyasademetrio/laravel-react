@@ -33,9 +33,11 @@ class HeaderBottomMenu extends Component {
             <div className="headerBottom__menu" id="headerBottom__menu">
                 <ul className="headerBottom__menuList">
                     {
-                        this.state.menuItems.map( headerMenuItem => (
-                            <HeaderBottomMenuItem key={this.nextUniqueId()} {...headerMenuItem}
-                                                  onHandler={this.onClickAlert}
+                        this.state.menuItems.map( menuItem => (
+                            <HeaderBottomMenuItem
+                                key={this.nextUniqueId()}
+                                onHandler={this.onClickAlert}
+                                {...menuItem}
                             />
                         ))
                     }

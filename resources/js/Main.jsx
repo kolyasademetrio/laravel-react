@@ -16,6 +16,7 @@ import ErrorPage from './components/pages/ErrorPage';
 import ShippingPage from './components/pages/ShippingPage';
 import TermsCooperationPage from './components/pages/TermsCooperationPage';
 import ProductSinglePage from './containers/pages/ProductSinglePage/ProductSinglePage';
+import VideotipSinglePage from './containers/pages/VideotipsPage/VideotipSinglePage';
 
 class Main extends Component {
     render() {
@@ -29,7 +30,8 @@ class Main extends Component {
                             <Route exact path="/about-cosmetics" component={AboutPage} />
                             <Route exact path="/shop" component={ShopPage} />
                             <Route exact path={`/shop/:product`} component={ProductSinglePage} />
-                            <Route exact path="/videotip" component={VideotipPage} />
+                            <Route exact path="/videotips" component={VideotipPage} />
+                            <Route exact path={`/videotips/:videotip`} component={VideotipSinglePage} />
                             <Route exact path="/stock" component={StockPage }/>
                             <Route exact path="/doyouknow" component={DoyouknowPage} />
                             <Route exact path="/contacts" component={ContactsPage} />

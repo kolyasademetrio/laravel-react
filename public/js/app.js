@@ -79695,6 +79695,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pages_ShippingPage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/pages/ShippingPage */ "./resources/js/components/pages/ShippingPage.jsx");
 /* harmony import */ var _components_pages_TermsCooperationPage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/pages/TermsCooperationPage */ "./resources/js/components/pages/TermsCooperationPage.jsx");
 /* harmony import */ var _containers_pages_ProductSinglePage_ProductSinglePage__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./containers/pages/ProductSinglePage/ProductSinglePage */ "./resources/js/containers/pages/ProductSinglePage/ProductSinglePage.js");
+/* harmony import */ var _containers_pages_VideotipsPage_VideotipSinglePage__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./containers/pages/VideotipsPage/VideotipSinglePage */ "./resources/js/containers/pages/VideotipsPage/VideotipSinglePage.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -79712,6 +79713,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -79767,8 +79769,12 @@ function (_Component) {
         component: _containers_pages_ProductSinglePage_ProductSinglePage__WEBPACK_IMPORTED_MODULE_15__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
-        path: "/videotip",
+        path: "/videotips",
         component: _containers_pages_VideotipsPage_VideotipPage__WEBPACK_IMPORTED_MODULE_8__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
+        exact: true,
+        path: "/videotips/:videotip",
+        component: _containers_pages_VideotipsPage_VideotipSinglePage__WEBPACK_IMPORTED_MODULE_16__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/stock",
@@ -80172,7 +80178,7 @@ var REMOVE_FROM_CART = "REMOVE_FROM_CART";
 /*!*******************************************************!*\
   !*** ./resources/js/actions/types/videotips-types.js ***!
   \*******************************************************/
-/*! exports provided: SET_VIDEOTIPS, SET_VIDEOTIPS_SUCCEEDED, SET_VIDEOTIPS_FAILED */
+/*! exports provided: SET_VIDEOTIPS, SET_VIDEOTIPS_SUCCEEDED, SET_VIDEOTIPS_FAILED, SET_VIDEOTIP_SINGLE, SET_VIDEOTIP_SINGLE_SUCCEEDED, SET_VIDEOTIP_SINGLE_FAILED */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -80180,9 +80186,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIPS", function() { return SET_VIDEOTIPS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIPS_SUCCEEDED", function() { return SET_VIDEOTIPS_SUCCEEDED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIPS_FAILED", function() { return SET_VIDEOTIPS_FAILED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIP_SINGLE", function() { return SET_VIDEOTIP_SINGLE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIP_SINGLE_SUCCEEDED", function() { return SET_VIDEOTIP_SINGLE_SUCCEEDED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIP_SINGLE_FAILED", function() { return SET_VIDEOTIP_SINGLE_FAILED; });
 var SET_VIDEOTIPS = 'SET_VIDEOTIPS';
 var SET_VIDEOTIPS_SUCCEEDED = 'SET_VIDEOTIPS_SUCCEEDED';
 var SET_VIDEOTIPS_FAILED = 'SET_VIDEOTIPS_FAILED';
+var SET_VIDEOTIP_SINGLE = 'SET_VIDEOTIP_SINGLE';
+var SET_VIDEOTIP_SINGLE_SUCCEEDED = 'SET_VIDEOTIP_SINGLE_SUCCEEDED';
+var SET_VIDEOTIP_SINGLE_FAILED = 'SET_VIDEOTIP_SINGLE_FAILED';
 
 /***/ }),
 
@@ -80190,22 +80202,21 @@ var SET_VIDEOTIPS_FAILED = 'SET_VIDEOTIPS_FAILED';
 /*!*******************************************!*\
   !*** ./resources/js/actions/videotips.js ***!
   \*******************************************/
-/*! exports provided: setAllVideotips */
+/*! exports provided: setAllVideotips, setSingleVideotip */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setAllVideotips", function() { return setAllVideotips; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSingleVideotip", function() { return setSingleVideotip; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types/videotips-types */ "./resources/js/actions/types/videotips-types.js");
-/* harmony import */ var _types_product_types__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./types/product-types */ "./resources/js/actions/types/product-types.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 
 
 var setAllVideotips = function setAllVideotips() {
@@ -80230,7 +80241,7 @@ var setAllVideotips = function setAllVideotips() {
                   });
                 }).catch(function (err) {
                   dispatch({
-                    type: _types_product_types__WEBPACK_IMPORTED_MODULE_2__["SET_PRODUCTS_FAILED"],
+                    type: _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_1__["SET_VIDEOTIPS_FAILED"],
                     payload: err
                   });
                 });
@@ -80245,6 +80256,48 @@ var setAllVideotips = function setAllVideotips() {
 
       return function (_x) {
         return _ref.apply(this, arguments);
+      };
+    }()
+  );
+};
+var setSingleVideotip = function setSingleVideotip(slug) {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref3 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(dispatch) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                dispatch({
+                  type: _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_1__["SET_VIDEOTIP_SINGLE"]
+                });
+                axios.get("/api/videotips/".concat(slug)).then(function (data) {
+                  var videotip = data.data.videotip;
+                  console.log(data);
+                  dispatch({
+                    type: _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_1__["SET_VIDEOTIP_SINGLE_SUCCEEDED"],
+                    payload: videotip
+                  });
+                }).catch(function (err) {
+                  dispatch({
+                    type: _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_1__["SET_VIDEOTIP_SINGLE_FAILED"],
+                    payload: 404
+                  });
+                });
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }));
+
+      return function (_x2) {
+        return _ref3.apply(this, arguments);
       };
     }()
   );
@@ -81747,12 +81800,11 @@ function (_Component) {
         id: "headerBottom__menu"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "headerBottom__menuList"
-      }, this.state.menuItems.map(function (headerMenuItem) {
+      }, this.state.menuItems.map(function (menuItem) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_HeaderBottomMenuItem__WEBPACK_IMPORTED_MODULE_1__["default"], _extends({
-          key: _this3.nextUniqueId()
-        }, headerMenuItem, {
+          key: _this3.nextUniqueId(),
           onHandler: _this3.onClickAlert
-        }));
+        }, menuItem));
       })));
     }
   }]);
@@ -85286,6 +85338,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/preloader */ "./resources/js/helpers/preloader.js");
 /* harmony import */ var _VideotipSingle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VideotipSingle */ "./resources/js/components/pages/VideotipsPage/VideotipSingle.jsx");
+/* harmony import */ var _helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/breadcrumbs */ "./resources/js/helpers/breadcrumbs.js");
+/* harmony import */ var _videotipsPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./videotipsPageMagnificPopupInit */ "./resources/js/components/pages/VideotipsPage/videotipsPageMagnificPopupInit.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85308,6 +85364,18 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
+var NoVideotipsMessage = function NoVideotipsMessage() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "woocommerce-noreviews",
+    style: {
+      minHeight: 100
+    }
+  }, "\u0412\u0438\u0434\u0435\u043E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.");
+};
+
 var VideotipPage =
 /*#__PURE__*/
 function (_Component) {
@@ -85324,6 +85392,8 @@ function (_Component) {
     value: function componentDidMount() {
       var setAllVideotips = this.props.setAllVideotips;
       setAllVideotips();
+      this.$el = jquery__WEBPACK_IMPORTED_MODULE_5___default()('.videotip__items');
+      Object(_videotipsPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_4__["default"])(this.$el);
     }
   }, {
     key: "render",
@@ -85340,22 +85410,7 @@ function (_Component) {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-xs-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "kama_breadcrumbs",
-        itemScope: "",
-        itemType: "http://schema.org/BreadcrumbList"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        itemProp: "itemListElement",
-        itemScope: "",
-        itemType: "http://schema.org/ListItem"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "/",
-        itemProp: "item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        itemProp: "name"
-      }, "\u0413\u043B\u0430\u0432\u043D\u0430\u044F"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "kb_sep"
-      }, " / "), "\u0412\u0438\u0434\u0435\u043E\u0441\u043E\u0432\u0435\u0442\u044B")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_3__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
@@ -85367,13 +85422,13 @@ function (_Component) {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "videotip__items"
-      }, isVideotipsLoading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_preloader__WEBPACK_IMPORTED_MODULE_1__["default"], null), isVideotipsReady && videotipsList.map(function (v) {
+      }, isVideotipsLoading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_preloader__WEBPACK_IMPORTED_MODULE_1__["default"], null), isVideotipsReady && (videotipsList.length ? videotipsList.map(function (v) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_VideotipSingle__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          v: v,
+          videotip: v,
           matchPath: matchPath,
           key: v.id
         });
-      }))))))));
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NoVideotipsMessage, null)))))))));
     }
   }]);
 
@@ -85400,29 +85455,214 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var VideotipSingle = function VideotipSingle(_ref) {
-  var v = _ref.v,
+  var _ref$videotip = _ref.videotip,
+      title = _ref$videotip.title,
+      video = _ref$videotip.video,
+      image = _ref$videotip.image,
+      slug = _ref$videotip.slug,
       matchPath = _ref.matchPath;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "videotip__item col-lg-3 col-md-3 col-sm-4 col-xs-6"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: v.video,
-    title: v.title,
+    href: video,
+    title: title,
     className: "videotip__itemInner"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: v.image,
-    alt: v.title,
+    src: image,
+    alt: title,
     className: "videotip__itemImg"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "videotip__play"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: {
-      pathname: "".concat(matchPath, "/").concat(v.slug)
+      pathname: "".concat(matchPath, "/").concat(slug)
     },
     className: "videotip__title"
-  }, v.title));
+  }, title));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (VideotipSingle);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/VideotipsPage/VideotipSinglePage.jsx":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/pages/VideotipsPage/VideotipSinglePage.jsx ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/breadcrumbs */ "./resources/js/helpers/breadcrumbs.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+var VideotipSinglePage =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(VideotipSinglePage, _Component);
+
+  function VideotipSinglePage(props) {
+    var _this;
+
+    _classCallCheck(this, VideotipSinglePage);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(VideotipSinglePage).call(this, props));
+    _this.state = {
+      videotipSlug: _this.props.match.params.videotip
+    };
+    return _this;
+  }
+
+  _createClass(VideotipSinglePage, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var setSingleVideotip = this.props.setSingleVideotip;
+      var videotipSlug = this.state.videotipSlug;
+      setSingleVideotip(videotipSlug);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props$videotipS = this.props.videotipSingle,
+          title = _this$props$videotipS.title,
+          video = _this$props$videotipS.video,
+          image = _this$props$videotipS.image;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-xs-12"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_1__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "movietiphome_single"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container movietiphome_single__titleContainer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row movietiphome_single__titleRow"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-xs-12 movietiphome_single__titleCol"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "movietiphome_single__title home__sectionTitle"
+      }, title))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container movietiphome_single__container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row movietiphome_single__row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-xs-12 movietiphome_single__col"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "movietiphome_single__inner"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "movietiphome_single__item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: video,
+        title: title,
+        className: "movietiphome_single__link"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: image,
+        alt: title,
+        className: "movietiphome_single__img"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "movietiphome_single__play"
+      }))))))));
+    }
+  }]);
+
+  return VideotipSinglePage;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (VideotipSinglePage);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/VideotipsPage/videotipsPageMagnificPopupInit.js":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/pages/VideotipsPage/videotipsPageMagnificPopupInit.js ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return videotipsPopupInit; });
+function videotipsPopupInit($elem) {
+  $elem.each(function () {
+    $(this).magnificPopup({
+      type: 'image',
+      removalDelay: 500,
+      mainClass: 'mfp-fade popup_inline',
+      showCloseBtn: true,
+      closeMarkup: '<div class="mfp-close">&times;</div>',
+      closeBtnInside: true,
+      closeOnContentClick: false,
+      closeOnBgClick: true,
+      alignTop: false,
+      fixedContentPos: true,
+      titleSrc: function titleSrc(item) {
+        return item.el.parent('.videotip__itemInner').attr('title');
+      },
+      callbacks: {
+        open: function open() {
+          var headerHeight = $('.header__top').innerHeight();
+          $('.mfp-content').css({
+            'marginTop': headerHeight
+          });
+          var mp = $.magnificPopup.instance,
+              t = $(mp.currItem.el[0]);
+          var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+              $dataVideo = $(this.currItem.el).attr('href');
+          $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+          $imgVideo.parent('figure').append('<div class="movietiphome__play"></div>');
+          $('.mfp-content .movietiphome__play').click();
+        },
+        close: function close() {},
+        beforeOpen: function beforeOpen() {
+          var $triggerEl = $(this.st.el),
+              newClass = 'movietiphome__gallery';
+          this.st.mainClass = this.st.mainClass + ' ' + newClass;
+          this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+        },
+        elementParse: function elementParse(item) {
+          item.src = item.el.find('img').attr('src');
+        },
+        markupParse: function markupParse(template, values, item) {},
+        change: function change() {
+          var mp = $.magnificPopup.instance,
+              t = $(mp.currItem.el[0]);
+          var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+              $dataVideo = $(this.currItem.el).attr('href');
+          $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+        }
+      },
+      gallery: {
+        enabled: false,
+        navigateByImgClick: false
+      },
+      delegate: '.videotip__itemInner'
+    });
+  });
+}
 
 /***/ }),
 
@@ -85714,7 +85954,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 var NoCommentsMessage = function NoCommentsMessage() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    className: "woocommerce-noreviews"
+    className: "woocommerce-noreviews",
+    style: {
+      minHeight: 100
+    }
   }, "\u041E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.");
 };
 
@@ -87444,6 +87687,41 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./resources/js/containers/pages/VideotipsPage/VideotipSinglePage.js":
+/*!***************************************************************************!*\
+  !*** ./resources/js/containers/pages/VideotipsPage/VideotipSinglePage.js ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _components_pages_VideotipsPage_VideotipSinglePage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../components/pages/VideotipsPage/VideotipSinglePage */ "./resources/js/components/pages/VideotipsPage/VideotipSinglePage.jsx");
+/* harmony import */ var _actions_videotips__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/videotips */ "./resources/js/actions/videotips.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var videotipSingle = _ref.videotips.videotipSingle;
+  return {
+    videotipSingle: videotipSingle
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setSingleVideotip: function setSingleVideotip(slug) {
+      return dispatch(Object(_actions_videotips__WEBPACK_IMPORTED_MODULE_2__["setSingleVideotip"])(slug));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_pages_VideotipsPage_VideotipSinglePage__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
 /***/ "./resources/js/containers/recommended/Recommended.js":
 /*!************************************************************!*\
   !*** ./resources/js/containers/recommended/Recommended.js ***!
@@ -88334,7 +88612,11 @@ var INITIAL_STATE = {
   isVideotipsLoading: false,
   isVideotipsReady: false,
   videotipsError: null,
-  videotipsList: []
+  videotipsList: [],
+  isVideotipSingleLoading: false,
+  isVideotipSingleReady: false,
+  videotipSingleError: null,
+  videotipSingle: {}
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
@@ -88358,6 +88640,23 @@ var INITIAL_STATE = {
         isVideotipsLoading: false,
         isVideotipsReady: false,
         videotipsError: action.payload
+      });
+
+    case _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_0__["SET_VIDEOTIP_SINGLE"]:
+      return _objectSpread({}, state, {
+        isVideotipSingleLoading: true
+      });
+
+    case _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_0__["SET_VIDEOTIP_SINGLE_SUCCEEDED"]:
+      return _objectSpread({}, state, {
+        isVideotipSingleLoading: false,
+        isVideotipSingleReady: true,
+        videotipSingle: action.payload
+      });
+
+    case _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_0__["SET_VIDEOTIP_SINGLE_FAILED"]:
+      return _objectSpread({}, state, {
+        videotipSingleError: action.payload
       });
 
     default:
@@ -88411,8 +88710,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

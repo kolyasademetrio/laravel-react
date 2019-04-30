@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ProductCommentSingle from './ProductCommentSingle';
 
-const NoCommentsMessage = () =>  <p className="woocommerce-noreviews">Отзывов пока нет.</p>;
+const NoCommentsMessage = () =>  <p className="woocommerce-noreviews" style={{minHeight: 100}}>Отзывов пока нет.</p>;
 
 class ProductCommentsList extends Component {
     constructor(props){

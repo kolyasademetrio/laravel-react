@@ -1,9 +1,12 @@
 import {
     SET_VIDEOTIPS,
     SET_VIDEOTIPS_SUCCEEDED,
-    SET_VIDEOTIPS_FAILED
+    SET_VIDEOTIPS_FAILED,
+
+    SET_VIDEOTIP_SINGLE,
+    SET_VIDEOTIP_SINGLE_SUCCEEDED,
+    SET_VIDEOTIP_SINGLE_FAILED,
 } from '../actions/types/videotips-types';
-import {SET_PRODUCTS, SET_PRODUCTS_FAILED, SET_PRODUCTS_SUCCEEDED} from "./types/product-types";
 
 export const setAllVideotips = () => {
     return async dispatch => {
@@ -11,7 +14,22 @@ export const setAllVideotips = () => {
         axios.get('/api/videotips').then(({data: videotips}) => {
             dispatch({type: SET_VIDEOTIPS_SUCCEEDED, payload: videotips});
         }).catch(err => {
-            dispatch({type: SET_PRODUCTS_FAILED, payload: err});
+            dispatch({type: SET_VIDEOTIPS_FAILED, payload: err});
+        });
+    };
+};
+
+export const setSingleVideotip = (slug) => {
+    return async dispatch => {
+        dispatch({type: SET_VIDEOTIP_SINGLE});
+        axios.get(`/api/videotips/${slug}`).then(data => {
+            const {videotip} = data.data;
+
+            console.log( data );
+
+            dispatch({type: SET_VIDEOTIP_SINGLE_SUCCEEDED, payload: videotip});
+        }).catch(err => {
+            dispatch({type: SET_VIDEOTIP_SINGLE_FAILED, payload: 404});
         });
     };
 };

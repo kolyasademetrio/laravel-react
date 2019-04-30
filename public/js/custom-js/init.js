@@ -530,7 +530,7 @@ jQuery(document).ready(function($) {
 
 
     /* попап на странице Видеосоветов */
-    $('.videotip__items').each(function() {
+    /*$('.videotip__items').each(function() {
         $(this).magnificPopup({
             type:'image',
             removalDelay: 500,
@@ -593,7 +593,7 @@ jQuery(document).ready(function($) {
             },
             delegate: '.videotip__itemInner',
         });
-    });
+    });*/
     /* попап на странице Видеосоветов End */
 
 
@@ -626,6 +626,7 @@ jQuery(document).ready(function($) {
                     $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
 
                     $imgVideo.parent('figure').append('<div class="movietiphome__play"></div>');
+                    $('.mfp-content .movietiphome__play').click();
                 },
                 close: function() {
 

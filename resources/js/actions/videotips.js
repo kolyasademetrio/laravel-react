@@ -24,10 +24,11 @@ export const setSingleVideotip = (slug) => {
         dispatch({type: SET_VIDEOTIP_SINGLE});
         axios.get(`/api/videotips/${slug}`).then(data => {
             const {videotip} = data.data;
-
-            console.log( data );
-
-            dispatch({type: SET_VIDEOTIP_SINGLE_SUCCEEDED, payload: videotip});
+            if (videotip) {
+                dispatch({type: SET_VIDEOTIP_SINGLE_SUCCEEDED, payload: videotip});
+            } else {
+                dispatch({type: SET_VIDEOTIP_SINGLE_FAILED, payload: 404});
+            }
         }).catch(err => {
             dispatch({type: SET_VIDEOTIP_SINGLE_FAILED, payload: 404});
         });

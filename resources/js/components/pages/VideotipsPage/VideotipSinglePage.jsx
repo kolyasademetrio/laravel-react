@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
 import Breadcrumbs from '../../../helpers/breadcrumbs';
+import Preloader from '../../../helpers/preloader';
+import {Route} from 'react-router-dom';
+import ErrorPage from '../ErrorPage';
+import videotipSinglePagePopupInit from './videotipSinglePageMagnificPopupInit';
+import $ from 'jquery';
+
 
 
 class VideotipSinglePage extends Component {
@@ -14,10 +20,28 @@ class VideotipSinglePage extends Component {
         const {setSingleVideotip} = this.props;
         const {videotipSlug} = this.state;
         setSingleVideotip(videotipSlug);
+
+        this.$el = $('.movietiphome_single__inner');
+        videotipSinglePagePopupInit(this.$el);
     }
 
     render(){
-        const {title, video, image} = this.props.videotipSingle;
+
+        console.log( 'this.$el inside of render', this.$el );
+
+        const {videotipSingle: {title, video, image}, isVideotipSingleLoading, isVideotipSingleReady, videotipSingleError} = this.props;
+
+        if (videotipSingleError === 404) {
+            return <Route component={ErrorPage} />
+        }
+
+        if (isVideotipSingleLoading) {
+            return <Preloader />
+        }
+
+        if (!isVideotipSingleReady) {
+            return null;
+        }
 
         return (
             <React.Fragment>

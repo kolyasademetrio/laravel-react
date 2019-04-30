@@ -1,4 +1,4 @@
-import VideotipPage from '../../../components/pages/VideotipsPage/VideotipPage';
+import VideotipsPage from '../../../components/pages/VideotipsPage/VideotipsPage';
 import {setAllVideotips} from '../../../actions/videotips';
 import {connect} from 'react-redux';
 
@@ -17,4 +17,4 @@ const mapDispatchToProps = dispatch => ({
     setAllVideotips: videotips => dispatch(setAllVideotips(videotips)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(VideotipPage);
+export default connect(mapStateToProps, mapDispatchToProps)(VideotipsPage);

@@ -598,7 +598,7 @@ jQuery(document).ready(function($) {
 
 
     /* попап на странице Одного Видеосовета */
-    $('.movietiphome_single__inner').each(function() {
+    /*$('.movietiphome_single__inner').each(function() {
         $(this).magnificPopup({
             type:'image',
             removalDelay: 500,
@@ -659,7 +659,7 @@ jQuery(document).ready(function($) {
             },
             delegate: '.movietiphome_single__play',
         });
-    });
+    });*/
     /* попап на странице Одного Видеосовета End */
 
 

@@ -3,8 +3,11 @@ import VideotipSinglePage from '../../../components/pages/VideotipsPage/Videotip
 import {setSingleVideotip} from '../../../actions/videotips';
 
 
-const mapStateToProps = ({videotips: {videotipSingle}}) => ({
-    videotipSingle
+const mapStateToProps = ({videotips: {videotipSingle, isVideotipSingleLoading, isVideotipSingleReady, videotipSingleError}}) => ({
+    videotipSingle,
+    isVideotipSingleLoading,
+    isVideotipSingleReady,
+    videotipSingleError
 });
 
 const mapDispatchToProps = dispatch => ({

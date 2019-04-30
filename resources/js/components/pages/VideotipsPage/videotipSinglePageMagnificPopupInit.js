@@ -1,4 +1,4 @@
-export default function videotipsPopupInit($elem){
+export default function videotipSinglePagePopupInit($elem){
     console.log( '$elem inside function', $elem );
 
     $elem.each(function() {
@@ -13,9 +13,6 @@ export default function videotipsPopupInit($elem){
             closeOnBgClick: true,
             alignTop: false,
             fixedContentPos: true,
-            titleSrc: function(item) {
-                return item.el.parent('.videotip__itemInner').attr('title');
-            },
             callbacks: {
                 open: function() {
                     var headerHeight = $('.header__top').innerHeight();
@@ -27,7 +24,7 @@ export default function videotipsPopupInit($elem){
                         t = $(mp.currItem.el[0]);
 
                     var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
-                        $dataVideo = $(this.currItem.el).attr('href');
+                        $dataVideo = $(this.currItem.el).parent('.movietiphome_single__link').attr('href');
 
                     $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
 
@@ -45,10 +42,10 @@ export default function videotipsPopupInit($elem){
                     this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
                 },
                 elementParse: function(item) {
-                    item.src = item.el.find('img').attr('src');
+                    item.src = item.el.parent('.movietiphome_single__link').find('img').attr('src');
                 },
                 markupParse: function(template, values, item) {
-
+                    values.title = item.el.parent('.movietiphome_single__link').attr('title');
                 },
                 change: function(){
                     var mp = $.magnificPopup.instance,
@@ -63,7 +60,7 @@ export default function videotipsPopupInit($elem){
                 enabled:false,
                 navigateByImgClick: false,
             },
-            delegate: '.videotip__itemInner',
+            delegate: '.movietiphome_single__play',
         });
     });
 }

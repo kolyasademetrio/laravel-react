@@ -8,7 +8,7 @@ import $ from 'jquery';
 
 const NoVideotipsMessage = () =>  <p className="woocommerce-noreviews" style={{minHeight: 100}}>Видеотзывов пока нет.</p>;
 
-class VideotipPage extends Component {
+class VideotipsPage extends Component {
     componentDidMount(){
         const {setAllVideotips} = this.props;
         setAllVideotips();
@@ -56,4 +56,4 @@ class VideotipPage extends Component {
     }
 }
 
-export default VideotipPage;
+export default VideotipsPage;

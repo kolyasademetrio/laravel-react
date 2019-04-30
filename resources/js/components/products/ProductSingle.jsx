@@ -29,8 +29,8 @@ const ProductSingle = (props) => {
                     <Link
                         to={{
                             pathname: `${matchPath}/${slug}`,
-                            title: title,
-                            id: id,
+                            /*title: title,
+                            id: id,*/
                         }}
                         className="good__itemDescrText"
                     >

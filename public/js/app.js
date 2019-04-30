@@ -79687,7 +79687,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pages_HomePage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/pages/HomePage */ "./resources/js/components/pages/HomePage.jsx");
 /* harmony import */ var _components_pages_AboutPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/pages/AboutPage */ "./resources/js/components/pages/AboutPage.jsx");
 /* harmony import */ var _containers_pages_ShopPage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./containers/pages/ShopPage */ "./resources/js/containers/pages/ShopPage.js");
-/* harmony import */ var _components_pages_VideotipPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/pages/VideotipPage */ "./resources/js/components/pages/VideotipPage.jsx");
+/* harmony import */ var _containers_pages_VideotipsPage_VideotipPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./containers/pages/VideotipsPage/VideotipPage */ "./resources/js/containers/pages/VideotipsPage/VideotipPage.js");
 /* harmony import */ var _components_pages_StockPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/pages/StockPage */ "./resources/js/components/pages/StockPage.jsx");
 /* harmony import */ var _components_pages_DoyouknowPage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/pages/DoyouknowPage */ "./resources/js/components/pages/DoyouknowPage.jsx");
 /* harmony import */ var _components_pages_ContactsPage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/pages/ContactsPage */ "./resources/js/components/pages/ContactsPage.jsx");
@@ -79768,7 +79768,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/videotip",
-        component: _components_pages_VideotipPage__WEBPACK_IMPORTED_MODULE_8__["default"]
+        component: _containers_pages_VideotipsPage_VideotipPage__WEBPACK_IMPORTED_MODULE_8__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/stock",
@@ -85273,10 +85273,10 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/pages/VideotipPage.jsx":
-/*!********************************************************!*\
-  !*** ./resources/js/components/pages/VideotipPage.jsx ***!
-  \********************************************************/
+/***/ "./resources/js/components/pages/VideotipsPage/VideotipPage.jsx":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/pages/VideotipsPage/VideotipPage.jsx ***!
+  \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -85284,8 +85284,8 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _actions_videotips__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/videotips */ "./resources/js/actions/videotips.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/preloader */ "./resources/js/helpers/preloader.js");
+/* harmony import */ var _VideotipSingle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./VideotipSingle */ "./resources/js/components/pages/VideotipsPage/VideotipSingle.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85308,18 +85308,18 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var Videotip =
+var VideotipPage =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(Videotip, _Component);
+  _inherits(VideotipPage, _Component);
 
-  function Videotip() {
-    _classCallCheck(this, Videotip);
+  function VideotipPage() {
+    _classCallCheck(this, VideotipPage);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(Videotip).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(VideotipPage).apply(this, arguments));
   }
 
-  _createClass(Videotip, [{
+  _createClass(VideotipPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var setAllVideotips = this.props.setAllVideotips;
@@ -85333,6 +85333,7 @@ function (_Component) {
           isVideotipsLoading = _this$props.isVideotipsLoading,
           isVideotipsReady = _this$props.isVideotipsReady,
           videotipsError = _this$props.videotipsError;
+      var matchPath = this.props.match.path;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85366,53 +85367,62 @@ function (_Component) {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "videotip__items"
-      }, isVideotipsReady && videotipsList.map(function (v) {
-        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "videotip__item col-lg-3 col-md-3 col-sm-4 col-xs-6"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: v.video,
-          title: v.title,
-          className: "videotip__itemInner"
-        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-          src: v.image,
-          alt: "",
-          className: "videotip__itemImg"
-        }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "videotip__play"
-        })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-          href: "/videotip/%d1%81%d0%be%d0%b2%d0%b5%d1%82-5/",
-          className: "videotip__title"
-        }, v.title));
+      }, isVideotipsLoading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_preloader__WEBPACK_IMPORTED_MODULE_1__["default"], null), isVideotipsReady && videotipsList.map(function (v) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_VideotipSingle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          v: v,
+          matchPath: matchPath,
+          key: v.id
+        });
       }))))))));
     }
   }]);
 
-  return Videotip;
+  return VideotipPage;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var mapStateToProps = function mapStateToProps(_ref) {
-  var videotips = _ref.videotips;
-  var videotipsList = videotips.videotipsList,
-      isVideotipsLoading = videotips.isVideotipsLoading,
-      isVideotipsReady = videotips.isVideotipsReady,
-      videotipsError = videotips.videotipsError;
-  return {
-    videotipsList: videotipsList,
-    isVideotipsLoading: isVideotipsLoading,
-    isVideotipsReady: isVideotipsReady,
-    videotipsError: videotipsError
-  };
+/* harmony default export */ __webpack_exports__["default"] = (VideotipPage);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/VideotipsPage/VideotipSingle.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/pages/VideotipsPage/VideotipSingle.jsx ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var VideotipSingle = function VideotipSingle(_ref) {
+  var v = _ref.v,
+      matchPath = _ref.matchPath;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "videotip__item col-lg-3 col-md-3 col-sm-4 col-xs-6"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: v.video,
+    title: v.title,
+    className: "videotip__itemInner"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: v.image,
+    alt: v.title,
+    className: "videotip__itemImg"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "videotip__play"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: {
+      pathname: "".concat(matchPath, "/").concat(v.slug)
+    },
+    className: "videotip__title"
+  }, v.title));
 };
 
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    setAllVideotips: function setAllVideotips(videotips) {
-      return dispatch(Object(_actions_videotips__WEBPACK_IMPORTED_MODULE_1__["setAllVideotips"])(videotips));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(Videotip));
+/* harmony default export */ __webpack_exports__["default"] = (VideotipSingle);
 
 /***/ }),
 
@@ -86642,9 +86652,10 @@ var ProductSingle = function ProductSingle(props) {
     className: "good__itemDescrTitle"
   }, react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(descrtitle)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: {
-      pathname: "".concat(matchPath, "/").concat(slug),
-      title: title,
-      id: id
+      pathname: "".concat(matchPath, "/").concat(slug)
+      /*title: title,
+      id: id,*/
+
     },
     className: "good__itemDescrText"
   }, react_html_parser__WEBPACK_IMPORTED_MODULE_3___default()(descrtext))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductPrices__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -87388,6 +87399,48 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_pages_ShopPage__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+/***/ }),
+
+/***/ "./resources/js/containers/pages/VideotipsPage/VideotipPage.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/containers/pages/VideotipsPage/VideotipPage.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_pages_VideotipsPage_VideotipPage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/pages/VideotipsPage/VideotipPage */ "./resources/js/components/pages/VideotipsPage/VideotipPage.jsx");
+/* harmony import */ var _actions_videotips__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/videotips */ "./resources/js/actions/videotips.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var videotips = _ref.videotips;
+  var videotipsList = videotips.videotipsList,
+      isVideotipsLoading = videotips.isVideotipsLoading,
+      isVideotipsReady = videotips.isVideotipsReady,
+      videotipsError = videotips.videotipsError;
+  return {
+    videotipsList: videotipsList,
+    isVideotipsLoading: isVideotipsLoading,
+    isVideotipsReady: isVideotipsReady,
+    videotipsError: videotipsError
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setAllVideotips: function setAllVideotips(videotips) {
+      return dispatch(Object(_actions_videotips__WEBPACK_IMPORTED_MODULE_1__["setAllVideotips"])(videotips));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(_components_pages_VideotipsPage_VideotipPage__WEBPACK_IMPORTED_MODULE_0__["default"]));
 
 /***/ }),
 

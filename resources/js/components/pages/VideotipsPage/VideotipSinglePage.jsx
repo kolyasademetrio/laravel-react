@@ -3,9 +3,7 @@ import Breadcrumbs from '../../../helpers/breadcrumbs';
 import Preloader from '../../../helpers/preloader';
 import {Route} from 'react-router-dom';
 import ErrorPage from '../ErrorPage';
-import videotipSinglePagePopupInit from './videotipSinglePageMagnificPopupInit';
-import $ from 'jquery';
-
+import VideotipPopupWrapper from './VideotipPopupWrapper';
 
 
 class VideotipSinglePage extends Component {
@@ -20,15 +18,9 @@ class VideotipSinglePage extends Component {
         const {setSingleVideotip} = this.props;
         const {videotipSlug} = this.state;
         setSingleVideotip(videotipSlug);
-
-        this.$el = $('.movietiphome_single__inner');
-        videotipSinglePagePopupInit(this.$el);
     }
 
     render(){
-
-        console.log( 'this.$el inside of render', this.$el );
-
         const {videotipSingle: {title, video, image}, isVideotipSingleLoading, isVideotipSingleReady, videotipSingleError} = this.props;
 
         if (videotipSingleError === 404) {
@@ -66,14 +58,7 @@ class VideotipSinglePage extends Component {
                 <div className="container movietiphome_single__container">
                     <div className="row movietiphome_single__row">
                         <div className="col-xs-12 movietiphome_single__col">
-                            <div className="movietiphome_single__inner">
-                                <div className="movietiphome_single__item">
-                                    <a href={video} title={title} className="movietiphome_single__link">
-                                        <img src={image} alt={title} className="movietiphome_single__img" />
-                                        <span className="movietiphome_single__play"></span>
-                                    </a>
-                                </div>
-                            </div>
+                            <VideotipPopupWrapper data={{title, video, image}} />
                         </div>
                     </div>
                 </div>

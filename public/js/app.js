@@ -80644,6 +80644,10 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_videotips__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/videotips */ "./resources/js/actions/videotips.js");
+/* harmony import */ var _components_pages_VideotipsPage_VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/pages/VideotipsPage/VideotipPopupWrapper */ "./resources/js/components/pages/VideotipsPage/VideotipPopupWrapper.jsx");
+/* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers/preloader */ "./resources/js/helpers/preloader.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80664,6 +80668,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
+
 var Movietiphome =
 /*#__PURE__*/
 function (_Component) {
@@ -80676,8 +80684,23 @@ function (_Component) {
   }
 
   _createClass(Movietiphome, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var setSingleVideotip = this.props.setSingleVideotip;
+      var videotipSlug = 'о-компании-alga-ph';
+      setSingleVideotip(videotipSlug);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this$props = this.props,
+          _this$props$videotipS = _this$props.videotipSingle,
+          title = _this$props$videotipS.title,
+          video = _this$props$videotipS.video,
+          image = _this$props$videotipS.image,
+          isVideotipSingleLoading = _this$props.isVideotipSingleLoading,
+          isVideotipSingleReady = _this$props.isVideotipSingleReady,
+          videotipSingleError = _this$props.videotipSingleError;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "movietiphome",
         style: {
@@ -80699,30 +80722,42 @@ function (_Component) {
         className: "row movietiphome__row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-xs-12 movietiphome__col"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "movietiphome__inner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "movietiphome__slider"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "movietiphome__item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://www.youtube.com/watch?v=hD5vxRg8P_I",
-        className: "movietiphome__link",
-        title: "\u041E \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438 Alga Ph"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "/uploads/2018/08/video_014.jpg",
-        alt: "",
-        className: "movietiphome__img"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "movietiphome__play"
-      })))))))));
+      }, isVideotipSingleLoading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_preloader__WEBPACK_IMPORTED_MODULE_4__["default"], null), isVideotipSingleReady && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pages_VideotipsPage_VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        data: {
+          title: title,
+          video: video,
+          image: image
+        }
+      })))));
     }
   }]);
 
   return Movietiphome;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Movietiphome);
+var mapStateToProps = function mapStateToProps(_ref) {
+  var _ref$videotips = _ref.videotips,
+      videotipSingle = _ref$videotips.videotipSingle,
+      isVideotipSingleLoading = _ref$videotips.isVideotipSingleLoading,
+      isVideotipSingleReady = _ref$videotips.isVideotipSingleReady,
+      videotipSingleError = _ref$videotips.videotipSingleError;
+  return {
+    videotipSingle: videotipSingle,
+    isVideotipSingleLoading: isVideotipSingleLoading,
+    isVideotipSingleReady: isVideotipSingleReady,
+    videotipSingleError: videotipSingleError
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setSingleVideotip: function setSingleVideotip(videotip) {
+      return dispatch(Object(_actions_videotips__WEBPACK_IMPORTED_MODULE_2__["setSingleVideotip"])(videotip));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Movietiphome));
 
 /***/ }),
 
@@ -85332,6 +85367,91 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/VideotipsPage/VideotipPopupWrapper.jsx":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/pages/VideotipsPage/VideotipPopupWrapper.jsx ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _videotipSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./videotipSinglePageMagnificPopupInit */ "./resources/js/components/pages/VideotipsPage/videotipSinglePageMagnificPopupInit.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var VideotipPopupWrapper =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(VideotipPopupWrapper, _Component);
+
+  function VideotipPopupWrapper() {
+    _classCallCheck(this, VideotipPopupWrapper);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(VideotipPopupWrapper).apply(this, arguments));
+  }
+
+  _createClass(VideotipPopupWrapper, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.$el = jquery__WEBPACK_IMPORTED_MODULE_2___default()('.movietiphome_single__inner');
+      Object(_videotipSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__["default"])(this.$el);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props$data = this.props.data,
+          title = _this$props$data.title,
+          video = _this$props$data.video,
+          image = _this$props$data.image;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "movietiphome_single__inner"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "movietiphome_single__item"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: video,
+        title: title,
+        className: "movietiphome_single__link"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: image,
+        alt: title,
+        className: "movietiphome_single__img"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "movietiphome_single__play"
+      }))));
+    }
+  }]);
+
+  return VideotipPopupWrapper;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (VideotipPopupWrapper);
+
+/***/ }),
+
 /***/ "./resources/js/components/pages/VideotipsPage/VideotipSingle.jsx":
 /*!************************************************************************!*\
   !*** ./resources/js/components/pages/VideotipsPage/VideotipSingle.jsx ***!
@@ -85393,9 +85513,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../helpers/preloader */ "./resources/js/helpers/preloader.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _ErrorPage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ErrorPage */ "./resources/js/components/pages/ErrorPage.jsx");
-/* harmony import */ var _videotipSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./videotipSinglePageMagnificPopupInit */ "./resources/js/components/pages/VideotipsPage/videotipSinglePageMagnificPopupInit.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./VideotipPopupWrapper */ "./resources/js/components/pages/VideotipsPage/VideotipPopupWrapper.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85413,7 +85531,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
 
 
 
@@ -85445,13 +85562,10 @@ function (_Component) {
       var setSingleVideotip = this.props.setSingleVideotip;
       var videotipSlug = this.state.videotipSlug;
       setSingleVideotip(videotipSlug);
-      this.$el = jquery__WEBPACK_IMPORTED_MODULE_6___default()('.movietiphome_single__inner');
-      Object(_videotipSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_5__["default"])(this.$el);
     }
   }, {
     key: "render",
     value: function render() {
-      console.log('this.$el inside of render', this.$el);
       var _this$props = this.props,
           _this$props$videotipS = _this$props.videotipSingle,
           title = _this$props$videotipS.title,
@@ -85497,21 +85611,13 @@ function (_Component) {
         className: "row movietiphome_single__row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-xs-12 movietiphome_single__col"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "movietiphome_single__inner"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "movietiphome_single__item"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: video,
-        title: title,
-        className: "movietiphome_single__link"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: image,
-        alt: title,
-        className: "movietiphome_single__img"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "movietiphome_single__play"
-      }))))))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        data: {
+          title: title,
+          video: video,
+          image: image
+        }
+      })))));
     }
   }]);
 
@@ -88828,8 +88934,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

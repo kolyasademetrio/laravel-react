@@ -17,7 +17,6 @@ class VideotipsController extends Controller
     public function index()
     {
         $videotips = Videotips::all();
-
         return response()->json([
             'videotips' => $videotips,
         ]);
@@ -32,7 +31,6 @@ class VideotipsController extends Controller
     public function show($id)
     {
         $videotip = DB::table('videotips')->where('slug', $id)->first();
-
         return response()->json([
             'videotip' => $videotip,
         ]);

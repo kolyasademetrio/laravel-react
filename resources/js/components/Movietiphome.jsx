@@ -1,18 +1,23 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {setSingleVideotip} from '../actions/videotips';
 import VideotipPopupWrapper from '../components/pages/VideotipsPage/VideotipPopupWrapper';
 import Preloader from "../helpers/preloader";
 
 class Movietiphome extends Component {
     componentDidMount() {
         const {setSingleVideotip} = this.props;
-        const videotipSlug = 'о-компании-alga-ph';
-        setSingleVideotip('showonhomepage');
+        const videotipSlug = 'showonhomepage';
+        setSingleVideotip(videotipSlug);
     }
 
     render(){
-        const {videotipSingle: {title, video, image}, isVideotipSingleLoading, isVideotipSingleReady, videotipSingleError} = this.props;
+        const {
+            videotipSingle: {title, video, image},
+            isVideotipSingleLoading, isVideotipSingleReady, videotipSingleError
+        } = this.props;
+
+        if (videotipSingleError) {
+            return null;
+        }
 
         return (
             <div className="movietiphome" style={{background: 'url(/uploads/2018/08/movietiphome_bg.png) no-repeat center top',WebkitBackgroundSize: '100% 100%',backgroundSize: '100% 100%'}}>
@@ -30,21 +35,7 @@ class Movietiphome extends Component {
                     <div className="row movietiphome__row">
                         <div className="col-xs-12 movietiphome__col">
                             {isVideotipSingleLoading && <Preloader />}
-
                             {isVideotipSingleReady && <VideotipPopupWrapper data={{title, video, image}} />}
-
-
-                            {/*<div className="movietiphome__inner">
-                                <div className="movietiphome__slider">
-                                    <div className="movietiphome__item">
-                                        <a href="https://www.youtube.com/watch?v=hD5vxRg8P_I" className="movietiphome__link"
-                                           title="О компании Alga Ph">
-                                            <img src="/uploads/2018/08/video_014.jpg" alt="" className="movietiphome__img"/>
-                                            <span className="movietiphome__play"></span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>*/}
                         </div>
 
                     </div>
@@ -54,15 +45,4 @@ class Movietiphome extends Component {
     }
 }
 
-const mapStateToProps = ({videotips: {videotipSingle, isVideotipSingleLoading, isVideotipSingleReady, videotipSingleError}}) => ({
-    videotipSingle,
-    isVideotipSingleLoading,
-    isVideotipSingleReady,
-    videotipSingleError
-});
-
-const mapDispatchToProps = dispatch => ({
-    setSingleVideotip: videotip => dispatch(setSingleVideotip(videotip)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Movietiphome);
+export default Movietiphome;

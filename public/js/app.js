@@ -80644,10 +80644,8 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_videotips__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/videotips */ "./resources/js/actions/videotips.js");
-/* harmony import */ var _components_pages_VideotipsPage_VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/pages/VideotipsPage/VideotipPopupWrapper */ "./resources/js/components/pages/VideotipsPage/VideotipPopupWrapper.jsx");
-/* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../helpers/preloader */ "./resources/js/helpers/preloader.js");
+/* harmony import */ var _components_pages_VideotipsPage_VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/pages/VideotipsPage/VideotipPopupWrapper */ "./resources/js/components/pages/VideotipsPage/VideotipPopupWrapper.jsx");
+/* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/preloader */ "./resources/js/helpers/preloader.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80670,8 +80668,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-
-
 var Movietiphome =
 /*#__PURE__*/
 function (_Component) {
@@ -80687,8 +80683,8 @@ function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var setSingleVideotip = this.props.setSingleVideotip;
-      var videotipSlug = 'о-компании-alga-ph';
-      setSingleVideotip('showonhomepage');
+      var videotipSlug = 'showonhomepage';
+      setSingleVideotip(videotipSlug);
     }
   }, {
     key: "render",
@@ -80701,6 +80697,11 @@ function (_Component) {
           isVideotipSingleLoading = _this$props.isVideotipSingleLoading,
           isVideotipSingleReady = _this$props.isVideotipSingleReady,
           videotipSingleError = _this$props.videotipSingleError;
+
+      if (videotipSingleError) {
+        return null;
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "movietiphome",
         style: {
@@ -80722,7 +80723,7 @@ function (_Component) {
         className: "row movietiphome__row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-xs-12 movietiphome__col"
-      }, isVideotipSingleLoading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_preloader__WEBPACK_IMPORTED_MODULE_4__["default"], null), isVideotipSingleReady && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pages_VideotipsPage_VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, isVideotipSingleLoading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_preloader__WEBPACK_IMPORTED_MODULE_2__["default"], null), isVideotipSingleReady && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pages_VideotipsPage_VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_1__["default"], {
         data: {
           title: title,
           video: video,
@@ -80735,29 +80736,7 @@ function (_Component) {
   return Movietiphome;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var mapStateToProps = function mapStateToProps(_ref) {
-  var _ref$videotips = _ref.videotips,
-      videotipSingle = _ref$videotips.videotipSingle,
-      isVideotipSingleLoading = _ref$videotips.isVideotipSingleLoading,
-      isVideotipSingleReady = _ref$videotips.isVideotipSingleReady,
-      videotipSingleError = _ref$videotips.videotipSingleError;
-  return {
-    videotipSingle: videotipSingle,
-    isVideotipSingleLoading: isVideotipSingleLoading,
-    isVideotipSingleReady: isVideotipSingleReady,
-    videotipSingleError: videotipSingleError
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    setSingleVideotip: function setSingleVideotip(videotip) {
-      return dispatch(Object(_actions_videotips__WEBPACK_IMPORTED_MODULE_2__["setSingleVideotip"])(videotip));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(Movietiphome));
+/* harmony default export */ __webpack_exports__["default"] = (Movietiphome);
 
 /***/ }),
 
@@ -84612,7 +84591,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SliderMain/Slidermain */ "./resources/js/components/SliderMain/Slidermain.jsx");
 /* harmony import */ var _containers_recommended_Recommended__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../containers/recommended/Recommended */ "./resources/js/containers/recommended/Recommended.js");
-/* harmony import */ var _Movietiphome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Movietiphome */ "./resources/js/components/Movietiphome.jsx");
+/* harmony import */ var _containers_Movietiphome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../containers/Movietiphome */ "./resources/js/containers/Movietiphome.js");
 /* harmony import */ var _howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../howitwork/Howitwork */ "./resources/js/components/howitwork/Howitwork.jsx");
 /* harmony import */ var _advants_Advants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../advants/Advants */ "./resources/js/components/advants/Advants.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -84654,7 +84633,7 @@ function (_Component) {
   _createClass(HomePage, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_recommended_Recommended__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Movietiphome__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_advants_Advants__WEBPACK_IMPORTED_MODULE_5__["default"], null));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_recommended_Recommended__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_Movietiphome__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_advants_Advants__WEBPACK_IMPORTED_MODULE_5__["default"], null));
     }
   }]);
 
@@ -87479,6 +87458,48 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_CatsListFilterShop__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./resources/js/containers/Movietiphome.js":
+/*!*************************************************!*\
+  !*** ./resources/js/containers/Movietiphome.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _components_Movietiphome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Movietiphome */ "./resources/js/components/Movietiphome.jsx");
+/* harmony import */ var _actions_videotips__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/videotips */ "./resources/js/actions/videotips.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var _ref$videotips = _ref.videotips,
+      videotipSingle = _ref$videotips.videotipSingle,
+      isVideotipSingleLoading = _ref$videotips.isVideotipSingleLoading,
+      isVideotipSingleReady = _ref$videotips.isVideotipSingleReady,
+      videotipSingleError = _ref$videotips.videotipSingleError;
+  return {
+    videotipSingle: videotipSingle,
+    isVideotipSingleLoading: isVideotipSingleLoading,
+    isVideotipSingleReady: isVideotipSingleReady,
+    videotipSingleError: videotipSingleError
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setSingleVideotip: function setSingleVideotip(videotip) {
+      return dispatch(Object(_actions_videotips__WEBPACK_IMPORTED_MODULE_2__["setSingleVideotip"])(videotip));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_Movietiphome__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 

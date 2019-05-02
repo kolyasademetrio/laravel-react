@@ -8,7 +8,7 @@ class Movietiphome extends Component {
     componentDidMount() {
         const {setSingleVideotip} = this.props;
         const videotipSlug = 'о-компании-alga-ph';
-        setSingleVideotip(videotipSlug);
+        setSingleVideotip('showonhomepage');
     }
 
     render(){

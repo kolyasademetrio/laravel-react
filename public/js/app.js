@@ -80688,7 +80688,7 @@ function (_Component) {
     value: function componentDidMount() {
       var setSingleVideotip = this.props.setSingleVideotip;
       var videotipSlug = 'о-компании-alga-ph';
-      setSingleVideotip(videotipSlug);
+      setSingleVideotip('showonhomepage');
     }
   }, {
     key: "render",

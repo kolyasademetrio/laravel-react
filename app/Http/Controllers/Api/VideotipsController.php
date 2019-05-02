@@ -36,6 +36,14 @@ class VideotipsController extends Controller
         ]);
     }
 
+    public function showOnHomePage()
+    {
+        $videotip = DB::table('videotips')->where('show_on_homepage', true)->first();
+        return response()->json([
+            'videotip' => $videotip,
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -22,6 +22,7 @@ Route::resource('users', 'Api\UserController');
 Route::resource('pages', 'Api\PagesController');
 Route::resource('menu', 'Api\MenuController');
 
+Route::get('videotips/showonhomepage', 'Api\VideotipsController@showOnHomePage');
 Route::get('videotips/{slug}', 'Api\VideotipsController@show');
 Route::resource('videotips', 'Api\VideotipsController');
 

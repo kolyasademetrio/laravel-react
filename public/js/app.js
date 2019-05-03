@@ -69020,7 +69020,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -80178,7 +80178,7 @@ var REMOVE_FROM_CART = "REMOVE_FROM_CART";
 /*!*******************************************************!*\
   !*** ./resources/js/actions/types/videotips-types.js ***!
   \*******************************************************/
-/*! exports provided: SET_VIDEOTIPS, SET_VIDEOTIPS_SUCCEEDED, SET_VIDEOTIPS_FAILED, SET_VIDEOTIP_SINGLE, SET_VIDEOTIP_SINGLE_SUCCEEDED, SET_VIDEOTIP_SINGLE_FAILED */
+/*! exports provided: SET_VIDEOTIPS, SET_VIDEOTIPS_SUCCEEDED, SET_VIDEOTIPS_FAILED, SET_VIDEOTIP_SINGLE, SET_VIDEOTIP_SINGLE_SUCCEEDED, SET_VIDEOTIP_SINGLE_FAILED, SET_VIDEOTIP_SINGLE_ON_HOMEPAGE, SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_SUCCEEDED, SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -80189,12 +80189,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIP_SINGLE", function() { return SET_VIDEOTIP_SINGLE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIP_SINGLE_SUCCEEDED", function() { return SET_VIDEOTIP_SINGLE_SUCCEEDED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIP_SINGLE_FAILED", function() { return SET_VIDEOTIP_SINGLE_FAILED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIP_SINGLE_ON_HOMEPAGE", function() { return SET_VIDEOTIP_SINGLE_ON_HOMEPAGE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_SUCCEEDED", function() { return SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_SUCCEEDED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED", function() { return SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED; });
 var SET_VIDEOTIPS = 'SET_VIDEOTIPS';
 var SET_VIDEOTIPS_SUCCEEDED = 'SET_VIDEOTIPS_SUCCEEDED';
 var SET_VIDEOTIPS_FAILED = 'SET_VIDEOTIPS_FAILED';
 var SET_VIDEOTIP_SINGLE = 'SET_VIDEOTIP_SINGLE';
 var SET_VIDEOTIP_SINGLE_SUCCEEDED = 'SET_VIDEOTIP_SINGLE_SUCCEEDED';
 var SET_VIDEOTIP_SINGLE_FAILED = 'SET_VIDEOTIP_SINGLE_FAILED';
+var SET_VIDEOTIP_SINGLE_ON_HOMEPAGE = 'SET_VIDEOTIP_SINGLE_ON_HOMEPAGE';
+var SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_SUCCEEDED = 'SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_SUCCEEDED';
+var SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED = 'SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED';
 
 /***/ }),
 
@@ -80202,13 +80208,14 @@ var SET_VIDEOTIP_SINGLE_FAILED = 'SET_VIDEOTIP_SINGLE_FAILED';
 /*!*******************************************!*\
   !*** ./resources/js/actions/videotips.js ***!
   \*******************************************/
-/*! exports provided: setAllVideotips, setSingleVideotip */
+/*! exports provided: setAllVideotips, setSingleVideotip, setSingleVideotipOnHomepage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setAllVideotips", function() { return setAllVideotips; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSingleVideotip", function() { return setSingleVideotip; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setSingleVideotipOnHomepage", function() { return setSingleVideotipOnHomepage; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/types/videotips-types */ "./resources/js/actions/types/videotips-types.js");
@@ -80305,6 +80312,55 @@ var setSingleVideotip = function setSingleVideotip(slug) {
 
       return function (_x2) {
         return _ref3.apply(this, arguments);
+      };
+    }()
+  );
+};
+var setSingleVideotipOnHomepage = function setSingleVideotipOnHomepage() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref4 = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(dispatch) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                dispatch({
+                  type: _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_1__["SET_VIDEOTIP_SINGLE_ON_HOMEPAGE"]
+                });
+                axios.get('/api/videotips/showonhomepage').then(function (data) {
+                  var videotip = data.data.videotip;
+
+                  if (videotip) {
+                    dispatch({
+                      type: _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_1__["SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_SUCCEEDED"],
+                      payload: videotip
+                    });
+                  } else {
+                    dispatch({
+                      type: _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_1__["SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED"],
+                      payload: 404
+                    });
+                  }
+                }).catch(function (err) {
+                  dispatch({
+                    type: _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_1__["SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED"],
+                    payload: 404
+                  });
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      return function (_x3) {
+        return _ref4.apply(this, arguments);
       };
     }()
   );
@@ -80682,9 +80738,8 @@ function (_Component) {
   _createClass(Movietiphome, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var setSingleVideotip = this.props.setSingleVideotip;
-      var videotipSlug = 'showonhomepage';
-      setSingleVideotip(videotipSlug);
+      var setSingleVideotipOnHomepage = this.props.setSingleVideotipOnHomepage;
+      setSingleVideotipOnHomepage();
     }
   }, {
     key: "render",
@@ -87479,22 +87534,22 @@ __webpack_require__.r(__webpack_exports__);
 
 var mapStateToProps = function mapStateToProps(_ref) {
   var _ref$videotips = _ref.videotips,
-      videotipSingle = _ref$videotips.videotipSingle,
-      isVideotipSingleLoading = _ref$videotips.isVideotipSingleLoading,
-      isVideotipSingleReady = _ref$videotips.isVideotipSingleReady,
-      videotipSingleError = _ref$videotips.videotipSingleError;
+      videotipSingleOnHomepage = _ref$videotips.videotipSingleOnHomepage,
+      isVideotipSingleOnHomepageLoading = _ref$videotips.isVideotipSingleOnHomepageLoading,
+      isVideotipSingleOnHomepageReady = _ref$videotips.isVideotipSingleOnHomepageReady,
+      videotipSingleOnHomepageError = _ref$videotips.videotipSingleOnHomepageError;
   return {
-    videotipSingle: videotipSingle,
-    isVideotipSingleLoading: isVideotipSingleLoading,
-    isVideotipSingleReady: isVideotipSingleReady,
-    videotipSingleError: videotipSingleError
+    videotipSingle: videotipSingleOnHomepage,
+    isVideotipSingleLoading: isVideotipSingleOnHomepageLoading,
+    isVideotipSingleReady: isVideotipSingleOnHomepageReady,
+    videotipSingleError: videotipSingleOnHomepageError
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    setSingleVideotip: function setSingleVideotip(videotip) {
-      return dispatch(Object(_actions_videotips__WEBPACK_IMPORTED_MODULE_2__["setSingleVideotip"])(videotip));
+    setSingleVideotipOnHomepage: function setSingleVideotipOnHomepage(videotip) {
+      return dispatch(Object(_actions_videotips__WEBPACK_IMPORTED_MODULE_2__["setSingleVideotipOnHomepage"])(videotip));
     }
   };
 };
@@ -88861,7 +88916,11 @@ var INITIAL_STATE = {
   isVideotipSingleLoading: false,
   isVideotipSingleReady: false,
   videotipSingleError: null,
-  videotipSingle: {}
+  videotipSingle: {},
+  isVideotipSingleOnHomepageLoading: false,
+  isVideotipSingleOnHomepageReady: false,
+  videotipSingleOnHomepageError: null,
+  videotipSingleOnHomepage: {}
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
@@ -88902,6 +88961,23 @@ var INITIAL_STATE = {
     case _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_0__["SET_VIDEOTIP_SINGLE_FAILED"]:
       return _objectSpread({}, state, {
         videotipSingleError: action.payload
+      });
+
+    case _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_0__["SET_VIDEOTIP_SINGLE_ON_HOMEPAGE"]:
+      return _objectSpread({}, state, {
+        isVideotipSingleOnHomepageLoading: true
+      });
+
+    case _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_0__["SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_SUCCEEDED"]:
+      return _objectSpread({}, state, {
+        isVideotipSingleOnHomepageLoading: false,
+        isVideotipSingleOnHomepageReady: true,
+        videotipSingleOnHomepage: action.payload
+      });
+
+    case _actions_types_videotips_types__WEBPACK_IMPORTED_MODULE_0__["SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED"]:
+      return _objectSpread({}, state, {
+        videotipSingleOnHomepageError: action.payload
       });
 
     default:
@@ -88955,8 +89031,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

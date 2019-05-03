@@ -4,9 +4,8 @@ import Preloader from "../helpers/preloader";
 
 class Movietiphome extends Component {
     componentDidMount() {
-        const {setSingleVideotip} = this.props;
-        const videotipSlug = 'showonhomepage';
-        setSingleVideotip(videotipSlug);
+        const {setSingleVideotipOnHomepage} = this.props;
+        setSingleVideotipOnHomepage();
     }
 
     render(){

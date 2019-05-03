@@ -6,6 +6,10 @@ import {
     SET_VIDEOTIP_SINGLE,
     SET_VIDEOTIP_SINGLE_SUCCEEDED,
     SET_VIDEOTIP_SINGLE_FAILED,
+
+    SET_VIDEOTIP_SINGLE_ON_HOMEPAGE,
+    SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_SUCCEEDED,
+    SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED,
 } from '../actions/types/videotips-types';
 
 export const setAllVideotips = () => {
@@ -31,6 +35,22 @@ export const setSingleVideotip = (slug) => {
             }
         }).catch(err => {
             dispatch({type: SET_VIDEOTIP_SINGLE_FAILED, payload: 404});
+        });
+    };
+};
+
+export const setSingleVideotipOnHomepage = () => {
+    return async dispatch => {
+        dispatch({type: SET_VIDEOTIP_SINGLE_ON_HOMEPAGE});
+        axios.get('/api/videotips/showonhomepage').then(data => {
+            const {videotip} = data.data;
+            if (videotip) {
+                dispatch({type: SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_SUCCEEDED, payload: videotip});
+            } else {
+                dispatch({type: SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED, payload: 404});
+            }
+        }).catch(err => {
+            dispatch({type: SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED, payload: 404});
         });
     };
 };

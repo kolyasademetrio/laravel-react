@@ -25,7 +25,7 @@ class VideotipsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Videotips  $videotips
+     * @param  \App\Videotips  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -36,6 +36,11 @@ class VideotipsController extends Controller
         ]);
     }
 
+    /**
+     * Display the specified resource for Home page.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showOnHomePage()
     {
         $videotip = DB::table('videotips')->where('show_on_homepage', true)->first();

@@ -6,6 +6,10 @@ import {
     SET_VIDEOTIP_SINGLE,
     SET_VIDEOTIP_SINGLE_SUCCEEDED,
     SET_VIDEOTIP_SINGLE_FAILED,
+
+    SET_VIDEOTIP_SINGLE_ON_HOMEPAGE,
+    SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_SUCCEEDED,
+    SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED,
 } from '../actions/types/videotips-types';
 
 const INITIAL_STATE = {
@@ -18,6 +22,11 @@ const INITIAL_STATE = {
     isVideotipSingleReady: false,
     videotipSingleError: null,
     videotipSingle: {},
+
+    isVideotipSingleOnHomepageLoading: false,
+    isVideotipSingleOnHomepageReady: false,
+    videotipSingleOnHomepageError: null,
+    videotipSingleOnHomepage: {},
 };
 
 export default function (state = INITIAL_STATE, action){
@@ -57,6 +66,23 @@ export default function (state = INITIAL_STATE, action){
             return {
                 ...state,
                 videotipSingleError: action.payload,
+            };
+        case SET_VIDEOTIP_SINGLE_ON_HOMEPAGE:
+            return {
+                ...state,
+                isVideotipSingleOnHomepageLoading: true,
+            };
+        case SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_SUCCEEDED:
+            return {
+                ...state,
+                isVideotipSingleOnHomepageLoading: false,
+                isVideotipSingleOnHomepageReady: true,
+                videotipSingleOnHomepage: action.payload,
+            };
+        case SET_VIDEOTIP_SINGLE_ON_HOMEPAGE_FAILED:
+            return {
+                ...state,
+                videotipSingleOnHomepageError: action.payload,
             };
         default:
             return state;

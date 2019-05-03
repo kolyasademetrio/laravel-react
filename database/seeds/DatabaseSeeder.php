@@ -14,5 +14,9 @@ class DatabaseSeeder extends Seeder
          $this->call([
              TestTableSeeder::class
          ]);
+
+         $this->call([
+             StockAttachmentTableSeeder::class,
+         ]);
     }
 }

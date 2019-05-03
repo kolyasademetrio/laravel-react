@@ -20,7 +20,6 @@ class CreateStockAttachmentsTable extends Migration
 
             $table->increments('id');
             $table->integer('stock_id')->nullable()->unsigned();
-            //$table->foreign('stock_id')->references('id')->on('stocks')->onDelete('cascade');
             $table->string('attachment', 255);
             $table->string('thumbnail', 255);
             $table->string('type', 255)->default('image');

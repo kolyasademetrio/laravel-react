@@ -80689,112 +80689,6 @@ function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Movietiphome.jsx":
-/*!**************************************************!*\
-  !*** ./resources/js/components/Movietiphome.jsx ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_pages_VideotipsPage_VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/pages/VideotipsPage/VideotipPopupWrapper */ "./resources/js/components/pages/VideotipsPage/VideotipPopupWrapper.jsx");
-/* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/preloader */ "./resources/js/helpers/preloader.js");
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
-
-
-
-var Movietiphome =
-/*#__PURE__*/
-function (_Component) {
-  _inherits(Movietiphome, _Component);
-
-  function Movietiphome() {
-    _classCallCheck(this, Movietiphome);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(Movietiphome).apply(this, arguments));
-  }
-
-  _createClass(Movietiphome, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      var setSingleVideotipOnHomepage = this.props.setSingleVideotipOnHomepage;
-      setSingleVideotipOnHomepage();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$props = this.props,
-          _this$props$videotipS = _this$props.videotipSingle,
-          title = _this$props$videotipS.title,
-          video = _this$props$videotipS.video,
-          image = _this$props$videotipS.image,
-          isVideotipSingleLoading = _this$props.isVideotipSingleLoading,
-          isVideotipSingleReady = _this$props.isVideotipSingleReady,
-          videotipSingleError = _this$props.videotipSingleError;
-
-      if (videotipSingleError) {
-        return null;
-      }
-
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "movietiphome",
-        style: {
-          background: 'url(/uploads/2018/08/movietiphome_bg.png) no-repeat center top',
-          WebkitBackgroundSize: '100% 100%',
-          backgroundSize: '100% 100%'
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container movietiphome__titleContainer"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row movietiphome__titleRow"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-xs-12 movietiphome__titleCol"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "movietiphome__title home__sectionTitle"
-      }, "\u0412\u0438\u0434\u0435\u043E\u0441\u043E\u0432\u0435\u0442\u044B")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "container movietiphome__container"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row movietiphome__row"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-xs-12 movietiphome__col"
-      }, isVideotipSingleLoading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_preloader__WEBPACK_IMPORTED_MODULE_2__["default"], null), isVideotipSingleReady && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pages_VideotipsPage_VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        data: {
-          title: title,
-          video: video,
-          image: image
-        }
-      })))));
-    }
-  }]);
-
-  return Movietiphome;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (Movietiphome);
-
-/***/ }),
-
 /***/ "./resources/js/components/ProductsSortShop.jsx":
 /*!******************************************************!*\
   !*** ./resources/js/components/ProductsSortShop.jsx ***!
@@ -80918,6 +80812,112 @@ function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Slidermain);
+
+/***/ }),
+
+/***/ "./resources/js/components/Videotiphome.jsx":
+/*!**************************************************!*\
+  !*** ./resources/js/components/Videotiphome.jsx ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_pages_VideotipsPage_VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/pages/VideotipsPage/VideotipPopupWrapper */ "./resources/js/components/pages/VideotipsPage/VideotipPopupWrapper.jsx");
+/* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/preloader */ "./resources/js/helpers/preloader.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var Videotiphome =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Videotiphome, _Component);
+
+  function Videotiphome() {
+    _classCallCheck(this, Videotiphome);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Videotiphome).apply(this, arguments));
+  }
+
+  _createClass(Videotiphome, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var setSingleVideotipOnHomepage = this.props.setSingleVideotipOnHomepage;
+      setSingleVideotipOnHomepage();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          _this$props$videotipS = _this$props.videotipSingle,
+          title = _this$props$videotipS.title,
+          video = _this$props$videotipS.video,
+          image = _this$props$videotipS.image,
+          isVideotipSingleLoading = _this$props.isVideotipSingleLoading,
+          isVideotipSingleReady = _this$props.isVideotipSingleReady,
+          videotipSingleError = _this$props.videotipSingleError;
+
+      if (videotipSingleError) {
+        return null;
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "movietiphome",
+        style: {
+          background: 'url(/uploads/2018/08/movietiphome_bg.png) no-repeat center top',
+          WebkitBackgroundSize: '100% 100%',
+          backgroundSize: '100% 100%'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container movietiphome__titleContainer"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row movietiphome__titleRow"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-xs-12 movietiphome__titleCol"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "movietiphome__title home__sectionTitle"
+      }, "\u0412\u0438\u0434\u0435\u043E\u0441\u043E\u0432\u0435\u0442\u044B")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container movietiphome__container"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row movietiphome__row"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-xs-12 movietiphome__col"
+      }, isVideotipSingleLoading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_preloader__WEBPACK_IMPORTED_MODULE_2__["default"], null), isVideotipSingleReady && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_pages_VideotipsPage_VideotipPopupWrapper__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        data: {
+          title: title,
+          video: video,
+          image: image
+        }
+      })))));
+    }
+  }]);
+
+  return Videotiphome;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (Videotiphome);
 
 /***/ }),
 
@@ -84646,7 +84646,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../SliderMain/Slidermain */ "./resources/js/components/SliderMain/Slidermain.jsx");
 /* harmony import */ var _containers_recommended_Recommended__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../containers/recommended/Recommended */ "./resources/js/containers/recommended/Recommended.js");
-/* harmony import */ var _containers_Movietiphome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../containers/Movietiphome */ "./resources/js/containers/Movietiphome.js");
+/* harmony import */ var _containers_Videotiphome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../containers/Videotiphome */ "./resources/js/containers/Videotiphome.js");
 /* harmony import */ var _howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../howitwork/Howitwork */ "./resources/js/components/howitwork/Howitwork.jsx");
 /* harmony import */ var _advants_Advants__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../advants/Advants */ "./resources/js/components/advants/Advants.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -84688,7 +84688,7 @@ function (_Component) {
   _createClass(HomePage, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_recommended_Recommended__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_Movietiphome__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_advants_Advants__WEBPACK_IMPORTED_MODULE_5__["default"], null));
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_SliderMain_Slidermain__WEBPACK_IMPORTED_MODULE_1__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_recommended_Recommended__WEBPACK_IMPORTED_MODULE_2__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_containers_Videotiphome__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_howitwork_Howitwork__WEBPACK_IMPORTED_MODULE_4__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_advants_Advants__WEBPACK_IMPORTED_MODULE_5__["default"], null));
     }
   }]);
 
@@ -87516,9 +87516,37 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
-/***/ "./resources/js/containers/Movietiphome.js":
+/***/ "./resources/js/containers/ProductsSortShop.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/containers/ProductsSortShop.js ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/filter */ "./resources/js/actions/filter.js");
+/* harmony import */ var _components_ProductsSortShop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ProductsSortShop */ "./resources/js/components/ProductsSortShop.jsx");
+
+
+
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setFilter: function setFilter(filter) {
+      return dispatch(Object(_actions_filter__WEBPACK_IMPORTED_MODULE_1__["sortProduct"])(filter));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mapDispatchToProps)(_components_ProductsSortShop__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./resources/js/containers/Videotiphome.js":
 /*!*************************************************!*\
-  !*** ./resources/js/containers/Movietiphome.js ***!
+  !*** ./resources/js/containers/Videotiphome.js ***!
   \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -87526,7 +87554,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _components_Movietiphome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Movietiphome */ "./resources/js/components/Movietiphome.jsx");
+/* harmony import */ var _components_Videotiphome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Videotiphome */ "./resources/js/components/Videotiphome.jsx");
 /* harmony import */ var _actions_videotips__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../actions/videotips */ "./resources/js/actions/videotips.js");
 
 
@@ -87554,35 +87582,7 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_Movietiphome__WEBPACK_IMPORTED_MODULE_1__["default"]));
-
-/***/ }),
-
-/***/ "./resources/js/containers/ProductsSortShop.js":
-/*!*****************************************************!*\
-  !*** ./resources/js/containers/ProductsSortShop.js ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../actions/filter */ "./resources/js/actions/filter.js");
-/* harmony import */ var _components_ProductsSortShop__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/ProductsSortShop */ "./resources/js/components/ProductsSortShop.jsx");
-
-
-
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    setFilter: function setFilter(filter) {
-      return dispatch(Object(_actions_filter__WEBPACK_IMPORTED_MODULE_1__["sortProduct"])(filter));
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(null, mapDispatchToProps)(_components_ProductsSortShop__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_Videotiphome__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Slidermain from '../SliderMain/Slidermain';
 import Recommended from '../../containers/recommended/Recommended';
-import Movietiphome from '../../containers/Movietiphome';
+import Movietiphome from '../../containers/Videotiphome';
 import Howitwork from '../howitwork/Howitwork';
 import Advants from '../advants/Advants';
 

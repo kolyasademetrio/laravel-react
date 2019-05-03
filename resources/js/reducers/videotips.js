@@ -50,6 +50,8 @@ export default function (state = INITIAL_STATE, action){
                 isVideotipsReady: false,
                 videotipsError: action.payload,
             };
+
+
         case SET_VIDEOTIP_SINGLE:
             return {
                 ...state,
@@ -67,6 +69,8 @@ export default function (state = INITIAL_STATE, action){
                 ...state,
                 videotipSingleError: action.payload,
             };
+
+
         case SET_VIDEOTIP_SINGLE_ON_HOMEPAGE:
             return {
                 ...state,

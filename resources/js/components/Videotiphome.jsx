@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import VideotipPopupWrapper from '../components/pages/VideotipsPage/VideotipPopupWrapper';
 import Preloader from "../helpers/preloader";
 
-class Movietiphome extends Component {
+class Videotiphome extends Component {
     componentDidMount() {
         const {setSingleVideotipOnHomepage} = this.props;
         setSingleVideotipOnHomepage();
@@ -44,4 +44,4 @@ class Movietiphome extends Component {
     }
 }
 
-export default Movietiphome;
+export default Videotiphome;

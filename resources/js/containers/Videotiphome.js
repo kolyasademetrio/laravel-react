@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import Movietiphome from '../components/Movietiphome';
+import Videotiphome from '../components/Videotiphome';
 import {setSingleVideotipOnHomepage} from "../actions/videotips";
 
 const mapStateToProps = ({videotips: {videotipSingleOnHomepage, isVideotipSingleOnHomepageLoading, isVideotipSingleOnHomepageReady, videotipSingleOnHomepageError}}) => ({
@@ -13,4 +13,4 @@ const mapDispatchToProps = dispatch => ({
     setSingleVideotipOnHomepage: videotip => dispatch(setSingleVideotipOnHomepage(videotip)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Movietiphome);
+export default connect(mapStateToProps, mapDispatchToProps)(Videotiphome);

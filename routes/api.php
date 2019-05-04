@@ -26,6 +26,9 @@ Route::get('videotips/showonhomepage', 'Api\VideotipsController@showOnHomePage')
 Route::get('videotips/{slug}', 'Api\VideotipsController@show');
 Route::resource('videotips', 'Api\VideotipsController');
 
+Route::get('stocks/{slug}', 'Api\StocksController@show');
+Route::resource('stocks', 'Api\StocksController');
+
 Route::get('products/{slug}', 'Api\ProductsController@show');
 Route::resource('products', 'Api\ProductsController');
 

@@ -79777,7 +79777,7 @@ function (_Component) {
         component: _containers_pages_VideotipsPage_VideotipSinglePage__WEBPACK_IMPORTED_MODULE_16__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
-        path: "/stock",
+        path: "/stocks",
         component: _components_pages_StockPage_StockPage__WEBPACK_IMPORTED_MODULE_9__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
@@ -80108,6 +80108,79 @@ var CategoryFilters = {
 
 /***/ }),
 
+/***/ "./resources/js/actions/stocks.js":
+/*!****************************************!*\
+  !*** ./resources/js/actions/stocks.js ***!
+  \****************************************/
+/*! exports provided: setAllStocks */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setAllStocks", function() { return setAllStocks; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _types_stocks_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./types/stocks-types */ "./resources/js/actions/types/stocks-types.js");
+/* harmony import */ var _helpers_sortArrayByKey__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../helpers/sortArrayByKey */ "./resources/js/helpers/sortArrayByKey.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+var setAllStocks = function setAllStocks() {
+  return (
+    /*#__PURE__*/
+    function () {
+      var _ref = _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(dispatch) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                dispatch({
+                  type: _types_stocks_types__WEBPACK_IMPORTED_MODULE_1__["SET_STOCKS"]
+                });
+                axios.get('/api/stocks').then(function (_ref2) {
+                  var _ref2$data = _ref2.data,
+                      stocksList = _ref2$data.stocksList,
+                      stockAttachment = _ref2$data.stockAttachment;
+                  var stockAttachmentList = stockAttachment && Object(_helpers_sortArrayByKey__WEBPACK_IMPORTED_MODULE_2__["sortArrayByKey"])(stockAttachment, 'stock_id');
+                  var stocksData = {
+                    stocksList: stocksList,
+                    stockAttachment: stockAttachmentList
+                  };
+                  dispatch({
+                    type: _types_stocks_types__WEBPACK_IMPORTED_MODULE_1__["SET_STOCKS_SUCCEEDED"],
+                    payload: stocksData
+                  });
+                }).catch(function (err) {
+                  dispatch({
+                    type: _types_stocks_types__WEBPACK_IMPORTED_MODULE_1__["SET_STOCKS_FAILED"],
+                    payload: err
+                  });
+                });
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function (_x) {
+        return _ref.apply(this, arguments);
+      };
+    }()
+  );
+};
+
+/***/ }),
+
 /***/ "./resources/js/actions/types/product-types.js":
 /*!*****************************************************!*\
   !*** ./resources/js/actions/types/product-types.js ***!
@@ -80171,6 +80244,24 @@ var SHOW_PRODUCTS_BY_CATEGORY_SHOP = "SHOW_PRODUCTS_BY_CATEGORY_SHOP";
 var SORT_PRODUCTS_SHOP = "SORT_PRODUCTS_SHOP";
 var ADD_TO_CART = "ADD_TO_CART";
 var REMOVE_FROM_CART = "REMOVE_FROM_CART";
+
+/***/ }),
+
+/***/ "./resources/js/actions/types/stocks-types.js":
+/*!****************************************************!*\
+  !*** ./resources/js/actions/types/stocks-types.js ***!
+  \****************************************************/
+/*! exports provided: SET_STOCKS, SET_STOCKS_SUCCEEDED, SET_STOCKS_FAILED */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_STOCKS", function() { return SET_STOCKS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_STOCKS_SUCCEEDED", function() { return SET_STOCKS_SUCCEEDED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_STOCKS_FAILED", function() { return SET_STOCKS_FAILED; });
+var SET_STOCKS = 'SET_STOCKS';
+var SET_STOCKS_SUCCEEDED = 'SET_STOCKS_SUCCEEDED';
+var SET_STOCKS_FAILED = 'SET_STOCKS_FAILED';
 
 /***/ }),
 
@@ -85032,7 +85123,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/breadcrumbs */ "./resources/js/helpers/breadcrumbs.js");
 /* harmony import */ var _StockSingle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./StockSingle */ "./resources/js/components/pages/StockPage/StockSingle.jsx");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/preloader */ "./resources/js/helpers/preloader.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_stocks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../actions/stocks */ "./resources/js/actions/stocks.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85056,6 +85149,17 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+var NoStocksMessage = function NoStocksMessage() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "woocommerce-noreviews",
+    style: {
+      minHeight: 100
+    }
+  }, "\u0412\u0438\u0434\u0435\u043E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.");
+};
+
 var StockPage =
 /*#__PURE__*/
 function (_Component) {
@@ -85069,10 +85173,20 @@ function (_Component) {
 
   _createClass(StockPage, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      var setAllStocks = this.props.setAllStocks;
+      setAllStocks();
+    }
   }, {
     key: "render",
     value: function render() {
+      var _this$props = this.props,
+          isStocksReady = _this$props.isStocksReady,
+          isStocksLoading = _this$props.isStocksLoading,
+          stocksErrors = _this$props.stocksErrors,
+          stocksList = _this$props.stocksList,
+          stockAttachment = _this$props.stockAttachment;
+      var matchPath = this.props.match.path;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -85091,22 +85205,46 @@ function (_Component) {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "offers__items"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StockSingle__WEBPACK_IMPORTED_MODULE_2__["default"], null))))))));
+      }, isStocksLoading && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_preloader__WEBPACK_IMPORTED_MODULE_3__["default"], null), isStocksReady && (stocksList.length ? stocksList.map(function (s) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StockSingle__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          stock: s,
+          attachments: stockAttachment[s.id],
+          matchPath: matchPath,
+          key: s.id
+        });
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(NoStocksMessage, null)))))))));
     }
   }]);
 
   return StockPage;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var mapStateToProps = function mapStateToProps(state) {
-  return state;
+var mapStateToProps = function mapStateToProps(_ref) {
+  var _ref$stocks = _ref.stocks,
+      isStocksReady = _ref$stocks.isStocksReady,
+      isStocksLoading = _ref$stocks.isStocksLoading,
+      stocksErrors = _ref$stocks.stocksErrors,
+      _ref$stocks$stocksDat = _ref$stocks.stocksData,
+      stocksList = _ref$stocks$stocksDat.stocksList,
+      stockAttachment = _ref$stocks$stocksDat.stockAttachment;
+  return {
+    isStocksReady: isStocksReady,
+    isStocksLoading: isStocksLoading,
+    stocksErrors: stocksErrors,
+    stocksList: stocksList,
+    stockAttachment: stockAttachment
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    setAllStocks: function setAllStocks() {
+      return dispatch(Object(_actions_stocks__WEBPACK_IMPORTED_MODULE_5__["setAllStocks"])());
+    }
+  };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchToProps)(StockPage));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(StockPage));
 
 /***/ }),
 
@@ -85121,28 +85259,43 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
+/* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
-var StockSingle = function StockSingle() {
+
+
+var StockSingle = function StockSingle(_ref) {
+  var stock = _ref.stock,
+      attachments = _ref.attachments,
+      matchPath = _ref.matchPath;
+  console.log('attachments', attachments);
+  var attachment = attachments.filter(function (a) {
+    return a.use_as_featured === 1;
+  });
+  var atachmentlink = attachment[0].type === 'video' ? attachment[0].attachment : "".concat(matchPath, "/").concat(stock.slug);
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "offers__item"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "#",
+    href: atachmentlink,
     className: "offers__imageWrap"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "offers_date"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "2018-10-24"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "19:00:00")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: "/uploads/2018/10/400x200.jpg",
+    src: attachment[0].thumbnail,
     alt: "dewr"
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "offers__content"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "/offers",
     className: "offers__itemTitle"
-  }, "\u0422\u0435\u0441\u0442\u043E\u0432\u0430\u044F \u0430\u043A\u0446\u0438\u044F 3 \u0441 \u043A\u0430\u0440\u0442\u0438\u043D\u043A\u0430\u043C\u0438")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(stock.title))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "offers__itemExcerpt"
-  }, "\u0421\u043A\u0438\u0434\u043A\u0430 20% \u043D\u0430 \u0432\u0435\u0441\u044C \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442 \u043F\u0440\u043E\u0434\u0443\u043A\u0446\u0438\u0438 \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u043D\u043E\u0439 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435, \u043F\u0440\u0438 \u043E\u0444\u043E\u0440\u043C\u043B\u0435\u043D\u0438\u0438 \u0437\u0430\u043A\u0430\u0437\u0430 \u0434\u043E 07.10.2018. \u0410\u043A\u0446\u0438\u043E\u043D\u043D\u044B\u0435 \u0446\u0435\u043D\u044B \u043F\u0440\u0438\u0443\u0440\u043E\u0447\u0435\u043D\u044B \u043A\u043E \u0432\u0441\u0435\u043C\u0438\u0440\u043D\u043E\u043C\u0443 \u0434\u043D\u044E \u0443\u0447\u0438\u0442\u0435\u043B\u044F. \u041F\u0440\u0438\u044F\u0442\u043D\u044B\u0445 \u043F\u043E\u043A\u0443\u043F\u043E\u043A. \u0411\u0443\u0434\u044C\u0442\u0435 \u043A\u0440\u0430\u0441\u0438\u0432\u044B\u043C\u0438. ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "\u0421\u043A\u0438\u0434\u043A\u0430 20% \u043D\u0430 \u0432\u0435\u0441\u044C \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\u0435\u043D\u0442 \u043F\u0440\u043E\u0434\u0443\u043A\u0446\u0438\u0438 \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043B\u0435\u043D\u043D\u043E\u0439 \u043D\u0430 \u0441\u0430\u0439\u0442\u0435, \u043F\u0440\u0438 \u043E\u0444\u043E\u0440\u043C\u043B\u0435\u043D\u0438\u0438 \u0437\u0430\u043A\u0430\u0437\u0430 \u0434\u043E 07.10.2018. \u0410\u043A\u0446\u0438\u043E\u043D\u043D\u044B\u0435 \u0446\u0435\u043D\u044B \u043F\u0440\u0438\u0443\u0440\u043E\u0447\u0435\u043D\u044B \u043A\u043E \u0432\u0441\u0435\u043C\u0438\u0440\u043D\u043E\u043C\u0443 \u0434\u043D\u044E \u0443\u0447\u0438\u0442\u0435\u043B\u044F. \u041F\u0440\u0438\u044F\u0442\u043D\u044B\u0445 \u043F\u043E\u043A\u0443\u043F\u043E\u043A. \u0411\u0443\u0434\u044C\u0442\u0435 \u043A\u0440\u0430\u0441\u0438\u0432\u044B\u043C\u0438."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/offers",
+  }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(stock.content)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: {
+      pathname: "".concat(matchPath, "/").concat(stock.slug)
+    },
     className: "offers__itemReadMore"
   }, "\u0427\u0438\u0442\u0430\u0442\u044C \u0434\u0430\u043B\u0435\u0435")));
 };
@@ -85840,7 +85993,6 @@ function videotipSinglePagePopupInit($elem) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return videotipsPopupInit; });
 function videotipsPopupInit($elem) {
-  console.log('$elem inside function', $elem);
   $elem.each(function () {
     $(this).magnificPopup({
       type: 'image',
@@ -87478,6 +87630,8 @@ var mapStateToProps = function mapStateToProps(_ref) {
       products = _ref.products;
   var categories = products.items.categories;
   var categoriesRelationship = Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__["getCategoryProductRelationsByCatSlug"])(products.items.categoriesRelationship);
+  console.log('first', products.items.categoriesRelationship);
+  console.log('second', categoriesRelationship);
   return {
     filterBy: filter.filterShopBy,
     categoriesRelationship: categoriesRelationship,
@@ -87784,17 +87938,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mapStateToProps = function mapStateToProps(state) {
-  var _state$products$comme = state.products.comments,
-      userID = _state$products$comme.userID,
-      allUsers = _state$products$comme.allUsers,
-      allComments = _state$products$comme.allComments,
-      commentsLength = _state$products$comme.commentsLength,
-      userLogo = _state$products$comme.userLogo,
-      userName = _state$products$comme.userName,
-      userEmail = _state$products$comme.userEmail;
+  var commentsLength = state.products.comments.commentsLength;
   var _state$products$produ = state.products.product.product,
-      slug = _state$products$produ.slug,
-      id = _state$products$produ.id,
       product_description_tab_content = _state$products$produ.product_description_tab_content,
       product_ingredients_tab_content = _state$products$produ.product_ingredients_tab_content,
       product_usage_tab_content = _state$products$produ.product_usage_tab_content,
@@ -88524,6 +88669,32 @@ var Preloader = function Preloader(_ref) {
 
 /***/ }),
 
+/***/ "./resources/js/helpers/sortArrayByKey.js":
+/*!************************************************!*\
+  !*** ./resources/js/helpers/sortArrayByKey.js ***!
+  \************************************************/
+/*! exports provided: sortArrayByKey */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortArrayByKey", function() { return sortArrayByKey; });
+function sortArrayByKey(arr, by) {
+  var newRelations = [];
+
+  if (arr !== undefined) {
+    for (var i = 0; i < arr.length; i++) {
+      var o = arr[i];
+      if (!newRelations[o[by]]) newRelations[o[by]] = [];
+      newRelations[o[by]].push(o);
+    }
+  }
+
+  return newRelations;
+}
+
+/***/ }),
+
 /***/ "./resources/js/helpers/validation.js":
 /*!********************************************!*\
   !*** ./resources/js/helpers/validation.js ***!
@@ -88888,34 +89059,36 @@ var INITIAL_STATE = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_types_stocks_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types/stocks-types */ "./resources/js/actions/types/stocks-types.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 var INITIAL_STATE = {
   isStocksReady: false,
   isStocksLoading: false,
   stocksErrors: null,
-  stocksList: []
+  stocksData: []
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case SET_STOCKS:
+    case _actions_types_stocks_types__WEBPACK_IMPORTED_MODULE_0__["SET_STOCKS"]:
       return _objectSpread({}, state, {
         isStocksLoading: true
       });
 
-    case SET_STOCKS_SUCCEEDED:
+    case _actions_types_stocks_types__WEBPACK_IMPORTED_MODULE_0__["SET_STOCKS_SUCCEEDED"]:
       return _objectSpread({}, state, {
         isStocksLoading: false,
-        isSingleReady: true,
-        stocksList: action.payload
+        isStocksReady: true,
+        stocksData: action.payload
       });
 
-    case SET_STOCKS_FAILED:
+    case _actions_types_stocks_types__WEBPACK_IMPORTED_MODULE_0__["SET_STOCKS_FAILED"]:
       return _objectSpread({}, state, {
         isStocksLoading: false,
         isStocksReady: false,

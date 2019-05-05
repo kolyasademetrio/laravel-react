@@ -1,8 +1,14 @@
+import {
+    SET_STOCKS,
+    SET_STOCKS_SUCCEEDED,
+    SET_STOCKS_FAILED
+} from '../actions/types/stocks-types';
+
 const INITIAL_STATE = {
     isStocksReady: false,
     isStocksLoading: false,
     stocksErrors: null,
-    stocksList: [],
+    stocksData: [],
 };
 
 export default function (state = INITIAL_STATE, action){
@@ -16,8 +22,8 @@ export default function (state = INITIAL_STATE, action){
             return {
                 ...state,
                 isStocksLoading: false,
-                isSingleReady: true,
-                stocksList: action.payload,
+                isStocksReady: true,
+                stocksData: action.payload,
             };
         case SET_STOCKS_FAILED:
             return {

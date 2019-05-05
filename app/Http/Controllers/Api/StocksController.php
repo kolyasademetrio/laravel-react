@@ -21,7 +21,7 @@ class StocksController extends Controller
         $stock_attachment = StockAttachment::all();
 
         return response()->json([
-            'stocks' => $stocks,
+            'stocksList' => $stocks,
             'stockAttachment' => $stock_attachment,
         ]);
     }

@@ -85615,9 +85615,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _stockSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stockSinglePageMagnificPopupInit */ "./resources/js/components/pages/StockPage/stockSinglePageMagnificPopupInit.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _stockSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stockSinglePageMagnificPopupInit */ "./resources/js/components/pages/StockPage/stockSinglePageMagnificPopupInit.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85654,8 +85654,8 @@ function (_Component) {
   _createClass(StockSinglePagePopupWrapper, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.$el = jquery__WEBPACK_IMPORTED_MODULE_2___default()('.offers_single__header');
-      Object(_stockSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__["default"])(this.$el);
+      this.$el = jquery__WEBPACK_IMPORTED_MODULE_1___default()('.offers_single__header');
+      Object(_stockSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_2__["default"])(this.$el);
     }
   }, {
     key: "render",
@@ -85729,79 +85729,83 @@ var StockVideoWrap = function StockVideoWrap(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return stockSinglePageMagnificPopupInit; });
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+
 function stockSinglePageMagnificPopupInit($el) {
-  console.log($el);
-  $el.magnificPopup({
-    type: 'image',
-    removalDelay: 500,
-    mainClass: 'mfp-fade popup_inline',
-    showCloseBtn: true,
-    closeMarkup: '<div class="mfp-close">&times;</div>',
-    closeBtnInside: true,
-    closeOnContentClick: false,
-    closeOnBgClick: true,
-    alignTop: false,
-    fixedContentPos: true,
-    callbacks: {
-      open: function open() {
-        setPopupMarginTop(570);
-        var mp = $.magnificPopup.instance,
-            t = $(mp.currItem.el[0]);
+  $el.each(function () {
+    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).magnificPopup({
+      type: 'image',
+      removalDelay: 500,
+      mainClass: 'mfp-fade popup_inline',
+      showCloseBtn: true,
+      closeMarkup: '<div class="mfp-close">&times;</div>',
+      closeBtnInside: true,
+      closeOnContentClick: false,
+      closeOnBgClick: true,
+      alignTop: false,
+      fixedContentPos: true,
+      callbacks: {
+        open: function open() {
+          setPopupMarginTop(570);
+          var mp = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.magnificPopup.instance,
+              t = jquery__WEBPACK_IMPORTED_MODULE_0___default()(mp.currItem.el[0]);
 
-        if (t.data('type') === 'video') {
-          if (!$(this.wrap[0]).find('img.mfp-img').hasClass('has__video')) {
-            var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
-                $dataVideo = $(this.currItem.el).attr('href');
-            $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
-            $imgVideo.parent('figure').addClass('wrap__hasVideo');
+          if (t.data('type') === 'video') {
+            if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.wrap[0]).find('img.mfp-img').hasClass('has__video')) {
+              var $imgVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.wrap[0]).find('img.mfp-img'),
+                  $dataVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.currItem.el).attr('href');
+              $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+              $imgVideo.parent('figure').addClass('wrap__hasVideo');
 
-            if (!$imgVideo.parent('figure').find('.hasVideo__play').length) {
-              $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+              if (!$imgVideo.parent('figure').find('.hasVideo__play').length) {
+                $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+              }
             }
+          }
+        },
+        close: function close() {},
+        beforeOpen: function beforeOpen() {
+          var $triggerEl = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.st.el),
+              newClass = 'productsSingle__gallery';
+          this.st.mainClass = this.st.mainClass + ' ' + newClass;
+          this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+        },
+        elementParse: function elementParse(item) {
+          /*item.src = item.el.find('img').attr('src');*/
+        },
+        markupParse: function markupParse(template, values, item) {},
+        change: function change() {
+          var mp = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.magnificPopup.instance,
+              t = jquery__WEBPACK_IMPORTED_MODULE_0___default()(mp.currItem.el[0]);
+
+          if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').parent('figure').find('iframe').remove();
+          }
+
+          if (t.data('type') === 'video') {
+            if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
+              var $imgVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img'),
+                  $dataVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.currItem.el).attr('href');
+              $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+              $imgVideo.parent('figure').addClass('wrap__hasVideo');
+
+              if (!$imgVideo.parent('figure').find('.hasVideo__play').length) {
+                $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+              }
+            }
+          } else {
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').parent('figure').removeClass('wrap__hasVideo');
+            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').parent('figure').find('.hasVideo__play').remove();
           }
         }
       },
-      close: function close() {},
-      beforeOpen: function beforeOpen() {
-        var $triggerEl = $(this.st.el),
-            newClass = 'productsSingle__gallery';
-        this.st.mainClass = this.st.mainClass + ' ' + newClass;
-        this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+      gallery: {
+        enabled: true,
+        navigateByImgClick: false
       },
-      elementParse: function elementParse(item) {
-        /*item.src = item.el.find('img').attr('src');*/
-      },
-      markupParse: function markupParse(template, values, item) {},
-      change: function change() {
-        var mp = $.magnificPopup.instance,
-            t = $(mp.currItem.el[0]);
-
-        if (!$(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
-          $(this.content[0]).find('img.mfp-img').parent('figure').find('iframe').remove();
-        }
-
-        if (t.data('type') === 'video') {
-          if (!$(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
-            var $imgVideo = $(this.content[0]).find('img.mfp-img'),
-                $dataVideo = $(this.currItem.el).attr('href');
-            $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
-            $imgVideo.parent('figure').addClass('wrap__hasVideo');
-
-            if (!$imgVideo.parent('figure').find('.hasVideo__play').length) {
-              $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
-            }
-          }
-        } else {
-          $(this.content[0]).find('img.mfp-img').parent('figure').removeClass('wrap__hasVideo');
-          $(this.content[0]).find('img.mfp-img').parent('figure').find('.hasVideo__play').remove();
-        }
-      }
-    },
-    gallery: {
-      enabled: true,
-      navigateByImgClick: false
-    },
-    delegate: '.offers_single_imgLink'
+      delegate: '.offers_single_imgLink'
+    });
   });
 }
 

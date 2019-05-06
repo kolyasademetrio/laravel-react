@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import stockSinglePageMagnificPopupInit from './stockSinglePageMagnificPopupInit';
 import $ from 'jquery';
+import stockSinglePageMagnificPopupInit from './stockSinglePageMagnificPopupInit';
+
 
 class StockSinglePagePopupWrapper extends Component {
     constructor(props){

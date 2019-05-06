@@ -9,7 +9,7 @@ import HomePage from './components/pages/HomePage';
 import AboutPage from './components/pages/AboutPage';
 import ShopPage from './containers/pages/ShopPage';
 import VideotipPage from './containers/pages/VideotipsPage/VideotipPage';
-import StockPage from './components/pages/StockPage/StockPage';
+import StockPage from './containers/pages/StockPage/StockPage';
 import DoyouknowPage from './components/pages/DoyouknowPage';
 import ContactsPage from './components/pages/ContactsPage';
 import ErrorPage from './components/pages/ErrorPage';

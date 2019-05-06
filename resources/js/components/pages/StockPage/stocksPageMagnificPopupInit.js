@@ -1,5 +1,15 @@
 export default function stocksPageMagnificPopupInit ($elem) {
-    // $('.offers__items').each(function() {
+    function setPopupMarginTopVideo(windowWidth) {
+        if ( $(window).width() > windowWidth ) {
+            var windowHeight = $(window).height(),
+                popupHeight = $('.mfp-content').innerHeight(),
+                marginTop = (windowHeight - popupHeight) / 3;
+            $('.mfp-content').css({
+                'marginTop': marginTop,
+            });
+        }
+    }
+
     $elem.each(function() {
         $(this).magnificPopup({
             type:'image',

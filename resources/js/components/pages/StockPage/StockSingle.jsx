@@ -1,28 +1,39 @@
 import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import {Link} from 'react-router-dom';
+import StockImageWrap from './StockImageWrap';
+import StockVideoWrap from './StockVideoWrap';
+
 
 const StockSingle = ({stock, attachments, matchPath}) => {
-    console.log( 'attachments', attachments );
+    const attachmentsList = attachments.filter(a => a.use_as_featured === 1 );
+    const attachment = attachmentsList[0];
+    const dateTime = attachment['updated_at'].split(' ', 2);
+    const date = dateTime[0];
+    const time = dateTime[1];
 
-    const attachment = attachments.filter(a => a.use_as_featured === 1 );
-    
-    const atachmentlink = (attachment[0].type === 'video') ? attachment[0].attachment : `${matchPath}/${stock.slug}`;
-    
     return (
         <div className="offers__item">
-            <a href={atachmentlink} className="offers__imageWrap">
-                <span className="offers_date">
-                    <span>2018-10-24</span>
-                    <span>19:00:00</span>
-                </span>
-                <img src={attachment[0].thumbnail} alt="dewr"/>
-            </a>
+            {attachment.type === 'video' ? (
+                <StockVideoWrap
+                    thumbnail={attachment.thumbnail}
+                    atachment={attachment.attachment}
+                    date={date}
+                    time={time}
+                />
+                ) : (
+                <StockImageWrap
+                    thumbnail={attachment.thumbnail}
+                    path={`${matchPath}/${stock.slug}`}
+                    date={date}
+                    time={time}
+                />
+            )}
             <div className="offers__content">
                 <h2>
-                    <a href="/offers" className="offers__itemTitle">
+                    <Link to={{pathname: `${matchPath}/${stock.slug}`}} className="offers__itemTitle">
                         {ReactHtmlParser(stock.title)}
-                    </a>
+                    </Link>
                 </h2>
                 <div className="offers__itemExcerpt">
                     {ReactHtmlParser(stock.content)}

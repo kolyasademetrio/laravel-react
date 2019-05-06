@@ -2,17 +2,19 @@ import React, { Component } from 'react';
 import Breadcrumbs from '../../../helpers/breadcrumbs';
 import StockSingle from './StockSingle';
 import Preloader from '../../../helpers/preloader';
+import $ from 'jquery';
+import stocksPageMagnificPopupInit from './stocksPageMagnificPopupInit';
 
-import {connect} from 'react-redux';
-import {setAllStocks} from "../../../actions/stocks";
 
-
-const NoStocksMessage = () =>  <p className="woocommerce-noreviews" style={{minHeight: 100}}>Видеотзывов пока нет.</p>;
+const NoStocksMessage = () =>  <p className="woocommerce-noreviews" style={{minHeight: 100}}>Акций пока нет.</p>;
 
 class StockPage extends Component {
     componentDidMount(){
         const {setAllStocks} = this.props;
         setAllStocks();
+
+        this.$el = $('.offers__items');
+        stocksPageMagnificPopupInit(this.$el);
     }
 
     render(){
@@ -61,18 +63,4 @@ class StockPage extends Component {
     }
 }
 
-const mapStateToProps = ({stocks: {isStocksReady, isStocksLoading, stocksErrors, stocksData: {stocksList, stockAttachment}}}) => {
-    return {
-        isStocksReady,
-        isStocksLoading,
-        stocksErrors,
-        stocksList,
-        stockAttachment
-    };
-};
-
-const mapDispatchToProps = dispatch => ({
-    setAllStocks: () => dispatch(setAllStocks()),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(StockPage);
+export default StockPage;

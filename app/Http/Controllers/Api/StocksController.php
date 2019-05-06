@@ -27,6 +27,24 @@ class StocksController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $stock = DB::table('stocks')->where('slug', $id)->first();
+        $stockID = DB::table('stocks')->where('slug', $id)->select('id')->get();
+        $stockAttachments = DB::table('stock_attachments')->where('stock_id', $stockID)->get();
+
+        return response()->json([
+            'item' => $stock,
+            'attachments' => $stockAttachments,
+        ]);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -43,17 +61,6 @@ class StocksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
     {
         //
     }

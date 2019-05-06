@@ -69020,7 +69020,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -79688,7 +79688,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pages_AboutPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/pages/AboutPage */ "./resources/js/components/pages/AboutPage.jsx");
 /* harmony import */ var _containers_pages_ShopPage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./containers/pages/ShopPage */ "./resources/js/containers/pages/ShopPage.js");
 /* harmony import */ var _containers_pages_VideotipsPage_VideotipPage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./containers/pages/VideotipsPage/VideotipPage */ "./resources/js/containers/pages/VideotipsPage/VideotipPage.js");
-/* harmony import */ var _components_pages_StockPage_StockPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/pages/StockPage/StockPage */ "./resources/js/components/pages/StockPage/StockPage.jsx");
+/* harmony import */ var _containers_pages_StockPage_StockPage__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./containers/pages/StockPage/StockPage */ "./resources/js/containers/pages/StockPage/StockPage.js");
 /* harmony import */ var _components_pages_DoyouknowPage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/pages/DoyouknowPage */ "./resources/js/components/pages/DoyouknowPage.jsx");
 /* harmony import */ var _components_pages_ContactsPage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/pages/ContactsPage */ "./resources/js/components/pages/ContactsPage.jsx");
 /* harmony import */ var _components_pages_ErrorPage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/pages/ErrorPage */ "./resources/js/components/pages/ErrorPage.jsx");
@@ -79778,7 +79778,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/stocks",
-        component: _components_pages_StockPage_StockPage__WEBPACK_IMPORTED_MODULE_9__["default"]
+        component: _containers_pages_StockPage_StockPage__WEBPACK_IMPORTED_MODULE_9__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/doyouknow",
@@ -85110,6 +85110,43 @@ function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/pages/StockPage/StockImageWrap.jsx":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/pages/StockPage/StockImageWrap.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var StockImageWrap = function StockImageWrap(_ref) {
+  var thumbnail = _ref.thumbnail,
+      path = _ref.path,
+      date = _ref.date,
+      time = _ref.time;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: {
+      pathname: path
+    },
+    className: "offers__imageWrap"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "offers_date"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, date), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, time)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: thumbnail,
+    alt: "dewr"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StockImageWrap);
+
+/***/ }),
+
 /***/ "./resources/js/components/pages/StockPage/StockPage.jsx":
 /*!***************************************************************!*\
   !*** ./resources/js/components/pages/StockPage/StockPage.jsx ***!
@@ -85124,8 +85161,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/breadcrumbs */ "./resources/js/helpers/breadcrumbs.js");
 /* harmony import */ var _StockSingle__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./StockSingle */ "./resources/js/components/pages/StockPage/StockSingle.jsx");
 /* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/preloader */ "./resources/js/helpers/preloader.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_stocks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../actions/stocks */ "./resources/js/actions/stocks.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _stocksPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./stocksPageMagnificPopupInit */ "./resources/js/components/pages/StockPage/stocksPageMagnificPopupInit.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85157,7 +85195,7 @@ var NoStocksMessage = function NoStocksMessage() {
     style: {
       minHeight: 100
     }
-  }, "\u0412\u0438\u0434\u0435\u043E\u0442\u0437\u044B\u0432\u043E\u0432 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.");
+  }, "\u0410\u043A\u0446\u0438\u0439 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.");
 };
 
 var StockPage =
@@ -85176,6 +85214,8 @@ function (_Component) {
     value: function componentDidMount() {
       var setAllStocks = this.props.setAllStocks;
       setAllStocks();
+      this.$el = jquery__WEBPACK_IMPORTED_MODULE_4___default()('.offers__items');
+      Object(_stocksPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_5__["default"])(this.$el);
     }
   }, {
     key: "render",
@@ -85219,32 +85259,7 @@ function (_Component) {
   return StockPage;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var mapStateToProps = function mapStateToProps(_ref) {
-  var _ref$stocks = _ref.stocks,
-      isStocksReady = _ref$stocks.isStocksReady,
-      isStocksLoading = _ref$stocks.isStocksLoading,
-      stocksErrors = _ref$stocks.stocksErrors,
-      _ref$stocks$stocksDat = _ref$stocks.stocksData,
-      stocksList = _ref$stocks$stocksDat.stocksList,
-      stockAttachment = _ref$stocks$stocksDat.stockAttachment;
-  return {
-    isStocksReady: isStocksReady,
-    isStocksLoading: isStocksLoading,
-    stocksErrors: stocksErrors,
-    stocksList: stocksList,
-    stockAttachment: stockAttachment
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    setAllStocks: function setAllStocks() {
-      return dispatch(Object(_actions_stocks__WEBPACK_IMPORTED_MODULE_5__["setAllStocks"])());
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchToProps)(StockPage));
+/* harmony default export */ __webpack_exports__["default"] = (StockPage);
 
 /***/ }),
 
@@ -85262,6 +85277,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-html-parser */ "./node_modules/react-html-parser/lib/index.js");
 /* harmony import */ var react_html_parser__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_html_parser__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _StockImageWrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./StockImageWrap */ "./resources/js/components/pages/StockPage/StockImageWrap.jsx");
+/* harmony import */ var _StockVideoWrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./StockVideoWrap */ "./resources/js/components/pages/StockPage/StockVideoWrap.jsx");
+
+
 
 
 
@@ -85270,25 +85289,31 @@ var StockSingle = function StockSingle(_ref) {
   var stock = _ref.stock,
       attachments = _ref.attachments,
       matchPath = _ref.matchPath;
-  console.log('attachments', attachments);
-  var attachment = attachments.filter(function (a) {
+  var attachmentsList = attachments.filter(function (a) {
     return a.use_as_featured === 1;
   });
-  var atachmentlink = attachment[0].type === 'video' ? attachment[0].attachment : "".concat(matchPath, "/").concat(stock.slug);
+  var attachment = attachmentsList[0];
+  var dateTime = attachment['updated_at'].split(' ', 2);
+  var date = dateTime[0];
+  var time = dateTime[1];
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "offers__item"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: atachmentlink,
-    className: "offers__imageWrap"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "offers_date"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "2018-10-24"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "19:00:00")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: attachment[0].thumbnail,
-    alt: "dewr"
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, attachment.type === 'video' ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StockVideoWrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    thumbnail: attachment.thumbnail,
+    atachment: attachment.attachment,
+    date: date,
+    time: time
+  }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StockImageWrap__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    thumbnail: attachment.thumbnail,
+    path: "".concat(matchPath, "/").concat(stock.slug),
+    date: date,
+    time: time
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "offers__content"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    href: "/offers",
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: {
+      pathname: "".concat(matchPath, "/").concat(stock.slug)
+    },
     className: "offers__itemTitle"
   }, react_html_parser__WEBPACK_IMPORTED_MODULE_1___default()(stock.title))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "offers__itemExcerpt"
@@ -85301,6 +85326,117 @@ var StockSingle = function StockSingle(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StockSingle);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/StockPage/StockVideoWrap.jsx":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/pages/StockPage/StockVideoWrap.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var StockVideoWrap = function StockVideoWrap(_ref) {
+  var thumbnail = _ref.thumbnail,
+      atachment = _ref.atachment,
+      date = _ref.date,
+      time = _ref.time;
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: atachment,
+    className: "offers__imageWrap has__video"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "offers_date"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, date), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, time)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: thumbnail,
+    alt: "dewr"
+  }));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StockVideoWrap);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/StockPage/stocksPageMagnificPopupInit.js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/pages/StockPage/stocksPageMagnificPopupInit.js ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return stocksPageMagnificPopupInit; });
+function stocksPageMagnificPopupInit($elem) {
+  function setPopupMarginTopVideo(windowWidth) {
+    if ($(window).width() > windowWidth) {
+      var windowHeight = $(window).height(),
+          popupHeight = $('.mfp-content').innerHeight(),
+          marginTop = (windowHeight - popupHeight) / 3;
+      $('.mfp-content').css({
+        'marginTop': marginTop
+      });
+    }
+  }
+
+  $elem.each(function () {
+    $(this).magnificPopup({
+      type: 'image',
+      removalDelay: 500,
+      mainClass: 'mfp-fade popup_inline',
+      showCloseBtn: true,
+      closeMarkup: '<div class="mfp-close">&times;</div>',
+      closeBtnInside: true,
+      closeOnContentClick: false,
+      closeOnBgClick: true,
+      alignTop: false,
+      fixedContentPos: true,
+      titleSrc: function titleSrc(item) {
+        return item.el.attr('title');
+      },
+      callbacks: {
+        open: function open() {
+          setPopupMarginTopVideo(570);
+          var mp = $.magnificPopup.instance,
+              t = $(mp.currItem.el[0]);
+          var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+              $dataVideo = $(this.currItem.el).attr('href');
+          $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+          $imgVideo.parent('figure').append('<div class="movietiphome__play"></div>');
+          $('.mfp-content .movietiphome__play').click();
+        },
+        close: function close() {},
+        beforeOpen: function beforeOpen() {
+          var $triggerEl = $(this.st.el),
+              newClass = 'movietiphome__gallery offers__items__popup';
+          this.st.mainClass = this.st.mainClass + ' ' + newClass;
+          this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+        },
+        elementParse: function elementParse(item) {
+          item.src = item.el.find('img').attr('src');
+        },
+        markupParse: function markupParse(template, values, item) {},
+        change: function change() {
+          var mp = $.magnificPopup.instance,
+              t = $(mp.currItem.el[0]);
+          var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+              $dataVideo = $(this.currItem.el).attr('href');
+          $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+        }
+      },
+      gallery: {
+        enabled: false,
+        navigateByImgClick: false
+      },
+      delegate: '.offers__imageWrap.has__video'
+    });
+  });
+}
 
 /***/ }),
 
@@ -88063,6 +88199,51 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_pages_ShopPage__WEBPACK_IMPORTED_MODULE_3__["default"]));
+
+/***/ }),
+
+/***/ "./resources/js/containers/pages/StockPage/StockPage.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/containers/pages/StockPage/StockPage.js ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_pages_StockPage_StockPage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/pages/StockPage/StockPage */ "./resources/js/components/pages/StockPage/StockPage.jsx");
+/* harmony import */ var _actions_stocks__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/stocks */ "./resources/js/actions/stocks.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var _ref$stocks = _ref.stocks,
+      isStocksReady = _ref$stocks.isStocksReady,
+      isStocksLoading = _ref$stocks.isStocksLoading,
+      stocksErrors = _ref$stocks.stocksErrors,
+      _ref$stocks$stocksDat = _ref$stocks.stocksData,
+      stocksList = _ref$stocks$stocksDat.stocksList,
+      stockAttachment = _ref$stocks$stocksDat.stockAttachment;
+  return {
+    isStocksReady: isStocksReady,
+    isStocksLoading: isStocksLoading,
+    stocksErrors: stocksErrors,
+    stocksList: stocksList,
+    stockAttachment: stockAttachment
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setAllStocks: function setAllStocks() {
+      return dispatch(Object(_actions_stocks__WEBPACK_IMPORTED_MODULE_1__["setAllStocks"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(_components_pages_StockPage_StockPage__WEBPACK_IMPORTED_MODULE_0__["default"]));
 
 /***/ }),
 

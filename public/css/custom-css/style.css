@@ -8051,6 +8051,10 @@ nav.pagination ul li.active span {
     display: block;
 }
 
+.has_no_attachments .offers__content {
+    margin-left: 0;
+}
+
 
 /* advanced - enter transition 800ms, exit 150ms */
 /* .fade-appear,

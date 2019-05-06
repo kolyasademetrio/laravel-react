@@ -10,6 +10,7 @@ import AboutPage from './components/pages/AboutPage';
 import ShopPage from './containers/pages/ShopPage';
 import VideotipPage from './containers/pages/VideotipsPage/VideotipPage';
 import StockPage from './containers/pages/StockPage/StockPage';
+import StockSinglePage from './components/pages/StockPage/StockSinglePage';
 import DoyouknowPage from './components/pages/DoyouknowPage';
 import ContactsPage from './components/pages/ContactsPage';
 import ErrorPage from './components/pages/ErrorPage';
@@ -33,6 +34,7 @@ class Main extends Component {
                             <Route exact path="/videotips" component={VideotipPage} />
                             <Route exact path={`/videotips/:videotip`} component={VideotipSinglePage} />
                             <Route exact path="/stocks" component={StockPage }/>
+                            <Route exact path="/stocks/:slug" component={StockSinglePage} />
                             <Route exact path="/doyouknow" component={DoyouknowPage} />
                             <Route exact path="/contacts" component={ContactsPage} />
                             <Route exact path="/shipping" component={ShippingPage} />

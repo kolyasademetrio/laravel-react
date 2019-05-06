@@ -6,28 +6,35 @@ import StockVideoWrap from './StockVideoWrap';
 
 
 const StockSingle = ({stock, attachments, matchPath}) => {
-    const attachmentsList = attachments.filter(a => a.use_as_featured === 1 );
-    const attachment = attachmentsList[0];
-    const dateTime = attachment['updated_at'].split(' ', 2);
-    const date = dateTime[0];
-    const time = dateTime[1];
+    const wrapClassName = !attachments ? 'has_no_attachments' : '';
+    let attachment, date, time;
+
+    if (attachments) {
+        const attachmentsList = attachments.filter(a => a.use_as_featured === 1 );
+        attachment = attachmentsList[0];
+        const dateTime = attachment['updated_at'].split(' ', 2);
+        date = dateTime[0];
+        time = dateTime[1];
+    }
 
     return (
-        <div className="offers__item">
-            {attachment.type === 'video' ? (
-                <StockVideoWrap
-                    thumbnail={attachment.thumbnail}
-                    atachment={attachment.attachment}
-                    date={date}
-                    time={time}
-                />
+        <div className={`offers__item ${wrapClassName}`}>
+            {attachments && (
+                attachment.type === 'video' ? (
+                    <StockVideoWrap
+                        thumbnail={attachment.thumbnail}
+                        atachment={attachment.attachment}
+                        date={date}
+                        time={time}
+                    />
                 ) : (
-                <StockImageWrap
-                    thumbnail={attachment.thumbnail}
-                    path={`${matchPath}/${stock.slug}`}
-                    date={date}
-                    time={time}
-                />
+                    <StockImageWrap
+                        thumbnail={attachment.thumbnail}
+                        path={`${matchPath}/${stock.slug}`}
+                        date={date}
+                        time={time}
+                    />
+                )
             )}
             <div className="offers__content">
                 <h2>

@@ -35,7 +35,7 @@ class StocksController extends Controller
     public function show($id)
     {
         $stock = DB::table('stocks')->where('slug', $id)->first();
-        $stockID = DB::table('stocks')->where('slug', $id)->select('id')->get();
+        $stockID = $stock->id;
         $stockAttachments = DB::table('stock_attachments')->where('stock_id', $stockID)->get();
 
         return response()->json([

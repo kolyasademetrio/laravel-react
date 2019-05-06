@@ -4,6 +4,7 @@ import Preloader from '../../../helpers/preloader';
 import {Route} from 'react-router-dom';
 import ErrorPage from '../ErrorPage';
 import VideotipPopupWrapper from './VideotipPopupWrapper';
+import {ReactHtmlParser} from 'react-html-parser';
 
 
 class VideotipSinglePage extends Component {

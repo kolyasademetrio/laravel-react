@@ -12,6 +12,6 @@ class StockAttachment extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'stock_id', 'thumbnail', 'attachment', 'type', 'created_at', 'updated_at',
+        'id', 'stock_id', 'thumbnail', 'attachment', 'type', 'use_as_featured', 'created_at', 'updated_at',
     ];
 }

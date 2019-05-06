@@ -23,7 +23,7 @@ export const setAllVideotips = () => {
     };
 };
 
-export const setSingleVideotip = (slug) => {
+export const setSingleVideotip = slug => {
     return async dispatch => {
         dispatch({type: SET_VIDEOTIP_SINGLE});
         axios.get(`/api/videotips/${slug}`).then(data => {

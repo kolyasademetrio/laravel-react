@@ -66,7 +66,7 @@ class StockSinglePage extends Component {
                             <div className="offers_single__inner">
                                 <div className="offers_single__item">
                                     {hasAttachments && (
-                                        <StockSinglePagePopupWrapper />
+                                        <StockSinglePagePopupWrapper attachments={attachments} />
                                     )}
 
                                     <div className="offers_single__content">

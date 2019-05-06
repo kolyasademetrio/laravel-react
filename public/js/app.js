@@ -85564,7 +85564,9 @@ function (_Component) {
         className: "offers_single__inner"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "offers_single__item"
-      }, hasAttachments && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StockSinglePagePopupWrapper__WEBPACK_IMPORTED_MODULE_6__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, hasAttachments && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_StockSinglePagePopupWrapper__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        attachments: attachments
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "offers_single__content"
       }, react_html_parser__WEBPACK_IMPORTED_MODULE_5___default()(item.content))))))));
     }
@@ -85613,6 +85615,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _stockSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stockSinglePageMagnificPopupInit */ "./resources/js/components/pages/StockPage/stockSinglePageMagnificPopupInit.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85633,41 +85638,44 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
 var StockSinglePagePopupWrapper =
 /*#__PURE__*/
 function (_Component) {
   _inherits(StockSinglePagePopupWrapper, _Component);
 
-  function StockSinglePagePopupWrapper() {
+  function StockSinglePagePopupWrapper(props) {
     _classCallCheck(this, StockSinglePagePopupWrapper);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(StockSinglePagePopupWrapper).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(StockSinglePagePopupWrapper).call(this, props));
   }
 
   _createClass(StockSinglePagePopupWrapper, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.$el = jquery__WEBPACK_IMPORTED_MODULE_2___default()('.offers_single__header');
+      Object(_stockSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__["default"])(this.$el);
+    }
+  }, {
     key: "render",
     value: function render() {
+      var attachments = this.props.attachments;
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "offers_single__header"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://algaph.com/wp-content/uploads/2018/10/s_8_marta_02.jpg",
-        className: "offers_single_imgLink",
-        style: {
-          width: "50%"
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://algaph.com/wp-content/uploads/2018/10/s_8_marta_02.jpg",
-        alt: ""
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "https://algaph.com/wp-content/uploads/2018/10/s_8_marta_01.jpg",
-        className: "offers_single_imgLink",
-        style: {
-          width: "50%"
-        }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://algaph.com/wp-content/uploads/2018/10/s_8_marta_01.jpg",
-        alt: ""
-      })));
+      }, attachments.map(function (a) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+          key: a.id,
+          href: a.attachment,
+          className: "offers_single_videoLink",
+          style: {
+            width: "50%"
+          }
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+          src: a.thumbnail,
+          alt: ""
+        }));
+      }));
     }
   }]);
 
@@ -85708,6 +85716,94 @@ var StockVideoWrap = function StockVideoWrap(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StockVideoWrap);
+
+/***/ }),
+
+/***/ "./resources/js/components/pages/StockPage/stockSinglePageMagnificPopupInit.js":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/pages/StockPage/stockSinglePageMagnificPopupInit.js ***!
+  \*************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return stockSinglePageMagnificPopupInit; });
+function stockSinglePageMagnificPopupInit($el) {
+  console.log($el);
+  $el.magnificPopup({
+    type: 'image',
+    removalDelay: 500,
+    mainClass: 'mfp-fade popup_inline',
+    showCloseBtn: true,
+    closeMarkup: '<div class="mfp-close">&times;</div>',
+    closeBtnInside: true,
+    closeOnContentClick: false,
+    closeOnBgClick: true,
+    alignTop: false,
+    fixedContentPos: true,
+    callbacks: {
+      open: function open() {
+        setPopupMarginTop(570);
+        var mp = $.magnificPopup.instance,
+            t = $(mp.currItem.el[0]);
+
+        if (t.data('type') === 'video') {
+          if (!$(this.wrap[0]).find('img.mfp-img').hasClass('has__video')) {
+            var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+                $dataVideo = $(this.currItem.el).attr('href');
+            $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+            $imgVideo.parent('figure').addClass('wrap__hasVideo');
+
+            if (!$imgVideo.parent('figure').find('.hasVideo__play').length) {
+              $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+            }
+          }
+        }
+      },
+      close: function close() {},
+      beforeOpen: function beforeOpen() {
+        var $triggerEl = $(this.st.el),
+            newClass = 'productsSingle__gallery';
+        this.st.mainClass = this.st.mainClass + ' ' + newClass;
+        this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+      },
+      elementParse: function elementParse(item) {
+        /*item.src = item.el.find('img').attr('src');*/
+      },
+      markupParse: function markupParse(template, values, item) {},
+      change: function change() {
+        var mp = $.magnificPopup.instance,
+            t = $(mp.currItem.el[0]);
+
+        if (!$(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
+          $(this.content[0]).find('img.mfp-img').parent('figure').find('iframe').remove();
+        }
+
+        if (t.data('type') === 'video') {
+          if (!$(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
+            var $imgVideo = $(this.content[0]).find('img.mfp-img'),
+                $dataVideo = $(this.currItem.el).attr('href');
+            $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+            $imgVideo.parent('figure').addClass('wrap__hasVideo');
+
+            if (!$imgVideo.parent('figure').find('.hasVideo__play').length) {
+              $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+            }
+          }
+        } else {
+          $(this.content[0]).find('img.mfp-img').parent('figure').removeClass('wrap__hasVideo');
+          $(this.content[0]).find('img.mfp-img').parent('figure').find('.hasVideo__play').remove();
+        }
+      }
+    },
+    gallery: {
+      enabled: true,
+      navigateByImgClick: false
+    },
+    delegate: '.offers_single_imgLink'
+  });
+}
 
 /***/ }),
 

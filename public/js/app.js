@@ -85667,13 +85667,12 @@ function (_Component) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
           key: a.id,
           href: a.attachment,
-          className: "offers_single_videoLink",
-          style: {
-            width: "50%"
-          }
+          className: "offers_single_".concat(a.type, "Link offers_single_js ").concat(a.type),
+          "data-type": a.type
         }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
           src: a.thumbnail,
-          alt: ""
+          alt: "",
+          className: a.type
         }));
       }));
     }
@@ -85728,13 +85727,21 @@ var StockVideoWrap = function StockVideoWrap(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return stockSinglePageMagnificPopupInit; });
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return videotipSinglePagePopupInit; });
+function videotipSinglePagePopupInit($elem) {
+  function setPopupMarginTopVideo(windowWidth) {
+    if ($(window).width() > windowWidth) {
+      var windowHeight = $(window).height(),
+          popupHeight = $('.mfp-content').innerHeight(),
+          marginTop = (windowHeight - popupHeight) / 3;
+      $('.mfp-content').css({
+        'marginTop': marginTop
+      });
+    }
+  }
 
-function stockSinglePageMagnificPopupInit($el) {
-  $el.each(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).magnificPopup({
+  $elem.each(function () {
+    $(this).magnificPopup({
       type: 'image',
       removalDelay: 500,
       mainClass: 'mfp-fade popup_inline',
@@ -85745,16 +85752,20 @@ function stockSinglePageMagnificPopupInit($el) {
       closeOnBgClick: true,
       alignTop: false,
       fixedContentPos: true,
+      titleSrc: function titleSrc(item) {
+        return item.el.attr('title');
+      },
       callbacks: {
         open: function open() {
-          setPopupMarginTop(570);
-          var mp = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.magnificPopup.instance,
-              t = jquery__WEBPACK_IMPORTED_MODULE_0___default()(mp.currItem.el[0]);
+          setPopupMarginTopVideo(570);
+          var mp = $.magnificPopup.instance,
+              t = $(mp.currItem.el[0]);
+          console.log("$(this.wrap[0]).find('img.mfp-img')", $(this.wrap[0]).find('img.mfp-img'));
 
           if (t.data('type') === 'video') {
-            if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.wrap[0]).find('img.mfp-img').hasClass('has__video')) {
-              var $imgVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.wrap[0]).find('img.mfp-img'),
-                  $dataVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.currItem.el).attr('href');
+            if (!$(this.wrap[0]).find('img.mfp-img').hasClass('has__video')) {
+              var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+                  $dataVideo = $(this.currItem.el).attr('href');
               $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
               $imgVideo.parent('figure').addClass('wrap__hasVideo');
 
@@ -85763,48 +85774,93 @@ function stockSinglePageMagnificPopupInit($el) {
               }
             }
           }
+
+          var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+              $dataVideo = $(this.currItem.el).attr('href');
+          $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+          $imgVideo.parent('figure').append('<div class="movietiphome__play"></div>');
+          $('.mfp-content .movietiphome__play').click();
         },
         close: function close() {},
         beforeOpen: function beforeOpen() {
-          var $triggerEl = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.st.el),
-              newClass = 'productsSingle__gallery';
+          var $triggerEl = $(this.st.el),
+              newClass = 'movietiphome__gallery offers__items__popup';
           this.st.mainClass = this.st.mainClass + ' ' + newClass;
           this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
         },
         elementParse: function elementParse(item) {
-          /*item.src = item.el.find('img').attr('src');*/
+          item.src = item.el.find('img').attr('src');
         },
         markupParse: function markupParse(template, values, item) {},
         change: function change() {
-          var mp = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.magnificPopup.instance,
-              t = jquery__WEBPACK_IMPORTED_MODULE_0___default()(mp.currItem.el[0]);
-
-          if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').parent('figure').find('iframe').remove();
-          }
-
-          if (t.data('type') === 'video') {
-            if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
-              var $imgVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img'),
-                  $dataVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.currItem.el).attr('href');
-              $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
-              $imgVideo.parent('figure').addClass('wrap__hasVideo');
-
-              if (!$imgVideo.parent('figure').find('.hasVideo__play').length) {
-                $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
-              }
-            }
-          } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').parent('figure').removeClass('wrap__hasVideo');
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').parent('figure').find('.hasVideo__play').remove();
-          }
+          var mp = $.magnificPopup.instance,
+              t = $(mp.currItem.el[0]);
+          var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+              $dataVideo = $(this.currItem.el).attr('href');
+          $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
         }
       },
+
+      /*callbacks: {
+          open: function() {
+              var headerHeight = $('.header__top').innerHeight();
+              $('.mfp-content').css({
+                  'marginTop': headerHeight,
+              });
+                var mp = $.magnificPopup.instance,
+                  t = $(mp.currItem.el[0]);
+                if ( t.data('type') === 'video' ) {
+                  if ( !$(this.wrap[0]).find('img.mfp-img').hasClass('has__video') ) {
+                      var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+                          $dataVideo = $(this.currItem.el).attr('href');
+                      $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+                      $imgVideo.parent('figure').addClass('wrap__hasVideo');
+                      if ( !$imgVideo.parent('figure').find('.hasVideo__play').length ) {
+                          $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+                      }
+                  }
+              }
+          },
+          close: function() {
+            },
+          beforeOpen: function() {
+              var $triggerEl = $(this.st.el),
+                  newClass = 'productsSingle__gallery';
+              this.st.mainClass = this.st.mainClass + ' ' + newClass;
+                this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+          },
+          elementParse: function(item) {
+              item.src = item.el.find('img').attr('src');
+            },
+          markupParse: function(template, values, item) {
+            },
+          change: function(){
+              var mp = $.magnificPopup.instance,
+                  t = $(mp.currItem.el[0]);
+                if ( !$(this.content[0]).find('img.mfp-img').hasClass('has__video') ) {
+                  $(this.content[0]).find('img.mfp-img').parent('figure').find('iframe').remove();
+              }
+                if ( t.data('type') === 'video' ) {
+                  if ( !$(this.content[0]).find('img.mfp-img').hasClass('has__video') ) {
+                      var $imgVideo = $(this.content[0]).find('img.mfp-img'),
+                          $dataVideo = $(this.currItem.el).attr('href');
+                        $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+                      $imgVideo.parent('figure').addClass('wrap__hasVideo');
+                      if ( !$imgVideo.parent('figure').find('.hasVideo__play').length ) {
+                          $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+                      }
+                    }
+              } else {
+                  $(this.content[0]).find('img.mfp-img').parent('figure').removeClass('wrap__hasVideo');
+                  $(this.content[0]).find('img.mfp-img').parent('figure').find('.hasVideo__play').remove();
+              }
+          }
+      },*/
       gallery: {
         enabled: true,
         navigateByImgClick: false
       },
-      delegate: '.offers_single_imgLink'
+      delegate: '.offers_single_js'
     });
   });
 }
@@ -85857,7 +85913,25 @@ function stocksPageMagnificPopupInit($elem) {
               $dataVideo = $(this.currItem.el).attr('href');
           $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
           $imgVideo.parent('figure').append('<div class="movietiphome__play"></div>');
-          $('.mfp-content .movietiphome__play').click();
+          $('.mfp-content .movietiphome__play').click(); //
+
+          var headerHeight = $('.header__top').innerHeight();
+          $('.mfp-content').css({
+            'marginTop': headerHeight
+          });
+
+          if (t.data('type') === 'video') {
+            if (!$(this.wrap[0]).find('img.mfp-img').hasClass('has__video')) {
+              var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+                  $dataVideo = $(this.currItem.el).attr('href');
+              $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+              $imgVideo.parent('figure').addClass('wrap__hasVideo');
+
+              if (!$imgVideo.parent('figure').find('.hasVideo__play').length) {
+                $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+              }
+            }
+          }
         },
         close: function close() {},
         beforeOpen: function beforeOpen() {
@@ -86511,7 +86585,6 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return videotipSinglePagePopupInit; });
 function videotipSinglePagePopupInit($elem) {
-  console.log('$elem inside function', $elem);
   $elem.each(function () {
     $(this).magnificPopup({
       type: 'image',
@@ -89896,8 +89969,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

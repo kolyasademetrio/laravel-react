@@ -39,6 +39,28 @@ export default function stocksPageMagnificPopupInit ($elem) {
                     $imgVideo.parent('figure').append('<div class="movietiphome__play"></div>');
 
                     $('.mfp-content .movietiphome__play').click();
+
+                    //
+                    var headerHeight = $('.header__top').innerHeight();
+                    $('.mfp-content').css({
+                        'marginTop': headerHeight,
+                    });
+
+
+
+
+
+                    if ( t.data('type') === 'video' ) {
+                        if ( !$(this.wrap[0]).find('img.mfp-img').hasClass('has__video') ) {
+                            var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+                                $dataVideo = $(this.currItem.el).attr('href');
+                            $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+                            $imgVideo.parent('figure').addClass('wrap__hasVideo');
+                            if ( !$imgVideo.parent('figure').find('.hasVideo__play').length ) {
+                                $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+                            }
+                        }
+                    }
                 },
                 close: function() {
 

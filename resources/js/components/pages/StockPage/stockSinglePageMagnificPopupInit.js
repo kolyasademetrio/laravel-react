@@ -1,7 +1,4 @@
-import $ from 'jquery';
-
 export default function stockSinglePageMagnificPopupInit($el){
-
     $el.each(function(){
         $(this).magnificPopup({
             type:'image',

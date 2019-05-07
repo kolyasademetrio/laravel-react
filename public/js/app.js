@@ -85729,12 +85729,9 @@ var StockVideoWrap = function StockVideoWrap(_ref) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return stockSinglePageMagnificPopupInit; });
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);
-
 function stockSinglePageMagnificPopupInit($el) {
   $el.each(function () {
-    jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).magnificPopup({
+    $(this).magnificPopup({
       type: 'image',
       removalDelay: 500,
       mainClass: 'mfp-fade popup_inline',
@@ -85748,13 +85745,13 @@ function stockSinglePageMagnificPopupInit($el) {
       callbacks: {
         open: function open() {
           setPopupMarginTop(570);
-          var mp = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.magnificPopup.instance,
-              t = jquery__WEBPACK_IMPORTED_MODULE_0___default()(mp.currItem.el[0]);
+          var mp = $.magnificPopup.instance,
+              t = $(mp.currItem.el[0]);
 
           if (t.data('type') === 'video') {
-            if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.wrap[0]).find('img.mfp-img').hasClass('has__video')) {
-              var $imgVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.wrap[0]).find('img.mfp-img'),
-                  $dataVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.currItem.el).attr('href');
+            if (!$(this.wrap[0]).find('img.mfp-img').hasClass('has__video')) {
+              var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+                  $dataVideo = $(this.currItem.el).attr('href');
               $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
               $imgVideo.parent('figure').addClass('wrap__hasVideo');
 
@@ -85766,7 +85763,7 @@ function stockSinglePageMagnificPopupInit($el) {
         },
         close: function close() {},
         beforeOpen: function beforeOpen() {
-          var $triggerEl = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.st.el),
+          var $triggerEl = $(this.st.el),
               newClass = 'productsSingle__gallery';
           this.st.mainClass = this.st.mainClass + ' ' + newClass;
           this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
@@ -85776,17 +85773,17 @@ function stockSinglePageMagnificPopupInit($el) {
         },
         markupParse: function markupParse(template, values, item) {},
         change: function change() {
-          var mp = jquery__WEBPACK_IMPORTED_MODULE_0___default.a.magnificPopup.instance,
-              t = jquery__WEBPACK_IMPORTED_MODULE_0___default()(mp.currItem.el[0]);
+          var mp = $.magnificPopup.instance,
+              t = $(mp.currItem.el[0]);
 
-          if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').parent('figure').find('iframe').remove();
+          if (!$(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
+            $(this.content[0]).find('img.mfp-img').parent('figure').find('iframe').remove();
           }
 
           if (t.data('type') === 'video') {
-            if (!jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
-              var $imgVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img'),
-                  $dataVideo = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.currItem.el).attr('href');
+            if (!$(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
+              var $imgVideo = $(this.content[0]).find('img.mfp-img'),
+                  $dataVideo = $(this.currItem.el).attr('href');
               $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
               $imgVideo.parent('figure').addClass('wrap__hasVideo');
 
@@ -85795,8 +85792,8 @@ function stockSinglePageMagnificPopupInit($el) {
               }
             }
           } else {
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').parent('figure').removeClass('wrap__hasVideo');
-            jquery__WEBPACK_IMPORTED_MODULE_0___default()(this.content[0]).find('img.mfp-img').parent('figure').find('.hasVideo__play').remove();
+            $(this.content[0]).find('img.mfp-img').parent('figure').removeClass('wrap__hasVideo');
+            $(this.content[0]).find('img.mfp-img').parent('figure').find('.hasVideo__play').remove();
           }
         }
       },

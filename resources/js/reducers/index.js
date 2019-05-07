@@ -5,6 +5,7 @@ import productFilter from './filter';
 import paginationReducer from './pagination';
 import videotipsReducer from './videotips';
 import stocksReducer from './stocks';
+import doyouknowsReducer from './doyouknows';
 
 export default combineReducers({
     products: productsReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
     pagination: paginationReducer,
     videotips: videotipsReducer,
     stocks: stocksReducer,
+    doyouknows: doyouknowsReducer,
 });

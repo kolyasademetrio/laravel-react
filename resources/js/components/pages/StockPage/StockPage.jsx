@@ -10,8 +10,12 @@ const NoStocksMessage = () =>  <p className="woocommerce-noreviews" style={{minH
 
 class StockPage extends Component {
     componentDidMount(){
+        const path = this.props.match.path;
+
+        console.log( 'path', path );
+
         const {setAllStocks} = this.props;
-        setAllStocks();
+        setAllStocks(path);
 
         this.$el = $('.offers__items');
         stocksPageMagnificPopupInit(this.$el);

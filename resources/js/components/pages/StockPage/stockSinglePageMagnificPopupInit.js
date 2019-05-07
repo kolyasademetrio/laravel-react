@@ -28,13 +28,10 @@ export default function videotipSinglePagePopupInit($elem){
             },
             callbacks: {
                 open: function() {
-                    setPopupMarginTopVideo(570);
+                    //setPopupMarginTopVideo(570);
 
                     var mp = $.magnificPopup.instance,
                         t = $(mp.currItem.el[0]);
-
-                    console.log( "$(this.wrap[0]).find('img.mfp-img')", $(this.wrap[0]).find('img.mfp-img') );
-
 
                     if ( t.data('type') === 'video' ) {
                         if ( !$(this.wrap[0]).find('img.mfp-img').hasClass('has__video') ) {
@@ -47,26 +44,13 @@ export default function videotipSinglePagePopupInit($elem){
                             }
                         }
                     }
-
-
-
-
-
-
-
-                    var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
-                        $dataVideo = $(this.currItem.el).attr('href');
-                    $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
-
-                    $imgVideo.parent('figure').append('<div class="movietiphome__play"></div>');
-                    $('.mfp-content .movietiphome__play').click();
                 },
                 close: function() {
 
                 },
                 beforeOpen: function() {
                     var $triggerEl = $(this.st.el),
-                        newClass = 'movietiphome__gallery offers__items__popup';
+                        newClass = 'movietiphome__gallery offers__items__popup stock_singlepage_popup';
                     this.st.mainClass = this.st.mainClass + ' ' + newClass;
 
                     this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
@@ -82,9 +66,34 @@ export default function videotipSinglePagePopupInit($elem){
                     var mp = $.magnificPopup.instance,
                         t = $(mp.currItem.el[0]);
 
+                    if ( !$(this.content[0]).find('img.mfp-img').hasClass('has__video') ) {
+                        $(this.content[0]).find('img.mfp-img').parent('figure').find('iframe').remove();
+                    }
+
+                    if ( t.data('type') === 'video' ) {
+                        if ( !$(this.content[0]).find('img.mfp-img').hasClass('has__video') ) {
+                            var $imgVideo = $(this.content[0]).find('img.mfp-img'),
+                                $dataVideo = $(this.currItem.el).attr('href');
+
+                            $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+                            $imgVideo.parent('figure').addClass('wrap__hasVideo');
+                            if ( !$imgVideo.parent('figure').find('.hasVideo__play').length ) {
+                                $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+                            }
+
+                        }
+                    } else {
+                        $(this.content[0]).find('img.mfp-img').parent('figure').removeClass('wrap__hasVideo');
+                        $(this.content[0]).find('img.mfp-img').parent('figure').find('.hasVideo__play').remove();
+                    }
+
+
+                    /*var mp = $.magnificPopup.instance,
+                        t = $(mp.currItem.el[0]);
+
                     var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
                         $dataVideo = $(this.currItem.el).attr('href');
-                    $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+                    $imgVideo.addClass('has__video').attr('data-video', $dataVideo);*/
                 }
             },
 

@@ -13,7 +13,7 @@ const mapStateToProps = ({stocks: {isStocksReady, isStocksLoading, stocksErrors,
 };
 
 const mapDispatchToProps = dispatch => ({
-    setAllStocks: () => dispatch(setAllStocks()),
+    setAllStocks: slug => dispatch(setAllStocks(slug)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StockPage);

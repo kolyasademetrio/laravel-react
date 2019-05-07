@@ -15,11 +15,17 @@ class StockSinglePagePopupWrapper extends Component {
 
     render(){
         const {attachments} = this.props;
+
         return (
             <div className="offers_single__header">
                 {attachments.map(a => (
-                        <a key={a.id} href={a.attachment} className="offers_single_videoLink" style={{width: "50%"}}>
-                            <img src={a.thumbnail} alt="" />
+                        <a
+                            key={a.id}
+                            href={a.attachment}
+                            className={`offers_single_${a.type}Link offers_single_js ${a.type}`}
+                            data-type={a.type}
+                        >
+                            <img src={a.thumbnail} alt="" className={a.type} />
                         </a>
                     ))
                 }

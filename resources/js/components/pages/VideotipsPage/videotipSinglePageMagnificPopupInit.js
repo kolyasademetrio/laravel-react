@@ -1,6 +1,4 @@
 export default function videotipSinglePagePopupInit($elem){
-    console.log( '$elem inside function', $elem );
-
     $elem.each(function() {
         $(this).magnificPopup({
             type:'image',

@@ -1,5 +1,16 @@
-export default function stockSinglePageMagnificPopupInit($el){
-    $el.each(function(){
+export default function videotipSinglePagePopupInit($elem){
+    function setPopupMarginTopVideo(windowWidth) {
+        if ( $(window).width() > windowWidth ) {
+            var windowHeight = $(window).height(),
+                popupHeight = $('.mfp-content').innerHeight(),
+                marginTop = (windowHeight - popupHeight) / 3;
+            $('.mfp-content').css({
+                'marginTop': marginTop,
+            });
+        }
+    }
+
+    $elem.each(function() {
         $(this).magnificPopup({
             type:'image',
             removalDelay: 500,
@@ -11,9 +22,78 @@ export default function stockSinglePageMagnificPopupInit($el){
             closeOnBgClick: true,
             alignTop: false,
             fixedContentPos: true,
+
+            titleSrc: function(item) {
+                return item.el.attr('title');
+            },
             callbacks: {
                 open: function() {
-                    setPopupMarginTop(570);
+                    setPopupMarginTopVideo(570);
+
+                    var mp = $.magnificPopup.instance,
+                        t = $(mp.currItem.el[0]);
+
+                    console.log( "$(this.wrap[0]).find('img.mfp-img')", $(this.wrap[0]).find('img.mfp-img') );
+
+
+                    if ( t.data('type') === 'video' ) {
+                        if ( !$(this.wrap[0]).find('img.mfp-img').hasClass('has__video') ) {
+                            var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+                                $dataVideo = $(this.currItem.el).attr('href');
+                            $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+                            $imgVideo.parent('figure').addClass('wrap__hasVideo');
+                            if ( !$imgVideo.parent('figure').find('.hasVideo__play').length ) {
+                                $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+                            }
+                        }
+                    }
+
+
+
+
+
+
+
+                    var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+                        $dataVideo = $(this.currItem.el).attr('href');
+                    $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+
+                    $imgVideo.parent('figure').append('<div class="movietiphome__play"></div>');
+                    $('.mfp-content .movietiphome__play').click();
+                },
+                close: function() {
+
+                },
+                beforeOpen: function() {
+                    var $triggerEl = $(this.st.el),
+                        newClass = 'movietiphome__gallery offers__items__popup';
+                    this.st.mainClass = this.st.mainClass + ' ' + newClass;
+
+                    this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
+                },
+                elementParse: function(item) {
+                    item.src = item.el.find('img').attr('src');
+
+                },
+                markupParse: function(template, values, item) {
+
+                },
+                change: function(){
+                    var mp = $.magnificPopup.instance,
+                        t = $(mp.currItem.el[0]);
+
+                    var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+                        $dataVideo = $(this.currItem.el).attr('href');
+                    $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+                }
+            },
+
+            /*callbacks: {
+                open: function() {
+                    var headerHeight = $('.header__top').innerHeight();
+                    $('.mfp-content').css({
+                        'marginTop': headerHeight,
+                    });
 
                     var mp = $.magnificPopup.instance,
                         t = $(mp.currItem.el[0]);
@@ -41,7 +121,7 @@ export default function stockSinglePageMagnificPopupInit($el){
                     this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
                 },
                 elementParse: function(item) {
-                    /*item.src = item.el.find('img').attr('src');*/
+                    item.src = item.el.find('img').attr('src');
 
                 },
                 markupParse: function(template, values, item) {
@@ -72,12 +152,12 @@ export default function stockSinglePageMagnificPopupInit($el){
                         $(this.content[0]).find('img.mfp-img').parent('figure').find('.hasVideo__play').remove();
                     }
                 }
-            },
+            },*/
             gallery: {
                 enabled:true,
                 navigateByImgClick: false,
             },
-            delegate: '.offers_single_imgLink',
+            delegate: '.offers_single_js',
         });
     });
 }

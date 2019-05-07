@@ -11,10 +11,10 @@ import {
 import {sortArrayByKey} from "../helpers/sortArrayByKey";
 import {SET_VIDEOTIP_SINGLE, SET_VIDEOTIP_SINGLE_FAILED, SET_VIDEOTIP_SINGLE_SUCCEEDED} from "./types/videotips-types";
 
-export const setAllStocks = () => {
+export const setAllStocks = (slug) => {
     return async dispatch => {
         dispatch({type: SET_STOCKS});
-        axios.get('/api/stocks').then(({data: {stocksList, stockAttachment}}) => {
+        axios.get(`/api${slug}`).then(({data: {stocksList, stockAttachment}}) => {
             const stockAttachmentList = stockAttachment && sortArrayByKey(stockAttachment,'stock_id');
             const stocksData = {
                 stocksList,

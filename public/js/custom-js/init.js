@@ -152,7 +152,7 @@ jQuery(document).ready(function($) {
         }
     });*/
 
-    $('.products__categoryMenuBtn').magnificPopup({
+    /*$('.products__categoryMenuBtn').magnificPopup({
         type:'inline',
         removalDelay: 500,
         mainClass: 'mfp-fade popup_inline',
@@ -180,7 +180,7 @@ jQuery(document).ready(function($) {
                 this.st.mainClass = this.st.mainClass + ' ' + newClass;
             }
         }
-    });
+    });*/
 
     /*$('.sliderMain__list').slick({
         slidesToShow: 1,
@@ -452,7 +452,7 @@ jQuery(document).ready(function($) {
 
 
     /* movietiphome__slider */
-    $('.movietiphome__slider').slick({
+    /*$('.movietiphome__slider').slick({
         slidesToShow: 1,
         slidesToScroll: 1,
         dots: false,
@@ -460,9 +460,9 @@ jQuery(document).ready(function($) {
         centerMode: false,
         focusOnSelect: true,
 
-    });
+    });*/
 
-    $('.movietiphome__slider .slick-track').each(function() {
+    /*$('.movietiphome__slider .slick-track').each(function() {
         $(this).magnificPopup({
             type:'image',
             removalDelay: 500,
@@ -525,7 +525,7 @@ jQuery(document).ready(function($) {
             },
             delegate: '.movietiphome__link',
         });
-    });
+    });*/
     /* movietiphome__slider End */
 
 
@@ -664,7 +664,7 @@ jQuery(document).ready(function($) {
 
 
     /* Слайдер на главной Посмотреть отзывы */
-    (function(){
+    /*(function(){
         function slickSliderInit($elem){
             $elem.slick({
                 // slidesToShow: 4,
@@ -725,12 +725,12 @@ jQuery(document).ready(function($) {
 
         });
 
-    })();
+    })();*/
     /* Слайдер на главной Посмотреть отзывы End */
 
 
     /* попап Видеоотзыва */
-    $('.usersfeedback__videolink').magnificPopup({
+   /* $('.usersfeedback__videolink').magnificPopup({
         type: 'iframe',
         gallery: {enabled:false},
         iframe: {
@@ -783,10 +783,10 @@ jQuery(document).ready(function($) {
             markupParse: function(template, values, item) {},
             change: function(){}
         },
-    });
+    });*/
 
     /* попап Видеоотзыва при клике на самом товаре в Сетке */
-    $('.good__video').magnificPopup({
+   /* $('.good__video').magnificPopup({
         type: 'iframe',
         gallery: {enabled:false},
         iframe: {
@@ -859,7 +859,7 @@ jQuery(document).ready(function($) {
             },
         });
     }
-
+*/
 
 
 

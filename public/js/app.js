@@ -79788,7 +79788,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/doyouknow",
-        component: _components_pages_DoyouknowPage__WEBPACK_IMPORTED_MODULE_11__["default"]
+        component: _containers_pages_StockPage_StockPage__WEBPACK_IMPORTED_MODULE_9__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/contacts",
@@ -80140,7 +80140,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
-var setAllStocks = function setAllStocks() {
+var setAllStocks = function setAllStocks(slug) {
   return (
     /*#__PURE__*/
     function () {
@@ -80154,7 +80154,7 @@ var setAllStocks = function setAllStocks() {
                 dispatch({
                   type: _types_stocks_types__WEBPACK_IMPORTED_MODULE_1__["SET_STOCKS"]
                 });
-                axios.get('/api/stocks').then(function (_ref2) {
+                axios.get("/api".concat(slug)).then(function (_ref2) {
                   var _ref2$data = _ref2.data,
                       stocksList = _ref2$data.stocksList,
                       stockAttachment = _ref2$data.stockAttachment;
@@ -85318,8 +85318,10 @@ function (_Component) {
   _createClass(StockPage, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var path = this.props.match.path;
+      console.log('path', path);
       var setAllStocks = this.props.setAllStocks;
-      setAllStocks();
+      setAllStocks(path);
       this.$el = jquery__WEBPACK_IMPORTED_MODULE_4___default()('.offers__items');
       Object(_stocksPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_5__["default"])(this.$el);
     }
@@ -85757,10 +85759,9 @@ function videotipSinglePagePopupInit($elem) {
       },
       callbacks: {
         open: function open() {
-          setPopupMarginTopVideo(570);
+          //setPopupMarginTopVideo(570);
           var mp = $.magnificPopup.instance,
               t = $(mp.currItem.el[0]);
-          console.log("$(this.wrap[0]).find('img.mfp-img')", $(this.wrap[0]).find('img.mfp-img'));
 
           if (t.data('type') === 'video') {
             if (!$(this.wrap[0]).find('img.mfp-img').hasClass('has__video')) {
@@ -85774,17 +85775,11 @@ function videotipSinglePagePopupInit($elem) {
               }
             }
           }
-
-          var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
-              $dataVideo = $(this.currItem.el).attr('href');
-          $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
-          $imgVideo.parent('figure').append('<div class="movietiphome__play"></div>');
-          $('.mfp-content .movietiphome__play').click();
         },
         close: function close() {},
         beforeOpen: function beforeOpen() {
           var $triggerEl = $(this.st.el),
-              newClass = 'movietiphome__gallery offers__items__popup';
+              newClass = 'movietiphome__gallery offers__items__popup stock_singlepage_popup';
           this.st.mainClass = this.st.mainClass + ' ' + newClass;
           this.st.image.markup = this.st.image.markup.replace('mfp-figure', 'mfp-figure mfp-with-anim');
         },
@@ -85795,9 +85790,32 @@ function videotipSinglePagePopupInit($elem) {
         change: function change() {
           var mp = $.magnificPopup.instance,
               t = $(mp.currItem.el[0]);
-          var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
+
+          if (!$(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
+            $(this.content[0]).find('img.mfp-img').parent('figure').find('iframe').remove();
+          }
+
+          if (t.data('type') === 'video') {
+            if (!$(this.content[0]).find('img.mfp-img').hasClass('has__video')) {
+              var $imgVideo = $(this.content[0]).find('img.mfp-img'),
+                  $dataVideo = $(this.currItem.el).attr('href');
+              $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+              $imgVideo.parent('figure').addClass('wrap__hasVideo');
+
+              if (!$imgVideo.parent('figure').find('.hasVideo__play').length) {
+                $imgVideo.parent('figure').append('<div class="hasVideo__play"></div>');
+              }
+            }
+          } else {
+            $(this.content[0]).find('img.mfp-img').parent('figure').removeClass('wrap__hasVideo');
+            $(this.content[0]).find('img.mfp-img').parent('figure').find('.hasVideo__play').remove();
+          }
+          /*var mp = $.magnificPopup.instance,
+              t = $(mp.currItem.el[0]);
+            var $imgVideo = $(this.wrap[0]).find('img.mfp-img'),
               $dataVideo = $(this.currItem.el).attr('href');
-          $imgVideo.addClass('has__video').attr('data-video', $dataVideo);
+          $imgVideo.addClass('has__video').attr('data-video', $dataVideo);*/
+
         }
       },
 
@@ -88762,8 +88780,8 @@ var mapStateToProps = function mapStateToProps(_ref) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    setAllStocks: function setAllStocks() {
-      return dispatch(Object(_actions_stocks__WEBPACK_IMPORTED_MODULE_1__["setAllStocks"])());
+    setAllStocks: function setAllStocks(slug) {
+      return dispatch(Object(_actions_stocks__WEBPACK_IMPORTED_MODULE_1__["setAllStocks"])(slug));
     }
   };
 };
@@ -89969,8 +89987,8 @@ var store = Object(redux__WEBPACK_IMPORTED_MODULE_0__["createStore"])(_reducers_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\AllData\laravel-react-current\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\AllData\laravel-react-current\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\react\laravel-react\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\react\laravel-react\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ }),

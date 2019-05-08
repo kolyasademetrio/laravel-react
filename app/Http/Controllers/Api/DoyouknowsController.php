@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\api;
 
+use App\Doyouknows;
+use App\DoyouknowAttachment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +16,31 @@ class DoyouknowsController extends Controller
      */
     public function index()
     {
-        //
+        $doyouknows = Doyouknows::all();
+        $doyouknows_attachment = DoyouknowAttachment::all();
+
+        return response()->json([
+            'doyouknowsList' => $doyouknows,
+            'doyouknowsAttachment' => $doyouknows_attachment,
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $doyouknow = DB::table('doyouknows')->where('slug', $id)->first();
+        $doyouknowID = $doyouknow->id;
+        $doyouknowAttachments = DB::table('doyouknow_attachments')->where('doyouknow_id', $doyouknowID)->get();
+
+        return response()->json([
+            'item' => $doyouknow,
+            'attachments' => $doyouknowAttachments,
+        ]);
     }
 
     /**
@@ -34,17 +60,6 @@ class DoyouknowsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
     {
         //
     }

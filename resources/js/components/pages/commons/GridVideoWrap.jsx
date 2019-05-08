@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const StockVideoWrap = ({thumbnail, atachment, date, time}) => {
+const GridVideoWrap = ({thumbnail, atachment, date, time}) => {
     return (
         <a href={atachment} className="offers__imageWrap has__video">
             <span className="offers_date">
@@ -13,4 +13,4 @@ const StockVideoWrap = ({thumbnail, atachment, date, time}) => {
     );
 };
 
-export default StockVideoWrap;
+export default GridVideoWrap;

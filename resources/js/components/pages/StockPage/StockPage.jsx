@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
 import Breadcrumbs from '../../../helpers/breadcrumbs';
-import StockSingle from './StockSingle';
-import Preloader from '../../../helpers/preloader';
-import $ from 'jquery';
 import stocksPageMagnificPopupInit from './stocksPageMagnificPopupInit';
-
-
-const NoStocksMessage = () =>  <p className="woocommerce-noreviews" style={{minHeight: 100}}>Акций пока нет.</p>;
+import GridList from '../commons/GridList';
 
 class StockPage extends Component {
     componentDidMount(){
         const {setAllStocks} = this.props;
         setAllStocks();
-
-        this.$el = $('.offers__items');
-        stocksPageMagnificPopupInit(this.$el);
     }
 
     render(){
@@ -31,33 +23,17 @@ class StockPage extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="container">
-                    <div className="row">
-                        <div className="col-xs-12">
-                            <div className="col__inner">
-                                <div className="row">
-                                    <div className="offers__items">
-                                        {isStocksLoading && <Preloader />}
-                                        {isStocksReady && (
-                                            stocksList.length ? (
-                                                stocksList.map(s => (
-                                                    <StockSingle
-                                                        stock={s}
-                                                        attachments={stockAttachment[s.id]}
-                                                        matchPath={matchPath}
-                                                        key={s.id}
-                                                    />
-                                                ))
-                                            ) : (
-                                                <NoStocksMessage />
-                                            )
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                <GridList
+                    isLoading={isStocksLoading}
+                    isReady={isStocksReady}
+                    errors={stocksErrors}
+                    list={stocksList}
+                    attachment={stockAttachment}
+                    matchPath={matchPath}
+                    noMessage='Акций пока нет.'
+                    popupInit={stocksPageMagnificPopupInit}
+                />
             </React.Fragment>
         );
     }

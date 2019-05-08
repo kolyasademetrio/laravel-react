@@ -24,7 +24,8 @@ export default function (state = INITIAL_STATE, action){
     switch(action.type){
         case SET_DOYOUKNOWS:
             return {
-
+                ...state,
+                isDoyouknowsLoading: true,
             };
         case SET_DOYOUKNOWS_SUCCEEDED:
             return {

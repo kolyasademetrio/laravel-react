@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-const StockImageWrap = ({thumbnail, path, date, time}) => {
+const GridImageWrap = ({thumbnail, path, date, time}) => {
     return (
         <Link to={{pathname: path}} className="offers__imageWrap">
             <span className="offers_date">
@@ -13,4 +13,4 @@ const StockImageWrap = ({thumbnail, path, date, time}) => {
     );
 };
 
-export default StockImageWrap;
+export default GridImageWrap;

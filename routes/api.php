@@ -29,6 +29,9 @@ Route::resource('videotips', 'Api\VideotipsController');
 Route::get('stocks/{slug}', 'Api\StocksController@show');
 Route::resource('stocks', 'Api\StocksController');
 
+Route::get('doyouknow/{slug}', 'Api\DoyouknowsController@show');
+Route::resource('doyouknow', 'Api\DoyouknowsController');
+
 Route::get('products/{slug}', 'Api\ProductsController@show');
 Route::resource('products', 'Api\ProductsController');
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import {Link} from 'react-router-dom';
-import StockImageWrap from './StockImageWrap';
-import StockVideoWrap from './StockVideoWrap';
+import GridImageWrap from './GridImageWrap';
+import GridVideoWrap from './GridVideoWrap';
 
 
-const StockSingle = ({stock, attachments, matchPath}) => {
+const GridItem = ({item, attachments, matchPath}) => {
     const wrapClassName = !attachments ? 'has_no_attachments' : '';
     let attachment, date, time;
 
@@ -21,16 +21,16 @@ const StockSingle = ({stock, attachments, matchPath}) => {
         <div className={`offers__item ${wrapClassName}`}>
             {attachments && (
                 attachment.type === 'video' ? (
-                    <StockVideoWrap
+                    <GridVideoWrap
                         thumbnail={attachment.thumbnail}
                         atachment={attachment.attachment}
                         date={date}
                         time={time}
                     />
                 ) : (
-                    <StockImageWrap
+                    <GridImageWrap
                         thumbnail={attachment.thumbnail}
-                        path={`${matchPath}/${stock.slug}`}
+                        path={`${matchPath}/${item.slug}`}
                         date={date}
                         time={time}
                     />
@@ -38,14 +38,14 @@ const StockSingle = ({stock, attachments, matchPath}) => {
             )}
             <div className="offers__content">
                 <h2>
-                    <Link to={{pathname: `${matchPath}/${stock.slug}`}} className="offers__itemTitle">
-                        {ReactHtmlParser(stock.title)}
+                    <Link to={{pathname: `${matchPath}/${item.slug}`}} className="offers__itemTitle">
+                        {ReactHtmlParser(item.title)}
                     </Link>
                 </h2>
                 <div className="offers__itemExcerpt">
-                    {ReactHtmlParser(stock.content)}
+                    {ReactHtmlParser(item.excerpt)}
                 </div>
-                <Link to={{pathname: `${matchPath}/${stock.slug}`}} className="offers__itemReadMore">
+                <Link to={{pathname: `${matchPath}/${item.slug}`}} className="offers__itemReadMore">
                     Читать далее
                 </Link>
             </div>
@@ -53,4 +53,4 @@ const StockSingle = ({stock, attachments, matchPath}) => {
     );
 };
 
-export default StockSingle;
+export default GridItem;

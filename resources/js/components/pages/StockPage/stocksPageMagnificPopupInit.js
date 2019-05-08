@@ -1,4 +1,4 @@
-export default function stocksPageMagnificPopupInit ($elem) {
+export default function($elem) {
     function setPopupMarginTopVideo(windowWidth) {
         if ( $(window).width() > windowWidth ) {
             var windowHeight = $(window).height(),

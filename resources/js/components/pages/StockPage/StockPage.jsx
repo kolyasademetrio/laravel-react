@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Breadcrumbs from '../../../helpers/breadcrumbs';
 import stocksPageMagnificPopupInit from './stocksPageMagnificPopupInit';
-import GridList from '../commons/GridList';
+import GridList from '../commons/grid/GridList';
 
 class StockPage extends Component {
     componentDidMount(){
@@ -11,11 +11,10 @@ class StockPage extends Component {
 
     render(){
         const {isStocksReady, isStocksLoading, stocksErrors, stocksList, stockAttachment} = this.props;
-
         const matchPath = this.props.match.path;
         
         return (
-            <React.Fragment>
+            <Fragment>
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-12">
@@ -34,7 +33,7 @@ class StockPage extends Component {
                     noMessage='Акций пока нет.'
                     popupInit={stocksPageMagnificPopupInit}
                 />
-            </React.Fragment>
+            </Fragment>
         );
     }
 }

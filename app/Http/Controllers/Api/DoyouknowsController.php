@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\api;
 
+use DB;
 use App\Doyouknows;
 use App\DoyouknowAttachment;
 use Illuminate\Http\Request;

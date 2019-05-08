@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Preloader from '../../../helpers/preloader';
+import Preloader from '../../../../helpers/preloader';
 import GridItem from './GridItem';
 import $ from 'jquery';
 

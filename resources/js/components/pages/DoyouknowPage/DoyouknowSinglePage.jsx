@@ -1,13 +1,56 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import {Route} from 'react-router-dom';
+import ErrorPage from '../ErrorPage';
+import Preloader from '../../../helpers/preloader';
+import Breadcrumbs from '../../../helpers/breadcrumbs';
+import doyouknowSinglePageMagnificPopupInit from "../DoyouknowPage/doyouknowSinglePageMagnificPopupInit";
+import SinglePage from "../commons/SinglePage/SinglePage";
 
 class DoyouknowSinglePage extends Component {
-    componentDidMount() {
+    constructor(props){
+        super(props);
+        this.state = {
+            slug: this.props.match.params.slug,
+        };
+    }
 
+    componentDidMount(){
+        const {setSingleDoyouknow} = this.props;
+        const {slug} = this.state;
+        setSingleDoyouknow(slug);
     }
 
     render(){
+        const {isDoyouknowSingleLoading, isDoyouknowSingleReady, stockSingleErrors, item, attachments} = this.props;
+
+        if (stockSingleErrors === 404) {
+            return <Route component={ErrorPage} />
+        }
+
+        if (isDoyouknowSingleLoading) {
+            return <Preloader />
+        }
+
+        if (!isDoyouknowSingleReady) {
+            return null;
+        }
+
         return (
-            <div>DoyouknowSinglePage</div>
+            <Fragment>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xs-12">
+                            <Breadcrumbs />
+                        </div>
+                    </div>
+                </div>
+
+                <SinglePage
+                    item={item}
+                    attachments={attachments}
+                    initPopup={doyouknowSinglePageMagnificPopupInit}
+                />
+            </Fragment>
         );
     }
 }

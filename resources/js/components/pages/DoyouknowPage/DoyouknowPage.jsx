@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import doyouknowPageMagnificPopupInit from "../DoyouknowPage/doyouknowPageMagnificPopupInit";
-import GridList from "../commons/GridList";
+import GridList from "../commons/grid/GridList";
 import Breadcrumbs from '../../../helpers/breadcrumbs';
 
 class DoyouknowPage extends Component {

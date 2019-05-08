@@ -12,9 +12,9 @@ import ProductSinglePage from './containers/pages/ProductSinglePage/ProductSingl
 import VideotipPage from './containers/pages/VideotipsPage/VideotipPage';
 import VideotipSinglePage from './containers/pages/VideotipsPage/VideotipSinglePage';
 import StockPage from './containers/pages/StockPage/StockPage';
-import StockSinglePage from './components/pages/StockPage/StockSinglePage';
+import StockSinglePage from './containers/pages/StockPage/StockSinglePage';
 import DoyouknowPage from './containers/pages/DoyouknowPage/DoyouknowPage';
-import DoyouknowSinglePage from './components/pages/DoyouknowPage/DoyouknowSinglePage';
+import DoyouknowSinglePage from './containers/pages/DoyouknowPage/DoyouknowSinglePage';
 import ContactsPage from './components/pages/ContactsPage';
 import ErrorPage from './components/pages/ErrorPage';
 import ShippingPage from './components/pages/ShippingPage';

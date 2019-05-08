@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const GridVideoWrap = ({thumbnail, atachment, date, time}) => {
     return (
         <a href={atachment} className="offers__imageWrap has__video">

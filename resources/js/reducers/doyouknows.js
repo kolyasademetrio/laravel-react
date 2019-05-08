@@ -52,14 +52,14 @@ export default function (state = INITIAL_STATE, action){
                 ...state,
                 isDoyouknowSingleLoading: false,
                 isDoyouknowSingleReady: true,
-                doyouknowsData: action.payload,
+                doyouknowSingleData: action.payload,
             };
         case SET_SINGLE_DOYOUKNOW_FAILED:
             return {
                 ...state,
                 isDoyouknowSingleLoading: false,
                 isDoyouknowSingleReady: false,
-                doyouknowsErrors: action.payload,
+                doyouknowSingleErrors: action.payload,
 
             };
         default:

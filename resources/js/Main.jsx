@@ -13,7 +13,7 @@ import VideotipPage from './containers/pages/VideotipsPage/VideotipPage';
 import VideotipSinglePage from './containers/pages/VideotipsPage/VideotipSinglePage';
 import StockPage from './containers/pages/StockPage/StockPage';
 import StockSinglePage from './components/pages/StockPage/StockSinglePage';
-import DoyouknowPage from './components/pages/DoyouknowPage/DoyouknowPage';
+import DoyouknowPage from './containers/pages/DoyouknowPage/DoyouknowPage';
 import DoyouknowSinglePage from './components/pages/DoyouknowPage/DoyouknowSinglePage';
 import ContactsPage from './components/pages/ContactsPage';
 import ErrorPage from './components/pages/ErrorPage';

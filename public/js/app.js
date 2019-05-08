@@ -79692,7 +79692,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _containers_pages_VideotipsPage_VideotipSinglePage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./containers/pages/VideotipsPage/VideotipSinglePage */ "./resources/js/containers/pages/VideotipsPage/VideotipSinglePage.js");
 /* harmony import */ var _containers_pages_StockPage_StockPage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./containers/pages/StockPage/StockPage */ "./resources/js/containers/pages/StockPage/StockPage.js");
 /* harmony import */ var _components_pages_StockPage_StockSinglePage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/pages/StockPage/StockSinglePage */ "./resources/js/components/pages/StockPage/StockSinglePage.jsx");
-/* harmony import */ var _components_pages_DoyouknowPage_DoyouknowPage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/pages/DoyouknowPage/DoyouknowPage */ "./resources/js/components/pages/DoyouknowPage/DoyouknowPage.jsx");
+/* harmony import */ var _containers_pages_DoyouknowPage_DoyouknowPage__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./containers/pages/DoyouknowPage/DoyouknowPage */ "./resources/js/containers/pages/DoyouknowPage/DoyouknowPage.js");
 /* harmony import */ var _components_pages_DoyouknowPage_DoyouknowSinglePage__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/pages/DoyouknowPage/DoyouknowSinglePage */ "./resources/js/components/pages/DoyouknowPage/DoyouknowSinglePage.jsx");
 /* harmony import */ var _components_pages_ContactsPage__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/pages/ContactsPage */ "./resources/js/components/pages/ContactsPage.jsx");
 /* harmony import */ var _components_pages_ErrorPage__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/pages/ErrorPage */ "./resources/js/components/pages/ErrorPage.jsx");
@@ -79790,7 +79790,7 @@ function (_Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/doyouknow",
-        component: _components_pages_DoyouknowPage_DoyouknowPage__WEBPACK_IMPORTED_MODULE_13__["default"]
+        component: _containers_pages_DoyouknowPage_DoyouknowPage__WEBPACK_IMPORTED_MODULE_13__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
         exact: true,
         path: "/doyouknow/:slug",
@@ -84734,11 +84734,9 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_doyouknows__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/doyouknows */ "./resources/js/actions/doyouknows.js");
-/* harmony import */ var _DoyouknowPage_doyouknowPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../DoyouknowPage/doyouknowPageMagnificPopupInit */ "./resources/js/components/pages/DoyouknowPage/doyouknowPageMagnificPopupInit.js");
-/* harmony import */ var _commons_GridList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../commons/GridList */ "./resources/js/components/pages/commons/GridList.jsx");
-/* harmony import */ var _helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../helpers/breadcrumbs */ "./resources/js/helpers/breadcrumbs.js");
+/* harmony import */ var _DoyouknowPage_doyouknowPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../DoyouknowPage/doyouknowPageMagnificPopupInit */ "./resources/js/components/pages/DoyouknowPage/doyouknowPageMagnificPopupInit.js");
+/* harmony import */ var _commons_GridList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../commons/GridList */ "./resources/js/components/pages/commons/GridList.jsx");
+/* harmony import */ var _helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/breadcrumbs */ "./resources/js/helpers/breadcrumbs.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84756,8 +84754,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
 
 
 
@@ -84797,7 +84793,7 @@ function (_Component) {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-xs-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_5__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_commons_GridList__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_breadcrumbs__WEBPACK_IMPORTED_MODULE_3__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_commons_GridList__WEBPACK_IMPORTED_MODULE_2__["default"], {
         isLoading: isDoyouknowsLoading,
         isReady: isDoyouknowsReady,
         errors: doyouknowsErrors,
@@ -84805,7 +84801,7 @@ function (_Component) {
         attachment: doyouknowsAttachment,
         matchPath: matchPath,
         noMessage: "\u041D\u043E\u0432\u043E\u0441\u0442\u0435\u0439 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.",
-        popupInit: _DoyouknowPage_doyouknowPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_3__["default"]
+        popupInit: _DoyouknowPage_doyouknowPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__["default"]
       }));
     }
   }]);
@@ -84813,32 +84809,7 @@ function (_Component) {
   return DoyouknowPage;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-var mapStateToProps = function mapStateToProps(_ref) {
-  var _ref$doyouknows = _ref.doyouknows,
-      isDoyouknowsReady = _ref$doyouknows.isDoyouknowsReady,
-      isDoyouknowsLoading = _ref$doyouknows.isDoyouknowsLoading,
-      doyouknowsErrors = _ref$doyouknows.doyouknowsErrors,
-      _ref$doyouknows$doyou = _ref$doyouknows.doyouknowsData,
-      doyouknowsList = _ref$doyouknows$doyou.doyouknowsList,
-      doyouknowsAttachment = _ref$doyouknows$doyou.doyouknowsAttachment;
-  return {
-    isDoyouknowsReady: isDoyouknowsReady,
-    isDoyouknowsLoading: isDoyouknowsLoading,
-    doyouknowsErrors: doyouknowsErrors,
-    doyouknowsList: doyouknowsList,
-    doyouknowsAttachment: doyouknowsAttachment
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    setAllDoyouknows: function setAllDoyouknows() {
-      return dispatch(Object(_actions_doyouknows__WEBPACK_IMPORTED_MODULE_2__["setAllDoyouknows"])());
-    }
-  };
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchToProps)(DoyouknowPage));
+/* harmony default export */ __webpack_exports__["default"] = (DoyouknowPage);
 
 /***/ }),
 
@@ -88723,6 +88694,51 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mapStateToProps, mapDispatchToProps)(_components_Videotiphome__WEBPACK_IMPORTED_MODULE_1__["default"]));
+
+/***/ }),
+
+/***/ "./resources/js/containers/pages/DoyouknowPage/DoyouknowPage.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/containers/pages/DoyouknowPage/DoyouknowPage.js ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _components_pages_DoyouknowPage_DoyouknowPage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/pages/DoyouknowPage/DoyouknowPage */ "./resources/js/components/pages/DoyouknowPage/DoyouknowPage.jsx");
+/* harmony import */ var _actions_doyouknows__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/doyouknows */ "./resources/js/actions/doyouknows.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+
+
+
+
+var mapStateToProps = function mapStateToProps(_ref) {
+  var _ref$doyouknows = _ref.doyouknows,
+      isDoyouknowsReady = _ref$doyouknows.isDoyouknowsReady,
+      isDoyouknowsLoading = _ref$doyouknows.isDoyouknowsLoading,
+      doyouknowsErrors = _ref$doyouknows.doyouknowsErrors,
+      _ref$doyouknows$doyou = _ref$doyouknows.doyouknowsData,
+      doyouknowsList = _ref$doyouknows$doyou.doyouknowsList,
+      doyouknowsAttachment = _ref$doyouknows$doyou.doyouknowsAttachment;
+  return {
+    isDoyouknowsReady: isDoyouknowsReady,
+    isDoyouknowsLoading: isDoyouknowsLoading,
+    doyouknowsErrors: doyouknowsErrors,
+    doyouknowsList: doyouknowsList,
+    doyouknowsAttachment: doyouknowsAttachment
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    setAllDoyouknows: function setAllDoyouknows() {
+      return dispatch(Object(_actions_doyouknows__WEBPACK_IMPORTED_MODULE_1__["setAllDoyouknows"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchToProps)(_components_pages_DoyouknowPage_DoyouknowPage__WEBPACK_IMPORTED_MODULE_0__["default"]));
 
 /***/ }),
 

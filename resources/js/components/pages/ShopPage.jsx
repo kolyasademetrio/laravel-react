@@ -3,7 +3,7 @@ import ProductSingle from '../products/ProductSingle';
 import CatsListFilterShop from '../../containers/CatsListFilterShop';
 import ProductsSortShop from '../../containers/ProductsSortShop';
 import {Pagination} from '../../helpers/pagination';
-import Breadcrumbs from '../../helpers/breadcrumbs';
+import Breadcrumbs from '../../helpers/Breadcrumbs/Breadcrumbs';
 import Preloader from '../../helpers/preloader';
 
 class ShopPage extends Component {
@@ -38,7 +38,7 @@ class ShopPage extends Component {
                                     </div>
 
                                     <div className="products__list">
-                                        {isProductsLoading && <Preloader />}
+                                        {isProductsLoading && !isProductsReady && <Preloader />}
                                         {isProductsReady && (
                                             productsList ? (
                                                 productsList.map( ( productData ) => {

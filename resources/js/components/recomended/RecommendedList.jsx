@@ -13,7 +13,7 @@ class RecommendedList extends Component {
     render(){
         const {productsRecommended, isProductsReady, isProductsLoading} = this.props;
 
-        if (isProductsLoading) {
+        if (isProductsLoading && !isProductsReady) {
             return <Preloader />
         }
 

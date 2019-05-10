@@ -1,27 +1,11 @@
 import React, {Component} from 'react';
 import HeaderBottomMenuItem from './HeaderBottomMenuItem';
 import uniqueId from 'react-html-id';
-//import headerMenuItems from '../../../database/header-menu-data';
 
 class HeaderBottomMenu extends Component {
-
-    constructor() {
-        super();
-        uniqueId.enableUniqueIds(this);
-        this.state = {
-            menuItems: [],
-        }
-    }
-
     componentDidMount(){
-        axios.get('/api/pages')
-            .then(response => {
-                this.setState({
-                    menuItems: response.data,
-                });
-        }).catch(error => {
-            console.log(error);
-        });
+        const {setAllPages} = this.props;
+        setAllPages();
     }
 
     onClickAlert = (title) => {
@@ -29,13 +13,19 @@ class HeaderBottomMenu extends Component {
     }
 
     render() {
+        const {items, isPagesLoading, isPagesReady, pagesError} = this.props.pages;
+
+        if (!isPagesReady === true) {
+            return null;
+        }
+        
         return (
             <div className="headerBottom__menu" id="headerBottom__menu">
                 <ul className="headerBottom__menuList">
                     {
-                        this.state.menuItems.map( menuItem => (
+                        items.map( menuItem => (
                             <HeaderBottomMenuItem
-                                key={this.nextUniqueId()}
+                                key={menuItem.id}
                                 onHandler={this.onClickAlert}
                                 {...menuItem}
                             />

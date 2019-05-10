@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import Breadcrumbs from '../../../helpers/breadcrumbs';
+import Breadcrumbs from '../../../helpers/Breadcrumbs/Breadcrumbs';
 import stocksPageMagnificPopupInit from './stocksPageMagnificPopupInit';
 import GridList from '../commons/grid/GridList';
 

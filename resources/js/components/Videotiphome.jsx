@@ -33,7 +33,7 @@ class Videotiphome extends Component {
                 <div className="container movietiphome__container">
                     <div className="row movietiphome__row">
                         <div className="col-xs-12 movietiphome__col">
-                            {isVideotipSingleLoading && <Preloader />}
+                            {isVideotipSingleLoading && !isVideotipSingleLoading && <Preloader />}
                             {isVideotipSingleReady && <VideotipPopupWrapper data={{title, video, image}} />}
                         </div>
 

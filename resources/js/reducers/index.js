@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import pagesReducer from './pages';
 import productsReducer from './products';
 import cartReducer from './cart';
 import productFilter from './filter';
@@ -8,6 +9,7 @@ import stocksReducer from './stocks';
 import doyouknowsReducer from './doyouknows';
 
 export default combineReducers({
+    pages: pagesReducer,
     products: productsReducer,
     cart: cartReducer,
     filter: productFilter,

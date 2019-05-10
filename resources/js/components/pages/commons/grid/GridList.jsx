@@ -21,7 +21,7 @@ class GridList extends Component {
                         <div className="col__inner">
                             <div className="row">
                                 <div className="offers__items">
-                                    {isLoading && <Preloader />}
+                                    {isLoading && !isReady && <Preloader />}
                                     {isReady && (
                                         list.length ? (
                                             list.map(item => (

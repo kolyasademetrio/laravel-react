@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Preloader from '../../../helpers/preloader';
 import VideotipSingle from './VideotipSingle';
-import Breadcrumbs from '../../../helpers/breadcrumbs';
+import Breadcrumbs from '../../../helpers/Breadcrumbs/Breadcrumbs';
 import videotipsPopupInit from './videotipsPageMagnificPopupInit';
 import $ from 'jquery';
 
@@ -37,7 +37,7 @@ class VideotipsPage extends Component {
 
                                 <div className="row">
                                     <div className="videotip__items">
-                                        {isVideotipsLoading && <Preloader />}
+                                        {isVideotipsLoading && !isVideotipsReady && <Preloader />}
                                         {isVideotipsReady && (
                                             videotipsList.length ? (
                                                 videotipsList.map(v => <VideotipSingle videotip={v} matchPath={matchPath} key={v.id} />)

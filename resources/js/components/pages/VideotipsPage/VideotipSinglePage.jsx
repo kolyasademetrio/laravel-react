@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Breadcrumbs from '../../../helpers/breadcrumbs';
+import Breadcrumbs from '../../../helpers/Breadcrumbs/Breadcrumbs';
 import Preloader from '../../../helpers/preloader';
 import {Route} from 'react-router-dom';
 import ErrorPage from '../ErrorPage';
@@ -28,7 +28,7 @@ class VideotipSinglePage extends Component {
             return <Route component={ErrorPage} />
         }
 
-        if (isVideotipSingleLoading) {
+        if (isVideotipSingleLoading && !isVideotipSingleReady) {
             return <Preloader />
         }
 

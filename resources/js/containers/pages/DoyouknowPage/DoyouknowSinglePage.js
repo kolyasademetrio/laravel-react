@@ -2,10 +2,23 @@ import {setSingleDoyouknow} from "../../../actions/doyouknows";
 import {connect} from "react-redux";
 import DoyouknowSinglePage from "../../../components/pages/DoyouknowPage/DoyouknowSinglePage";
 
+const mapStateToProps = (state) =>{
+    const {doyouknows: {
+        isDoyouknowSingleLoading,
+        isDoyouknowSingleReady,
+        doyouknowSingleErrors,
+        doyouknowSingleData
+    }} = state;
+    const {item, attachments} = doyouknowSingleData;
+    const {pages: {items, isPagesReady}} = state;
 
-const mapStateToProps = ({doyouknows: {isDoyouknowSingleLoading, isDoyouknowSingleReady, doyouknowSingleErrors, doyouknowSingleData: {item, attachments}}}) =>{
     return {
-        isDoyouknowSingleLoading, isDoyouknowSingleReady, doyouknowSingleErrors, item, attachments
+        isDoyouknowSingleLoading,
+        isDoyouknowSingleReady,
+        doyouknowSingleErrors,
+        item,
+        attachments,
+        pages: isPagesReady && items,
     };
 };
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HeaderBottomMenu from './headerBottomMenu/HeaderBottomMenu';
+import HeaderBottomMenu from '../../../containers/header/headerBottom/headerBottomMenu/HeaderBottomMenu';
 
 class HeaderBottom extends Component {
     render(){

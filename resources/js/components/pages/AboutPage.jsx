@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Breadcrumbs from "../../helpers/breadcrumbs";
+import Breadcrumbs from "../../helpers/Breadcrumbs/Breadcrumbs";
 
 class AboutPage extends Component {
     render() {

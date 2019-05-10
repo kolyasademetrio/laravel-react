@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import {Route} from 'react-router-dom';
 import ErrorPage from '../ErrorPage';
 import Preloader from '../../../helpers/preloader';
-import Breadcrumbs from '../../../helpers/breadcrumbs';
+import Breadcrumbs from '../../../helpers/Breadcrumbs/Breadcrumbs';
 import doyouknowSinglePageMagnificPopupInit from "../DoyouknowPage/doyouknowSinglePageMagnificPopupInit";
 import SinglePage from "../commons/SinglePage/SinglePage";
 
@@ -11,6 +11,12 @@ class DoyouknowSinglePage extends Component {
         super(props);
         this.state = {
             slug: this.props.match.params.slug,
+            breadcrumbsItems: [
+                {
+                    title: 'Главная',
+                    path: '/'
+                },
+            ],
         };
     }
 
@@ -27,7 +33,7 @@ class DoyouknowSinglePage extends Component {
             return <Route component={ErrorPage} />
         }
 
-        if (isDoyouknowSingleLoading) {
+        if (isDoyouknowSingleLoading && !isDoyouknowSingleReady) {
             return <Preloader />
         }
 
@@ -35,12 +41,15 @@ class DoyouknowSinglePage extends Component {
             return null;
         }
 
+        console.log( 'this.props', this.props );
+        console.log( 'this.state.slug', this.state.slug );
+
         return (
             <Fragment>
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-12">
-                            <Breadcrumbs />
+                            <Breadcrumbs items={this.state.breadcrumbsItems} />
                         </div>
                     </div>
                 </div>

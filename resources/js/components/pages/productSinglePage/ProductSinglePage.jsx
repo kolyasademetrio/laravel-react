@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Route}            from 'react-router-dom';
 import ErrorPage          from "../ErrorPage";
-import Breadcrumbs        from "../../../helpers/breadcrumbs";
+import Breadcrumbs        from "../../../helpers/Breadcrumbs/Breadcrumbs";
 import Preloader          from '../../../helpers/preloader';
 import ProductGallery     from '../../../containers/pages/ProductSinglePage/ProductGallery';
 import ProductSummary     from "../../../containers/pages/ProductSinglePage/ProductSummary";
@@ -29,7 +29,7 @@ class ProductSinglePage extends Component {
         if (error === 404) {
             return <Route component={ErrorPage} />
         }
-        if (isSingleLoading) {
+        if (isSingleLoading && !isSingleReady) {
            return (
                <Preloader />
            );

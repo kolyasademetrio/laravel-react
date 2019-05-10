@@ -84877,11 +84877,8 @@ function (_Component) {
           doyouknowsErrors = _this$props.doyouknowsErrors,
           doyouknowsList = _this$props.doyouknowsList,
           doyouknowsAttachment = _this$props.doyouknowsAttachment;
-      var _this$props2 = this.props,
-          isPagesReady = _this$props2.isPagesReady,
-          pages = _this$props2.pages;
 
-      var _getPageNameSlug = Object(_helpers_Breadcrumbs_getPageNameSlug__WEBPACK_IMPORTED_MODULE_5__["getPageNameSlug"])(this, isPagesReady, pages),
+      var _getPageNameSlug = Object(_helpers_Breadcrumbs_getPageNameSlug__WEBPACK_IMPORTED_MODULE_5__["getPageNameSlug"])(this, this.props.isPagesReady, this.props.pages),
           matchPath = _getPageNameSlug.matchPath,
           pageName = _getPageNameSlug.pageName;
 

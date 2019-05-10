@@ -4,11 +4,14 @@ import {
     SET_PAGES_LIST_FAILED
 } from '../actions/types/pages-types';
 
+import {reformatArrayBy} from '../helpers/reformatArrayBy';
+
 const INITIAL_STATE = {
     isPagesReady: false,
     isPagesLoading: false,
     pagesError: null,
     items: [],
+    itemsBySlag: [],
 };
 
 export default function(state = INITIAL_STATE, action){
@@ -24,6 +27,7 @@ export default function(state = INITIAL_STATE, action){
                 isPagesLoading: false,
                 isPagesReady: true,
                 items: action.payload,
+                itemsBySlag: reformatArrayBy(action.payload, 'slug'),
             };
         case SET_PAGES_LIST_FAILED:
             return {

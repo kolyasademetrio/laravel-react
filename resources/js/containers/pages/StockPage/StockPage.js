@@ -2,13 +2,18 @@ import StockPage from '../../../components/pages/StockPage/StockPage';
 import {setAllStocks} from "../../../actions/stocks";
 import {connect} from "react-redux";
 
-const mapStateToProps = ({stocks: {isStocksReady, isStocksLoading, stocksErrors, stocksData: {stocksList, stockAttachment}}}) => {
+const mapStateToProps = (state) => {
+
+    const {isStocksReady, isStocksLoading, stocksErrors, stocksData: {stocksList, stockAttachment}} = state.stocks;
+    const {itemsBySlag, isPagesReady} = state.pages;
     return {
         isStocksReady,
         isStocksLoading,
         stocksErrors,
         stocksList,
-        stockAttachment
+        stockAttachment,
+        pages: isPagesReady && itemsBySlag,
+        isPagesReady,
     };
 };
 

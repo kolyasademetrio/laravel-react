@@ -3,14 +3,14 @@ import {connect} from "react-redux";
 import DoyouknowSinglePage from "../../../components/pages/DoyouknowPage/DoyouknowSinglePage";
 
 const mapStateToProps = (state) =>{
-    const {doyouknows: {
+    const {
         isDoyouknowSingleLoading,
         isDoyouknowSingleReady,
         doyouknowSingleErrors,
-        doyouknowSingleData
-    }} = state;
-    const {item, attachments} = doyouknowSingleData;
-    const {pages: {items, isPagesReady}} = state;
+        doyouknowSingleData: {item, attachments},
+    } = state.doyouknows;
+
+    const {itemsBySlag, isPagesReady} = state.pages;
 
     return {
         isDoyouknowSingleLoading,
@@ -18,7 +18,8 @@ const mapStateToProps = (state) =>{
         doyouknowSingleErrors,
         item,
         attachments,
-        pages: isPagesReady && items,
+        pages: isPagesReady && itemsBySlag,
+        isPagesReady,
     };
 };
 

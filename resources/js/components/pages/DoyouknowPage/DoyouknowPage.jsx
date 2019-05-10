@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import doyouknowPageMagnificPopupInit from "../DoyouknowPage/doyouknowPageMagnificPopupInit";
 import GridList from "../commons/grid/GridList";
-import Breadcrumbs from '../../../helpers/Breadcrumbs/Breadcrumbs';
-import BreadcrumbsItem from '../../../helpers/Breadcrumbs/BreadcrumbsItem';
-import {getPageNameSlug} from '../../../helpers/Breadcrumbs/getPageNameSlug';
+import {Breadcrumbs, BreadcrumbsItem, getPageNameSlug} from '../../../helpers/Breadcrumbs';
+
 
 class DoyouknowPage extends Component {
     componentDidMount(){

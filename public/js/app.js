@@ -84823,9 +84823,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _DoyouknowPage_doyouknowPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../DoyouknowPage/doyouknowPageMagnificPopupInit */ "./resources/js/components/pages/DoyouknowPage/doyouknowPageMagnificPopupInit.js");
 /* harmony import */ var _commons_grid_GridList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../commons/grid/GridList */ "./resources/js/components/pages/commons/grid/GridList.jsx");
-/* harmony import */ var _helpers_Breadcrumbs_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/Breadcrumbs/Breadcrumbs */ "./resources/js/helpers/Breadcrumbs/Breadcrumbs.jsx");
-/* harmony import */ var _helpers_Breadcrumbs_BreadcrumbsItem__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../helpers/Breadcrumbs/BreadcrumbsItem */ "./resources/js/helpers/Breadcrumbs/BreadcrumbsItem.jsx");
-/* harmony import */ var _helpers_Breadcrumbs_getPageNameSlug__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../helpers/Breadcrumbs/getPageNameSlug */ "./resources/js/helpers/Breadcrumbs/getPageNameSlug.js");
+/* harmony import */ var _helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/Breadcrumbs */ "./resources/js/helpers/Breadcrumbs/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84843,8 +84841,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-
 
 
 
@@ -84878,7 +84874,7 @@ function (_Component) {
           doyouknowsList = _this$props.doyouknowsList,
           doyouknowsAttachment = _this$props.doyouknowsAttachment;
 
-      var _getPageNameSlug = Object(_helpers_Breadcrumbs_getPageNameSlug__WEBPACK_IMPORTED_MODULE_5__["getPageNameSlug"])(this, this.props.isPagesReady, this.props.pages),
+      var _getPageNameSlug = Object(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__["getPageNameSlug"])(this, this.props.isPagesReady, this.props.pages),
           matchPath = _getPageNameSlug.matchPath,
           pageName = _getPageNameSlug.pageName;
 
@@ -84888,10 +84884,10 @@ function (_Component) {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-xs-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs_BreadcrumbsItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__["Breadcrumbs"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__["BreadcrumbsItem"], {
         title: "\u0413\u043B\u0430\u0432\u043D\u0430\u044F",
         path: "/"
-      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs_BreadcrumbsItem__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__["BreadcrumbsItem"], {
         title: pageName,
         path: ""
       }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_commons_grid_GridList__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -84928,9 +84924,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _ErrorPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ErrorPage */ "./resources/js/components/pages/ErrorPage.jsx");
 /* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/preloader */ "./resources/js/helpers/preloader.js");
-/* harmony import */ var _helpers_Breadcrumbs_Breadcrumbs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../helpers/Breadcrumbs/Breadcrumbs */ "./resources/js/helpers/Breadcrumbs/Breadcrumbs.jsx");
-/* harmony import */ var _DoyouknowPage_doyouknowSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../DoyouknowPage/doyouknowSinglePageMagnificPopupInit */ "./resources/js/components/pages/DoyouknowPage/doyouknowSinglePageMagnificPopupInit.js");
-/* harmony import */ var _commons_SinglePage_SinglePage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../commons/SinglePage/SinglePage */ "./resources/js/components/pages/commons/SinglePage/SinglePage.jsx");
+/* harmony import */ var _DoyouknowPage_doyouknowSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../DoyouknowPage/doyouknowSinglePageMagnificPopupInit */ "./resources/js/components/pages/DoyouknowPage/doyouknowSinglePageMagnificPopupInit.js");
+/* harmony import */ var _commons_SinglePage_SinglePage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../commons/SinglePage/SinglePage */ "./resources/js/components/pages/commons/SinglePage/SinglePage.jsx");
+/* harmony import */ var _helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../helpers/Breadcrumbs */ "./resources/js/helpers/Breadcrumbs/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -84969,11 +84965,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DoyouknowSinglePage).call(this, props));
     _this.state = {
-      slug: _this.props.match.params.slug,
-      breadcrumbsItems: [{
-        title: 'Главная',
-        path: '/'
-      }]
+      slug: _this.props.match.params.slug
     };
     return _this;
   }
@@ -84995,6 +84987,10 @@ function (_Component) {
           item = _this$props.item,
           attachments = _this$props.attachments;
 
+      var _getPageNameSlug = Object(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__["getPageNameSlug"])(this, this.props.isPagesReady, this.props.pages),
+          matchPath = _getPageNameSlug.matchPath,
+          pageName = _getPageNameSlug.pageName;
+
       if (stockSingleErrors === 404) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
           component: _ErrorPage__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -85009,20 +85005,25 @@ function (_Component) {
         return null;
       }
 
-      console.log('this.props', this.props);
-      console.log('this.state.slug', this.state.slug);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-xs-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs_Breadcrumbs__WEBPACK_IMPORTED_MODULE_4__["default"], {
-        items: this.state.breadcrumbsItems
-      })))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_commons_SinglePage_SinglePage__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__["Breadcrumbs"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__["BreadcrumbsItem"], {
+        title: "\u0413\u043B\u0430\u0432\u043D\u0430\u044F",
+        path: "/"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__["BreadcrumbsItem"], {
+        title: pageName,
+        path: matchPath
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__["BreadcrumbsItem"], {
+        title: item.title,
+        path: ""
+      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_commons_SinglePage_SinglePage__WEBPACK_IMPORTED_MODULE_5__["default"], {
         item: item,
         attachments: attachments,
-        initPopup: _DoyouknowPage_doyouknowSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_5__["default"]
+        initPopup: _DoyouknowPage_doyouknowSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_4__["default"]
       }));
     }
   }]);
@@ -85705,9 +85706,9 @@ function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _helpers_Breadcrumbs_Breadcrumbs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/Breadcrumbs/Breadcrumbs */ "./resources/js/helpers/Breadcrumbs/Breadcrumbs.jsx");
-/* harmony import */ var _stocksPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stocksPageMagnificPopupInit */ "./resources/js/components/pages/StockPage/stocksPageMagnificPopupInit.js");
-/* harmony import */ var _commons_grid_GridList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../commons/grid/GridList */ "./resources/js/components/pages/commons/grid/GridList.jsx");
+/* harmony import */ var _stocksPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stocksPageMagnificPopupInit */ "./resources/js/components/pages/StockPage/stocksPageMagnificPopupInit.js");
+/* harmony import */ var _commons_grid_GridList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../commons/grid/GridList */ "./resources/js/components/pages/commons/grid/GridList.jsx");
+/* harmony import */ var _helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/Breadcrumbs */ "./resources/js/helpers/Breadcrumbs/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85757,14 +85758,24 @@ function (_Component) {
           stocksErrors = _this$props.stocksErrors,
           stocksList = _this$props.stocksList,
           stockAttachment = _this$props.stockAttachment;
-      var matchPath = this.props.match.path;
+
+      var _getPageNameSlug = Object(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__["getPageNameSlug"])(this, this.props.isPagesReady, this.props.pages),
+          matchPath = _getPageNameSlug.matchPath,
+          pageName = _getPageNameSlug.pageName;
+
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-xs-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs_Breadcrumbs__WEBPACK_IMPORTED_MODULE_1__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_commons_grid_GridList__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__["Breadcrumbs"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__["BreadcrumbsItem"], {
+        title: "\u0413\u043B\u0430\u0432\u043D\u0430\u044F",
+        path: "/"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_3__["BreadcrumbsItem"], {
+        title: pageName,
+        path: ""
+      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_commons_grid_GridList__WEBPACK_IMPORTED_MODULE_2__["default"], {
         isLoading: isStocksLoading,
         isReady: isStocksReady,
         errors: stocksErrors,
@@ -85772,7 +85783,7 @@ function (_Component) {
         attachment: stockAttachment,
         matchPath: matchPath,
         noMessage: "\u0410\u043A\u0446\u0438\u0439 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.",
-        popupInit: _stocksPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_2__["default"]
+        popupInit: _stocksPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__["default"]
       }));
     }
   }]);
@@ -85798,9 +85809,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _ErrorPage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ErrorPage */ "./resources/js/components/pages/ErrorPage.jsx");
 /* harmony import */ var _helpers_preloader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/preloader */ "./resources/js/helpers/preloader.js");
-/* harmony import */ var _helpers_Breadcrumbs_Breadcrumbs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../helpers/Breadcrumbs/Breadcrumbs */ "./resources/js/helpers/Breadcrumbs/Breadcrumbs.jsx");
-/* harmony import */ var _StockPage_stockSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../StockPage/stockSinglePageMagnificPopupInit */ "./resources/js/components/pages/StockPage/stockSinglePageMagnificPopupInit.js");
-/* harmony import */ var _commons_SinglePage_SinglePage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../commons/SinglePage/SinglePage */ "./resources/js/components/pages/commons/SinglePage/SinglePage.jsx");
+/* harmony import */ var _StockPage_stockSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../StockPage/stockSinglePageMagnificPopupInit */ "./resources/js/components/pages/StockPage/stockSinglePageMagnificPopupInit.js");
+/* harmony import */ var _commons_SinglePage_SinglePage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../commons/SinglePage/SinglePage */ "./resources/js/components/pages/commons/SinglePage/SinglePage.jsx");
+/* harmony import */ var _helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../helpers/Breadcrumbs */ "./resources/js/helpers/Breadcrumbs/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -85861,6 +85872,10 @@ function (_Component) {
           item = _this$props.item,
           attachments = _this$props.attachments;
 
+      var _getPageNameSlug = Object(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__["getPageNameSlug"])(this, this.props.isPagesReady, this.props.pages),
+          matchPath = _getPageNameSlug.matchPath,
+          pageName = _getPageNameSlug.pageName;
+
       if (stockSingleErrors === 404) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
           component: _ErrorPage__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -85881,10 +85896,19 @@ function (_Component) {
         className: "row"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-xs-12"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs_Breadcrumbs__WEBPACK_IMPORTED_MODULE_4__["default"], null)))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_commons_SinglePage_SinglePage__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__["Breadcrumbs"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__["BreadcrumbsItem"], {
+        title: "\u0413\u043B\u0430\u0432\u043D\u0430\u044F",
+        path: "/"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__["BreadcrumbsItem"], {
+        title: pageName,
+        path: matchPath
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_Breadcrumbs__WEBPACK_IMPORTED_MODULE_6__["BreadcrumbsItem"], {
+        title: item.title,
+        path: ""
+      }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_commons_SinglePage_SinglePage__WEBPACK_IMPORTED_MODULE_5__["default"], {
         item: item,
         attachments: attachments,
-        initPopup: _StockPage_stockSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_5__["default"]
+        initPopup: _StockPage_stockSinglePageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_4__["default"]
       }));
     }
   }]);
@@ -88948,8 +88972,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_pages_DoyouknowPage_DoyouknowPage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../components/pages/DoyouknowPage/DoyouknowPage */ "./resources/js/components/pages/DoyouknowPage/DoyouknowPage.jsx");
 /* harmony import */ var _actions_doyouknows__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/doyouknows */ "./resources/js/actions/doyouknows.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _helpers_reformatArrayBy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/reformatArrayBy */ "./resources/js/helpers/reformatArrayBy.js");
-
 
 
 
@@ -88963,7 +88985,7 @@ var mapStateToProps = function mapStateToProps(state) {
       doyouknowsList = _state$doyouknows$doy.doyouknowsList,
       doyouknowsAttachment = _state$doyouknows$doy.doyouknowsAttachment;
   var _state$pages = state.pages,
-      items = _state$pages.items,
+      itemsBySlag = _state$pages.itemsBySlag,
       isPagesReady = _state$pages.isPagesReady;
   return {
     isDoyouknowsReady: isDoyouknowsReady,
@@ -88971,7 +88993,7 @@ var mapStateToProps = function mapStateToProps(state) {
     doyouknowsErrors: doyouknowsErrors,
     doyouknowsList: doyouknowsList,
     doyouknowsAttachment: doyouknowsAttachment,
-    pages: isPagesReady && Object(_helpers_reformatArrayBy__WEBPACK_IMPORTED_MODULE_3__["reformatArrayBy"])(items, 'slug'),
+    pages: isPagesReady && itemsBySlag,
     isPagesReady: isPagesReady
   };
 };
@@ -89009,11 +89031,11 @@ var mapStateToProps = function mapStateToProps(state) {
       isDoyouknowSingleLoading = _state$doyouknows.isDoyouknowSingleLoading,
       isDoyouknowSingleReady = _state$doyouknows.isDoyouknowSingleReady,
       doyouknowSingleErrors = _state$doyouknows.doyouknowSingleErrors,
-      doyouknowSingleData = _state$doyouknows.doyouknowSingleData;
-  var item = doyouknowSingleData.item,
-      attachments = doyouknowSingleData.attachments;
+      _state$doyouknows$doy = _state$doyouknows.doyouknowSingleData,
+      item = _state$doyouknows$doy.item,
+      attachments = _state$doyouknows$doy.attachments;
   var _state$pages = state.pages,
-      items = _state$pages.items,
+      itemsBySlag = _state$pages.itemsBySlag,
       isPagesReady = _state$pages.isPagesReady;
   return {
     isDoyouknowSingleLoading: isDoyouknowSingleLoading,
@@ -89021,7 +89043,8 @@ var mapStateToProps = function mapStateToProps(state) {
     doyouknowSingleErrors: doyouknowSingleErrors,
     item: item,
     attachments: attachments,
-    pages: isPagesReady && items
+    pages: isPagesReady && itemsBySlag,
+    isPagesReady: isPagesReady
   };
 };
 
@@ -89396,20 +89419,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(_ref) {
-  var _ref$stocks = _ref.stocks,
-      isStocksReady = _ref$stocks.isStocksReady,
-      isStocksLoading = _ref$stocks.isStocksLoading,
-      stocksErrors = _ref$stocks.stocksErrors,
-      _ref$stocks$stocksDat = _ref$stocks.stocksData,
-      stocksList = _ref$stocks$stocksDat.stocksList,
-      stockAttachment = _ref$stocks$stocksDat.stockAttachment;
+var mapStateToProps = function mapStateToProps(state) {
+  var _state$stocks = state.stocks,
+      isStocksReady = _state$stocks.isStocksReady,
+      isStocksLoading = _state$stocks.isStocksLoading,
+      stocksErrors = _state$stocks.stocksErrors,
+      _state$stocks$stocksD = _state$stocks.stocksData,
+      stocksList = _state$stocks$stocksD.stocksList,
+      stockAttachment = _state$stocks$stocksD.stockAttachment;
+  var _state$pages = state.pages,
+      itemsBySlag = _state$pages.itemsBySlag,
+      isPagesReady = _state$pages.isPagesReady;
   return {
     isStocksReady: isStocksReady,
     isStocksLoading: isStocksLoading,
     stocksErrors: stocksErrors,
     stocksList: stocksList,
-    stockAttachment: stockAttachment
+    stockAttachment: stockAttachment,
+    pages: isPagesReady && itemsBySlag,
+    isPagesReady: isPagesReady
   };
 };
 
@@ -89441,20 +89469,25 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var mapStateToProps = function mapStateToProps(_ref) {
-  var _ref$stocks = _ref.stocks,
-      isStockSingleLoading = _ref$stocks.isStockSingleLoading,
-      isStockSingleReady = _ref$stocks.isStockSingleReady,
-      stockSingleErrors = _ref$stocks.stockSingleErrors,
-      _ref$stocks$stockSing = _ref$stocks.stockSingleData,
-      item = _ref$stocks$stockSing.item,
-      attachments = _ref$stocks$stockSing.attachments;
+var mapStateToProps = function mapStateToProps(state) {
+  var _state$stocks = state.stocks,
+      isStockSingleLoading = _state$stocks.isStockSingleLoading,
+      isStockSingleReady = _state$stocks.isStockSingleReady,
+      stockSingleErrors = _state$stocks.stockSingleErrors,
+      _state$stocks$stockSi = _state$stocks.stockSingleData,
+      item = _state$stocks$stockSi.item,
+      attachments = _state$stocks$stockSi.attachments;
+  var _state$pages = state.pages,
+      itemsBySlag = _state$pages.itemsBySlag,
+      isPagesReady = _state$pages.isPagesReady;
   return {
     isStockSingleLoading: isStockSingleLoading,
     isStockSingleReady: isStockSingleReady,
     stockSingleErrors: stockSingleErrors,
     item: item,
-    attachments: attachments
+    attachments: attachments,
+    pages: isPagesReady && itemsBySlag,
+    isPagesReady: isPagesReady
   };
 };
 
@@ -89751,21 +89784,45 @@ var Separator = function Separator() {
 /*!*************************************************************!*\
   !*** ./resources/js/helpers/Breadcrumbs/getPageNameSlug.js ***!
   \*************************************************************/
-/*! exports provided: getPageNameSlug */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPageNameSlug", function() { return getPageNameSlug; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return getPageNameSlug; });
 function getPageNameSlug(that, isPagesReady, pages) {
   var matchPath = that.props.match.path;
-  var pageSlug = matchPath.substr(1);
+  var pageSlug = matchPath.split('/')[1];
   var pageName = isPagesReady && pages[pageSlug].title;
   return {
-    matchPath: matchPath,
+    matchPath: "/".concat(pageSlug),
     pageName: pageName
   };
 }
+
+/***/ }),
+
+/***/ "./resources/js/helpers/Breadcrumbs/index.js":
+/*!***************************************************!*\
+  !*** ./resources/js/helpers/Breadcrumbs/index.js ***!
+  \***************************************************/
+/*! exports provided: Breadcrumbs, BreadcrumbsItem, getPageNameSlug */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Breadcrumbs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Breadcrumbs */ "./resources/js/helpers/Breadcrumbs/Breadcrumbs.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "Breadcrumbs", function() { return _Breadcrumbs__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* harmony import */ var _BreadcrumbsItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BreadcrumbsItem */ "./resources/js/helpers/Breadcrumbs/BreadcrumbsItem.jsx");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "BreadcrumbsItem", function() { return _BreadcrumbsItem__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+/* harmony import */ var _getPageNameSlug__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getPageNameSlug */ "./resources/js/helpers/Breadcrumbs/getPageNameSlug.js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getPageNameSlug", function() { return _getPageNameSlug__WEBPACK_IMPORTED_MODULE_2__["default"]; });
+
+
+
+
 
 /***/ }),
 
@@ -90367,16 +90424,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_types_pages_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/types/pages-types */ "./resources/js/actions/types/pages-types.js");
+/* harmony import */ var _helpers_reformatArrayBy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../helpers/reformatArrayBy */ "./resources/js/helpers/reformatArrayBy.js");
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var INITIAL_STATE = {
   isPagesReady: false,
   isPagesLoading: false,
   pagesError: null,
-  items: []
+  items: [],
+  itemsBySlag: []
 };
 /* harmony default export */ __webpack_exports__["default"] = (function () {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : INITIAL_STATE;
@@ -90392,7 +90452,8 @@ var INITIAL_STATE = {
       return _objectSpread({}, state, {
         isPagesLoading: false,
         isPagesReady: true,
-        items: action.payload
+        items: action.payload,
+        itemsBySlag: Object(_helpers_reformatArrayBy__WEBPACK_IMPORTED_MODULE_1__["reformatArrayBy"])(action.payload, 'slug')
       });
 
     case _actions_types_pages_types__WEBPACK_IMPORTED_MODULE_0__["SET_PAGES_LIST_FAILED"]:

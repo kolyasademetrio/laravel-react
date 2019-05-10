@@ -1,10 +1,10 @@
-export function getPageNameSlug(that, isPagesReady, pages){
+export default function getPageNameSlug(that, isPagesReady, pages){
     const matchPath = that.props.match.path;
-    const pageSlug = matchPath.substr(1);
+    const pageSlug = matchPath.split('/')[1];
     const pageName = isPagesReady && pages[pageSlug].title;
 
     return {
-        matchPath,
+        matchPath: `/${pageSlug}`,
         pageName,
     };
 }

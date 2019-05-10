@@ -2,9 +2,9 @@ import React, {Component, Fragment} from 'react';
 import {Route} from 'react-router-dom';
 import ErrorPage from '../ErrorPage';
 import Preloader from '../../../helpers/preloader';
-import Breadcrumbs from '../../../helpers/Breadcrumbs/Breadcrumbs';
 import stockSinglePageMagnificPopupInit from '../StockPage/stockSinglePageMagnificPopupInit';
 import SinglePage from '../commons/SinglePage/SinglePage';
+import {Breadcrumbs, BreadcrumbsItem, getPageNameSlug} from "../../../helpers/Breadcrumbs";
 
 class StockSinglePage extends Component {
     constructor(props){
@@ -22,6 +22,7 @@ class StockSinglePage extends Component {
 
     render(){
         const {isStockSingleLoading, isStockSingleReady, stockSingleErrors, item, attachments} = this.props;
+        const {matchPath, pageName} = getPageNameSlug(this, this.props.isPagesReady, this.props.pages);
 
         if (stockSingleErrors === 404) {
             return <Route component={ErrorPage} />
@@ -40,7 +41,11 @@ class StockSinglePage extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-12">
-                            <Breadcrumbs />
+                            <Breadcrumbs>
+                                <BreadcrumbsItem title="Главная" path="/" />
+                                <BreadcrumbsItem title={pageName} path={matchPath} />
+                                <BreadcrumbsItem title={item.title} path="" />
+                            </Breadcrumbs>
                         </div>
                     </div>
                 </div>

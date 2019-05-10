@@ -3,9 +3,24 @@ import {setSingleStock} from "../../../actions/stocks";
 import {connect} from "react-redux";
 
 
-const mapStateToProps = ({stocks: {isStockSingleLoading, isStockSingleReady, stockSingleErrors, stockSingleData: {item, attachments}}}) =>{
+const mapStateToProps = (state) =>{
+    const {
+        isStockSingleLoading,
+        isStockSingleReady,
+        stockSingleErrors,
+        stockSingleData: {item, attachments},
+    } = state.stocks;
+
+    const {itemsBySlag, isPagesReady} = state.pages;
+
     return {
-        isStockSingleLoading, isStockSingleReady, stockSingleErrors, item, attachments
+        isStockSingleLoading,
+        isStockSingleReady,
+        stockSingleErrors,
+        item,
+        attachments,
+        pages: isPagesReady && itemsBySlag,
+        isPagesReady,
     };
 };
 

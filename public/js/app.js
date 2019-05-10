@@ -84877,8 +84877,11 @@ function (_Component) {
           doyouknowsErrors = _this$props.doyouknowsErrors,
           doyouknowsList = _this$props.doyouknowsList,
           doyouknowsAttachment = _this$props.doyouknowsAttachment;
+      var _this$props2 = this.props,
+          isPagesReady = _this$props2.isPagesReady,
+          pages = _this$props2.pages;
 
-      var _getPageNameSlug = Object(_helpers_Breadcrumbs_getPageNameSlug__WEBPACK_IMPORTED_MODULE_5__["getPageNameSlug"])(this),
+      var _getPageNameSlug = Object(_helpers_Breadcrumbs_getPageNameSlug__WEBPACK_IMPORTED_MODULE_5__["getPageNameSlug"])(this, isPagesReady, pages),
           matchPath = _getPageNameSlug.matchPath,
           pageName = _getPageNameSlug.pageName;
 
@@ -89757,10 +89760,7 @@ var Separator = function Separator() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getPageNameSlug", function() { return getPageNameSlug; });
-function getPageNameSlug(that) {
-  var _that$props = that.props,
-      isPagesReady = _that$props.isPagesReady,
-      pages = _that$props.pages;
+function getPageNameSlug(that, isPagesReady, pages) {
   var matchPath = that.props.match.path;
   var pageSlug = matchPath.substr(1);
   var pageName = isPagesReady && pages[pageSlug].title;

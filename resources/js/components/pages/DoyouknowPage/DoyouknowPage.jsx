@@ -20,7 +20,8 @@ class DoyouknowPage extends Component {
             doyouknowsAttachment,
         } = this.props;
 
-        const {matchPath, pageName} = getPageNameSlug(this);
+        const {isPagesReady, pages} = this.props;
+        const {matchPath, pageName} = getPageNameSlug(this, isPagesReady, pages);
 
         return (
             <React.Fragment>

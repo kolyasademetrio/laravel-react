@@ -3,23 +3,24 @@ import doyouknowPageMagnificPopupInit from "../DoyouknowPage/doyouknowPageMagnif
 import GridList from "../commons/grid/GridList";
 import Breadcrumbs from '../../../helpers/Breadcrumbs/Breadcrumbs';
 import BreadcrumbsItem from '../../../helpers/Breadcrumbs/BreadcrumbsItem';
+import {getPageNameSlug} from '../../../helpers/Breadcrumbs/getPageNameSlug';
 
 class DoyouknowPage extends Component {
     componentDidMount(){
         const {setAllDoyouknows} = this.props;
         setAllDoyouknows();
-
-
     }
 
     render(){
-        const {isDoyouknowsReady, isDoyouknowsLoading, doyouknowsErrors, doyouknowsList, doyouknowsAttachment} = this.props;
-        const matchPath = this.props.match.path;
+        const {
+            isDoyouknowsReady,
+            isDoyouknowsLoading,
+            doyouknowsErrors,
+            doyouknowsList,
+            doyouknowsAttachment,
+        } = this.props;
 
-        const slugWithSlash = this.props.match.path;
-        const slug = slugWithSlash.substr(1);
-        
-        console.log( 'this.props.isPagesReady && this.props.pages[slug][title]', this.props.isPagesReady && this.props.pages[slug][title] );
+        const {matchPath, pageName} = getPageNameSlug(this);
 
         return (
             <React.Fragment>
@@ -28,7 +29,7 @@ class DoyouknowPage extends Component {
                         <div className="col-xs-12">
                             <Breadcrumbs>
                                 <BreadcrumbsItem title="Главная" path="/" />
-                                <BreadcrumbsItem title="Главная" path="/" />
+                                <BreadcrumbsItem title={pageName} path="" />
                             </Breadcrumbs>
                         </div>
                     </div>

@@ -3,13 +3,17 @@ import {setAllVideotips} from '../../../actions/videotips';
 import {connect} from 'react-redux';
 
 
-const mapStateToProps = ({videotips}) => {
-    const {videotipsList, isVideotipsLoading, isVideotipsReady, videotipsError} = videotips;
+const mapStateToProps = state => {
+    const {videotipsList, isVideotipsLoading, isVideotipsReady, videotipsError} = state.videotips;
+    const {itemsBySlag, isPagesReady} = state.pages;
+
     return {
         videotipsList,
         isVideotipsLoading,
         isVideotipsReady,
         videotipsError,
+        pages: isPagesReady && itemsBySlag,
+        isPagesReady,
     }
 };
 

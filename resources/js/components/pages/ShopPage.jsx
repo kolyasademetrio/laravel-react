@@ -3,8 +3,8 @@ import ProductSingle from '../products/ProductSingle';
 import CatsListFilterShop from '../../containers/CatsListFilterShop';
 import ProductsSortShop from '../../containers/ProductsSortShop';
 import {Pagination} from '../../helpers/pagination';
-import Breadcrumbs from '../../helpers/Breadcrumbs/Breadcrumbs';
 import Preloader from '../../helpers/preloader';
+import {Breadcrumbs, BreadcrumbsItem, getPageNameSlug} from "../../helpers/Breadcrumbs";
 
 class ShopPage extends Component {
     componentDidMount() {
@@ -14,8 +14,7 @@ class ShopPage extends Component {
 
     render(){
         const {productsList, categories, isProductsReady, isProductsLoading, setPagination, currentPage, pager} = this.props;
-        
-        const matchPath = this.props.match.path;
+        const {matchPath, pageName} = getPageNameSlug(this, this.props.isPagesReady, this.props.pages);
 
         return (
             <div className="container woocomm__container">
@@ -23,7 +22,10 @@ class ShopPage extends Component {
                     <div className="col-xs-12">
                         <div className="woocomm__col">
 
-                            <Breadcrumbs />
+                            <Breadcrumbs>
+                                <BreadcrumbsItem title="Главная" path="/" />
+                                <BreadcrumbsItem title={pageName} path="" />
+                            </Breadcrumbs>
 
                             <div className="products__wrapper">
                                 <div className="products__sidebar">

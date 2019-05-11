@@ -40,7 +40,7 @@ function getPages(visibleProducts, perPage){
 
 
 
-const mapStateToProps = ({products, filter}) => {
+const mapStateToProps = ({products, filter, pages}) => {
     const categoriesRelationship = getCategoryProductRelationsByCatSlug( products.items.categoriesRelationship );
 
     const visibleProducts = getVisibleProducts(
@@ -72,6 +72,8 @@ const mapStateToProps = ({products, filter}) => {
     );
     /* END: Pagination */
 
+    const {itemsBySlag, isPagesReady} = pages;
+
     return {
         productsList: paginatedProducts,
         categories: products.items.categories,
@@ -82,6 +84,8 @@ const mapStateToProps = ({products, filter}) => {
         sortProductShopBy: filter.sortProductShopBy,
         pager: pager,
         currentPage: currentPage,
+        pages: isPagesReady && itemsBySlag,
+        isPagesReady,
     }
 };
 

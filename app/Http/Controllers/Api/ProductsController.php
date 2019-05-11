@@ -51,9 +51,23 @@ class ProductsController extends Controller
 
         $product = Products::where('slug', $id)->first();
 
+        $categoriesRelationship = DB::select("SELECT
+                                                categories.category_filter_by AS 'catFilterBy',
+                                                products.id AS 'productID',
+                                                products.slug AS 'productSlug',
+                                                categories.category_name AS 'categoryName'
+                                              FROM
+                                                categories, products, categories_relationship
+                                              WHERE
+                                                categories.category_id = categories_relationship.category_id
+                                              AND
+                                                products.id = categories_relationship.object_id"
+        );
+
         return response()->json([
             'product' => $product,
             'productAttachments' => $productAttachments,
+            'categoriesRelationship' => $categoriesRelationship,
         ]);
     }
 

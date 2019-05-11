@@ -6,7 +6,7 @@ import Ancorup from './components/Ancorup';
 
 import { Route, Switch } from 'react-router-dom';
 import HomePage from './components/pages/HomePage';
-import AboutPage from './components/pages/AboutPage';
+import AboutPage from './containers/pages/AboutPage';
 import ShopPage from './containers/pages/ShopPage';
 import ProductSinglePage from './containers/pages/ProductSinglePage/ProductSinglePage';
 import VideotipPage from './containers/pages/VideotipsPage/VideotipPage';
@@ -15,7 +15,7 @@ import StockPage from './containers/pages/StockPage/StockPage';
 import StockSinglePage from './containers/pages/StockPage/StockSinglePage';
 import DoyouknowPage from './containers/pages/DoyouknowPage/DoyouknowPage';
 import DoyouknowSinglePage from './containers/pages/DoyouknowPage/DoyouknowSinglePage';
-import ContactsPage from './components/pages/ContactsPage';
+import ContactsPage from './containers/pages/ContactsPage';
 import ErrorPage from './components/pages/ErrorPage';
 import ShippingPage from './components/pages/ShippingPage';
 import TermsCooperationPage from './components/pages/TermsCooperationPage';

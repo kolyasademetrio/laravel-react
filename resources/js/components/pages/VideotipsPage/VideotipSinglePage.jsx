@@ -5,6 +5,7 @@ import {Route} from 'react-router-dom';
 import ErrorPage from '../ErrorPage';
 import VideotipPopupWrapper from './VideotipPopupWrapper';
 import {ReactHtmlParser} from 'react-html-parser';
+import {BreadcrumbsItem, getPageNameSlug} from "../../../helpers/Breadcrumbs";
 
 
 class VideotipSinglePage extends Component {
@@ -22,7 +23,14 @@ class VideotipSinglePage extends Component {
     }
 
     render(){
-        const {videotipSingle: {title, video, image}, isVideotipSingleLoading, isVideotipSingleReady, videotipSingleError} = this.props;
+        const {
+            videotipSingle: {title, video, image},
+            isVideotipSingleLoading,
+            isVideotipSingleReady,
+            videotipSingleError
+        } = this.props;
+
+        const {matchPath, pageName} = getPageNameSlug(this, this.props.isPagesReady, this.props.pages);
 
         if (videotipSingleError === 404) {
             return <Route component={ErrorPage} />
@@ -41,7 +49,11 @@ class VideotipSinglePage extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-12">
-                            <Breadcrumbs />
+                            <Breadcrumbs>
+                                <BreadcrumbsItem title="Главная" path="/" />
+                                <BreadcrumbsItem title={pageName} path={matchPath} />
+                                <BreadcrumbsItem title={title} path="" />
+                            </Breadcrumbs>
                         </div>
                     </div>
                 </div>

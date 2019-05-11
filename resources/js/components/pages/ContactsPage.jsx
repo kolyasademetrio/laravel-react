@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
+import {Breadcrumbs, BreadcrumbsItem, getPageNameSlug} from "../../helpers/Breadcrumbs";
 
 class ContactsPage extends Component {
     render(){
+        const {matchPath, pageName} = getPageNameSlug(this, this.props.isPagesReady, this.props.pages);
+
         return (
             <React.Fragment>
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-12">
-                            <div className="kama_breadcrumbs" itemScope="" itemType="http://schema.org/BreadcrumbList">
-                                <span itemProp="itemListElement" itemScope="" itemType="http://schema.org/ListItem">
-                                    <a href="/" itemProp="item">
-                                        <span itemProp="name">Главная</span>
-                                    </a>
-                                </span>
-                                <span className="kb_sep"> / </span>Контакты
-                            </div>
+                            <Breadcrumbs>
+                                <BreadcrumbsItem title="Главная" path="/" />
+                                <BreadcrumbsItem title={pageName} path="" />
+                            </Breadcrumbs>
                         </div>
                     </div>
                 </div>

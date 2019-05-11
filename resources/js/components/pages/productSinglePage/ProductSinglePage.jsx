@@ -6,6 +6,7 @@ import Preloader          from '../../../helpers/preloader';
 import ProductGallery     from '../../../containers/pages/ProductSinglePage/ProductGallery';
 import ProductSummary     from "../../../containers/pages/ProductSinglePage/ProductSummary";
 import ProductTabs        from '../../../containers/pages/ProductSinglePage/ProductTabs';
+import {BreadcrumbsItem, getPageNameSlug} from "../../../helpers/Breadcrumbs";
 
 
 
@@ -24,7 +25,8 @@ class ProductSinglePage extends Component {
     }
 
     render(){
-        const {error, isSingleLoading, isSingleReady, id} = this.props;
+        const {error, isSingleLoading, isSingleReady, id, title, categoryName} = this.props;
+        const {matchPath, pageName} = getPageNameSlug(this, this.props.isPagesReady, this.props.pages);
 
         if (error === 404) {
             return <Route component={ErrorPage} />
@@ -45,7 +47,12 @@ class ProductSinglePage extends Component {
                         <div className="row woocomm__row">
                             <div className="col-xs-12">
                                 <div className="woocomm__col">
-                                    <Breadcrumbs />
+                                    <Breadcrumbs>
+                                        <BreadcrumbsItem title="Главная" path="/" />
+                                        <BreadcrumbsItem title={pageName} path={matchPath} />
+                                        <BreadcrumbsItem title={categoryName} path="" />
+                                        <BreadcrumbsItem title={title} path="" />
+                                    </Breadcrumbs>
 
                                     <div id={`product-${id}`} className="product">
                                         <ProductGallery />

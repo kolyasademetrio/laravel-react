@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Preloader from '../../../helpers/preloader';
 import VideotipSingle from './VideotipSingle';
-import Breadcrumbs from '../../../helpers/Breadcrumbs/Breadcrumbs';
 import videotipsPopupInit from './videotipsPageMagnificPopupInit';
+import {Breadcrumbs, BreadcrumbsItem, getPageNameSlug} from "../../../helpers/Breadcrumbs";
 import $ from 'jquery';
 
 
@@ -19,14 +19,17 @@ class VideotipsPage extends Component {
     
     render(){
         const {videotipsList, isVideotipsLoading, isVideotipsReady, videotipsError} = this.props;
-        const matchPath = this.props.match.path;
+        const {matchPath, pageName} = getPageNameSlug(this, this.props.isPagesReady, this.props.pages);
 
         return (
             <React.Fragment>
                 <div className="container">
                     <div className="row">
                         <div className="col-xs-12">
-                            {<Breadcrumbs />}
+                            <Breadcrumbs>
+                                <BreadcrumbsItem title="Главная" path="/" />
+                                <BreadcrumbsItem title={pageName} path="" />
+                            </Breadcrumbs>
                         </div>
                     </div>
                 </div>

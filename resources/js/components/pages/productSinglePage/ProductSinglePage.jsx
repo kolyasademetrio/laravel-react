@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {Route}            from 'react-router-dom';
 import ErrorPage          from "../ErrorPage";
-import Breadcrumbs        from "../../../helpers/Breadcrumbs/Breadcrumbs";
 import Preloader          from '../../../helpers/preloader';
 import ProductGallery     from '../../../containers/pages/ProductSinglePage/ProductGallery';
 import ProductSummary     from "../../../containers/pages/ProductSinglePage/ProductSummary";
 import ProductTabs        from '../../../containers/pages/ProductSinglePage/ProductTabs';
-import {BreadcrumbsItem, getPageNameSlug} from "../../../helpers/Breadcrumbs";
+import {Breadcrumbs, BreadcrumbsItem, getPageNameSlug} from "../../../helpers/Breadcrumbs";
 
 
 

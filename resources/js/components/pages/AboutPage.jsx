@@ -3,7 +3,7 @@ import {Breadcrumbs, BreadcrumbsItem, getPageNameSlug} from "../../helpers/Bread
 
 class AboutPage extends Component {
     render() {
-        const {matchPath, pageName} = getPageNameSlug(this, this.props.isPagesReady, this.props.pages);
+        const {pageName} = getPageNameSlug(this, this.props.isPagesReady, this.props.pages);
 
         return (
             <React.Fragment>

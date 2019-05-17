@@ -13,8 +13,12 @@
 
 
 Route::group(['middleware' => 'guest'], function(){
-    Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
+    Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('/register', 'Auth\RegisterController@register');
+});
+
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/account', 'AccountController@index')->name('account');
 });
 
 Route::get('/{path?}', function () {

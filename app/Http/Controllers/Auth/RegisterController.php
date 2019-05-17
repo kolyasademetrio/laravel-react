@@ -42,18 +42,36 @@ class RegisterController extends Controller
     }
 
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function register(Request $request)
     {
+        try {
+            $this->validator($request->all())->validate();
+        } catch(\Exception $e){
+            dd($e);
+        };
 
-        dd($request);
-        $this->validator($request->all())->validate();
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $name = $request->input('name');
+        $isAuth = $request->has('remember') ? true : false;
 
-        event(new Registered($user = $this->create($request->all())));
+        $objUser = $this->create([
+            'name' => $name,
+            'email' => $email,
+            'password' => $password,
+        ]);
 
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
-            ?: redirect($this->redirectPath());
+        if(!($objUser instanceof User)){
+            return back()->with('error', "Can't create object.");
+        }
+        if($isAuth){
+            $this->guard()->login($objUser);
+        }
+        return redirect(route('/account'))->with('success', "Вы успешно зарегистрированы.");
     }
 
     /**
@@ -65,7 +83,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'min:4'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);

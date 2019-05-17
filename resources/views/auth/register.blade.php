@@ -34,7 +34,7 @@
     <link href="https://getbootstrap.com/docs/4.3/examples/sign-in/signin.css" rel="stylesheet">
 </head>
 <body class="text-center">
-<form class="form-signin" type="POST">
+<form class="form-signin" method="POST">
     {!! csrf_field() !!}
     <h1 class="h3 mb-3 font-weight-normal">Регистрация</h1>
     <label for="inputEmail" class="sr-only">Email</label>

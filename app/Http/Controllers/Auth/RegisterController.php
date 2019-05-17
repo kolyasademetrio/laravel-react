@@ -42,14 +42,10 @@ class RegisterController extends Controller
     }
 
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
     public function register(Request $request)
     {
-        dd($request);
 
+        dd($request);
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));

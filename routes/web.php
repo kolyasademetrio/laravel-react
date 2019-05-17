@@ -11,8 +11,18 @@
 |
 */
 
-Route::get('/', function () {
+Route::group(['middleware' => 'guest'], function(){
+    Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
+    Route::post('/register', 'Auth\RegisterController@register');
+});
+
+Route::get('/{path?}', function () {
     return view('home');
 });
 
-Route::get('/{path?}', function($path = null){return View::make('home'); })->where('path', '.*');
+//Route::get('/', function () {
+//    return view('home');
+//});
+//
+//Route::get('/{path?}', function($path = null){return View::make('home'); })->where('path', '.*');
+

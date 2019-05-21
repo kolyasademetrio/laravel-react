@@ -51,5 +51,11 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">Авторизоваться</button>
     <p class="mt-5 mb-3 text-muted">&copy; 2017-2019</p>
 </form>
+
+<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+
+@include('inc.messages')
+
 </body>
 </html>

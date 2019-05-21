@@ -56,6 +56,7 @@ class LoginController extends Controller
             return back()->with('error', trans('messages.auth.errorLogin'));
         }catch(ValidationException $e){
             \Log::error($e->getMessage());
+
             return back()->with('error', trans('messages.auth.errorLogin'));
         }
     }

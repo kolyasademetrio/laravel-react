@@ -6,9 +6,6 @@
         });
     </script>
 @elseif(session()->has('error'))
-
-    {!! dd(App::getLocale()) !!}
-
     <script type="text/javascript">
         $(function(){
             alertify.alert("{!! session()->get('error') !!}");

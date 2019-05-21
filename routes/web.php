@@ -11,17 +11,18 @@
 |
 */
 
-
-Route::group(['middleware' => 'guest'], function(){
+Route::middleware(['guest'])->group(function(){
+    //dd('is guest');
     Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('/register', 'Auth\RegisterController@register');
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');
 });
 
-Route::group(['middleware' => 'auth'], function(){
-    Route::get('/account', 'AccountController@index')->name('account');
+Route::middleware(['auth'])->group(function(){
+    //dd('is logged in');
+    /*Route::get('/account', 'AccountController@index')->name('account');
     Route::get('/register', 'AccountController@index')->name('account');
-    Route::get('/login', 'AccountController@index')->name('login');
+    Route::get('/login', 'AccountController@index')->name('login');*/
 });
 
 Route::get('/{path?}', function () {

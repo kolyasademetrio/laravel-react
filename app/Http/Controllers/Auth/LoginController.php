@@ -43,7 +43,7 @@ class LoginController extends Controller
     public function login(Request $request){
         try{
             $this->validate($request, [
-                'email' => 'required|min:3\max:255',
+                'email' => 'required|min:3|max:255',
                 'password' => 'required|min:5',
             ]);
 

@@ -31,7 +31,10 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/', 'Admin\AccountController@index')->name('admin');
 
         Route::get('/products/categories', 'Admin\ProductsCategoriesController@index')->name('admin.products.categories');
+
         Route::get('/products/categories/add', 'Admin\ProductsCategoriesController@addCategory')->name('admin.products.categories.add');
+        Route::post('/products/categories/add', 'Admin\ProductsCategoriesController@addRequestCategory');
+
         Route::get('/products/categories/edit/{id}', 'Admin\ProductsCategoriesController@editCategory')->where('id', '\d+')->name('admin.products.categories.edit');
         Route::delete('/products/categories/delete', 'Admin\ProductsCategoriesController@deleteCategory')->name('admin.products.categories.delete');
     });

@@ -68,3 +68,29 @@ h1 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
 }
+/********************************/
+/*********** my styles **********/
+/********************************/
+
+/* START: checkboxes */
+.form-check {
+    position: relative;
+    display: block;
+    padding-left: 1.25rem;
+}
+
+.form-check-input {
+    top: 3px;
+}
+
+.form-check-label {
+    padding-left: 0;
+}
+/* END: checkboxes */
+
+/* START: buttons */
+button,
+.btn {
+    cursor: pointer;
+}
+/* END: buttons */

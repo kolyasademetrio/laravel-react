@@ -12,8 +12,8 @@
 */
 use Illuminate\Support\Facades\Auth;
 
-
-Route::group(['middleware' => 'guest'], function(){
+Route::middleware(['guest'])->group(function(){
+    //dd('is guest');
     Route::get('/register', 'Auth\RegisterController@showRegistrationForm')->name('register');
     Route::post('/register', 'Auth\RegisterController@register');
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('login');

@@ -10,7 +10,10 @@ use App\Http\Controllers\Controller;
 class ProductsCategoriesController extends Controller
 {
     public function index(){
-        return view('admin.products.categories.index');
+        $objCategory = new Categories();
+        $categories = $objCategory->get();
+
+        return view('admin.products.categories.index', ['categories' => $categories]);
     }
 
     public function addCategory(){

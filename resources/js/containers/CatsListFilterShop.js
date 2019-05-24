@@ -7,9 +7,6 @@ import {getCategoryProductRelationsByCatSlug} from '../helpers/getCategoryProduc
 const mapStateToProps = ({filter, products}) => {
     const {categories} = products.items;
     const categoriesRelationship = getCategoryProductRelationsByCatSlug( products.items.categoriesRelationship );
-    
-    console.log( 'first', products.items.categoriesRelationship );
-    console.log( 'second', categoriesRelationship );
 
     return {
         filterBy: filter.filterShopBy,

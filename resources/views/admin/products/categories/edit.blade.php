@@ -8,16 +8,16 @@
             {!! csrf_field() !!}
             <div class="form-group">
                 <label for="category_name">Введите имя категории:</label>
-                <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Введите имя категории" required>
+                <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Введите имя категории" value="{{$category->category_name}}" required>
             </div>
 
             <div class="form-group">
                 <label for="category_slug">Введите slug категории:</label>
-                <input type="text" class="form-control" id="category_slug" name="category_slug" placeholder="Введите slug категории:" required>
+                <input type="text" class="form-control" id="category_slug" name="category_slug" placeholder="Введите slug категории" required value="{{$category->category_slug}}">
             </div>
 
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="show_on_homepage" name="show_on_homepage">
+                <input type="checkbox" class="form-check-input" id="show_on_homepage" name="show_on_homepage" {{$category->show_on_homepage ? 'checked' : ''}}>
                 <label class="form-check-label" for="show_on_homepage">Показывать на главной странице:</label>
             </div>
 

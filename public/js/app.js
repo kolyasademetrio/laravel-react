@@ -69020,7 +69020,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -88840,16 +88840,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_filter__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/filter */ "./resources/js/actions/filter.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _components_CatsListFilterHome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/CatsListFilterHome */ "./resources/js/components/CatsListFilterHome.jsx");
+/* harmony import */ var _helpers_sortArrayByKey__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../helpers/sortArrayByKey */ "./resources/js/helpers/sortArrayByKey.js");
+
 
 
 
 
 var mapStateToProps = function mapStateToProps(state) {
   var filterBy = state.filter.filterBy;
-  var categories = state.products.items.categories;
+  var _state$products$items = state.products.items,
+      categories = _state$products$items.categories,
+      categoriesRelationship = _state$products$items.categoriesRelationship;
+  var relationsSorted = Object(_helpers_sortArrayByKey__WEBPACK_IMPORTED_MODULE_3__["sortArrayByKey"])(categoriesRelationship, 'categoryName');
+  var categoriesSorted = categories.filter(function (category) {
+    return relationsSorted[category['category_name']];
+  });
   return {
     filterBy: filterBy,
-    categoriesToShow: categories.filter(function (category) {
+    categoriesToShow: categoriesSorted.filter(function (category) {
       return category.show_on_homepage == 1;
     })
   };
@@ -88890,8 +88898,6 @@ var mapStateToProps = function mapStateToProps(_ref) {
       products = _ref.products;
   var categories = products.items.categories;
   var categoriesRelationship = Object(_helpers_getCategoryProductRelations__WEBPACK_IMPORTED_MODULE_3__["getCategoryProductRelationsByCatSlug"])(products.items.categoriesRelationship);
-  console.log('first', products.items.categoriesRelationship);
-  console.log('second', categoriesRelationship);
   return {
     filterBy: filter.filterShopBy,
     categoriesRelationship: categoriesRelationship,

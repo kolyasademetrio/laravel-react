@@ -12,4 +12,10 @@ class Categories extends Model
     protected $fillable = [
         'category_name', 'category_slug', 'category_filter_by', 'show_on_homepage',
     ];
+
+    protected $dates = [
+        'created_at',
+        'updated_at',
+        'email_verified_at'
+    ];
 }

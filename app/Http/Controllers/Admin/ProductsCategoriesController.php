@@ -13,12 +13,15 @@ class ProductsCategoriesController extends Controller
         $objCategory = new Categories();
         $categories = $objCategory->get();
 
-        return view('admin.products.categories.index', ['categories' => $categories]);
+        return view('admin.products.categories.index', [
+            'categories' => $categories,
+        ]);
     }
 
     public function addCategory(){
         return view('admin.products.categories.add');
     }
+
     public function addRequestCategory(Request $request){
         try{
             $this->validate($request, [

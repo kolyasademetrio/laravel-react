@@ -95,8 +95,49 @@ button,
 }
 /* END: buttons */
 
-/*!* START: nav-link *!
-.nav-link {
-    cursor: pointer;
+/* START: nav-link */
+.add_product_form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
-!* END: nav-link *!*/
+
+.add_product_form>.form-group {
+    width: 32%;
+    margin-right: 2%;
+}
+
+.add_product_form>.form-group.image {
+    width: 49%;
+}
+
+.add_product_form>.form-group.last {
+    margin-right: 0;
+}
+
+.add_product_form>.form-check {
+    width: 100%;
+
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+
+    align-items: flex-end;
+    padding: 0 0 16px 20px;
+}
+
+.add_product_form>.form-check input[type="checkbox"] {
+    top: auto;
+    bottom: 20px;
+    left: 0;
+    margin-left: 0;
+}
+
+.add_product_form textarea {
+    resize: none;
+    height: 100px;
+}
+/* END: nav-link */

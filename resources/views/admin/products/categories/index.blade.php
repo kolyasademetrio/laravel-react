@@ -2,7 +2,7 @@
 
 @section('content')
 <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-    <h1>Список категорий</h1>
+    <h1>Список категорий товаров</h1>
     <section>
         <div class="card-block">
             <a href="{!! route('admin.products.categories.add') !!}" class="btn btn-success">Добавить категорию</a>

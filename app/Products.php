@@ -10,35 +10,34 @@ class Products extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+    public $timestamps = true;
+    protected $table = 'products';
+    protected $primaryKey = 'id';
+
     protected $fillable = [
-        /*'id', 'slug', 'title', 'menu_order'*/
+        'id',
+        'title',
+        'slug',
+        'excerpt',
+        'content',
+        'descrtitle',
+        'descrtext',
+        'descr',
+        'regular_price',
+        'sale_price',
+        'discount',
+        'currency',
+        'image',
+        'is_reccomended',
+        'product_description_tab_content',
+        'product_ingredients_tab_content',
+        'product_usage_tab_content',
+        'tab_bg',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-//        'password', 'remember_token',
+    protected $dates = [
+        'created_at', 'updated_at',
     ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-//        'email_verified_at' => 'datetime',
-    ];
 
-    /*public function categories()
-    {
-        return $this->belongsToMany(Categories::class);
-    }*/
 }

@@ -23,7 +23,7 @@
                 <td>{{$category->category_slug}}</td>
                 <td>{{$category->category_filter_by}}</td>
                 <td>{!!$category->show_on_homepage ? '<input type="checkbox" checked disabled>' : '<input type="checkbox" disabled>'!!}</td>
-                <td>{{$category->created_at/*->format('d-m-Y H:i')*/}}</td>
+                <td>{{$category->created_at->format('d-m-Y H:i')}}</td>
                 <td>
                     <a href="{!! route('admin.products.categories.edit', ['id' => $category->category_id]) !!}">Редактировать</a> ||
                     <a href="" class="delete_category" rel="{{$category->category_id}}">Удалить</a>

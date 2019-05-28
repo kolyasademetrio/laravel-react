@@ -38,6 +38,16 @@ class ProductsController extends Controller
 
             $is_reccomended = $request->has('is_reccomended') ? true : false;
 
+            if($request->hasfile('image')){
+                $image = $request->file('image');
+                $imageExtension = $image->extension();
+                $imageName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+                $year = date('Y');
+                $month = date('m');
+                $path = public_path('uploads/'.$year.'/'.$month);
+                $x = $image->move($path, time().'_'.$imageName.'.'.$imageExtension);
+            }
+
             $objProduct = new Products();
             $objProduct = $objProduct->create([
                 'title' => $request->input('title'),
@@ -57,8 +67,8 @@ class ProductsController extends Controller
                 'product_usage_tab_content' => $request->input('product_usage_tab_content'),
 
                 // TODO: get images
-                'image' => $request->input('image'),
-                'tab_bg' => $request->input('tab_bg'),
+//                'image' => $request->file('image'),
+//                'tab_bg' => $request->file('tab_bg'),
             ]);
 
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Products;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Helpers\ImageDNK;
 
 class ProductsController extends Controller
 {
@@ -29,8 +30,8 @@ class ProductsController extends Controller
                 'descrtitle' => 'required|string|min:4|max:25',
                 'descrtext' => 'required|string|min:4|max:25',
                 'descr' => 'required|string|min:4|max:100',
-                'regular_price' => 'required|regex:/^\d+(\.\d{1,1})?$/',
-                'discount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+                'regular_price' => 'required|regex:/^\d+(\.\d{1,0})?$/',
+                'discount' => 'required|regex:/^\d+(\.\d{1,0})?$/',
                 'currency' => 'required|string|min:4|max:25',
                 'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
                 'tab_bg' => 'mimes:jpeg,jpg,png,gif|max:10000',
@@ -38,15 +39,25 @@ class ProductsController extends Controller
 
             $is_reccomended = $request->has('is_reccomended') ? true : false;
 
-            if($request->hasfile('image')){
+            $image = ImageDNK::save($request, 'image');
+            $tab_bg = ImageDNK::save($request, 'tab_bg');
+
+            /*if($request->hasfile('image')){
                 $image = $request->file('image');
                 $imageExtension = $image->extension();
                 $imageName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
+
                 $year = date('Y');
                 $month = date('m');
-                $path = public_path('uploads/'.$year.'/'.$month);
-                $x = $image->move($path, time().'_'.$imageName.'.'.$imageExtension);
-            }
+
+                $relativPath = 'uploads/'.$year.'/'.$month;
+                $newImageName = time().'_'.$imageName.'.'.$imageExtension;
+                $relPathWithFileName = '/'.$relativPath . '/' . $newImageName;
+
+                if(!$image->move(public_path($relativPath), $newImageName)){
+                    return back()->with('error', 'При сохранении изображения произошла ошибка. Попробуйте ещё раз.');
+                }
+            }*/
 
             $objProduct = new Products();
             $objProduct = $objProduct->create([
@@ -66,9 +77,8 @@ class ProductsController extends Controller
                 'product_ingredients_tab_content' => $request->input('product_ingredients_tab_content'),
                 'product_usage_tab_content' => $request->input('product_usage_tab_content'),
 
-                // TODO: get images
-//                'image' => $request->file('image'),
-//                'tab_bg' => $request->file('tab_bg'),
+                'image' => $image,
+                'tab_bg' => $tab_bg,
             ]);
 
 

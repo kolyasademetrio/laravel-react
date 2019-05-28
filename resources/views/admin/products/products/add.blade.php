@@ -52,7 +52,7 @@
 
             <div class="form-group">
                 <label for="sale_price">Цена со скидкой:</label>
-                <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder="Цена со скидкой" disabled>
+                <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder="Цена со скидкой" value="0" disabled>
             </div>
 
             <div class="form-group last">
@@ -98,3 +98,28 @@
     </section>
 </main>
 @stop;
+
+@section('js')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#regular_price').on('input propertychange', function(e){
+                var valueChanged = false;
+
+                if (e.type=='propertychange') {
+                    valueChanged = e.originalEvent.propertyName=='value';
+                } else {
+                    valueChanged = true;
+                }
+                if (valueChanged) {
+                    if($('#discount').val() > 0){
+                        var sale_price = ($('#regular_price').val() * $('#discount').val()) / 100;
+
+                        $('#sale_price').val(sale_price.toFixed(0));
+
+
+                    }
+                }
+            });
+        });
+    </script>
+@stop

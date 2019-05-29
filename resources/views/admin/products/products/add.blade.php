@@ -129,10 +129,6 @@
                     }
                 }
             });
-
-            $('.form-check-label').on('click', function(){
-                alert($('input[name="sale_price"]').val());
-            });
         });
     </script>
 @stop

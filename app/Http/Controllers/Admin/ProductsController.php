@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Products;
+use App\Categories;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Helpers\ImageDNK;
@@ -17,7 +18,9 @@ class ProductsController extends Controller
     }
 
     public function addProduct(){
-        return view('admin.products.products.add');
+        $objCategories = new Categories();
+        $categories = $objCategories->get();
+        return view('admin.products.products.add', ['categories' => $categories]);
     }
 
     public function addRequestProduct(Request $request){
@@ -29,9 +32,9 @@ class ProductsController extends Controller
                 'content' => 'required|string|min:4|max:300',
                 'descrtitle' => 'required|string|min:4|max:25',
                 'descrtext' => 'required|string|min:4|max:25',
-                'descr' => 'required|string|min:4|max:100',
-                'regular_price' => 'required|regex:/^\d+(\.\d{1,0})?$/',
-                'discount' => 'required|regex:/^\d+(\.\d{1,0})?$/',
+                'descr' => 'required|string|min:4|max:300',
+                'regular_price' => 'required|regex:/\d+/',
+                'discount' => 'required|regex:/^\d+(\.\d{1,1})?$/',
                 'currency' => 'required|string|min:4|max:25',
                 'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
                 'tab_bg' => 'mimes:jpeg,jpg,png,gif|max:10000',
@@ -59,6 +62,7 @@ class ProductsController extends Controller
                 }
             }*/
 
+
             $objProduct = new Products();
             $objProduct = $objProduct->create([
                 'title' => $request->input('title'),
@@ -80,10 +84,20 @@ class ProductsController extends Controller
                 'tab_bg' => $tab_bg,
             ]);
 
+            if($objProduct){
+                return redirect(route('admin.products.edit', ['id' => $objProduct->id]))->with('success', 'Товар успешно добавлен');
+            }
 
+            return back()->with('error', 'Товар не добавлен. Попробуйте ещё раз.');
         }catch(ValidationException $exception){
             \Log::error($exception->getMessage());
             return back()->with('error', $exception->getMessage());
         }
+    }
+
+    public function editProduct(int $id){
+        $product = Products::find($id);
+
+        return view('admin.products.products.edit', ['product' => $product]);
     }
 }

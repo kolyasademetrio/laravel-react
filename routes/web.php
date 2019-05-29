@@ -40,7 +40,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/products', 'Admin\ProductsController@index')->name('admin.products');
         Route::get('/products/add', 'Admin\ProductsController@addProduct')->name('admin.products.add');
         Route::post('/products/add', 'Admin\ProductsController@addRequestProduct');
-        Route::get('/products/edit/{id}', 'Admin\ProductsController@editProduct')->where('id', '\d+')->name('products.edit');
+        Route::get('/products/edit/{id}', 'Admin\ProductsController@editProduct')->where('id', '\d+')->name('admin.products.edit');
         Route::post('/products/edit/{id}', 'Admin\ProductsController@editRequestProduct')->where('id', '\d+');
         Route::delete('/products/delete', 'Admin\ProductsController@deleteProduct')->name('admin.products.delete');
     });

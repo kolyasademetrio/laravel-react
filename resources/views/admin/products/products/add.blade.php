@@ -21,41 +21,50 @@
             </div>
 
             <div class="form-group">
-                <label for="content">Введите контент товара:</label>
-                <input type="text" class="form-control" id="content" name="content" placeholder="Введите контент товара" required>
-            </div>
-
-            <div class="form-group">
                 <label for="descrtitle">Введите короткий заголовок товара:</label>
                 <input type="text" class="form-control" id="descrtitle" name="descrtitle" placeholder="Введите короткий заголовок товара" required>
             </div>
 
-            <div class="form-group last">
+            <div class="form-group">
                 <label for="descrtext">Введите короткий текст товара:</label>
                 <input type="text" class="form-control" id="descrtext" name="descrtext" placeholder="Введите короткий текст товара" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group last">
+                <label for="product_category">Выберите категорию товара</label>
+                <select name="product_category" id="product_category" class="form-control">
+                    @foreach($categories as $category)
+                        <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group textarea">
                 <label for="descr">Введите описание товара:</label>
-                <input type="text" class="form-control" id="descr" name="descr" placeholder="Введите описание товара" required>
+                <textarea class="form-control" id="descr" name="descr" placeholder="Введите описание товара" required></textarea>
             </div>
 
-            <div class="form-group">
+            <div class="form-group textarea last">
+                <label for="content">Введите контент товара:</label>
+                <textarea class="form-control" id="content" name="content" placeholder="Введите контент товара" required></textarea>
+            </div>
+
+            <div class="form-group price">
                 <label for="regular_price">Введите цену:</label>
-                <input type="text" class="form-control" id="regular_price" name="regular_price" placeholder="Введите цену" required>
+                <input type="number" min="0" step="1" class="form-control" id="regular_price" name="regular_price" placeholder="Введите цену" required>
             </div>
 
-            <div class="form-group last">
+            <div class="form-group price">
                 <label for="discount">Введите скидку, %:</label>
-                <input type="text" class="form-control" id="discount" name="discount" placeholder="Введите скидку" required>
+                <input type="number" min="0" max="100" step="0.1" class="form-control" id="discount" name="discount" placeholder="Введите скидку" required>
             </div>
 
-            <div class="form-group">
+            <div class="form-group price">
                 <label for="sale_price">Цена со скидкой:</label>
-                <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder="Цена со скидкой" value="0" disabled>
+                <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder="Цена со скидкой" value="0" readonly>
             </div>
 
-            <div class="form-group last">
+            <div class="form-group price last">
                 <label for="currency">Валюта:</label>
                 <input type="text" class="form-control" id="currency" name="currency" placeholder="Валюта" required>
             </div>
@@ -102,8 +111,8 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#regular_price').on('input propertychange', function(e){
-                var valueChanged = false;
+            $('#regular_price, #discount').on('input propertychange', function(e){
+                let valueChanged = false;
 
                 if (e.type=='propertychange') {
                     valueChanged = e.originalEvent.propertyName=='value';
@@ -112,13 +121,17 @@
                 }
                 if (valueChanged) {
                     if($('#discount').val() > 0){
-                        var sale_price = ($('#regular_price').val() * $('#discount').val()) / 100;
+                        let sale_price = ($('#regular_price').val() * $('#discount').val()) / 100;
 
-                        $('#sale_price').val(sale_price.toFixed(0));
-
-
+                        $('input[name="sale_price"]').val($('#regular_price').val() - sale_price.toFixed(0));
+                    } else {
+                        $('input[name="sale_price"]').val(0);
                     }
                 }
+            });
+
+            $('.form-check-label').on('click', function(){
+                alert($('input[name="sale_price"]').val());
             });
         });
     </script>

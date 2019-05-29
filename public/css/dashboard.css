@@ -110,8 +110,13 @@ button,
     margin-right: 2%;
 }
 
-.add_product_form>.form-group.image {
+.add_product_form>.form-group.image,
+.add_product_form>.form-group.textarea {
     width: 49%;
+}
+
+.add_product_form>.form-group.price {
+    width: 23.5%;
 }
 
 .add_product_form>.form-group.last {

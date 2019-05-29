@@ -1,6 +1,6 @@
-@extends('layouts.admin');
+@extends('layouts.admin')
 
-@section('content');
+@section('content')
 <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
     <h1>Редактировать категорию</h1>
     <section>
@@ -25,4 +25,4 @@
         </form>
     </section>
 </main>
-@stop;
+@stop

@@ -76,7 +76,6 @@ class ProductsController extends Controller
                 'product_description_tab_content' => $request->input('product_description_tab_content'),
                 'product_ingredients_tab_content' => $request->input('product_ingredients_tab_content'),
                 'product_usage_tab_content' => $request->input('product_usage_tab_content'),
-
                 'image' => $image,
                 'tab_bg' => $tab_bg,
             ]);

@@ -64,22 +64,8 @@ class ProductsController extends Controller
 
 
             $objProduct = new Products();
-            $objProduct = $objProduct->create([
-                'title' => $request->input('title'),
-                'slug' => $request->input('slug'),
-                'excerpt' => $request->input('excerpt'),
-                'content' => $request->input('content'),
-                'descrtitle' => $request->input('descrtitle'),
-                'descrtext' => $request->input('descrtext'),
-                'descr' => $request->input('descr'),
-                'regular_price' => $request->input('regular_price'),
-                'sale_price' => $request->input('sale_price'),
-                'discount' => $request->input('discount'),
-                'currency' => $request->input('currency'),
+            $objProduct = $objProduct->create($request->all(), [
                 'is_reccomended' => $is_reccomended,
-                'product_description_tab_content' => $request->input('product_description_tab_content'),
-                'product_ingredients_tab_content' => $request->input('product_ingredients_tab_content'),
-                'product_usage_tab_content' => $request->input('product_usage_tab_content'),
                 'image' => $image,
                 'tab_bg' => $tab_bg,
             ]);

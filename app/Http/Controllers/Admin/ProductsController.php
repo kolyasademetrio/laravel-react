@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Products;
 use App\Categories;
+use App\CategoriesRelationship;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Helpers\ImageDNK;
@@ -70,7 +71,13 @@ class ProductsController extends Controller
                 'tab_bg' => $tab_bg,
             ]);
 
-            if($objProduct){
+            $objCatsRels = new CategoriesRelationship();
+            $objCatsRels = $objCatsRels->create([
+                'object_id' => $objProduct->id,
+                'category_id' => $request->product_category,
+            ]);
+
+            if($objProduct && $objCatsRels){
                 return redirect(route('admin.products.edit', ['id' => $objProduct->id]))->with('success', 'Товар успешно добавлен');
             }
 

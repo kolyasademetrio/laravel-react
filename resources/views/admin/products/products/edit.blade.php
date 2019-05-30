@@ -61,7 +61,7 @@
 
                 <div class="form-group price">
                     <label for="sale_price">Цена со скидкой:</label>
-                    <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder="Цена со скидкой" value="0" value="{!! $product->sale_price !!}" readonly>
+                    <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder="Цена со скидкой" value="{!! $product->sale_price ? $product->sale_price : 0 !!}" readonly>
                 </div>
 
                 <div class="form-group price last">

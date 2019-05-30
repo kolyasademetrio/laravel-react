@@ -13,3 +13,12 @@
         });
     </script>
 @endif
+
+@if($errors->any())
+    <script type="text/javascript">
+        $(function(){
+            alertify.alert("{!! session()->get('error') !!}");
+            alertify.error("{!! session()->get('error') !!}");
+        });
+    </script>
+@endif

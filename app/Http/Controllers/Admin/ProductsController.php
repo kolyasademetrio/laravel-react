@@ -28,7 +28,7 @@ class ProductsController extends Controller
         try{
             $this->validate($request, [
                 'title' => 'required|string|min:4|max:25',
-                'slug' => 'required|string|min:4|max:25',
+                'slug' => 'required|string|min:4|max:25|unique:products',
                 'excerpt' => 'required|string|min:4|max:25',
                 'content' => 'required|string|min:4|max:300',
                 'descrtitle' => 'required|string|min:4|max:25',
@@ -81,10 +81,12 @@ class ProductsController extends Controller
                 return redirect(route('admin.products.edit', ['id' => $objProduct->id]))->with('success', 'Товар успешно добавлен');
             }
 
-            return back()->with('error', 'Товар не добавлен. Попробуйте ещё раз.');
+            return Redirect::back()->withErrors(['msg', 'The Message']);
+
+            //return redirect()->back()->with('error', 'Товар не добавлен. Попробуйте ещё раз.');
         }catch(ValidationException $exception){
             \Log::error($exception->getMessage());
-            return back()->with('error', $exception->getMessage());
+            return back()->with('error', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
         }
     }
 

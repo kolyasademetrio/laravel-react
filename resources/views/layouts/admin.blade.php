@@ -10,7 +10,12 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
     <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap-min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/bootstrap-min.css">
+
+    <!-- Alertyfy CSS -->
+    <link rel="stylesheet" href="/plugins/alertyfy/themes/alertify.core.css">
+    <link rel="stylesheet" href="/plugins/alertyfy/themes/alertify.default.css">
+    <link rel="stylesheet" href="/plugins/alertyfy/themes/alertify.bootstrap.css">
 
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
@@ -102,7 +107,7 @@
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
+<script src="/plugins/alertyfy/lib/alertify.js"></script>
 @yield('js')
 
 @include('inc.messages')

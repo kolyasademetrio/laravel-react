@@ -18,7 +18,6 @@
     @foreach ($errors->all() as $error)
         <script type="text/javascript">
             $(function(){
-                {{--alertify.alert("{{ trans($error) }}");--}}
                 alertify.error("{{ trans($error) }}");
             });
         </script>

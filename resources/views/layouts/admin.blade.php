@@ -55,10 +55,10 @@
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
             <ul class="nav nav-pills flex-column">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{!! route('admin.products') !!}">Товары</a>
+                    <a class="nav-link {{ active(['admin.products', 'admin.products.*', 'not:admin.products.categories', 'not:admin.products.categories.*']) }}" href="{!! route('admin.products') !!}">Товары</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{!! route('admin.products.categories') !!}">Категории товаров <span class="sr-only">(current)</span></a>
+                    <a class="nav-link {{ active(['admin.products.categories', 'admin.products.categories.*']) }}" href="{!! route('admin.products.categories') !!}">Категории товаров <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Analytics</a>

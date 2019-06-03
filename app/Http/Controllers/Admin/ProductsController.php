@@ -58,17 +58,20 @@ class ProductsController extends Controller
             'tab_bg' => $tab_bg,
         ]);
 
-        $objCatsRels = new CategoriesRelationship();
-        $objCatsRels = $objCatsRels->create([
-            'object_id' => $objProduct->id,
-            'category_id' => $request->product_category,
-        ]);
+        $hasCategory = $request->input('product_category') !== 0;
 
-        if($objProduct && $objCatsRels){
-            return redirect(route('admin.products.edit', ['id' => $objProduct->id]))->with('success', 'Товар успешно добавлен');
+        if($hasCategory){
+            $objCatsRels = new CategoriesRelationship();
+            $objCatsRels = $objCatsRels->create([
+                'object_id' => $objProduct->id,
+                'category_id' => $request->product_category,
+            ]);
         }
 
-        session(['dima' => 'dimadata']);
+
+        if($objProduct && (!$hasCategory || $objCatsRels)){
+            return redirect(route('admin.products.edit', ['id' => $objProduct->id]))->with('success', trans('messages.products.successCreated'));
+        }
 
         return back();
 

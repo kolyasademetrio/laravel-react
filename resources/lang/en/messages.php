@@ -4,4 +4,7 @@ return [
         'successLogin' => 'You are successfully logged in',
         'errorLogin' => 'Login failed',
     ],
+    'products' => [
+        'successCreated' => 'Product successfully added',
+    ],
 ];

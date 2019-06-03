@@ -4,4 +4,7 @@ return [
         'successLogin' => 'Вы успешно авторизованы',
         'errorLogin' => 'Не удалось авторизоваться',
     ],
+    'products' => [
+        'successCreated' => 'Товар успешно добавлен',
+    ],
 ];

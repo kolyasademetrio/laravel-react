@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Currencies;
 use Validator;
 use App\Products;
 use App\Categories;
@@ -22,7 +23,11 @@ class ProductsController extends Controller
     public function addProduct(){
         $objCategories = new Categories();
         $categories = $objCategories->get();
-        return view('admin.products.products.add', ['categories' => $categories]);
+
+        $objCurrencies = new Currencies();
+        $currency = $objCurrencies->where('current', true)->first();
+
+        return view('admin.products.products.add', ['categories' => $categories, 'currency' => $currency]);
     }
 
     public function addRequestProduct(Request $request){
@@ -74,10 +79,6 @@ class ProductsController extends Controller
         }
 
         return back();
-
-        //return back()->withInput('error', 'Товар не сохранен.');
-
-        //return redirect()->back()->with('error', 'Товар не добавлен. Попробуйте ещё раз.');
     }
 
     public function editProduct(int $id){

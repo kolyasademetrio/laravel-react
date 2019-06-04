@@ -26,6 +26,8 @@ class CreateCurrenciesTable extends Migration
             $table->string('decimal_mark', 2)->default('.');
             $table->string('thousands_separator', 2)->default('');
             $table->boolean('current')->default(false);
+            $table->boolean('base')->default(false);
+            $table->unsignedInteger('multiplicity')->default(1);
             $table->timestamps();
         });
     }

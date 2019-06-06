@@ -128,11 +128,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
-        'slug'           => [
-            'regex'     => 'Field: attribute can contain only lowercase letters, numbers, dashes.',
+        'slug' => [
+            'regex' => 'Field: attribute can contain only lowercase letters, numbers, dashes.',
         ],
     ],
 

@@ -75,7 +75,7 @@ class ProductsController extends Controller
             'tab_bg' => $tab_bg,
         ]);
 
-        $hasCategory = $request->input('product_category') !== 0;
+        $hasCategory = $request->input('product_category') != 0;
 
         if($hasCategory){
             $objCatsRels = new CategoriesRelationship();

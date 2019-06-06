@@ -1,7 +1,6 @@
 @if(session()->has('success'))
     <script type="text/javascript">
         $(function(){
-            alertify.alert("{!! session()->get('success') !!}");
             alertify.success("{!! session()->get('success') !!}");
         });
     </script>

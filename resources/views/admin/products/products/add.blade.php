@@ -33,7 +33,7 @@
             <div class="form-group last">
                 <label for="product_category">Выберите категорию товара</label>
                 <select name="product_category" id="product_category" class="form-control">
-                    <option value="0">Выберите категорию товара</option>
+                    <option value="0" selected>Выберите категорию товара</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
                     @endforeach

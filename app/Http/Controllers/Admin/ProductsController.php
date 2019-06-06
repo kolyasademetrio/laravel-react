@@ -25,23 +25,35 @@ class ProductsController extends Controller
         $categories = $objCategories->get();
 
         $objCurrencies = new Currencies();
-        $currency = $objCurrencies->where('current', true)->first();
+        $currencyBase = $objCurrencies->where('base', true)->first();
 
-        return view('admin.products.products.add', ['categories' => $categories, 'currency' => $currency]);
+        return view('admin.products.products.add', ['categories' => $categories, 'currency' => $currencyBase]);
     }
 
     public function addRequestProduct(Request $request){
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|min:4|max:25',
-            'slug' => 'required|string|min:4|max:25|unique:products',
+            'slug' => array(
+                'required',
+                'string',
+                'min:4',
+                'max:25',
+                'unique:products',
+                'regex:/^[a-z0-9а-яё-]+$/u',
+            ),
             'excerpt' => 'required|string|min:4|max:25',
             'content' => 'required|string|min:4|max:300',
             'descrtitle' => 'required|string|min:4|max:25',
             'descrtext' => 'required|string|min:4|max:25',
             'descr' => 'required|string|min:4|max:300',
-            'regular_price' => 'required|regex:/\d+/',
-            'discount' => 'required|regex:/^\d+(\.\d{1,1})?$/',
-            'currency' => 'required|string|min:4|max:25',
+            'regular_price' => array(
+                'required',
+                'regex:/\d+/',
+            ),
+            'discount' => array(
+                'required',
+                'regex:/^\d+(\.\d{1,1})?$/',
+            ),
             'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'tab_bg' => 'mimes:jpeg,jpg,png,gif|max:10000',
         ]);

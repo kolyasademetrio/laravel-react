@@ -67,11 +67,6 @@
 
             <div class="form-group price last">
                 <label for="currency">Валюта:</label>
-                {{--<select class="form-control" id="currency" name="currency">
-                    @foreach($currencies as $currency)
-                        <option value="{{ $currency->id }}" {{ $currency->current ? 'selected' : ''}}>{{ $currency->name }}</option>
-                    @endforeach
-                </select>--}}
                 <input type="text" class="form-control" id="currency" name="currency" value="{{ $currency->name }}" readonly>
             </div>
 

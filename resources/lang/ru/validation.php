@@ -139,6 +139,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'slug'           => [
+            'regex'     => 'Поле :attribute может содержать только строчные буквы, цифры, тире.',
+        ],
     ],
 
     /*

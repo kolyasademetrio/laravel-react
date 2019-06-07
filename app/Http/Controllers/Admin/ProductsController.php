@@ -41,10 +41,10 @@ class ProductsController extends Controller
                 'unique:products',
                 'regex:/^[a-z0-9а-яё-]+$/u',
             ),
-            'excerpt' => 'required|string|min:4|max:25',
+            'excerpt' => 'required|string|min:4|max:100',
             'content' => 'required|string|min:4|max:300',
-            'descrtitle' => 'required|string|min:4|max:25',
-            'descrtext' => 'required|string|min:4|max:25',
+            'descrtitle' => 'required|string|min:4|max:100',
+            'descrtext' => 'required|string|min:4|max:100',
             'descr' => 'required|string|min:4|max:300',
             'regular_price' => array(
                 'required',
@@ -52,6 +52,8 @@ class ProductsController extends Controller
             ),
             'discount' => array(
                 'required',
+                'min:0',
+                'max:100',
                 'regex:/^\d+(\.\d{1,1})?$/',
             ),
             'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
@@ -96,9 +98,27 @@ class ProductsController extends Controller
     public function editProduct(int $id){
         $product = Products::find($id);
 
+        if(!$product){
+            return abort('404');
+        }
+
         $objCategories = new Categories();
         $categories = $objCategories->get();
 
         return view('admin.products.products.edit', ['product' => $product, 'categories' => $categories]);
+    }
+
+    public function deleteProduct(Request $request){
+        if($request->ajax()){
+            $id = (int)$request->input('id');
+
+            $objProduct = new Products();
+            $objProduct->where('id', $id)->delete();
+
+            $objCategoriesRelationship = new CategoriesRelationship();
+            $objCategoriesRelationship->where('object_id', $id)->delete();
+
+            echo 'Success';
+        }
     }
 }

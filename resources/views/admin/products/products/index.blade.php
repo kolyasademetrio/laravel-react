@@ -52,7 +52,7 @@
                         <td>{{ $product->tab_bg }}</td>
                         <td>{{$product->created_at->format('d-m-Y H:i')}}</td>
                         <td>
-                            <a href="{{--{!! route('admin.products.edit', ['id' => $product->id]) !!}--}}">Редактировать</a> ||
+                            <a href="{!! route('admin.products.edit', ['id' => $product->id]) !!}">Редактировать</a> ||
                             <a href="" class="delete_product" rel="{{$product->id}}">Удалить</a>
                         </td>
                     </tr>
@@ -64,7 +64,7 @@
 @stop
 
 @section('js')
-    {{--<script>
+    <script>
         $(function(){
             $('.delete_product').on('click', function(e){
                 e.preventDefault();
@@ -87,5 +87,5 @@
                 }
             });
         });
-    </script>--}}
+    </script>
 @stop

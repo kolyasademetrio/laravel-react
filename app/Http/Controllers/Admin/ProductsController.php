@@ -105,7 +105,14 @@ class ProductsController extends Controller
         $objCategories = new Categories();
         $categories = $objCategories->get();
 
-        return view('admin.products.products.edit', ['product' => $product, 'categories' => $categories]);
+        $objCategoriesRelationship = new CategoriesRelationship();
+        $categoriesRelationship = $objCategoriesRelationship->where('object_id', $id)->get();
+
+        return view('admin.products.products.edit', [
+            'product' => $product,
+            'categories' => $categories,
+            'categoriesRelationship' => $categoriesRelationship,
+        ]);
     }
 
     public function deleteProduct(Request $request){

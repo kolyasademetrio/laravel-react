@@ -106,12 +106,18 @@ class ProductsController extends Controller
         $categories = $objCategories->get();
 
         $objCategoriesRelationship = new CategoriesRelationship();
-        $categoriesRelationship = $objCategoriesRelationship->where('object_id', $id)->get();
+        $productCategoriesRelationship = $objCategoriesRelationship->where('object_id', $id)->get();
+
+        $productCategories = array();
+        foreach($productCategoriesRelationship as $productCategory){
+            array_push($productCategories, $productCategory->category_id);
+        }
 
         return view('admin.products.products.edit', [
             'product' => $product,
             'categories' => $categories,
-            'categoriesRelationship' => $categoriesRelationship,
+            'productCategoriesRelationship' => $productCategoriesRelationship,
+            'productCategories' => $productCategories,
         ]);
     }
 
@@ -124,6 +130,18 @@ class ProductsController extends Controller
 
             $objCategoriesRelationship = new CategoriesRelationship();
             $objCategoriesRelationship->where('object_id', $id)->delete();
+
+            echo 'Success';
+        }
+    }
+
+    public function deleteProductCategory(Request $request){
+        if($request->ajax()){
+            $product_id = (int)$request->input('product_id');
+            $category_id = (int)$request->input('category_id');
+
+            $objCategoriesRelationship = new CategoriesRelationship();
+            $objCategoriesRelationship->where('object_id', $product_id)->where('category_id', $category_id)->delete();
 
             echo 'Success';
         }

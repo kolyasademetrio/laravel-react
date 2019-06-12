@@ -11,6 +11,7 @@
             <table class="table table-bordered">
                 <tr>
                     <th>#</th>
+                    <th>ID</th>
                     <th>Название</th>
                     <th>Slug</th>
                     <th>Краткое описание</th>
@@ -34,6 +35,7 @@
                 @foreach($products as $key=>$product)
                     <tr>
                         <td>{{ ++$key }}</td>
+                        <td>{{ $product->id }}</td>
                         <td>{{ $product->title }}</td>
                         <td>{{ $product->slug }}</td>
                         <td>{!! $product->excerpt !!}</td>

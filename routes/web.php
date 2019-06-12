@@ -43,6 +43,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/products/edit/{id}', 'Admin\ProductsController@editProduct')->where('id', '\d+')->name('admin.products.edit');
         Route::post('/products/edit/{id}', 'Admin\ProductsController@editRequestProduct')->where('id', '\d+');
         Route::delete('/products/delete', 'Admin\ProductsController@deleteProduct')->name('admin.products.delete');
+        Route::delete('/products/productcategory/delete', 'Admin\ProductsController@deleteProductCategory')->name('admin.products.productcategory.delete');
     });
 });
 

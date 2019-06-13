@@ -126,12 +126,14 @@ class ProductsController extends Controller
             $id = (int)$request->input('id');
 
             $objProduct = new Products();
-            $objProduct->where('id', $id)->delete();
+            $productDeleted = $objProduct->where('id', $id)->delete();
 
-            $objCategoriesRelationship = new CategoriesRelationship();
-            $objCategoriesRelationship->where('object_id', $id)->delete();
+            if($productDeleted){
+                $objCategoriesRelationship = new CategoriesRelationship();
+                $productRelationsCatsDeleted = $objCategoriesRelationship->where('object_id', $id)->delete();
+            }
 
-            echo 'Success';
+            echo ($productDeleted && $productRelationsCatsDeleted) ? true : false;
         }
     }
 
@@ -141,9 +143,9 @@ class ProductsController extends Controller
             $category_id = (int)$request->input('category_id');
 
             $objCategoriesRelationship = new CategoriesRelationship();
-            $objCategoriesRelationship->where('object_id', $product_id)->where('category_id', $category_id)->delete();
+            $relationDeleted = $objCategoriesRelationship->where('object_id', $product_id)->where('category_id', $category_id)->delete();
 
-            echo 'Success';
+            echo $relationDeleted ? true : false;
         }
     }
 }

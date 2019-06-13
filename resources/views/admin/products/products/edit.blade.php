@@ -43,10 +43,12 @@
                     </select>
                 </div>
 
-                <div class="list-group" style="width: 100%;">
+                <div class="list-group mb-3" style="width: 100%;">
                     <div class="list-group-item active">Список всех категорий товара</div>
+                    @php $productHasCats = 0; @endphp
                     @foreach($categories as $cat)
                         @if(in_array($cat->category_id, $productCategories))
+                            @php $productHasCats++ @endphp
                             <div class="list-group-item">
                                 <div class="container">
                                     <div class="row justify-content-between">
@@ -59,6 +61,15 @@
                             </div>
                         @endif
                     @endforeach
+                    @if(!$productHasCats)
+                        <div class="list-group-item">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col text-center">У товара нет категорий</div>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
 
                 <div class="form-group textarea">
@@ -163,13 +174,19 @@
                         url: "{!! route('admin.products.productcategory.delete') !!}",
                         data: {
                             _token:"{{csrf_token()}}",
-                            _token:"{{csrf_token()}}",
                             category_id: category_id,
-                            object_id: product_id,
+                            product_id: product_id,
                         },
-                        success: function(){
-                            alert("Категория товара удалена.");
-                            // location.reload();
+                        success: function(data){
+                            if(data){
+                                alert("Категория товара удалена.");
+                                location.reload();
+                            } else {
+                                alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                            }
+                        },
+                        error: function () {
+                            alertify.error("При удалении произошла ошибка. Попробуйте позже.");
                         }
                     });
                 } else {

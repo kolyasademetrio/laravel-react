@@ -6,5 +6,6 @@ return [
     ],
     'products' => [
         'successCreated' => 'Товар успешно добавлен',
+        'successUpdated' => 'Товар успешно изменен',
     ],
 ];

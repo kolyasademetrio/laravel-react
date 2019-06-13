@@ -47,10 +47,6 @@ class ProductsCategoriesController extends Controller
 
         return back();
 
-
-
-
-        /* ---------- */
         /*try{
             $this->validate($request, [
                 'category_name' => 'required|string|min:4|max:25',
@@ -84,7 +80,9 @@ class ProductsCategoriesController extends Controller
             return abort('404');
         }
 
-        return view('admin.products.categories.edit', ['category' => $category]);
+        return view('admin.products.categories.edit', [
+            'category' => $category
+        ]);
     }
 
     public function editRequestCategory(Request $request, int $id){
@@ -94,12 +92,12 @@ class ProductsCategoriesController extends Controller
                 'category_slug' => 'required|string|min:4|max:25',
             ]);
 
-            $show_on_homepage = $request->has('show_on_homepage') ? true : false;
-
             $objCategory = Categories::find($id);
             if(!$objCategory){
                 return abort('404');
             }
+
+            $show_on_homepage = $request->has('show_on_homepage') ? true : false;
 
             $objCategory->category_name = $request->input('category_name');
             $objCategory->category_slug = $request->input('category_slug');

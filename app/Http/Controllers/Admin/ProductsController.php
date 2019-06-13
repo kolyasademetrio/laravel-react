@@ -44,7 +44,7 @@ class ProductsController extends Controller
             'excerpt' => 'required|string|min:4|max:100',
             'content' => 'required|string|min:4|max:300',
             'descrtitle' => 'required|string|min:4|max:100',
-            'descrtext' => 'required|string|min:4|max:100',
+            'descrtext' => 'required|string|min:4|max:300',
             'descr' => 'required|string|min:4|max:300',
             'regular_price' => array(
                 'required',
@@ -54,7 +54,7 @@ class ProductsController extends Controller
                 'required',
                 'min:0',
                 'max:100',
-                'regex:/^\d+(\.\d{1,1})?$/',
+                'regex:/^\d+(\.\d{1,2})?$/',
             ),
             'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'tab_bg' => 'mimes:jpeg,jpg,png,gif|max:10000',
@@ -77,6 +77,10 @@ class ProductsController extends Controller
             'tab_bg' => $tab_bg,
         ]);
 
+        if(!$objProduct){
+            return back()->with('error', 'Товар не создан. Попробуйте ещё раз');
+        }
+
         $hasCategory = $request->input('product_category') != 0;
 
         if($hasCategory){
@@ -97,7 +101,6 @@ class ProductsController extends Controller
 
     public function editProduct(int $id){
         $product = Products::find($id);
-
         if(!$product){
             return abort('404');
         }
@@ -119,6 +122,90 @@ class ProductsController extends Controller
             'productCategoriesRelationship' => $productCategoriesRelationship,
             'productCategories' => $productCategories,
         ]);
+    }
+
+    public function editRequestProduct(Request $request, int $id){
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|string|min:4|max:25',
+            'slug' => array(
+                'required',
+                'string',
+                'min:4',
+                'max:25',
+                'unique:products',
+                'regex:/^[a-z0-9а-яё-]+$/u',
+            ),
+            'excerpt' => 'required|string|min:4|max:100',
+            'content' => 'required|string|min:4|max:300',
+            'descrtitle' => 'required|string|min:4|max:100',
+            'descrtext' => 'required|string|min:4|max:300',
+            'descr' => 'required|string|min:4|max:300',
+            'regular_price' => array(
+                'required',
+                'regex:/\d+/',
+            ),
+            'discount' => array(
+                'required',
+                'min:0',
+                'max:100',
+                'regex:/^\d+(\.\d{1,2})?$/',
+            ),
+            'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
+            'tab_bg' => 'mimes:jpeg,jpg,png,gif|max:10000',
+        ]);
+
+        if($validator->fails()){
+            return back()->withErrors($validator)->withInput();
+        }
+
+        $objProducts = Products::find($id);
+        if(!$objProducts){
+            return abort('404');
+        }
+
+        $is_reccomended = $request->has('is_reccomended') ? true : false;
+
+        $image = ImageDNK::save($request, 'image');
+        $tab_bg = ImageDNK::save($request, 'tab_bg');
+
+
+        $objProducts->title = $request->input('title');
+        $objProducts->slug = $request->input('slug');
+        $objProducts->excerpt = $request->input('excerpt');
+        $objProducts->content = $request->input('content');
+        $objProducts->descrtitle = $request->input('descrtitle');
+        $objProducts->descrtext = $request->input('descrtext');
+        $objProducts->descr = $request->input('descr');
+        $objProducts->regular_price = $request->input('regular_price');
+        $objProducts->sale_price = $request->input('sale_price');
+        $objProducts->discount = $request->input('discount');
+        $objProducts->currency = $request->input('currency');
+        $objProducts->image = $image;
+        $objProducts->is_reccomended = $is_reccomended;
+        $objProducts->product_description_tab_content = $request->input('product_description_tab_content');
+        $objProducts->product_ingredients_tab_content = $request->input('product_ingredients_tab_content');
+        $objProducts->product_usage_tab_content = $request->input('product_usage_tab_content');
+        $objProducts->tab_bg = $tab_bg;
+
+        if(!$objProducts->save()){
+            return back()->with('error', 'Товар не изменен. Попробуйте ещё раз');
+        }
+
+        $hasCategory = $request->input('product_category') != 0;
+
+        if($hasCategory){
+            $objCatsRels = new CategoriesRelationship();
+            $objCatsRels = $objCatsRels->create([
+                'object_id' => $id,
+                'category_id' => $request->input('product_category'),
+            ]);
+        }
+
+        if($objProducts && (!$hasCategory || $objCatsRels)){
+            return back()->with('success', trans('messages.products.successUpdated'));
+        }
+
+        return back()->with('error', 'Товар не изменен. Попробуйте ещё раз');
     }
 
     public function deleteProduct(Request $request){

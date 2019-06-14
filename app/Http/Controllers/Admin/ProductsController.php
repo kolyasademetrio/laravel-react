@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Currencies;
-use App\Http\Requests\ProductsUpdateRequest;
-use Illuminate\Validation\Rule;
+use App\Helpers\GetArrayOf;
+use App\Http\Requests\ProductsRequest;
 use Validator;
 use App\Products;
 use App\Categories;
@@ -32,51 +32,14 @@ class ProductsController extends Controller
         return view('admin.products.products.add', ['categories' => $categories, 'currency' => $currencyBase]);
     }
 
-    public function addRequestProduct(Request $request){
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string|min:4|max:25',
-            'slug' => array(
-                'required',
-                'string',
-                'min:4',
-                'max:25',
-                'unique:products',
-                'regex:/^[a-z0-9а-яё-]+$/u',
-            ),
-            'excerpt' => 'required|string|min:4|max:100',
-            'content' => 'required|string|min:4|max:300',
-            'descrtitle' => 'required|string|min:4|max:100',
-            'descrtext' => 'required|string|min:4|max:300',
-            'descr' => 'required|string|min:4|max:300',
-            'regular_price' => array(
-                'required',
-                'regex:/\d+/',
-            ),
-            'discount' => array(
-                'required',
-                'min:0',
-                'max:100',
-                'regex:/^\d+(\.\d{1,2})?$/',
-            ),
-            'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
-            'tab_bg' => 'mimes:jpeg,jpg,png,gif|max:10000',
-        ]);
-
-        if ($validator->fails()){
-            return back()->withErrors($validator)->withInput();
-        }
-
-        $is_reccomended = $request->has('is_reccomended') ? true : false;
-
-        $image = ImageDNK::save($request, 'image');
-        $tab_bg = ImageDNK::save($request, 'tab_bg');
-
+    public function addRequestProduct(ProductsRequest $request){
+        $validated = $request->validated();
 
         $objProduct = new Products();
-        $objProduct = $objProduct->create($request->all(), [
-            'is_reccomended' => $is_reccomended,
-            'image' => $image,
-            'tab_bg' => $tab_bg,
+        $objProduct = $objProduct->create($validated, [
+            'is_reccomended' => $request->has('is_reccomended') ? true : false,
+            'image' => ImageDNK::save($request, 'image'),
+            'tab_bg' => ImageDNK::save($request, 'tab_bg'),
         ]);
 
         if(!$objProduct){
@@ -89,10 +52,9 @@ class ProductsController extends Controller
             $objCatsRels = new CategoriesRelationship();
             $objCatsRels = $objCatsRels->create([
                 'object_id' => $objProduct->id,
-                'category_id' => $request->product_category,
+                'category_id' => $request->input('product_category'),
             ]);
         }
-
 
         if($objProduct && (!$hasCategory || $objCatsRels)){
             return redirect(route('admin.products.edit', ['id' => $objProduct->id]))->with('success', trans('messages.products.successCreated'));
@@ -113,20 +75,15 @@ class ProductsController extends Controller
         $objCategoriesRelationship = new CategoriesRelationship();
         $productCategoriesRelationship = $objCategoriesRelationship->where('object_id', $id)->get();
 
-        $productCategories = array();
-        foreach($productCategoriesRelationship as $productCategory){
-            array_push($productCategories, $productCategory->category_id);
-        }
-
         return view('admin.products.products.edit', [
             'product' => $product,
             'categories' => $categories,
             'productCategoriesRelationship' => $productCategoriesRelationship,
-            'productCategories' => $productCategories,
+            'productCategories' => GetArrayOf::ids($productCategoriesRelationship),
         ]);
     }
 
-    public function editRequestProduct(ProductsUpdateRequest $request, int $id){
+    public function editRequestProduct(ProductsRequest $request, int $id){
 
         $validated = $request->validated();
 
@@ -135,13 +92,9 @@ class ProductsController extends Controller
             return abort('404');
         }
 
-        $image = ImageDNK::save($request, 'image');
-        $tab_bg = ImageDNK::save($request, 'tab_bg');
-        $is_reccomended = $request->has('is_reccomended') ? true : false;
-
-        $validated['image'] = $image;
-        $validated['tab_bg'] = $tab_bg;
-        $validated['is_reccomended'] = $is_reccomended;
+        $validated['image'] = ImageDNK::save($request, 'image');
+        $validated['tab_bg'] = ImageDNK::save($request, 'tab_bg');
+        $validated['is_reccomended'] = $request->has('is_reccomended') ? true : false;
 
         $objProducts->fill($validated);
 

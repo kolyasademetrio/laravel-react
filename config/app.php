@@ -225,6 +225,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'ImageDNK' => App\Helpers\ImageDNK::class,
+        'GetArrayOf' => App\Helpers\GetArrayOf::class,
     ],
 
 ];

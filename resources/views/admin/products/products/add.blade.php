@@ -67,7 +67,7 @@
 
             <div class="form-group price last">
                 <label for="currency">Валюта:</label>
-                <input type="text" class="form-control" id="currency" name="currency" value="{{ $currency->name }}" readonly>
+                <input type="text" class="form-control" id="currency" name="currency" value="{{ $currency->shortname }}" readonly>
             </div>
 
             <div class="form-group image">

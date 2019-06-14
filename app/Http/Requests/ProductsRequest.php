@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ProductsUpdateRequest extends FormRequest
+class ProductsRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,8 +32,8 @@ class ProductsUpdateRequest extends FormRequest
                 'min:4',
                 'max:25',
                 'regex:/^[a-z0-9а-яё-]+$/u',
-                //'unique:products',
                 Rule::unique('products')->ignore($this->id),
+                //'unique:products',
 
             ),
             'excerpt' => 'required|string|min:4|max:100',
@@ -41,21 +41,22 @@ class ProductsUpdateRequest extends FormRequest
             'descrtitle' => 'required|string|min:4|max:100',
             'descrtext' => 'required|string|min:4|max:300',
             'descr' => 'required|string|min:4|max:300',
-            'regular_price' => array(
+            'regular_price' => [
                 'required',
                 'regex:/\d+/',
-            ),
-            'discount' => array(
+            ],
+            'discount' => [
                 'required',
                 'min:0',
                 'max:100',
                 'regex:/^\d+(\.\d{1,2})?$/',
-            ),
+            ],
+            'currency' => 'string',
             'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'tab_bg' => 'mimes:jpeg,jpg,png,gif|max:10000',
-            'product_description_tab_content' => 'string|max:10000',
-            'product_ingredients_tab_content' => 'string|max:10000',
-            'product_usage_tab_content' => 'string|max:10000',
+            'product_description_tab_content' => 'max:10000',
+            'product_ingredients_tab_content' => 'max:10000',
+            'product_usage_tab_content' => 'max:10000',
             'is_reccomended' => '',
         ];
     }

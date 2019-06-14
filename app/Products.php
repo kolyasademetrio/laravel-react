@@ -35,6 +35,8 @@ class Products extends Authenticatable
         'tab_bg',
     ];
 
+    protected $guarded = [];
+
     protected $dates = [
         'created_at', 'updated_at',
     ];

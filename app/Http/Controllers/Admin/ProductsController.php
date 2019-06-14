@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Currencies;
+use App\Http\Requests\ProductsUpdateRequest;
+use Illuminate\Validation\Rule;
 use Validator;
 use App\Products;
 use App\Categories;
@@ -124,68 +126,24 @@ class ProductsController extends Controller
         ]);
     }
 
-    public function editRequestProduct(Request $request, int $id){
-        $validator = Validator::make($request->all(), [
-            'title' => 'required|string|min:4|max:25',
-            'slug' => array(
-                'required',
-                'string',
-                'min:4',
-                'max:25',
-                'unique:products',
-                'regex:/^[a-z0-9а-яё-]+$/u',
-            ),
-            'excerpt' => 'required|string|min:4|max:100',
-            'content' => 'required|string|min:4|max:300',
-            'descrtitle' => 'required|string|min:4|max:100',
-            'descrtext' => 'required|string|min:4|max:300',
-            'descr' => 'required|string|min:4|max:300',
-            'regular_price' => array(
-                'required',
-                'regex:/\d+/',
-            ),
-            'discount' => array(
-                'required',
-                'min:0',
-                'max:100',
-                'regex:/^\d+(\.\d{1,2})?$/',
-            ),
-            'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
-            'tab_bg' => 'mimes:jpeg,jpg,png,gif|max:10000',
-        ]);
+    public function editRequestProduct(ProductsUpdateRequest $request, int $id){
 
-        if($validator->fails()){
-            return back()->withErrors($validator)->withInput();
-        }
+        $validated = $request->validated();
 
         $objProducts = Products::find($id);
         if(!$objProducts){
             return abort('404');
         }
 
-        $is_reccomended = $request->has('is_reccomended') ? true : false;
-
         $image = ImageDNK::save($request, 'image');
         $tab_bg = ImageDNK::save($request, 'tab_bg');
+        $is_reccomended = $request->has('is_reccomended') ? true : false;
 
+        $validated['image'] = $image;
+        $validated['tab_bg'] = $tab_bg;
+        $validated['is_reccomended'] = $is_reccomended;
 
-        $objProducts->title = $request->input('title');
-        $objProducts->slug = $request->input('slug');
-        $objProducts->excerpt = $request->input('excerpt');
-        $objProducts->content = $request->input('content');
-        $objProducts->descrtitle = $request->input('descrtitle');
-        $objProducts->descrtext = $request->input('descrtext');
-        $objProducts->descr = $request->input('descr');
-        $objProducts->regular_price = $request->input('regular_price');
-        $objProducts->sale_price = $request->input('sale_price');
-        $objProducts->discount = $request->input('discount');
-        $objProducts->currency = $request->input('currency');
-        $objProducts->image = $image;
-        $objProducts->is_reccomended = $is_reccomended;
-        $objProducts->product_description_tab_content = $request->input('product_description_tab_content');
-        $objProducts->product_ingredients_tab_content = $request->input('product_ingredients_tab_content');
-        $objProducts->product_usage_tab_content = $request->input('product_usage_tab_content');
-        $objProducts->tab_bg = $tab_bg;
+        $objProducts->fill($validated);
 
         if(!$objProducts->save()){
             return back()->with('error', 'Товар не изменен. Попробуйте ещё раз');

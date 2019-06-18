@@ -10,12 +10,12 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="/css/bootstrap-min.css">
+    <link rel="stylesheet" href="{{ URL::to('css/bootstrap-min.css') }}">
 
     <!-- Alertyfy CSS -->
-    <link rel="stylesheet" href="/plugins/alertyfy/themes/alertify.core.css">
-    <link rel="stylesheet" href="/plugins/alertyfy/themes/alertify.default.css">
-    <link rel="stylesheet" href="/plugins/alertyfy/themes/alertify.bootstrap.css">
+    <link rel="stylesheet" href="{{ URL::to('plugins/alertyfy/themes/alertify.core.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('plugins/alertyfy/themes/alertify.default.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('plugins/alertyfy/themes/alertify.bootstrap.css') }}">
 
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
@@ -103,11 +103,15 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="/js/custom-js/jquery-3.2.1.js"></script>
+<script src="{{ URL::to('js/custom-js/jquery-3.2.1.js') }}"></script>
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="/js/bootstrap.min.js"></script>
-<script src="/plugins/alertyfy/lib/alertify.js"></script>
+<script src="{{ URL::to('plugins/alertyfy/lib/alertify.js') }}"></script>
+
+<script src="{{ URL::to('plugins/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ URL::to('js/custom-js/tiny-mce-init-admin.js') }}"></script>
+
 @yield('js')
 
 @include('inc.messages')

@@ -34,7 +34,14 @@
                 <div class="form-group last">
                     <label for="product_category">Выберите категорию товара</label>
                     <select name="product_category" id="product_category" class="form-control">
-                        <option value="0" selected>Добавьте категорию товара</option>
+                        @php $productCatsToSelect = 0; @endphp
+                        @foreach($categories as $category)
+                            @if(!in_array($category->category_id, $productCategories))
+                                @php $productCatsToSelect++; @endphp
+                            @endif
+                        @endforeach
+
+                        <option value="0" selected>{{ $productCatsToSelect ? 'Добавьте категорию товара' : 'Нет категорий для добавления' }}</option>
                         @foreach($categories as $category)
                             @if(!in_array($category->category_id, $productCategories))
                                 <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
@@ -50,11 +57,11 @@
                         @if(in_array($cat->category_id, $productCategories))
                             @php $productHasCats++ @endphp
                             <div class="list-group-item">
-                                <div class="container">
+                                <div class="container w-100">
                                     <div class="row justify-content-between">
                                         <div class="col">{{ $cat->category_name }}</div>
                                         <div class="col-auto">
-                                            <a href="" catId="{{ $cat->category_id }}" productId="{{ $product->id }}" class="badge badge-info delete-product-category">&times;</a>
+                                            <a href="" catId="{{ $cat->category_id }}" productId="{{ $product->id }}" class="badge badge-danger delete-product-category">&times;</a>
                                         </div>
                                     </div>
                                 </div>

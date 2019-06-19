@@ -226,6 +226,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'ImageDNK' => App\Helpers\ImageDNK::class,
         'GetArrayOf' => App\Helpers\GetArrayOf::class,
+        'UcfirstCyr' => App\Helpers\UcfirstCyr::class,
     ],
 
 ];

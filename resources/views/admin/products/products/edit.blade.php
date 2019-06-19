@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 
+@php use App\Helpers\UcfirstCyr; @endphp
 
 @section('content')
     <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
@@ -9,28 +10,29 @@
                 <p class="w-100"><button type="submit" class="btn btn-success">Сохранить изменения</button></p>
 
                 <div class="form-group">
-                    <label for="title">Введите название товара:</label>
-                    <input type="text" class="form-control" id="title" name="title" placeholder="Введите название товара" value="{!! $product->title !!}" required>
+                    <label for="title">{!! UcfirstCyr::get(trans('validation.labels.product.title')) !!}:</label>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="{!! trans('validation.labels.product.title') !!}" value="{!! $product->title !!}" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="slug">Введите slug товара:</label>
-                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Введите slug товара" value="{!! $product->slug !!}" required>
+                    <label for="slug">{!! UcfirstCyr::get(trans('validation.labels.product.slug')) !!}:</label>
+                    <input type="text" class="form-control" id="slug" name="slug" placeholder="{!! UcfirstCyr::get(trans('validation.labels.product.slug')) !!}" value="{!! $product->slug !!}" required>
                 </div>
 
                 <div class="form-group last">
-                    <label for="excerpt">Введите краткое описание товара:</label>
-                    <input type="text" class="form-control" id="excerpt" name="excerpt" placeholder="Введите краткое описание товара" value="{!! $product->excerpt !!}" required>
+                    <label for="excerpt">{!! UcfirstCyr::get(trans('validation.labels.product.excerpt')) !!}:</label>
+                    <input type="text" class="form-control" id="excerpt" name="excerpt" placeholder="{!! trans('validation.labels.product.excerpt') !!}" value="{!! $product->excerpt !!}" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="descrtitle">Введите короткий заголовок товара:</label>
-                    <input type="text" class="form-control" id="descrtitle" name="descrtitle" placeholder="Введите короткий заголовок товара" value="{!! $product->descrtitle !!}" required>
+                    <label for="descrtitle">{!! UcfirstCyr::get(trans('validation.labels.product.descrtitle')) !!}}:</label>
+                    <input type="text" class="form-control" id="descrtitle" name="descrtitle" placeholder="{!! trans('validation.labels.product.descrtitle') !!}}" value="{!! $product->descrtitle !!}" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="descrtext">Введите короткий текст товара:</label>
-                    <input type="text" class="form-control" id="descrtext" name="descrtext" placeholder="Введите короткий текст товара" value="{!! $product->descrtext !!}" required>
+                    @php $descrtext = mb_strtolower(trans('validation.attributes.descrtext')) @endphp
+                    <label for="descrtext">Введите {!! $descrtext !!} товара:</label>
+                    <input type="text" class="form-control" id="descrtext" name="descrtext" placeholder="Введите {!! $descrtext !!} товара" value="{!! $product->descrtext !!}" required>
                 </div>
 
                 <div class="form-group last">
@@ -88,13 +90,15 @@
 
 
                 <div class="form-group w-49">
-                    <label for="descr">Введите описание товара:</label>
-                    <textarea class="form-control" id="descr" name="descr" placeholder="Введите описание товара" required>{!! $product->descr !!}</textarea>
+                    @php $description = mb_strtolower(trans('validation.attributes.description')) @endphp
+                    <label for="descr">Введите {!! $description !!} товара:</label>
+                    <textarea class="form-control" id="descr" name="descr" placeholder="Введите {!! $description !!} товара" required>{!! $product->descr !!}</textarea>
                 </div>
 
                 <div class="form-group w-49 last">
-                    <label for="content">Введите контент товара:</label>
-                    <textarea class="form-control" id="content" name="content" placeholder="Введите контент товара" required>{!! $product->content !!}</textarea>
+                    @php $content = mb_strtolower(trans('validation.attributes.content')) @endphp
+                    <label for="content">Введите {!! $content !!} товара:</label>
+                    <textarea class="form-control" id="content" name="content" placeholder="Введите {!! $content !!} товара" required>{!! $product->content !!}</textarea>
                 </div>
 
                 <div class="form-group w-23-5">

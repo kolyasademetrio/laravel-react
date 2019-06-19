@@ -6,6 +6,8 @@
         <h1>Редактировать товар</h1>
         <section>
             <form method="post" action="" class="add_product_form" enctype="multipart/form-data">
+                <p class="w-100"><button type="submit" class="btn btn-success">Сохранить изменения</button></p>
+
                 <div class="form-group">
                     <label for="title">Введите название товара:</label>
                     <input type="text" class="form-control" id="title" name="title" placeholder="Введите название товара" value="{!! $product->title !!}" required>
@@ -50,11 +52,16 @@
                     </select>
                 </div>
 
-                <div class="list-group mb-3" style="width: 100%;">
+                <div class="form-group form-check w-32">
+                    <input type="checkbox" class="form-check-input" id="is_reccomended" name="is_reccomended" {{ $product->is_reccomended == 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="is_reccomended">Показывать в рекомендуемых</label>
+                </div>
+
+                <div class="form-group list-group mb-3 w-66 last">
                     <div class="list-group-item active">Список всех категорий товара</div>
                     @php $productHasCats = 0; @endphp
-                    @foreach($categories as $cat)
-                        @if(in_array($cat->category_id, $productCategories))
+                @foreach($categories as $cat)
+                    @if(in_array($cat->category_id, $productCategories))
                             @php $productHasCats++ @endphp
                             <div class="list-group-item">
                                 <div class="container w-100">
@@ -68,7 +75,7 @@
                             </div>
                         @endif
                     @endforeach
-                    @if(!$productHasCats)
+                @if(!$productHasCats)
                         <div class="list-group-item">
                             <div class="container">
                                 <div class="row justify-content-center">
@@ -79,68 +86,64 @@
                     @endif
                 </div>
 
-                <div class="form-group textarea">
+
+                <div class="form-group w-49">
                     <label for="descr">Введите описание товара:</label>
                     <textarea class="form-control" id="descr" name="descr" placeholder="Введите описание товара" required>{!! $product->descr !!}</textarea>
                 </div>
 
-                <div class="form-group textarea last">
+                <div class="form-group w-49 last">
                     <label for="content">Введите контент товара:</label>
                     <textarea class="form-control" id="content" name="content" placeholder="Введите контент товара" required>{!! $product->content !!}</textarea>
                 </div>
 
-                <div class="form-group price">
+                <div class="form-group w-23-5">
                     <label for="regular_price">Введите цену:</label>
                     <input type="number" min="0" step="1" class="form-control" id="regular_price" name="regular_price" placeholder="Введите цену" value="{!! $product->regular_price !!}" required>
                 </div>
 
-                <div class="form-group price">
+                <div class="form-group w-23-5">
                     <label for="discount">Введите скидку, %:</label>
                     <input type="number" min="0" max="100" step="0.1" class="form-control" id="discount" name="discount" placeholder="Введите скидку" value="{!! $product->discount !!}" required>
                 </div>
 
-                <div class="form-group price">
+                <div class="form-group w-23-5">
                     <label for="sale_price">Цена со скидкой:</label>
                     <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder="Цена со скидкой" value="{!! $product->sale_price ? $product->sale_price : 0 !!}" readonly>
                 </div>
 
-                <div class="form-group price last">
+                <div class="form-group w-23-5 last">
                     <label for="currency">Валюта:</label>
                     <input type="text" class="form-control" id="currency" name="currency" placeholder="Валюта" value="{!! $product->currency !!}" required>
                 </div>
 
-                <div class="form-group image">
+                <div class="form-group w-49">
                     <label for="image">Изображение:</label>
                     <input type="file" class="form-control" id="image" name="image" placeholder="Изображение" value="{!! $product->image !!}">
                 </div>
 
-                <div class="form-group image last">
+                <div class="form-group w-49 last">
                     <label for="tab_bg">Фоновое изображение вкладок:</label>
                     <input type="file" class="form-control" id="tab_bg" name="tab_bg" placeholder="Фоновое изображение вкладок" value="{!! $product->tab_bg !!}">
                 </div>
 
 
-                <div class="form-group">
+                <div class="form-group w-49">
                     <label for="product_description_tab_content">Контент вкладки "Описание":</label>
                     <textarea type="text" class="form-control" id="product_description_tab_content" name="product_description_tab_content" placeholder='Контент вкладки "Описание"'>{!! $product->product_description_tab_content !!}</textarea>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group w-49 last">
                     <label for="product_ingredients_tab_content">Контент вкладки "Ингридиенты":</label>
                     <textarea type="text" class="form-control" id="product_ingredients_tab_content" name="product_ingredients_tab_content" placeholder='Контент вкладки "Ингридиенты"'>{!! $product->product_ingredients_tab_content !!}</textarea>
                 </div>
 
-                <div class="form-group last">
+                <div class="form-group w-49">
                     <label for="product_usage_tab_content">Контент вкладки "Использование":</label>
                     <textarea type="text" class="form-control" id="product_usage_tab_content" name="product_usage_tab_content" placeholder='Контент вкладки "Использование"'>{!! $product->product_usage_tab_content !!}</textarea>
                 </div>
 
-                <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="is_reccomended" name="is_reccomended" {{ $product->is_reccomended == 1 ? 'checked' : '' }}>
-                    <label class="form-check-label" for="is_reccomended">Показывать в рекомендуемых</label>
-                </div>
-
-                <p><button type="submit" class="btn btn-success">Сохранить изменения</button></p>
+                <p class="w-100"><button type="submit" class="btn btn-success">Сохранить изменения</button></p>
 
                 {!! csrf_field() !!}
             </form>

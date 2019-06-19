@@ -16,7 +16,7 @@
 
                 <div class="form-group">
                     <label for="slug">{!! UcfirstCyr::get(trans('validation.labels.product.slug')) !!}:</label>
-                    <input type="text" class="form-control" id="slug" name="slug" placeholder="{!! UcfirstCyr::get(trans('validation.labels.product.slug')) !!}" value="{!! $product->slug !!}" required>
+                    <input type="text" class="form-control" id="slug" name="slug" placeholder="{!! trans('validation.labels.product.slug') !!}" value="{!! $product->slug !!}" required>
                 </div>
 
                 <div class="form-group last">
@@ -30,13 +30,12 @@
                 </div>
 
                 <div class="form-group">
-                    @php $descrtext = mb_strtolower(trans('validation.attributes.descrtext')) @endphp
-                    <label for="descrtext">Введите {!! $descrtext !!} товара:</label>
-                    <input type="text" class="form-control" id="descrtext" name="descrtext" placeholder="Введите {!! $descrtext !!} товара" value="{!! $product->descrtext !!}" required>
+                    <label for="descrtext">{!! UcfirstCyr::get(trans('validation.labels.product.descrtext')) !!}:</label>
+                    <input type="text" class="form-control" id="descrtext" name="descrtext" placeholder="{!! trans('validation.labels.product.descrtext') !!}" value="{!! $product->descrtext !!}" required>
                 </div>
 
                 <div class="form-group last">
-                    <label for="product_category">Выберите категорию товара</label>
+                    <label for="product_category">{!! UcfirstCyr::get(trans('validation.labels.product.add_product_category')) !!}</label>
                     <select name="product_category" id="product_category" class="form-control">
                         @php $productCatsToSelect = 0; @endphp
                         @foreach($categories as $category)
@@ -45,7 +44,7 @@
                             @endif
                         @endforeach
 
-                        <option value="0" selected>{{ $productCatsToSelect ? 'Добавьте категорию товара' : 'Нет категорий для добавления' }}</option>
+                        <option value="0" selected>{{ $productCatsToSelect ? trans('validation.labels.product.add_product_category') : trans('validation.labels.product.no_product_category_to_add') }}</option>
                         @foreach($categories as $category)
                             @if(!in_array($category->category_id, $productCategories))
                                 <option value="{{ $category->category_id }}">{{ $category->category_name }}</option>
@@ -56,14 +55,14 @@
 
                 <div class="form-group form-check w-32">
                     <input type="checkbox" class="form-check-input" id="is_reccomended" name="is_reccomended" {{ $product->is_reccomended == 1 ? 'checked' : '' }}>
-                    <label class="form-check-label" for="is_reccomended">Показывать в рекомендуемых</label>
+                    <label class="form-check-label" for="is_reccomended">{!! UcfirstCyr::get(trans('validation.labels.product.is_reccomended')) !!}</label>
                 </div>
 
                 <div class="form-group list-group mb-3 w-66 last">
-                    <div class="list-group-item active">Список всех категорий товара</div>
+                    <div class="list-group-item active">{!! UcfirstCyr::get(trans('validation.labels.product.all_product_categories_list')) !!}</div>
                     @php $productHasCats = 0; @endphp
-                @foreach($categories as $cat)
-                    @if(in_array($cat->category_id, $productCategories))
+                    @foreach($categories as $cat)
+                        @if(in_array($cat->category_id, $productCategories))
                             @php $productHasCats++ @endphp
                             <div class="list-group-item">
                                 <div class="container w-100">
@@ -77,11 +76,11 @@
                             </div>
                         @endif
                     @endforeach
-                @if(!$productHasCats)
+                    @if(!$productHasCats)
                         <div class="list-group-item">
                             <div class="container">
                                 <div class="row justify-content-center">
-                                    <div class="col text-center">У товара нет категорий</div>
+                                    <div class="col text-center">{!! UcfirstCyr::get(trans('validation.labels.product.product_has_no_category')) !!}</div>
                                 </div>
                             </div>
                         </div>
@@ -90,61 +89,59 @@
 
 
                 <div class="form-group w-49">
-                    @php $description = mb_strtolower(trans('validation.attributes.description')) @endphp
-                    <label for="descr">Введите {!! $description !!} товара:</label>
-                    <textarea class="form-control" id="descr" name="descr" placeholder="Введите {!! $description !!} товара" required>{!! $product->descr !!}</textarea>
+                    <label for="descr">{!! UcfirstCyr::get(trans('validation.labels.product.descr')) !!}:</label>
+                    <textarea class="form-control" id="descr" name="descr" placeholder="{!! trans('validation.labels.product.descr') !!}" required>{!! $product->descr !!}</textarea>
                 </div>
 
                 <div class="form-group w-49 last">
-                    @php $content = mb_strtolower(trans('validation.attributes.content')) @endphp
-                    <label for="content">Введите {!! $content !!} товара:</label>
-                    <textarea class="form-control" id="content" name="content" placeholder="Введите {!! $content !!} товара" required>{!! $product->content !!}</textarea>
+                    <label for="content">{!! UcfirstCyr::get(trans('validation.labels.product.content')) !!}:</label>
+                    <textarea class="form-control" id="content" name="content" placeholder="{!! trans('validation.labels.product.content') !!}" required>{!! $product->content !!}</textarea>
                 </div>
 
                 <div class="form-group w-23-5">
-                    <label for="regular_price">Введите цену:</label>
-                    <input type="number" min="0" step="1" class="form-control" id="regular_price" name="regular_price" placeholder="Введите цену" value="{!! $product->regular_price !!}" required>
+                    <label for="regular_price">{!! UcfirstCyr::get(trans('validation.labels.product.regular_price')) !!}:</label>
+                    <input type="number" min="0" step="1" class="form-control" id="regular_price" name="regular_price" placeholder="{!! trans('validation.labels.product.regular_price') !!}" value="{!! $product->regular_price !!}" required>
                 </div>
 
                 <div class="form-group w-23-5">
-                    <label for="discount">Введите скидку, %:</label>
-                    <input type="number" min="0" max="100" step="0.1" class="form-control" id="discount" name="discount" placeholder="Введите скидку" value="{!! $product->discount !!}" required>
+                    <label for="discount">{!! UcfirstCyr::get(trans('validation.labels.product.discount')) !!}, %:</label>
+                    <input type="number" min="0" max="100" step="0.1" class="form-control" id="discount" name="discount" placeholder="{!! trans('validation.labels.product.discount') !!}" value="{!! $product->discount !!}" required>
                 </div>
 
                 <div class="form-group w-23-5">
-                    <label for="sale_price">Цена со скидкой:</label>
-                    <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder="Цена со скидкой" value="{!! $product->sale_price ? $product->sale_price : 0 !!}" readonly>
+                    <label for="sale_price">{!! UcfirstCyr::get(trans('validation.labels.product.sale_price')) !!}:</label>
+                    <input type="text" class="form-control" id="sale_price" name="sale_price" placeholder="{!! trans('validation.labels.product.sale_price') !!}" value="{!! $product->sale_price ? $product->sale_price : 0 !!}" readonly>
                 </div>
 
                 <div class="form-group w-23-5 last">
-                    <label for="currency">Валюта:</label>
-                    <input type="text" class="form-control" id="currency" name="currency" placeholder="Валюта" value="{!! $product->currency !!}" required>
+                    <label for="currency">{!! UcfirstCyr::get(trans('validation.labels.product.currency')) !!}:</label>
+                    <input type="text" class="form-control" id="currency" name="currency" placeholder="{!! trans('validation.labels.product.currency') !!}" value="{!! $product->currency !!}" readonly>
                 </div>
 
                 <div class="form-group w-49">
-                    <label for="image">Изображение:</label>
-                    <input type="file" class="form-control" id="image" name="image" placeholder="Изображение" value="{!! $product->image !!}">
+                    <label for="image">{!! UcfirstCyr::get(trans('validation.labels.product.image')) !!}:</label>
+                    <input type="file" class="form-control" id="image" name="image" placeholder="trans('validation.labels.product.image')" value="{!! $product->image !!}">
                 </div>
 
                 <div class="form-group w-49 last">
-                    <label for="tab_bg">Фоновое изображение вкладок:</label>
-                    <input type="file" class="form-control" id="tab_bg" name="tab_bg" placeholder="Фоновое изображение вкладок" value="{!! $product->tab_bg !!}">
+                    <label for="tab_bg">{!! UcfirstCyr::get(trans('validation.labels.product.tab_bg')) !!}:</label>
+                    <input type="file" class="form-control" id="tab_bg" name="tab_bg" placeholder="{!! trans('validation.labels.product.tab_bg') !!}" value="{!! $product->tab_bg !!}">
                 </div>
 
 
                 <div class="form-group w-49">
-                    <label for="product_description_tab_content">Контент вкладки "Описание":</label>
-                    <textarea type="text" class="form-control" id="product_description_tab_content" name="product_description_tab_content" placeholder='Контент вкладки "Описание"'>{!! $product->product_description_tab_content !!}</textarea>
+                    <label for="product_description_tab_content">{!! UcfirstCyr::get(trans('validation.labels.product.product_description_tab_content')) !!}:</label>
+                    <textarea type="text" class="form-control" id="product_description_tab_content" name="product_description_tab_content" placeholder='{!! trans('validation.labels.product.product_description_tab_content') !!}'>{!! $product->product_description_tab_content !!}</textarea>
                 </div>
 
                 <div class="form-group w-49 last">
-                    <label for="product_ingredients_tab_content">Контент вкладки "Ингридиенты":</label>
-                    <textarea type="text" class="form-control" id="product_ingredients_tab_content" name="product_ingredients_tab_content" placeholder='Контент вкладки "Ингридиенты"'>{!! $product->product_ingredients_tab_content !!}</textarea>
+                    <label for="product_ingredients_tab_content">{!! UcfirstCyr::get(trans('validation.labels.product.product_ingredients_tab_content')) !!}:</label>
+                    <textarea type="text" class="form-control" id="product_ingredients_tab_content" name="product_ingredients_tab_content" placeholder='{!! trans('validation.labels.product.product_ingredients_tab_content') !!}'>{!! $product->product_ingredients_tab_content !!}</textarea>
                 </div>
 
                 <div class="form-group w-49">
-                    <label for="product_usage_tab_content">Контент вкладки "Использование":</label>
-                    <textarea type="text" class="form-control" id="product_usage_tab_content" name="product_usage_tab_content" placeholder='Контент вкладки "Использование"'>{!! $product->product_usage_tab_content !!}</textarea>
+                    <label for="product_usage_tab_content">{!! UcfirstCyr::get(trans('validation.labels.product.product_usage_tab_content')) !!}:</label>
+                    <textarea type="text" class="form-control" id="product_usage_tab_content" name="product_usage_tab_content" placeholder='{!! trans('validation.labels.product.product_usage_tab_content') !!}'>{!! $product->product_usage_tab_content !!}</textarea>
                 </div>
 
                 <p class="w-100"><button type="submit" class="btn btn-success">Сохранить изменения</button></p>

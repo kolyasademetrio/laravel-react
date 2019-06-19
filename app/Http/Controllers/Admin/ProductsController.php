@@ -38,12 +38,10 @@ class ProductsController extends Controller
         $objProduct = new Products();
 
         $objProduct = $objProduct->create($validated, [
-            'is_reccomended' => false,
+            'is_reccomended' => $request->has('is_reccomended') ? true : false,
             'image' => ImageDNK::save($request, 'image'),
             'tab_bg' => ImageDNK::save($request, 'tab_bg'),
         ]);
-
-        dd($objProduct);
 
         if(!$objProduct){
             return back()->with('error', 'Товар не создан. Попробуйте ещё раз');

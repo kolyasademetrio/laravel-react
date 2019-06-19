@@ -30,3 +30,38 @@ var editor_config = {
     },
 };
 tinymce.init(editor_config);
+
+function updateTinyMCE(){
+    tinyMCE.triggerSave();
+    console.log('save');
+    //alert($('#elm1').html());return false;
+    $("textarea")
+        .show()
+        .css({
+            visibility: "visible",
+            position: "absolute",
+            opacity: 0,
+            zIndex: -1,
+        })
+        .height('0')
+        .width('0');
+}
+
+$(document).ready(function(){
+    $(window).bind('keydown',function(e){
+        var buttonCode=e.charCode||e.keyCode;
+        if (buttonCode==13){
+            $(document).trigger('preSubmitTinyMCE');
+        }
+    });
+
+    $('input').bind('mousedown',function(){
+        $(document).trigger('preSubmitTinyMCE');
+    });
+
+
+});
+
+$(document).bind('preSubmitTinyMCE',function(){
+    updateTinyMCE();
+});

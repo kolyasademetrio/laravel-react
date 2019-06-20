@@ -37,11 +37,11 @@ class ProductsController extends Controller
 
         $objProduct = new Products();
 
-        $objProduct = $objProduct->create($validated, [
-            'is_reccomended' => $request->has('is_reccomended') ? true : false,
-            'image' => ImageDNK::save($request, 'image'),
-            'tab_bg' => ImageDNK::save($request, 'tab_bg'),
-        ]);
+        $validated['is_reccomended'] = $request->has('is_reccomended') ? 1 : 0;
+        $validated['image'] = ImageDNK::save($request, 'image');
+        $validated['tab_bg'] = ImageDNK::save($request, 'tab_bg');
+
+        $objProduct = $objProduct->create($validated);
 
         if(!$objProduct){
             return back()->with('error', 'Товар не создан. Попробуйте ещё раз');
@@ -95,9 +95,9 @@ class ProductsController extends Controller
 
         $validated['image'] = ImageDNK::save($request, 'image');
         $validated['tab_bg'] = ImageDNK::save($request, 'tab_bg');
-        $validated['is_reccomended'] = $request->has('is_reccomended') ? true : false;
+        $validated['is_reccomended'] = $request->has('is_reccomended') ? 1 : 0;
 
-        $objProducts->fill($validated);
+        $test = $objProducts->fill($validated);
 
         if(!$objProducts->save()){
             return back()->with('error', 'Товар не изменен. Попробуйте ещё раз');

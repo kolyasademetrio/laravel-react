@@ -45,6 +45,7 @@ class ProductsRequest extends FormRequest
                 'required',
                 'regex:/\d+/',
             ],
+            'sale_price' => '',
             'discount' => [
                 'required',
                 'min:0',

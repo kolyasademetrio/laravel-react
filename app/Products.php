@@ -15,9 +15,9 @@ class Products extends Authenticatable
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'id',
-        'title',
+//        'id',
         'slug',
+        'title',
         'excerpt',
         'content',
         'descrtitle',
@@ -33,6 +33,10 @@ class Products extends Authenticatable
         'product_ingredients_tab_content',
         'product_usage_tab_content',
         'tab_bg',
+    ];
+
+    protected $casts = [
+        'is_reccomended' => 'boolean'
     ];
 
     protected $guarded = [];

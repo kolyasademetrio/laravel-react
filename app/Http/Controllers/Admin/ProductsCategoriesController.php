@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Requests\ProductsCategoriesRequest;
 use Validator;
 use App\Categories;
 use Dotenv\Exception\ValidationException;
@@ -23,29 +24,21 @@ class ProductsCategoriesController extends Controller
         return view('admin.products.categories.add');
     }
 
-    public function addRequestCategory(Request $request){
-        $validator = Validator::make($request->all(), [
-            'category_name' => 'required|string|min:4|max:25',
-            'category_slug' => 'required|string|min:4|max:25',
-        ]);
-
-        if($validator->fails()){
-            return back()->withErrors($validator)->withInput();
-        }
-
-        $show_on_homepage = $request->has('show_on_homepage') ? true : false;
+    public function addRequestCategory(ProductsCategoriesRequest $request){
+        $validated = $request->validated();
 
         $objCategory = new Categories();
-        $objCategory = $objCategory->create($request->all(),[
-            'category_filter_by' => $request->input('category_slug'),
-            'show_on_homepage' => $show_on_homepage,
-        ]);
 
-        if($objCategory){
-            return redirect(route('admin.products.edit', ['id' => $objCategory->category_id]))->with('success', trans(''));
+        $validated['show_on_homepage'] = $request->has('show_on_homepage');
+        $validated['category_filter_by'] = $request->input('category_slug');
+
+        $objCategory = $objCategory->create($validated);
+
+        if(!$objCategory){
+            return back()->with('error', 'Категория товара не создана. Попробуйте ещё раз');
         }
 
-        return back();
+        return redirect(route('admin.products.categories.edit', ['id' => $objCategory->id]))->with('success', 'messages.productsCategories.successCreated');
 
         /*try{
             $this->validate($request, [
@@ -75,10 +68,7 @@ class ProductsCategoriesController extends Controller
     }
 
     public function editCategory(int $id){
-        $category = Categories::find($id);
-        if(!$category){
-            return abort('404');
-        }
+        $category = Categories::findOrFail($id);
 
         return view('admin.products.categories.edit', [
             'category' => $category
@@ -92,12 +82,9 @@ class ProductsCategoriesController extends Controller
                 'category_slug' => 'required|string|min:4|max:25',
             ]);
 
-            $objCategory = Categories::find($id);
-            if(!$objCategory){
-                return abort('404');
-            }
+            $objCategory = Categories::findOrFail($id);
 
-            $show_on_homepage = $request->has('show_on_homepage') ? true : false;
+            $show_on_homepage = $request->has('show_on_homepage');
 
             $objCategory->category_name = $request->input('category_name');
             $objCategory->category_slug = $request->input('category_slug');

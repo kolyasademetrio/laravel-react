@@ -37,7 +37,7 @@ class ProductsController extends Controller
 
         $objProduct = new Products();
 
-        $validated['is_reccomended'] = $request->has('is_reccomended') ? 1 : 0;
+        $validated['is_reccomended'] = $request->has('is_reccomended');
         $validated['image'] = ImageDNK::save($request, 'image');
         $validated['tab_bg'] = ImageDNK::save($request, 'tab_bg');
 
@@ -65,10 +65,7 @@ class ProductsController extends Controller
     }
 
     public function editProduct(int $id){
-        $product = Products::find($id);
-        if(!$product){
-            return abort('404');
-        }
+        $product = Products::findOrFail($id);
 
         $objCategories = new Categories();
         $categories = $objCategories->get();
@@ -85,19 +82,15 @@ class ProductsController extends Controller
     }
 
     public function editRequestProduct(ProductsRequest $request, int $id){
-
         $validated = $request->validated();
 
-        $objProducts = Products::find($id);
-        if(!$objProducts){
-            return abort('404');
-        }
+        $objProducts = Products::findOrFail($id);
 
         $validated['image'] = ImageDNK::save($request, 'image');
         $validated['tab_bg'] = ImageDNK::save($request, 'tab_bg');
-        $validated['is_reccomended'] = $request->has('is_reccomended') ? 1 : 0;
+        $validated['is_reccomended'] = $request->has('is_reccomended');
 
-        $test = $objProducts->fill($validated);
+        $objProducts->fill($validated);
 
         if(!$objProducts->save()){
             return back()->with('error', 'Товар не изменен. Попробуйте ещё раз');

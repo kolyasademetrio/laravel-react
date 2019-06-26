@@ -112,6 +112,12 @@
 <script src="{{ URL::to('plugins/tinymce/tinymce.min.js') }}"></script>
 <script src="{{ URL::to('js/custom-js/tiny-mce-init-admin.js') }}"></script>
 
+{{--<script src="{{ URL::to('plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+<script src="{{ URL::to('js/custom-js/init-admin.js') }}"></script>--}}
+
+<!-- Laravel Javascript Validation -->
+<script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+
 @yield('js')
 
 @include('inc.messages')

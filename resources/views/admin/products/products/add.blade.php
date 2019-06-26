@@ -132,4 +132,7 @@
             });
         });
     </script>
+
+    {!! JsValidator::formRequest('App\Http\Requests\ProductsRequest') !!}
 @stop
+

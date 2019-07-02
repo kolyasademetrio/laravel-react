@@ -1,26 +1,41 @@
 <script>
     jQuery(document).ready(function(){
-
-        $("<?= $validator['selector']; ?>").each(function() {
+        $("<?= $validator['selector']; ?>").each(function(index) {
             $(this).validate({
-                errorElement: 'span',
-                errorClass: 'invalid-feedback',
-
+                errorElement: 'article',
+                errorClass: 'alertify-log alertify-log-error alertify-log-show',
                 errorPlacement: function (error, element) {
-                    /*if (element.parent('.input-group').length ||
-                        element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+                    if (element.parent('.input-group').length ||
+                        element.prop('type') === 'checkbox' ||
+                        element.prop('type') === 'radio')
+                    {
                         error.insertAfter(element.parent());
                         // else just place the validation message immediately after the input
                     } else {
                         error.insertAfter(element);
-                    }*/
-                    /*if (!$('.dnk-errors').length) {
-                        $('body').append('<div class="dnk-errors"></div>');
-                    } else {
-                        $('.dnk-errors').remove();
-                    }*/
-
+                    }
                 },
+
+                showErrors: function(errorMap, errorList){
+                    if ( $('.alertify-logs').length && this.numberOfInvalids() ) {
+
+                        console.log( 'done' );
+                        if ( $('.alertify-logs').children().length ) {
+                            console.log( 'is not empty' );
+                        }
+
+                        $('.alertify-logs').remove();
+                    }
+                    const errorsWrapper = $('<div class="alertify-logs dnk-errors" id="alertify-logs"></div>').appendTo('body');
+
+                    errorList.forEach(function(el, index){
+                        let $elem = $('<article class="alertify-log alertify-log-error">' + el.message + '</article>').appendTo(errorsWrapper);
+                        setTimeout(function(){
+                            $elem.addClass('alertify-log-show');
+                        }, 50);
+                    });
+                },
+
                 highlight: function (element) {
                     $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid'); // add the Bootstrap error class to the control group
                 },
@@ -57,5 +72,12 @@
                 rules: <?= json_encode($validator['rules']); ?>
             });
         });
+    });
+
+    $(document).on('click', '.dnk-errors .alertify-log', function(){
+        var $that = $(this).removeClass('alertify-log-show').addClass('alertify-log-hide');
+        setTimeout(function(){
+            $that.remove();
+        }, 500);
     });
 </script>

@@ -2,10 +2,10 @@
 .alertify-show,
 .alertify-log {
 	-webkit-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-	   -moz-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-	    -ms-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-	     -o-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
-	        transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275); /* easeOutBack */
+	-moz-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+	-ms-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+	-o-transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+	transition: all 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275); /* easeOutBack */
 }
 .alertify-hide {
 	-webkit-transition: all 250ms cubic-bezier(0.600, -0.280, 0.735, 0.045);

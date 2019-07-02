@@ -165,6 +165,10 @@ button,
     padding: 8px 14px;
 }
 
+.is-valid + .invalid-feedback {
+    display: none !important;
+}
+
 .dnk-errors {
     position: fixed;
     z-index: 5000;

@@ -17,6 +17,9 @@
                 },
 
                 showErrors: function(errorMap, errorList){
+
+                    console.log( 'this.numberOfInvalids()', this.numberOfInvalids() );
+
                     if ( $('.alertify-logs').length && this.numberOfInvalids() ) {
 
                         console.log( 'done' );
@@ -27,6 +30,8 @@
                         $('.alertify-logs').remove();
                     }
                     const errorsWrapper = $('<div class="alertify-logs dnk-errors" id="alertify-logs"></div>').appendTo('body');
+
+                    console.log( errorsWrapper );
 
                     errorList.forEach(function(el, index){
                         let $elem = $('<article class="alertify-log alertify-log-error">' + el.message + '</article>').appendTo(errorsWrapper);

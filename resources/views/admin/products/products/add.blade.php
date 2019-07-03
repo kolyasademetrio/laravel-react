@@ -56,9 +56,6 @@
                     <textarea class="form-control" id="content" name="content" placeholder="{!! trans('products.form.content') !!}" required></textarea>
                 </div>
 
-
-
-
                 <div class="form-group w-23-5">
                     <label for="regular_price">{!! UcfirstCyr::trans('products.form.regular_price') !!}:</label>
                     <input type="number" min="0" step="1" class="form-control" id="regular_price" name="regular_price" placeholder="{!! trans('products.form.regular_price') !!}" required>
@@ -104,8 +101,6 @@
                     <label for="product_usage_tab_content">{!! UcfirstCyr::trans('products.form.product_usage_tab_content') !!}:</label>
                     <textarea type="text" class="form-control" id="product_usage_tab_content" name="product_usage_tab_content" placeholder='{!! UcfirstCyr::trans('products.form.product_usage_tab_content') !!}'></textarea>
                 </div>
-
-
 
                 <p class="w-100"><button type="submit" class="btn btn-success">{!! UcfirstCyr::trans('buttons.save_changes') !!}</button></p>
 

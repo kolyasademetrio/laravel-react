@@ -25,4 +25,10 @@
         </form>
     </section>
 </main>
+
 @stop
+
+@section('js')
+    {!! JsValidator::formRequest('App\Http\Requests\ProductsCategoriesRequest') !!}
+@stop
+

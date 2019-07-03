@@ -34,6 +34,7 @@
                         }
                     }
                 },
+                onkeyup: false,
 
                 highlight: function (element) {
                     $(element).closest('.form-control').removeClass('is-valid').addClass('is-invalid'); // add the Bootstrap error class to the control group

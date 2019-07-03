@@ -17,28 +17,22 @@
                 },
 
                 showErrors: function(errorMap, errorList){
-
-                    console.log( 'this.numberOfInvalids()', this.numberOfInvalids() );
-
-                    if ( $('.alertify-logs').length && this.numberOfInvalids() ) {
-
-                        console.log( 'done' );
-                        if ( $('.alertify-logs').children().length ) {
-                            console.log( 'is not empty' );
+                    if ( errorList.length ) {
+                        if ( $('.alertify-logs').length  ) {
+                            $('.alertify-logs').remove();
                         }
 
-                        $('.alertify-logs').remove();
+                        if ( !$('.alertify-logs').length ) {
+                            const errorsWrapper = $('<div class="alertify-logs dnk-errors" id="alertify-logs"></div>').appendTo('body');
+
+                            errorList.forEach(function(el, index){
+                                let $elem = $('<article class="alertify-log alertify-log-error">' + el.message + '</article>').appendTo(errorsWrapper);
+                                setTimeout(function(){
+                                    $elem.addClass('alertify-log-show');
+                                }, 50);
+                            });
+                        }
                     }
-                    const errorsWrapper = $('<div class="alertify-logs dnk-errors" id="alertify-logs"></div>').appendTo('body');
-
-                    console.log( errorsWrapper );
-
-                    errorList.forEach(function(el, index){
-                        let $elem = $('<article class="alertify-log alertify-log-error">' + el.message + '</article>').appendTo(errorsWrapper);
-                        setTimeout(function(){
-                            $elem.addClass('alertify-log-show');
-                        }, 50);
-                    });
                 },
 
                 highlight: function (element) {

@@ -27,5 +27,6 @@ return [
     ],
     'pages' => [
         'edit_page_title'                 => 'Редактировать товар',
+        'add_page_title'                  => 'Добавить товар',
     ]
 ];

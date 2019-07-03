@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="descrtitle">{!! UcfirstCyr::trans('products.form.descrtitle') !!}}:</label>
+                    <label for="descrtitle">{!! UcfirstCyr::trans('products.form.descrtitle') !!}:</label>
                     <input type="text" class="form-control" id="descrtitle" name="descrtitle" placeholder="{!! trans('products.form.descrtitle') !!}}" value="{!! $product->descrtitle !!}" required>
                 </div>
 
@@ -119,7 +119,7 @@
 
                 <div class="form-group w-49">
                     <label for="image">{!! UcfirstCyr::trans('products.form.image') !!}:</label>
-                    <input type="file" class="form-control" id="image" name="image" placeholder="trans('products.form.image')" value="{!! $product->image !!}">
+                    <input type="file" class="form-control" id="image" name="image" placeholder="{!! trans('products.form.image') !!}" value="{!! $product->image !!}">
                 </div>
 
                 <div class="form-group w-49 last">

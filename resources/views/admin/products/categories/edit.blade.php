@@ -2,26 +2,28 @@
 
 @section('content')
 <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-    <h1>Редактировать категорию</h1>
+    <h2>{!! trans('productCategories.pages.edit_page_title').' '.$category->category_name !!}</h2>
     <section>
-        <form method="post" action="">
+        <form method="post" action="" class="row-flex">
             {!! csrf_field() !!}
-            <div class="form-group">
-                <label for="category_name">Введите имя категории:</label>
-                <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Введите имя категории" value="{{$category->category_name}}" required>
+            <p class="w-100"><button type="submit" class="btn btn-success">{!! UcfirstCyr::trans('buttons.save_changes') !!}</button></p>
+
+            <div class="form-group w-49">
+                <label for="category_name">{!! UcfirstCyr::trans('productCategories.form.category_name') !!}:</label>
+                <input type="text" class="form-control" id="category_name" name="category_name" placeholder="{!! trans('productCategories.form.category_name') !!}" value="{{$category->category_name}}" required>
             </div>
 
-            <div class="form-group">
-                <label for="category_slug">Введите slug категории:</label>
-                <input type="text" class="form-control" id="category_slug" name="category_slug" placeholder="Введите slug категории" required value="{{$category->category_slug}}">
+            <div class="form-group w-49 last">
+                <label for="category_slug">{!! UcfirstCyr::trans('productCategories.form.category_slug') !!}:</label>
+                <input type="text" class="form-control" id="category_slug" name="category_slug" placeholder="{!! trans('productCategories.form.category_slug') !!}" required value="{{$category->category_slug}}">
             </div>
 
-            <div class="form-check">
+            <div class="form-group form-check w-100">
                 <input type="checkbox" class="form-check-input" id="show_on_homepage" name="show_on_homepage" {{$category->show_on_homepage ? 'checked' : ''}}>
-                <label class="form-check-label" for="show_on_homepage">Показывать на главной странице:</label>
+                <label class="form-check-label" for="show_on_homepage">{!! UcfirstCyr::trans('productCategories.form.show_on_homepage') !!}:</label>
             </div>
 
-            <p><button type="submit" class="btn btn-success">Сохранить изменения</button></p>
+            <p class="w-100"><button type="submit" class="btn btn-success">{!! UcfirstCyr::trans('buttons.save_changes') !!}</button></p>
         </form>
     </section>
 </main>

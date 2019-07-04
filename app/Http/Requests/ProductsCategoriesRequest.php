@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ProductsCategoriesRequest extends FormRequest
 {
@@ -25,7 +26,15 @@ class ProductsCategoriesRequest extends FormRequest
     {
         return [
             'category_name' => 'required|string|min:4|max:25',
-            'category_slug' => 'required|string|min:4|max:25',
+            'category_slug' => [
+                'required',
+                'string',
+                'min:4',
+                'max:25',
+                'regex:/^[a-z0-9а-яё-]+$/u',
+                Rule::unique('categories')->ignore($this->category_id),
+            ],
+            'show_on_homepage' => '',
         ];
     }
 }

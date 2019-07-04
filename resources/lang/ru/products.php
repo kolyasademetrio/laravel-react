@@ -19,7 +19,7 @@ return [
         'is_reccomended'                  => 'показывать товар в рекомендованых',
         'product_description_tab_content' => 'введите контент вкладки "Описание" товара',
         'product_ingredients_tab_content' => 'введите контент вкладки "Ингридиенты" товара',
-        'product_usage_tab_content' => 'введите контент вкладки "Использование" товара',
+        'product_usage_tab_content'       => 'введите контент вкладки "Использование" товара',
         'all_product_categories_list'     => 'список всех категорий товара',
         'add_product_category'            => 'добавьте категорию товара',
         'no_product_category_to_add'      => 'нет категорий для добавления',

@@ -35,10 +35,10 @@ class ProductsCategoriesController extends Controller
         $objCategory = $objCategory->create($validated);
 
         if(!$objCategory){
-            return back()->with('error', 'Категория товара не создана. Попробуйте ещё раз');
+            return back()->with('error', trans('messages.productCategories.failedCreated'));
         }
 
-        return redirect(route('admin.products.categories.edit', ['id' => $objCategory->id]))->with('success', 'messages.productsCategories.successCreated');
+        return redirect(route('admin.products.categories.edit', ['id' => $objCategory->category_id]))->with('success', trans('messages.productsCategories.successCreated'));
 
         /*try{
             $this->validate($request, [
@@ -92,10 +92,10 @@ class ProductsCategoriesController extends Controller
             $objCategory->show_on_homepage = $show_on_homepage;
 
             if($objCategory->save()){
-                return back()->with('success', 'Категория успешно изменена.');
+                return back()->with('success', trans('messages.productsCategories.successUpdated'));
             }
 
-            return back()->with('error', 'Категория не изменена. Попробуйте ещё раз');
+            return back()->with('error', trans('messages.productsCategories.failedUpdated'));
         }catch (ValidationException $exception){
             \Log::error($exception->getMessage());
             return back()->with('error', $exception->getMessage());

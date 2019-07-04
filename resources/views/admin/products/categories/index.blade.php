@@ -2,7 +2,7 @@
 
 @section('content')
 <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-    <h1>Список категорий товаров</h1>
+    <h2>Список категорий товаров</h2>
     <section>
         <div class="card-block">
             <a href="{!! route('admin.products.categories.add') !!}" class="btn btn-success">Добавить категорию</a>
@@ -41,7 +41,7 @@
         $(function(){
             $('.delete_category').on('click', function(e){
                 e.preventDefault();
-                if(confirm('Вы действительно хотите удалить эту категорию?')){
+                if( confirm("{!! trans('messages.productsCategories.confirmRemoving') !!}") ){
                     var id = $(this).attr('rel');
                     $.ajax({
                         type: "DELETE",
@@ -51,12 +51,12 @@
                             id: id,
                         },
                         success: function(){
-                            alert("Категория удалена.");
+                            alert("{!! trans('messages.productsCategories.successDeleting') !!}");
                             location.reload();
                         },
                     });
                 } else {
-                    alertify.error("Действие отменено пользователем.");
+                    alertify.error("{!! trans('commons.actionCanceledByUser') !!}");
                 }
             });
         });

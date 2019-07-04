@@ -4,9 +4,9 @@
 
 @section('content')
     <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-        <h1>{!! trans('products.pages.edit_page_title') !!}</h1>
+        <h2>{!! trans('products.pages.edit_page_title').' '.$product->title !!} </h2>
         <section>
-            <form method="post" action="" class="add_product_form" enctype="multipart/form-data">
+            <form method="post" action="" class="add_product_form row-flex" enctype="multipart/form-data">
                 <p class="w-100"><button type="submit" class="btn btn-success">{!! UcfirstCyr::trans('buttons.save_changes') !!}</button></p>
                 <div class="form-group">
                     <label for="title">{!! UcfirstCyr::trans('products.form.title') !!}:</label>

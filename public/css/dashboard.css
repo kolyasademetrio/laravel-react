@@ -96,7 +96,7 @@ button,
 /* END: buttons */
 
 /* START: nav-link */
-.add_product_form {
+.row-flex {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -107,16 +107,12 @@ button,
     align-items: flex-start;
 }
 
-.add_product_form>.form-group {
+.row-flex>.form-group {
     width: 32%;
     margin-right: 2%;
 }
 
-.add_product_form>.form-group.last {
-    margin-right: 0;
-}
-
-.add_product_form>.form-check {
+.form-check {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -125,7 +121,7 @@ button,
     padding: 0 0 16px 20px;
 }
 
-.add_product_form>.form-check input[type="checkbox"] {
+.form-check input[type="checkbox"] {
     top: auto;
     bottom: 20px;
     left: 0;
@@ -137,16 +133,20 @@ button,
     height: 300px;
 }
 
-.add_product_form>.form-group.w-23-5 {
-    width: 23.5%;
+.w-23-5 {
+    width: 23.5% !important;
 }
 
-.add_product_form>.form-group.w-49 {
+.w-49 {
     width: 49% !important;
 }
 
-.add_product_form>.form-group.w-66 {
+.w-66 {
     width: 66% !important;
+}
+
+.last {
+    margin-right: 0 !important;
 }
 /* END: nav-link */
 

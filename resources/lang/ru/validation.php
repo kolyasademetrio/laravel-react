@@ -201,6 +201,9 @@ return [
         'product_description_tab_content' => 'Контент вкладки "Описание"',
         'product_ingredients_tab_content' => 'Контент вкладки "Ингридиенты"',
         'product_usage_tab_contenttab_bg' => 'Контент вкладки "Использование"',
+        'category_name'                   => 'Имя категории',
+        'category_slug'                   => 'Slug категории',
+        'show_on_homepage'                => 'Показывать на главной странице',
     ],
     'labels' => [
         'product' => [

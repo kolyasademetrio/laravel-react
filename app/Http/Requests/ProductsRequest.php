@@ -26,7 +26,7 @@ class ProductsRequest extends FormRequest
     {
         return [
             'title' => 'required|string|min:4|max:25',
-            'slug' => array(
+            'slug' => [
                 'required',
                 'string',
                 'min:4',
@@ -35,7 +35,7 @@ class ProductsRequest extends FormRequest
                 Rule::unique('products')->ignore($this->id),
                 //'unique:products',
 
-            ),
+            ],
             'excerpt' => 'required|string|min:4|max:100',
             'content' => 'required|string|min:4|max:300',
             'descrtitle' => 'required|string|min:4|max:100',

@@ -25,6 +25,8 @@
                         if ( !$('.alertify-logs').length ) {
                             const errorsWrapper = $('<div class="alertify-logs dnk-errors" id="alertify-logs"></div>').appendTo('body');
 
+                            console.log( 'errorList', errorList );
+
                             errorList.forEach(function(el, index){
                                 let $elem = $('<article class="alertify-log alertify-log-error">' + el.message + '</article>').appendTo(errorsWrapper);
                                 setTimeout(function(){

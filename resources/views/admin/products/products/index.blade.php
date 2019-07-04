@@ -46,12 +46,20 @@
                         <td>{{ $product->regular_price }}</td>
                         <td>{{ $product->discount }}</td>
                         <td>{{ $product->currency }}</td>
-                        <td>{{ $product->image }}</td>
+                        <td>
+                        @if($product->image)
+                            <img src="{{ $product->image }}" alt="" style="width: 100px; height: auto;">
+                        @endif
+                        </td>
                         <td>{!! $product->is_reccomended ? '<input type="checkbox" checked disabled>' : '<input type="checkbox" disabled>' !!}</td>
                         <td style="width:400px;">{!! $product->product_description_tab_content !!}</td>
                         <td>{!! $product->product_ingredients_tab_content !!}</td>
                         <td>{!! $product->product_usage_tab_content !!}</td>
-                        <td>{{ $product->tab_bg }}</td>
+                        <td>
+                        @if($product->tab_bg)
+                            <img src="{{ $product->tab_bg }}" alt="" style="width: 100px; height: auto;">
+                        @endif
+                        </td>
                         <td>{{$product->created_at->format('d-m-Y H:i')}}</td>
                         <td>
                             <a href="{!! route('admin.products.edit', ['id' => $product->id]) !!}">Редактировать</a> ||

@@ -2,7 +2,7 @@
 
 @section('content')
 <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-    <h2>{!! trans('productCategories.pages.edit_page_title').' '.$category->category_name !!}</h2>
+    <h2>{!! trans('productCategories.pages.edit_page_title') !!} <i>{!! $category->category_name !!}</i></h2>
     <section>
         <form method="post" action="" class="row-flex">
             {!! csrf_field() !!}

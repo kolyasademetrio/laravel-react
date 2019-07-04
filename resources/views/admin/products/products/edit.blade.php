@@ -2,11 +2,12 @@
 
 @php use \App\Helpers\UcfirstCyr; @endphp
 
+
 @section('content')
     <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-        <h2>{!! trans('products.pages.edit_page_title').' '.$product->title !!} </h2>
+        <h2>{!! trans('products.pages.edit_page_title') !!} <i>{!! $product->title.'( id-'. $product->id .' )' !!}</i></h2>
         <section>
-            <form method="post" action="" class="add_product_form row-flex" enctype="multipart/form-data">
+            <form method="post" action="" class="add_product_form row-flex product-id-{{ $product->id }}" enctype="multipart/form-data">
                 <p class="w-100"><button type="submit" class="btn btn-success">{!! UcfirstCyr::trans('buttons.save_changes') !!}</button></p>
                 <div class="form-group">
                     <label for="title">{!! UcfirstCyr::trans('products.form.title') !!}:</label>
@@ -120,11 +121,17 @@
                 <div class="form-group w-49">
                     <label for="image">{!! UcfirstCyr::trans('products.form.image') !!}:</label>
                     <input type="file" class="form-control" id="image" name="image" placeholder="{!! trans('products.form.image') !!}" value="{!! $product->image !!}">
+                    @if($product->image)
+                        <img src="{{ $product->image }}" alt="" class="img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5">
+                    @endif
                 </div>
 
                 <div class="form-group w-49 last">
                     <label for="tab_bg">{!! UcfirstCyr::trans('products.form.tab_bg') !!}:</label>
                     <input type="file" class="form-control" id="tab_bg" name="tab_bg" placeholder="{!! trans('products.form.tab_bg') !!}" value="{!! $product->tab_bg !!}">
+                    @if($product->tab_bg)
+                        <img src="{{ $product->tab_bg }}" alt="" class="img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5">
+                    @endif
                 </div>
 
 

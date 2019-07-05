@@ -121,8 +121,14 @@
                 <div class="form-group w-49">
                     <label for="image">{!! UcfirstCyr::trans('products.form.image') !!}:</label>
                     <input type="file" class="form-control" id="image" name="image" placeholder="{!! trans('products.form.image') !!}" value="{!! $product->image !!}">
+                    <input type="hidden" name="x1" value="" />
+                    <input type="hidden" name="y1" value="" />
+                    <input type="hidden" name="w" value="" />
+                    <input type="hidden" name="h" value="" />
+
+                    <img class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5" style="display:none;"/>
                     @if($product->image)
-                        <img src="{{ $product->image }}" alt="" class="img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5">
+                        <img src="{{ $product->image }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5">
                     @endif
                 </div>
 

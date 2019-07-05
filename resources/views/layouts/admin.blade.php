@@ -10,12 +10,13 @@
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
 
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="{{ URL::to('css/bootstrap-min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-min.css') }}">
 
     <!-- Alertyfy CSS -->
-    <link rel="stylesheet" href="{{ URL::to('plugins/alertyfy/themes/alertify.core.css') }}">
-    <link rel="stylesheet" href="{{ URL::to('plugins/alertyfy/themes/alertify.default.css') }}">
-    <link rel="stylesheet" href="{{ URL::to('plugins/alertyfy/themes/alertify.bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/alertyfy/themes/alertify.core.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/alertyfy/themes/alertify.default.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/alertyfy/themes/alertify.bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/jquery.imgareaselect-0.9.10/css/imgareaselect-default.css') }}">
 
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
@@ -103,20 +104,46 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="{{ URL::to('js/custom-js/jquery-3.2.1.js') }}"></script>
+<script src="{{ asset('js/custom-js/jquery-3.2.1.js') }}"></script>
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script src="/js/bootstrap.min.js"></script>
-<script src="{{ URL::to('plugins/alertyfy/lib/alertify.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
-<script src="{{ URL::to('plugins/tinymce/tinymce.min.js') }}"></script>
-<script src="{{ URL::to('js/custom-js/tiny-mce-init-admin.js') }}"></script>
+<!-- alertify -->
+<script src="{{ asset('plugins/alertyfy/lib/alertify.js') }}"></script>
 
-{{--<script src="{{ URL::to('plugins/jquery-validation/jquery.validate.min.js') }}"></script>
-<script src="{{ URL::to('js/custom-js/init-admin.js') }}"></script>--}}
+<!-- tinymce -->
+<script src="{{ asset('plugins/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ asset('js/custom-js/tiny-mce-init-admin.js') }}"></script>
 
 <!-- Laravel Javascript Validation -->
-<script type="text/javascript" src="{{ url('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
+<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
+
+<!-- Imgareaselect -->
+<script type="text/javascript" src="{{ asset('vendor/jquery.imgareaselect-0.9.10/js/jquery.imgareaselect.min.js') }}"></script>
+<script>
+    jQuery(function($) {
+        $("body").on('change', 'input[type="file"]', function(){
+            var imageReader = new FileReader(),
+                p = $(this).parent().find('.previewimage');
+            imageReader.readAsDataURL(this.files[0]);
+
+            imageReader.onload = function (oFREvent) {
+                p.attr('src', oFREvent.target.result).fadeIn();
+            };
+        });
+
+        $('.previewimage').imgAreaSelect({
+            handles: true,
+            onSelectEnd: function (img, selection) {
+                $('input[name="x1"]').val(selection.x1);
+                $('input[name="y1"]').val(selection.y1);
+                $('input[name="w"]').val(selection.width);
+                $('input[name="h"]').val(selection.height);
+            }
+        });
+    });
+</script>
 
 @yield('js')
 

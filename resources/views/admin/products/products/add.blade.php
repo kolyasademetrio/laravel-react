@@ -79,11 +79,29 @@
                 <div class="form-group w-49">
                     <label for="image">{!! UcfirstCyr::trans('products.form.image') !!}:</label>
                     <input type="file" class="form-control" id="image" name="image" placeholder="{!! trans('products.form.image') !!}">
+                    <input type="hidden" name="x1" value="" />
+                    <input type="hidden" name="y1" value="" />
+                    <input type="hidden" name="w" value="" />
+                    <input type="hidden" name="h" value="" />
+
+                    <img class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5" style="display:none;"/>
+                    @if(session('path'))
+                        <img src="{{ session('path') }}" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5"/>
+                    @endif
                 </div>
 
                 <div class="form-group w-49 last">
                     <label for="tab_bg">{!! UcfirstCyr::trans('products.form.tab_bg') !!}:</label>
                     <input type="file" class="form-control" id="tab_bg" name="tab_bg" placeholder="{!! trans('products.form.tab_bg') !!}">
+                    <input type="hidden" name="x1" value="" />
+                    <input type="hidden" name="y1" value="" />
+                    <input type="hidden" name="w" value="" />
+                    <input type="hidden" name="h" value="" />
+
+                    <img class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5" style="display:none;"/>
+                    @if(session('path'))
+                        <img src="{{ session('path') }}" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5"/>
+                    @endif
                 </div>
 
 

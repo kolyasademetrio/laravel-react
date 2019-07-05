@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -227,6 +228,7 @@ return [
         'ImageDNK' => App\Helpers\ImageDNK::class,
         'GetArrayOf' => App\Helpers\GetArrayOf::class,
         'UcfirstCyr' => App\Helpers\UcfirstCyr::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

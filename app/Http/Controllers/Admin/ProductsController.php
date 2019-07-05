@@ -90,6 +90,8 @@ class ProductsController extends Controller
         $validated['tab_bg'] = ImageDNK::save($request, 'tab_bg');
         $validated['is_reccomended'] = $request->has('is_reccomended');
 
+        //dd($validated['image']);
+
         $objProducts->fill($validated);
 
         if(!$objProducts->save()){

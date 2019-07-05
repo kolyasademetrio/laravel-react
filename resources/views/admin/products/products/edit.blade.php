@@ -126,9 +126,10 @@
                     <input type="hidden" name="w" value="" />
                     <input type="hidden" name="h" value="" />
 
-                    <img class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5" style="display:none;"/>
                     @if($product->image)
-                        <img src="{{ $product->image }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5">
+                        <img src="{{ $product->image }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
+                    @else
+                        <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                     @endif
                 </div>
 

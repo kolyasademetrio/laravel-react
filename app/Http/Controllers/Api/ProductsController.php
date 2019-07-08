@@ -47,7 +47,12 @@ class ProductsController extends Controller
      */
     public function show($id)
     {
-        $productAttachments = DB::table('product_attachments')->where('product_slug', $id)->select('attachment', 'type', 'id')->get();
+        $productAttachments = DB::table('product_attachments')
+            ->where('product_slug', $id)
+            ->where('type', 'image')
+            ->orWhere('type', 'video')
+            ->select('attachment', 'type', 'id')
+            ->get();
 
         $product = Products::where('slug', $id)->first();
 

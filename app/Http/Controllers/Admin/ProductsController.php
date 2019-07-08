@@ -7,6 +7,7 @@ use App\Helpers\GetArrayOf;
 use App\Http\Requests\ProductsRequest;
 use Validator;
 use App\Products;
+use App\ProductAttachments;
 use App\Categories;
 use App\CategoriesRelationship;
 use Illuminate\Http\Request;
@@ -67,6 +68,11 @@ class ProductsController extends Controller
     public function editProduct(int $id){
         $product = Products::findOrFail($id);
 
+        $attachments = ProductAttachments::where('product_id', $id)
+            ->orWhere('type', 'image')
+            ->orWhere('type', 'video')
+            ->get();
+
         $objCategories = new Categories();
         $categories = $objCategories->get();
 
@@ -75,6 +81,7 @@ class ProductsController extends Controller
 
         return view('admin.products.products.edit', [
             'product' => $product,
+            'attachments' => $attachments,
             'categories' => $categories,
             'productCategoriesRelationship' => $productCategoriesRelationship,
             'productCategories' => GetArrayOf::ids($productCategoriesRelationship),

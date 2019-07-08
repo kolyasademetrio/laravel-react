@@ -141,6 +141,22 @@
                     @endif
                 </div>
 
+                <div class="form-group w-100 last">
+                    <label for="image">Добавить галерею изображений:</label>
+                    <input type="file" class="form-control" id="attachment" name="attachment[]" placeholder="{!! trans('products.form.image') !!}" value="{!! $product->image !!}" multiple>
+                    <input type="hidden" name="x1" value="" />
+                    <input type="hidden" name="y1" value="" />
+                    <input type="hidden" name="w" value="" />
+                    <input type="hidden" name="h" value="" />
+
+                    @if($attachments)
+                        @foreach($attachments as $attachment)
+                            <img src="{{ $attachment->attachment }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5">
+                        @endforeach
+                    @else
+                        <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
+                    @endif
+                </div>
 
                 <div class="form-group w-49">
                     <label for="product_description_tab_content">{!! UcfirstCyr::trans('products.form.product_description_tab_content') !!}:</label>

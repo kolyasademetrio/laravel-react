@@ -124,13 +124,40 @@
 <script>
     jQuery(function($) {
         $("body").on('change', 'input[type="file"]', function(){
-            var imageReader = new FileReader(),
-                p = $(this).parent().find('.previewimage');
-            imageReader.readAsDataURL(this.files[0]);
+            var multiple = $(this).attr('multiple');
+            if ( typeof multiple === typeof undefined && !multiple ) {
+                let imageReader = new FileReader();
 
-            imageReader.onload = function (oFREvent) {
-                p.attr('src', oFREvent.target.result).fadeIn();
-            };
+                console.log( 'imageReader', imageReader );
+
+                var p = $(this).parent().find('.previewimage');
+                imageReader.readAsDataURL(this.files[0]);
+
+                imageReader.onload = function (oFREvent) {
+                    p.attr('src', oFREvent.target.result).fadeIn();
+                };
+            } else {
+
+                console.log( 'this.files', this.files );
+
+                function setupReader(file) {
+                    let name = file.name;
+                    let imageReader = new FileReader();
+                    imageReader.onload = function(e) {
+                        // get file content
+                        var text = e.target.result;
+                        /*var li = document.createElement("li");
+                        li.innerHTML = name + "____" + text;
+                        ul.appendChild(li);*/
+                    }
+                    imageReader.readAsText(file, "UTF-8");
+                }
+
+                for (var i = 0; i < this.files.length; i++) {
+                    setupReader(this.files[i]);
+                }
+            }
+
         });
 
         $('.previewimage').imgAreaSelect({

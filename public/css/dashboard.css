@@ -137,6 +137,10 @@ button,
     width: 23.5% !important;
 }
 
+w-32 {
+    width: 32% !important;
+}
+
 .w-49 {
     width: 49% !important;
 }

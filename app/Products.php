@@ -45,6 +45,4 @@ class Products extends Authenticatable
         'created_at',
         'updated_at',
     ];
-
-
 }

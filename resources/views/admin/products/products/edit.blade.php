@@ -8,6 +8,7 @@
         <h2>{!! trans('products.pages.edit_page_title') !!} <i>{!! $product->title.'( id-'. $product->id .' )' !!}</i></h2>
         <section>
             <form method="post" action="" class="add_product_form row-flex product-id-{{ $product->id }}" enctype="multipart/form-data">
+                <input type="hidden" name="productid" value="{{ $product->id }}">
                 <p class="w-100"><button type="submit" class="btn btn-success">{!! UcfirstCyr::trans('buttons.save_changes') !!}</button></p>
                 <div class="form-group">
                     <label for="title">{!! UcfirstCyr::trans('products.form.title') !!}:</label>
@@ -141,6 +142,8 @@
                     @endif
                 </div>
 
+
+                {{-- Добавить галерею изображений: --}}
                 <div class="form-group w-100 last">
                     <label for="image">Добавить галерею изображений:</label>
                     <input type="file" class="form-control" id="attachment" name="attachment[]" placeholder="{!! trans('products.form.image') !!}" value="{!! $product->image !!}" multiple>
@@ -150,11 +153,23 @@
                     <input type="hidden" name="h" value="" />
 
                     @if($attachments)
+                    <table width="100%">
                         @foreach($attachments as $attachment)
-                            <img src="{{ $attachment->attachment }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5">
+                            @if($attachment->type == 'image')
+                                <tr>
+                                    <td>
+                                        <img src="{{ $attachment->attachment }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5">
+                                    </td>
+                                    <td>
+                                        <a href="" attachmentid="1" productid="{{ $product->id }}" class="badge badge-danger delete-product-featured-image">×</a>
+                                    </td>
+                                </tr>
+
+                            @endif
                         @endforeach
+                    </table>
                     @else
-                        <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
+                        {{--<img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5" style="display: none;">--}}
                     @endif
                 </div>
 

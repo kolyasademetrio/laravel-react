@@ -8,6 +8,16 @@ use Image;
 
 class ImageDNK
 {
+    private static function getMiddleWidth($img){
+        $fullWidth = $img->width();
+        return (int) ($fullWidth / 2);
+    }
+
+    private static function getMiddleHeight($img){
+        $fullHeight = $img->height();
+        return (int) ($fullHeight / 2);
+    }
+
     public static function save (Request $request, string $fieldName, string $rootFolderName, string $itemFolderName, string $imageType = '') {
         if($request->hasfile($fieldName)){
             $image = $request->file($fieldName);
@@ -34,10 +44,8 @@ class ImageDNK
                 $img->save($croppath);
             }
 
-            $fullWidth = $img->width();
-            $fullHeight = $img->height();
-            $middleWidth = (int) ($fullWidth / 2);
-            $middleHeight = (int) ($fullHeight / 2);
+            $middleWidth = self::getMiddleWidth($img);
+            $middleHeight = self::getMiddleHeight($img);
 
             $middleSizePath = public_path($relativPath.'/middle'.'.'.$imageExtension);
             $img->fit($middleWidth, $middleHeight);

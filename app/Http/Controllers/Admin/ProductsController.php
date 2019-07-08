@@ -93,7 +93,13 @@ class ProductsController extends Controller
 
         $objProducts = Products::findOrFail($id);
 
-        $validated['image'] = ImageDNK::save($request, 'image', 'products', $request->productid, 'featured')['full'];
+        $validated['image'] = ImageDNK::save(
+            $request,
+            'image',
+            'products',
+            $request->productid,
+            'featured'
+        )['full'];
         $validated['tab_bg'] = ImageDNK::save($request, 'tab_bg', 'products', $request->productid);
         $validated['is_reccomended'] = $request->has('is_reccomended');
 

@@ -21,43 +21,47 @@ class ImageDNK
     public static function save (Request $request, string $fieldName, string $rootFolderName, string $itemFolderName, string $imageType = '') {
         if($request->hasfile($fieldName)){
             $image = $request->file($fieldName);
-            $newImageNameFullWithExtension = md5(microtime()) . $image->getClientOriginalExtension();
+            $newImageNameFullWithExtension = md5(microtime()) . '.' . $image->getClientOriginalExtension();
 
             $itemRelativPath = 'uploads/'.$rootFolderName.'/'.$itemFolderName;
-            $itemFullRelativePath = $itemRelativPath.'/full';
+            /*$itemFullRelativePath = $itemRelativPath.'/full';
             $itemResizedRelativePath = $itemRelativPath.'/resized';
-            $itemCroppedRelativePath = $itemRelativPath.'/cropped';
+            $itemCroppedRelativePath = $itemRelativPath.'/cropped';*/
 
-            $relPathWithFileName = $itemFullRelativePath.'/'.$newImageNameFullWithExtension;
+            $relPathWithFileName = $itemRelativPath.'/'.$newImageNameFullWithExtension;
 
-            if(!$image->move(public_path($itemFullRelativePath), $newImageNameFullWithExtension)){
+            if(!$image->move(public_path($itemRelativPath), $newImageNameFullWithExtension)){
                 return back()->with('error', 'При сохранении изображения произошла ошибка. Попробуйте ещё раз.');
             }
 
-            $img = Image::make(public_path($relPathWithFileName));
-            $imgFilename = $img->filename;
+           /* $img = Image::cache(function($image, $relPathWithFileName) {
+                return $image->make(public_path($relPathWithFileName));
+            });*/
 
-            $croppath = '';
+            /*$img = Image::make(public_path($relPathWithFileName));
+            $imgFilename = $img->filename;*/
+
+            /*$croppath = '';
             if($request->w && $request->h){
                 $croppath = public_path($itemResizedRelativePath.'/'.$imgFilename.'-cropped-'.$request->w.'-'.$request->h.'.'.$imageExtension);
                 $img->crop($request->w, $request->h, $request->x1, $request->y1);
                 $img->save($croppath);
-            }
+            }*/
 
-            $middleWidth = self::getMiddleWidth($img);
+            /*$middleWidth = self::getMiddleWidth($img);
             $middleHeight = self::getMiddleHeight($img);
 
             $middleSizePath = public_path($itemResizedRelativePath.'/'.$imgFilename.'-middle'.'.'.$imageExtension);
             $img->fit($middleWidth, $middleHeight);
             $img->save($itemResizedRelativePath);
 
-            dd( $middleSizePath );
+            dd( $middleSizePath );*/
 
             return [
-                'full' => asset($relPathWithFileName),
-                'cropped' => asset($croppath),
+                'full' => $newImageNameFullWithExtension,
+                /*'cropped' => asset($croppath),
                 'middle' => asset($middleSizePath),
-                'featured' => '',
+                'featured' => '',*/
             ];
         }
 

@@ -21,16 +21,13 @@ class ImageDNK
     public static function save (Request $request, string $fieldName, string $rootFolderName, string $itemFolderName, string $imageType = '') {
         if($request->hasfile($fieldName)){
             $image = $request->file($fieldName);
-            $imageName = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-            $imageExtension = $image->extension();
-            $timeHash = md5(microtime());
+            $newImageNameFullWithExtension = md5(microtime()) . $image->getClientOriginalExtension();
 
             $itemRelativPath = 'uploads/'.$rootFolderName.'/'.$itemFolderName;
             $itemFullRelativePath = $itemRelativPath.'/full';
             $itemResizedRelativePath = $itemRelativPath.'/resized';
             $itemCroppedRelativePath = $itemRelativPath.'/cropped';
 
-            $newImageNameFullWithExtension = $timeHash.'.'.$imageExtension;
             $relPathWithFileName = $itemFullRelativePath.'/'.$newImageNameFullWithExtension;
 
             if(!$image->move(public_path($itemFullRelativePath), $newImageNameFullWithExtension)){
@@ -63,5 +60,7 @@ class ImageDNK
                 'featured' => '',
             ];
         }
+
+        return null;
     }
 }

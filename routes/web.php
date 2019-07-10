@@ -48,13 +48,15 @@ Route::group(['middleware' => 'auth'], function(){
     });
 });
 
-Route::get('/{path?}', function () {
+/*Route::get('/{path?}', function () {
     return view('home');
-});
+});*/
 
 //Route::get('/', function () {
 //    return view('home');
 //});
 //
-//Route::get('/{path?}', function($path = null){return View::make('home'); })->where('path', '.*');
+Route::get('/{path?}', function($path = null){
+    return View::make('home');
+})->where('path', '.*');
 

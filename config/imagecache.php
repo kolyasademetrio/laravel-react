@@ -2,13 +2,13 @@
 
 use App\Helpers\SubfoldersRecursive;
 
-$defaultPaths = array(
+$defaultPaths = [
     public_path('uploads/products'),
     //public_path('images')
-);
+];
 
 
-return array(
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -56,11 +56,12 @@ return array(
     |
     */
 
-    'templates' => array(
+    'templates' => [
         'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
-    ),
+        'normal' => 'App\Filter\Image\Xlarge',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -73,4 +74,4 @@ return array(
 
     'lifetime' => 43200,
 
-);
+];

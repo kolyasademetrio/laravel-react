@@ -1,5 +1,13 @@
 <?php
 
+use App\Helpers\SubfoldersRecursive;
+
+$defaultPaths = array(
+    public_path('uploads/products'),
+    //public_path('images')
+);
+
+
 return array(
 
     /*
@@ -30,10 +38,7 @@ return array(
     |
     */
 
-    'paths' => array(
-        public_path('uploads'),
-        public_path('images')
-    ),
+    'paths' => SubfoldersRecursive::get($defaultPaths),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +57,7 @@ return array(
     */
 
     'templates' => array(
-        'small' => 'App\Filter\Image',
+        'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
     ),

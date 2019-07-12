@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Intervention\Image\ImageCacheController;
+use App\Http\Controllers\DnkImageCacheController;
 use Schema;
 
 class AppServiceProvider extends ServiceProvider

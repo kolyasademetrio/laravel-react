@@ -228,6 +228,7 @@ return [
         'ImageDNK' => App\Helpers\ImageDNK::class,
         'GetArrayOf' => App\Helpers\GetArrayOf::class,
         'UcfirstCyr' => App\Helpers\UcfirstCyr::class,
+        'SubfoldersRecursive' => App\Helpers\SubfoldersRecursive::class,
         'Image' => Intervention\Image\Facades\Image::class,
     ],
 

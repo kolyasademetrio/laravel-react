@@ -1,6 +1,14 @@
 <?php
 
-return array(
+use App\Helpers\SubfoldersRecursive;
+
+$defaultPaths = [
+    public_path('uploads/products'),
+    //public_path('images')
+];
+
+
+return [
 
     /*
     |--------------------------------------------------------------------------
@@ -30,10 +38,7 @@ return array(
     |
     */
 
-    'paths' => array(
-        public_path('uploads'),
-        public_path('images')
-    ),
+    'paths' => SubfoldersRecursive::get($defaultPaths),
 
     /*
     |--------------------------------------------------------------------------
@@ -51,11 +56,12 @@ return array(
     |
     */
 
-    'templates' => array(
-        'small' => 'App\Filter\Image',
+    'templates' => [
+        'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
-    ),
+        'normal' => 'App\Filter\Image\Xlarge',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -68,4 +74,4 @@ return array(
 
     'lifetime' => 43200,
 
-);
+];

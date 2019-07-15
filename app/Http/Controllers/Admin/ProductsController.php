@@ -39,12 +39,21 @@ class ProductsController extends Controller
         $objProduct = new Products();
 
         $validated['is_reccomended'] = $request->has('is_reccomended');
-        $validated['image'] = ImageDNK::save($request, 'image');
-        $validated['tab_bg'] = ImageDNK::save($request, 'tab_bg');
 
         $objProduct = $objProduct->create($validated);
 
-        if(!$objProduct){
+        if($objProduct){
+            // TODO: Добавить изображения к созданному изображению
+            $image = ImageDNK::save($request, 'image', 'products', $request->productid);
+            if($image){
+                $validated['image'] = $image['full'];
+            }
+
+            $tab_bg = ImageDNK::save($request, 'tab_bg', 'products', $request->productid);
+            if( $tab_bg ){
+                $validated['tab_bg'] = $tab_bg['full'];
+            }
+        } else {
             return back()->with('error', 'Товар не создан. Попробуйте ещё раз');
         }
 
@@ -93,7 +102,7 @@ class ProductsController extends Controller
 
         $objProducts = Products::findOrFail($id);
 
-        $image = ImageDNK::save($request, 'image', 'products', $request->productid, 'featured');
+        $image = ImageDNK::save($request, 'image', 'products', $request->productid);
         if($image){
             $validated['image'] = $image['full'];
         }
@@ -104,8 +113,6 @@ class ProductsController extends Controller
         }
 
         $validated['is_reccomended'] = $request->has('is_reccomended');
-
-        //dd($validated['image']);
 
         $objProducts->fill($validated);
 

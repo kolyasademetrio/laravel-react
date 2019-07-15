@@ -128,7 +128,7 @@
                     <input type="hidden" name="h" value="" />
 
                     @if($product->image)
-                        <img src="{{ $product->image }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
+                        <img src="/imagecache/normal/{{ $product->image }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
                     @else
                         <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                     @endif
@@ -138,7 +138,9 @@
                     <label for="tab_bg">{!! UcfirstCyr::trans('products.form.tab_bg') !!}:</label>
                     <input type="file" class="form-control" id="tab_bg" name="tab_bg" placeholder="{!! trans('products.form.tab_bg') !!}" value="{!! $product->tab_bg !!}">
                     @if($product->tab_bg)
-                        <img src="{{ $product->tab_bg }}" alt="" class="img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5">
+                        <img src="/imagecache/normal/{{ $product->tab_bg }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
+                    @else
+                        <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
                     @endif
                 </div>
 

@@ -5,6 +5,7 @@ namespace App\Helpers;
 
 use Illuminate\Http\Request;
 use Image;
+use File;
 
 class ImageDNK
 {
@@ -24,15 +25,26 @@ class ImageDNK
             $newImageNameFullWithExtension = md5(microtime()) . '.' . $image->getClientOriginalExtension();
 
             $itemRelativPath = 'uploads/'.$rootFolderName.'/'.$itemFolderName;
-            /*$itemFullRelativePath = $itemRelativPath.'/full';
-            $itemResizedRelativePath = $itemRelativPath.'/resized';
-            $itemCroppedRelativePath = $itemRelativPath.'/cropped';*/
 
-            $relPathWithFileName = $itemRelativPath.'/'.$newImageNameFullWithExtension;
+            if($request->w && $request->h){
+                $img = Image::make($request->$fieldName);
+                $img->crop($request->w, $request->h, $request->x1, $request->y1);
+                if(!File::exists($itemRelativPath)){
+                    File::makeDirectory($itemRelativPath, $mode = 0777, true, true);
+                }
+                $saved = $img->save($itemRelativPath.'/'.$newImageNameFullWithExtension);
+            } else {
+                $saved = $image->move(public_path($itemRelativPath), $newImageNameFullWithExtension);
+            }
 
-            if(!$image->move(public_path($itemRelativPath), $newImageNameFullWithExtension)){
+            if(!$saved){
                 return back()->with('error', 'При сохранении изображения произошла ошибка. Попробуйте ещё раз.');
             }
+
+
+
+
+
 
            /* $img = Image::cache(function($image, $relPathWithFileName) {
                 return $image->make(public_path($relPathWithFileName));
@@ -55,7 +67,10 @@ class ImageDNK
             $img->fit($middleWidth, $middleHeight);
             $img->save($itemResizedRelativePath);
 
-            dd( $middleSizePath );*/
+            dd( $middleSizePath );
+
+            Input::file('photo')
+            */
 
             return [
                 'full' => $newImageNameFullWithExtension,

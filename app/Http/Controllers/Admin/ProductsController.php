@@ -43,15 +43,21 @@ class ProductsController extends Controller
         $objProduct = $objProduct->create($validated);
 
         if($objProduct){
-            // TODO: Добавить изображения к созданному изображению
-            $image = ImageDNK::save($request, 'image', 'products', $request->productid);
+            $images = [];
+            $image = ImageDNK::save($request, 'image', 'products', $objProduct->id);
             if($image){
-                $validated['image'] = $image['full'];
+                $images['image'] = $image['full'];
             }
 
-            $tab_bg = ImageDNK::save($request, 'tab_bg', 'products', $request->productid);
+            $tab_bg = ImageDNK::save($request, 'tab_bg', 'products', $objProduct->id);
             if( $tab_bg ){
-                $validated['tab_bg'] = $tab_bg['full'];
+                $images['tab_bg'] = $tab_bg['full'];
+            }
+
+            if(!empty($images)){
+                $product = Products::findOrFail($objProduct->id);
+                $product->fill($images);
+                $product->save();
             }
         } else {
             return back()->with('error', 'Товар не создан. Попробуйте ещё раз');

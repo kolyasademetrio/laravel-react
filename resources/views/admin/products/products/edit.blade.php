@@ -129,6 +129,7 @@
 
                     @if($product->image)
                         <img src="/imagecache/normal/{{ $product->image }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
+                        <a href="" imagename="{{ $product->image }}" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                     @else
                         <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                     @endif
@@ -223,14 +224,14 @@
             $('.delete-product-category').on('click', function(e){
                 e.preventDefault();
                 if(confirm('Вы действительно хотите удалить категорию у товара?')){
-                    let product_id = $(this).attr('productId');
-                    let category_id = $(this).attr('catId');
+                    let product_id = $(this).attr('productId'),
+                        category_id = $(this).attr('catId');
 
                     $.ajax({
                         type: "DELETE",
                         url: "{!! route('admin.products.productcategory.delete') !!}",
                         data: {
-                            _token:"{{csrf_token()}}",
+                            _token:"{{ csrf_token() }}",
                             category_id: category_id,
                             product_id: product_id,
                         },
@@ -246,6 +247,36 @@
                             alertify.error("При удалении произошла ошибка. Попробуйте позже.");
                         }
                     });
+                } else {
+                    alertify.error("Действие отменено пользователем.");
+                }
+            });
+
+            $('.delete-product-image').on('click', function(e){
+                e.preventDefault();
+                if(confirm('Вы действительно хотите удалить изображение?')){
+                    let product_id = $(this).attr('productid'),
+                        imagename = $(this).attr('imagename');
+
+                    $.ajax({
+                        type: "DELETE",
+                        url: "{!! route('admin.products.productimage.delete') !!}",
+                        data: {
+                            _token:"{{ csrf_token() }}",
+                            product_id: product_id,
+                            imagename: imagename,
+                        },
+                        success: function(data){
+                            if(data){
+                                alert("Изображение удалено");
+                                location.reload();
+                            }
+                            alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                        },
+                        error: function(){
+                            alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                        }
+                    })
                 } else {
                     alertify.error("Действие отменено пользователем.");
                 }

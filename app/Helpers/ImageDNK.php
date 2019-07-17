@@ -41,11 +41,6 @@ class ImageDNK
                 return back()->with('error', 'При сохранении изображения произошла ошибка. Попробуйте ещё раз.');
             }
 
-
-
-
-
-
            /* $img = Image::cache(function($image, $relPathWithFileName) {
                 return $image->make(public_path($relPathWithFileName));
             });*/
@@ -67,19 +62,27 @@ class ImageDNK
             $img->fit($middleWidth, $middleHeight);
             $img->save($itemResizedRelativePath);
 
-            dd( $middleSizePath );
-
-            Input::file('photo')
-            */
+            dd( $middleSizePath );*/
 
             return [
                 'full' => $newImageNameFullWithExtension,
-                /*'cropped' => asset($croppath),
-                'middle' => asset($middleSizePath),
-                'featured' => '',*/
             ];
         }
 
         return null;
+    }
+
+    public static function delete($filename){
+        // find file
+        foreach (config('imagecache.paths') as $path) {
+            // don't allow '..' in filenames
+            $image_path = $path.'/'.str_replace('..', '', $filename);
+            if (file_exists($image_path) && is_file($image_path)) {
+
+                dd($image_path);
+                // file found
+                return $image_path;
+            }
+        }
     }
 }

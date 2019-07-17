@@ -11,6 +11,7 @@
             <table class="table table-bordered">
                 <tr>
                     <th>#</th>
+                    <th>Действия</th>
                     <th>ID</th>
                     <th>Название</th>
                     <th>Slug</th>
@@ -35,6 +36,10 @@
                 @foreach($products as $key=>$product)
                     <tr>
                         <td>{{ ++$key }}</td>
+                        <td>
+                            <a href="{!! route('admin.products.edit', ['id' => $product->id]) !!}">Редактировать</a> ||
+                            <a href="" class="delete_product" rel="{{$product->id}}">Удалить</a>
+                        </td>
                         <td>{{ $product->id }}</td>
                         <td>{{ $product->title }}</td>
                         <td>{{ $product->slug }}</td>

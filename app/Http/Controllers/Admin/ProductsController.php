@@ -170,4 +170,17 @@ class ProductsController extends Controller
             echo $relationDeleted ? true : false;
         }
     }
+
+    public function deleteProductImage(Request $request){
+        if($request->ajax()){
+            $product_id = (int)$request->input('product_id');
+            $image_name = $request->input('imagename');
+            $objProduct = new Products();
+            $imageDeleted = $objProduct->where('id', $product_id)->update(['image' => '',]);
+
+            ImageDNK::delete($image_name);
+
+            echo $imageDeleted ? true : false;
+        }
+    }
 }

@@ -176,11 +176,11 @@ class ProductsController extends Controller
             $product_id = (int)$request->input('product_id');
             $image_name = $request->input('imagename');
             $objProduct = new Products();
-            $imageDeleted = $objProduct->where('id', $product_id)->update(['image' => '',]);
+            $objProduct->where('id', $product_id)->update(['image' => '',]);
 
-            ImageDNK::delete($image_name);
+            $imageDeleted = ImageDNK::delete($image_name);
 
-            echo $imageDeleted ? true : false;
+            echo $imageDeleted;
         }
     }
 }

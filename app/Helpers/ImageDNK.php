@@ -78,11 +78,10 @@ class ImageDNK
             // don't allow '..' in filenames
             $image_path = $path.'/'.str_replace('..', '', $filename);
             if (file_exists($image_path) && is_file($image_path)) {
-
-                dd($image_path);
-                // file found
-                return $image_path;
+                File::delete($image_path);
+                return true;
             }
+            return false;
         }
     }
 }

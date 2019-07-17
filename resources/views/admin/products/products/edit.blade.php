@@ -267,10 +267,11 @@
                             imagename: imagename,
                         },
                         success: function(data){
-                            console.log( data );
-
-                            alert("Изображение удалено");
-                            //location.reload();
+                            if(data){
+                                alert("Изображение удалено");
+                                location.reload();
+                            }
+                            alertify.error("При удалении произошла ошибка. Попробуйте позже.");
                         },
                         error: function(){
                             alertify.error("При удалении произошла ошибка. Попробуйте позже.");

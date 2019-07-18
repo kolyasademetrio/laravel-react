@@ -73,15 +73,22 @@ class ImageDNK
     }
 
     public static function delete($filename){
-        // find file
-        foreach (config('imagecache.paths') as $path) {
-            // don't allow '..' in filenames
-            $image_path = $path.'/'.str_replace('..', '', $filename);
-            if (file_exists($image_path) && is_file($image_path)) {
-                File::delete($image_path);
-                return true;
+        // if $filename is path to image and the image exists
+        if(file_exists($filename) && is_file($filename)){
+            File::delete(app_path($filename));
+            return true;
+        } else {
+            // if $filename is an name of file so we need to find file
+            foreach (config('imagecache.paths') as $path) {
+                // don't allow '..' in filenames
+                $image_path = $path.'/'.str_replace('..', '', $filename);
+                if (file_exists($image_path) && is_file($image_path)) {
+                    File::delete($image_path);
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
+
     }
 }

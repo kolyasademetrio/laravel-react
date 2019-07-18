@@ -172,12 +172,23 @@ class ProductsController extends Controller
         if($request->ajax()){
             $product_id = (int)$request->input('product_id');
             $image_name = $request->input('imagename');
-            $name = $request->input('name');
 
-            $objProduct = new Products();
-            $objProduct->where('id', $product_id)->update([$name => '',]);
 
-            $imageDeleted = ImageDNK::delete($image_name);
+            if((int)$request->input('attachment_id')){ // if is the product_attachments table image
+                $id = (int)$request->input('attachment_id');
+
+                $objProductAttachments =  new ProductAttachments();
+                $deleted = $objProductAttachments->where('product_id', $product_id)->where('id', $id)->delete();
+            } else if($request->input('name')){ // if is the products table image
+                $name = $request->input('name');
+
+                $objProduct = new Products();
+                $deleted = $objProduct->where('id', $product_id)->update([$name => '',]);
+            }
+
+            if($deleted){
+                $imageDeleted = ImageDNK::delete($image_name);
+            }
 
             echo $imageDeleted;
         }

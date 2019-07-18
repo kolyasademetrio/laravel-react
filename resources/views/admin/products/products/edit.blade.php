@@ -167,7 +167,7 @@
                             @if($attachment->type == 'image')
                                 <div class="w-23-5 mr-2-p{{($key%4 == 0) && ($key != 0) ? ' last' : ''}}">
                                     <img src="{{ $attachment->attachment }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-90">
-                                    <a href="" attachmentid="1" productid="{{ $product->id }}" class="badge badge-danger delete-product-featured-image">×</a>
+                                    <a href="" attachmentid="{{ $attachment->id }}" imagename="{{ $attachment->attachment }}" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                                 </div>
                             @endif
                         @endforeach
@@ -258,7 +258,15 @@
                 if(confirm('Вы действительно хотите удалить изображение?')){
                     let product_id = $(this).attr('productid'),
                         imagename = $(this).attr('imagename'),
-                        name = $(this).attr('name');
+                        name = $(this).attr('name'),
+                        attachment_id = $(this).attr('attachmentid');
+
+                    /*console.log( 'product_id', product_id );
+                    console.log( 'imagename', imagename );
+                    console.log( 'name', name );
+                    console.log( 'attachment_id', attachment_id );
+
+                    return false;*/
 
                     $.ajax({
                         type: "DELETE",
@@ -268,6 +276,7 @@
                             product_id: product_id,
                             imagename: imagename,
                             name: name,
+                            attachment_id: attachment_id,
                         },
                         success: function(data){
                             if(data){

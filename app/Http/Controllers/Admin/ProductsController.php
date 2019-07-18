@@ -114,6 +114,16 @@ class ProductsController extends Controller
         if( $tab_bg ){
             $validated['tab_bg'] = $tab_bg['full'];
         }
+        // TODO: Доделать загрузку и сохранение галереи фото продукта
+        dd($request->attachment);
+
+        if($request->attachment){
+            foreach($request->attachment as $image){
+                if( ImageDNK::save($image, 'products', $request->productid) ){
+
+                }
+            }
+        }
 
         $validated['is_reccomended'] = $request->has('is_reccomended');
 
@@ -173,7 +183,6 @@ class ProductsController extends Controller
             $product_id = (int)$request->input('product_id');
             $image_name = $request->input('imagename');
 
-
             if((int)$request->input('attachment_id')){ // if is the product_attachments table image
                 $id = (int)$request->input('attachment_id');
 
@@ -194,14 +203,4 @@ class ProductsController extends Controller
         }
     }
 
-    public function deleteProductAttachment(Request $request){
-        if($request->ajax()){
-            $product_id = (int)$request->input('product_id');
-            $image_name = $request->input('imagename');
-            $id = (int)$request->input('attachment_id');
-
-            $objProductAttachments =  new ProductAttachments();
-            $productAttachmentDeleted = $objProductAttachments->where('product_id', $product_id)->where('id', $id)->delete();
-        }
-    }
 }

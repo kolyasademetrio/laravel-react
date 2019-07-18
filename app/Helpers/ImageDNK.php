@@ -72,6 +72,24 @@ class ImageDNK
         return null;
     }
 
+    public static function saveMultiple ($image, string $rootFolderName, string $itemFolderName, string $imageType = '') {
+            $newImageNameFullWithExtension = md5(microtime()) . '.' . $image->getClientOriginalExtension();
+
+            $itemRelativPath = 'uploads/'.$rootFolderName.'/'.$itemFolderName;
+
+            $saved = $image->move(public_path($itemRelativPath), $newImageNameFullWithExtension);
+
+            if(!$saved){
+                return back()->with('error', 'При сохранении изображения произошла ошибка. Попробуйте ещё раз.');
+            }
+
+            return [
+                'full' => $newImageNameFullWithExtension,
+            ];
+
+        return null;
+    }
+
     public static function delete($filename){
         // if $filename is path to image and the image exists
         if(file_exists($filename) && is_file($filename)){

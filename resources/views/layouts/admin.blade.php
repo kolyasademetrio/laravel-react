@@ -128,8 +128,6 @@
             if ( typeof multiple === typeof undefined && !multiple ) {
                 let imageReader = new FileReader();
 
-                console.log( 'imageReader', imageReader );
-
                 var p = $(this).parent().find('.previewimage');
                 imageReader.readAsDataURL(this.files[0]);
 
@@ -137,27 +135,30 @@
                     p.attr('src', oFREvent.target.result).fadeIn();
                 };
             } else {
-
-                console.log( 'this.files', this.files );
-
-                function setupReader(file) {
+                function setupReader(file, $wrapper) {
                     let name = file.name;
                     let imageReader = new FileReader();
-                    imageReader.onload = function(e) {
-                        // get file content
-                        var text = e.target.result;
-                        /*var li = document.createElement("li");
-                        li.innerHTML = name + "____" + text;
-                        ul.appendChild(li);*/
+
+                    imageReader.readAsDataURL(file);
+                    imageReader.onload = function(oFREvent) {
+                        $wrapper.append('<div class="w-23-5 mr-2-p">' +
+                            '<img src="' + oFREvent.target.result + '" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-90">' +
+                            '</div>').fadeIn();
                     }
-                    imageReader.readAsText(file, "UTF-8");
+                    //imageReader.readAsText(file, "UTF-8");
                 }
 
-                for (var i = 0; i < this.files.length; i++) {
-                    setupReader(this.files[i]);
+                if(this.files.length){
+                    var $exists = $(this).parent().find('.product-attachments-wrapper').find('.exists').detach(),
+                        $wrapper = $(this).parent().find('.product-attachments-wrapper').empty();
+
+                    $wrapper.append($exists);
+
+                    for (var i = 0; i < this.files.length; i++) {
+                        setupReader(this.files[i], $wrapper);
+                    }
                 }
             }
-
         });
 
         $('.previewimage').imgAreaSelect({

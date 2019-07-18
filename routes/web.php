@@ -46,6 +46,8 @@ Route::group(['middleware' => 'auth'], function(){
         Route::delete('/products/productcategory/delete', 'Admin\ProductsController@deleteProductCategory')->name('admin.products.productcategory.delete');
         Route::delete('/products/productimage/delete', 'Admin\ProductsController@deleteProductImage')->name('admin.products.productimage.delete');
 
+        /** Products Attachments */
+        Route::delete('/products/attachment/delete', 'Admin\ProductAttachmentsController@destroy')->name('admin.products.attachment.delete');
     });
 });
 

@@ -83,10 +83,7 @@ class ProductsController extends Controller
     public function editProduct(int $id){
         $product = Products::findOrFail($id);
 
-        $attachments = ProductAttachments::where('product_id', $id)
-            ->orWhere('type', 'image')
-            ->orWhere('type', 'video')
-            ->get();
+        $attachments = ProductAttachments::where(['product_id' => $id])->get();
 
         $objCategories = new Categories();
         $categories = $objCategories->get();
@@ -175,12 +172,25 @@ class ProductsController extends Controller
         if($request->ajax()){
             $product_id = (int)$request->input('product_id');
             $image_name = $request->input('imagename');
+            $name = $request->input('name');
+
             $objProduct = new Products();
-            $objProduct->where('id', $product_id)->update(['image' => '',]);
+            $objProduct->where('id', $product_id)->update([$name => '',]);
 
             $imageDeleted = ImageDNK::delete($image_name);
 
             echo $imageDeleted;
+        }
+    }
+
+    public function deleteProductAttachment(Request $request){
+        if($request->ajax()){
+            $product_id = (int)$request->input('product_id');
+            $image_name = $request->input('imagename');
+            $id = (int)$request->input('attachment_id');
+
+            $objProductAttachments =  new ProductAttachments();
+            $productAttachmentDeleted = $objProductAttachments->where('product_id', $product_id)->where('id', $id)->delete();
         }
     }
 }

@@ -129,7 +129,7 @@
 
                     @if($product->image)
                         <img src="/imagecache/normal/{{ $product->image }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
-                        <a href="" imagename="{{ $product->image }}" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
+                        <a href="" imagename="{{ $product->image }}" name="image" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                     @else
                         <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                     @endif
@@ -138,10 +138,16 @@
                 <div class="form-group w-49 last">
                     <label for="tab_bg">{!! UcfirstCyr::trans('products.form.tab_bg') !!}:</label>
                     <input type="file" class="form-control" id="tab_bg" name="tab_bg" placeholder="{!! trans('products.form.tab_bg') !!}" value="{!! $product->tab_bg !!}">
+                    <input type="hidden" name="x1" value="" />
+                    <input type="hidden" name="y1" value="" />
+                    <input type="hidden" name="w" value="" />
+                    <input type="hidden" name="h" value="" />
+
                     @if($product->tab_bg)
                         <img src="/imagecache/normal/{{ $product->tab_bg }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
+                        <a href="" imagename="{{ $product->tab_bg }}" name="tab_bg" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                     @else
-                        <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
+                        <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                     @endif
                 </div>
 
@@ -156,21 +162,16 @@
                     <input type="hidden" name="h" value="" />
 
                     @if($attachments)
-                    <table width="100%">
-                        @foreach($attachments as $attachment)
+                    <div class="row-flex">
+                        @foreach($attachments as $key=>$attachment)
                             @if($attachment->type == 'image')
-                                <tr>
-                                    <td>
-                                        <img src="{{ $attachment->attachment }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5">
-                                    </td>
-                                    <td>
-                                        <a href="" attachmentid="1" productid="{{ $product->id }}" class="badge badge-danger delete-product-featured-image">×</a>
-                                    </td>
-                                </tr>
-
+                                <div class="w-23-5 mr-2-p{{($key%4 == 0) && ($key != 0) ? ' last' : ''}}">
+                                    <img src="{{ $attachment->attachment }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-90">
+                                    <a href="" attachmentid="1" productid="{{ $product->id }}" class="badge badge-danger delete-product-featured-image">×</a>
+                                </div>
                             @endif
                         @endforeach
-                    </table>
+                    </div>
                     @else
                         {{--<img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5" style="display: none;">--}}
                     @endif
@@ -256,7 +257,8 @@
                 e.preventDefault();
                 if(confirm('Вы действительно хотите удалить изображение?')){
                     let product_id = $(this).attr('productid'),
-                        imagename = $(this).attr('imagename');
+                        imagename = $(this).attr('imagename'),
+                        name = $(this).attr('name');
 
                     $.ajax({
                         type: "DELETE",
@@ -265,13 +267,15 @@
                             _token:"{{ csrf_token() }}",
                             product_id: product_id,
                             imagename: imagename,
+                            name: name,
                         },
                         success: function(data){
                             if(data){
                                 alert("Изображение удалено");
                                 location.reload();
+                            } else {
+                                alertify.error("При удалении произошла ошибка. Попробуйте позже.");
                             }
-                            alertify.error("При удалении произошла ошибка. Попробуйте позже.");
                         },
                         error: function(){
                             alertify.error("При удалении произошла ошибка. Попробуйте позже.");

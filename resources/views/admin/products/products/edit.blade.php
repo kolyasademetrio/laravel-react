@@ -128,7 +128,7 @@
                     <input type="hidden" name="h" value="" />
 
                     @if($product->image)
-                        <img src="/imagecache/normal/{{ $product->image }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
+                        <img sss src="/imagecache/normal/{{ $product->image }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
                         <a href="" imagename="{{ $product->image }}" name="image" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                     @else
                         <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">

@@ -176,6 +176,10 @@ w-32 {
 .last {
     margin-right: 0 !important;
 }
+
+.row-flex-4>[class*=mr-]:nth-child(4n) {
+    margin-right: 0 !important;
+}
 /* END: nav-link */
 
 .form-group {

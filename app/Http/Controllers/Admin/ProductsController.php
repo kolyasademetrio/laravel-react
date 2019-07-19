@@ -109,6 +109,8 @@ class ProductsController extends Controller
         // TODO: Чтобы не сохранять на диск изображения до сохранения товара + не прервать сохранение товара если изображение дало ошибку.
 
         // TODO: Удалять фото перед сохранением в базу нового - из БД и с Диска
+
+        // TODO: Добавить возможность добавлять видео к product_attachments
         $image = ImageDNK::save($request, 'image', 'products', $request->productid);
         if($image){
             $validated['image'] = $image['full'];

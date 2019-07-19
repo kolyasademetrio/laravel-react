@@ -121,7 +121,7 @@
 
                 <div class="form-group w-49">
                     <label for="image">{!! UcfirstCyr::trans('products.form.image') !!}:</label>
-                    <input type="file" class="form-control" id="image" name="image" placeholder="{!! trans('products.form.image') !!}" value="{!! $product->image !!}">
+                    <input type="file" class="form-control" id="image" name="image" placeholder="{!! trans('products.form.image') !!}" value="">
                     <input type="hidden" name="x1" value="" />
                     <input type="hidden" name="y1" value="" />
                     <input type="hidden" name="w" value="" />
@@ -161,12 +161,12 @@
                     <input type="hidden" name="w" value="" />
                     <input type="hidden" name="h" value="" />
 
-                    <div class="product-attachments-wrapper row-flex">
+                    <div class="product-attachments-wrapper row-flex row-flex-4">
                         @if($attachments)
                             @foreach($attachments as $key=>$attachment)
                                 @if($attachment->type == 'image')
-                                    <div class="w-23-5 mr-2-p{{($key%4 == 0) && ($key != 0) ? ' last' : ''}} exists">
-                                        <img src="{{ $attachment->attachment }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-90">
+                                    <div class="w-23-5 mr-2-p exists">
+                                        <img src="/imagecache/normal/{{ $attachment->attachment }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-90">
                                         <a href="" attachmentid="{{ $attachment->id }}" imagename="{{ $attachment->attachment }}" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                                     </div>
                                 @endif

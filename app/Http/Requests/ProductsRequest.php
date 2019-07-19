@@ -55,6 +55,7 @@ class ProductsRequest extends FormRequest
             'currency' => 'string',
             'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'tab_bg' => 'mimes:jpeg,jpg,png,gif|max:10000',
+            'attachment' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'product_description_tab_content' => 'max:10000',
             'product_ingredients_tab_content' => 'max:10000',
             'product_usage_tab_content' => 'max:10000',

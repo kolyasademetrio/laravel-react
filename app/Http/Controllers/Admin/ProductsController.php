@@ -105,6 +105,8 @@ class ProductsController extends Controller
 
         $objProducts = Products::findOrFail($id);
 
+        // TODO: Вынести сохранение изображений ПОСЛЕ того как товар сохранен в базу данных.
+        // TODO Чтобы не сохранять на диск изображения до сохранения товара + не прервать сохранение товара если изображение дало ошибку.
         $image = ImageDNK::save($request, 'image', 'products', $request->productid);
         if($image){
             $validated['image'] = $image['full'];
@@ -114,14 +116,30 @@ class ProductsController extends Controller
         if( $tab_bg ){
             $validated['tab_bg'] = $tab_bg['full'];
         }
-        // TODO: Доделать загрузку и сохранение галереи фото продукта
-        dd($request->attachment);
 
         if($request->attachment){
+            $attachmentError = [];
             foreach($request->attachment as $image){
-                if( ImageDNK::save($image, 'products', $request->productid) ){
-
+                $attachment = ImageDNK::saveMultiple($image, 'products', $request->productid)['full'];
+                $error = ImageDNK::saveMultiple($image, 'products', $request->productid)['error'];
+                if( $attachment ){
+                    $objProductAttachments = new ProductAttachments();
+                    $objProductAttachments->create([
+                        'product_slug' => $request->slug,
+                        'product_id' => $id,
+                        'attachment_name' => $attachment,
+                        'attachment' => $attachment,
+                        'type' => 'image',
+                    ]);
                 }
+
+                if($error){
+                    array_push($attachmentError, $error);
+                }
+            }
+
+            if(!empty($attachmentError)){
+                return back()->withErrors($attachmentError);
             }
         }
 

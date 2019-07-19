@@ -124,16 +124,23 @@
 <script>
     jQuery(function($) {
         $("body").on('change', 'input[type="file"]', function(){
-            var multiple = $(this).attr('multiple');
-            if ( typeof multiple === typeof undefined && !multiple ) {
-                let imageReader = new FileReader();
+            var multiple = $(this).attr('multiple'),
+                filesExt  = ['jpeg','jpg','png','gif'];
 
-                var p = $(this).parent().find('.previewimage');
-                imageReader.readAsDataURL(this.files[0]);
+            if(typeof multiple === typeof undefined && !multiple) {
+                var parts = this.files[0].name.split('.');
 
-                imageReader.onload = function (oFREvent) {
-                    p.attr('src', oFREvent.target.result).fadeIn();
-                };
+                if(filesExt.join().search(parts[parts.length - 1]) != -1){
+                    let imageReader = new FileReader();
+
+                    var p = $(this).parent().find('.previewimage');
+                    imageReader.readAsDataURL(this.files[0]);
+
+                    imageReader.onload = function (oFREvent) {
+                        p.attr('src', oFREvent.target.result).fadeIn();
+                        p.parent().find('a').remove();
+                    };
+                }
             } else {
                 function setupReader(file, $wrapper) {
                     let name = file.name;
@@ -145,7 +152,6 @@
                             '<img src="' + oFREvent.target.result + '" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-90">' +
                             '</div>').fadeIn();
                     }
-                    //imageReader.readAsText(file, "UTF-8");
                 }
 
                 if(this.files.length){
@@ -155,7 +161,10 @@
                     $wrapper.append($exists);
 
                     for (var i = 0; i < this.files.length; i++) {
-                        setupReader(this.files[i], $wrapper);
+                        let parts = this.files[i].name.split('.');
+                        if(filesExt.join().search(parts[parts.length - 1]) != -1){
+                            setupReader(this.files[i], $wrapper);
+                        }
                     }
                 }
             }

@@ -41,6 +41,11 @@ class ImageDNK
                 return back()->with('error', 'При сохранении изображения произошла ошибка. Попробуйте ещё раз.');
             }
 
+            $fieldNameExist = $fieldName.'_exists';
+            if($request->$fieldNameExist){
+                self::delete($request->$fieldNameExist);
+            }
+
             return [
                 'full' => $newImageNameFullWithExtension,
             ];

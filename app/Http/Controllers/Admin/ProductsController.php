@@ -106,12 +106,11 @@ class ProductsController extends Controller
         $objProducts = Products::findOrFail($id);
 
         // TODO: Вынести сохранение изображений ПОСЛЕ того как товар сохранен в базу данных.
+
         // TODO: Чтобы не сохранять на диск изображения до сохранения товара + не прервать сохранение товара если изображение дало ошибку.
 
-        // TODO: Удалять фото перед сохранением в базу нового - из БД и с Диска
-
         // TODO: Добавить возможность добавлять видео к product_attachments
-        $image = ImageDNK::save($request, 'image', 'products', $request->productid);
+        /*$image = ImageDNK::save($request, 'image', 'products', $request->productid);
         if($image){
             $validated['image'] = $image['full'];
         }
@@ -119,7 +118,7 @@ class ProductsController extends Controller
         $tab_bg = ImageDNK::save($request, 'tab_bg', 'products', $request->productid);
         if( $tab_bg ){
             $validated['tab_bg'] = $tab_bg['full'];
-        }
+        }*/
 
         if($request->attachment){
             $attachmentError = [];
@@ -154,6 +153,24 @@ class ProductsController extends Controller
         if(!$objProducts->save()){
             return back()->with('error', 'Товар не изменен. Попробуйте ещё раз');
         }
+
+        // TODO: Здесь сохраняем изображения на диск и в БД
+        $image = ImageDNK::save($request, 'image', 'products', $request->productid);
+        if($image){
+
+            $objProducts->image = $image['full'];
+
+            //$validated['image'] = $image['full'];
+        }
+
+        $tab_bg = ImageDNK::save($request, 'tab_bg', 'products', $request->productid);
+        if( $tab_bg ){
+
+            $objProducts->tab_bg = $tab_bg['full'];
+
+            //$validated['tab_bg'] = $tab_bg['full'];
+        }
+
 
         $hasCategory = $request->input('product_category') != 0;
 

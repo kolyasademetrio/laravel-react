@@ -158,7 +158,7 @@ class ProductsController extends Controller
         $image = ImageDNK::save($request, 'image', 'products', $request->productid);
         if($image){
 
-            $objProducts->image = $image['full'];
+            //$objProducts->image = $image['full'];
 
             //$validated['image'] = $image['full'];
         }

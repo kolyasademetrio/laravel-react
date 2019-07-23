@@ -119,7 +119,7 @@
 <!-- Laravel Javascript Validation -->
 <script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js') }}"></script>
 
-<!-- Imgareaselect -->
+<!-- ImgAreaSelect -->
 <script type="text/javascript" src="{{ asset('vendor/jquery.imgareaselect-0.9.10/js/jquery.imgareaselect.min.js') }}"></script>
 <script>
     jQuery(function($) {

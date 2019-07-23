@@ -38,7 +38,9 @@ class ImageDNK
             }
 
             if(!$saved){
-                return back()->with('error', 'При сохранении изображения произошла ошибка. Попробуйте ещё раз.');
+                return [
+                    'error' => 'При сохранении ' . __('validation.attributes.' . $fieldName) . ' произошла ошибка. Попробуйте ещё раз.',
+                ];
             }
 
             $fieldNameExist = $fieldName.'_exists';
@@ -54,7 +56,7 @@ class ImageDNK
         return null;
     }
 
-    public static function saveMultiple ($image, string $rootFolderName, string $itemFolderName, string $imageType = '') {
+    public static function saveMultiple ($image, string $fieldName, string $rootFolderName, string $itemFolderName, string $imageType = '') {
         $newImageNameFullWithExtension = md5(microtime()) . '.' . $image->getClientOriginalExtension();
 
         $itemRelativPath = 'uploads/'.$rootFolderName.'/'.$itemFolderName;
@@ -62,14 +64,14 @@ class ImageDNK
         $saved = $image->move(public_path($itemRelativPath), $newImageNameFullWithExtension);
 
         if($saved){
-            /*return back()->with('error', 'При сохранении изображения произошла ошибка. Попробуйте ещё раз.');*/
-
             return [
                 'full' => $newImageNameFullWithExtension,
             ];
         }
 
-        return null;
+        return [
+            'error' => 'При сохранении ' . __('validation.attributes.' . $fieldName) . ' произошла ошибка. Попробуйте ещё раз.',
+        ];
     }
 
     public static function delete($filename){

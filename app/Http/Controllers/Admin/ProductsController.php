@@ -46,12 +46,12 @@ class ProductsController extends Controller
             $images = [];
             $image = ImageDNK::save($request, 'image', 'products', $objProduct->id);
             if($image){
-                $images['image'] = $image['full'];
+                $images['image'] = $image;
             }
 
             $tab_bg = ImageDNK::save($request, 'tab_bg', 'products', $objProduct->id);
             if( $tab_bg ){
-                $images['tab_bg'] = $tab_bg['full'];
+                $images['tab_bg'] = $tab_bg;
             }
 
             if(!empty($images)){
@@ -112,18 +112,18 @@ class ProductsController extends Controller
         // TODO: Добавить возможность добавлять видео к product_attachments
         /*$image = ImageDNK::save($request, 'image', 'products', $request->productid);
         if($image){
-            $validated['image'] = $image['full'];
+            $validated['image'] = $image;
         }
 
         $tab_bg = ImageDNK::save($request, 'tab_bg', 'products', $request->productid);
         if( $tab_bg ){
-            $validated['tab_bg'] = $tab_bg['full'];
+            $validated['tab_bg'] = $tab_bg;
         }*/
 
-        if($request->attachment){
+        /*if($request->attachment){
             $attachmentError = [];
             foreach($request->attachment as $image){
-                $attachment = ImageDNK::saveMultiple($image, 'products', $request->productid)['full'];
+                $attachment = ImageDNK::saveMultiple($image, 'products', $request->productid);
                 $error = ImageDNK::saveMultiple($image, 'products', $request->productid)['error'];
                 if( $attachment ){
                     $objProductAttachments = new ProductAttachments();
@@ -144,7 +144,7 @@ class ProductsController extends Controller
             if(!empty($attachmentError)){
                 return back()->withErrors($attachmentError);
             }
-        }
+        }*/
 
         $validated['is_reccomended'] = $request->has('is_reccomended');
 
@@ -154,23 +154,46 @@ class ProductsController extends Controller
             return back()->with('error', 'Товар не изменен. Попробуйте ещё раз');
         }
 
-        // TODO: Здесь сохраняем изображения на диск и в БД
+        // Здесь сохраняем изображения на диск и в БД
+        $errors = [];
+
         $image = ImageDNK::save($request, 'image', 'products', $request->productid);
-        if($image){
-
-            //$objProducts->image = $image['full'];
-
-            //$validated['image'] = $image['full'];
+        if($image['full']){
+            $objProducts->image = $image['full'];
+            $objProducts->save();
+        }
+        if($image['error']){
+            array_push($errors, $image['error']);
         }
 
         $tab_bg = ImageDNK::save($request, 'tab_bg', 'products', $request->productid);
-        if( $tab_bg ){
-
+        if( $tab_bg['full'] ){
             $objProducts->tab_bg = $tab_bg['full'];
-
-            //$validated['tab_bg'] = $tab_bg['full'];
+            $objProducts->save();
+        }
+        if($tab_bg['error']){
+            array_push($errors, $tab_bg['error']);
         }
 
+        if($request->attachment){
+            foreach($request->attachment as $image){
+                $attachment = ImageDNK::saveMultiple($image, 'attachment', 'products', $request->productid);
+                if( $attachment['full'] ){
+                    $objProductAttachments = new ProductAttachments();
+                    $objProductAttachments->create([
+                        'product_slug' => $request->slug,
+                        'product_id' => $id,
+                        'attachment_name' => $attachment['full'],
+                        'attachment' => $attachment['full'],
+                        'type' => 'image',
+                    ]);
+                }
+
+                if($attachment['error']){
+                    array_push($errors, $attachment['error']);
+                }
+            }
+        }
 
         $hasCategory = $request->input('product_category') != 0;
 
@@ -182,8 +205,12 @@ class ProductsController extends Controller
             ]);
         }
 
-        if($objProducts && (!$hasCategory || $objCatsRels)){
-            return back()->with('success', trans('messages.products.successUpdated'));
+        if(!$objCatsRels){
+            array_push($errors, 'При создании категории товара произошла ошибка. Попробуйте ещё раз.');
+        }
+
+        if($objProducts){
+            return back()->with('success', trans('messages.products.successUpdated'))->withErrors($errors);
         }
 
         return back()->with('error', 'Товар не изменен. Попробуйте ещё раз');

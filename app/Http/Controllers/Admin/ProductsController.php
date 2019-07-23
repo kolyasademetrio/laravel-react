@@ -49,8 +49,8 @@ class ProductsController extends Controller
         }
 
         $images = [];
-        $image = ImageDNK::save($request, 'image', 'products', $objProduct->id);
 
+        $image = ImageDNK::save($request, 'image', 'products', $objProduct->id);
         if($image['full']){
             $images['image'] = $image['full'];
         }

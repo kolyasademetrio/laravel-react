@@ -14,6 +14,7 @@ class ProductAttachments extends Model
         'product_slug',
         'product_id',
         'attachment',
+        'attachment_name',
         'type',
     ];
 

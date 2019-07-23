@@ -138,10 +138,6 @@ class ProductsController extends Controller
 
         $objProducts = Products::findOrFail($id);
 
-        // TODO: Вынести сохранение изображений ПОСЛЕ того как товар сохранен в базу данных.
-
-        // TODO: Чтобы не сохранять на диск изображения до сохранения товара + не прервать сохранение товара если изображение дало ошибку.
-
         // TODO: Добавить возможность добавлять видео к product_attachments
 
         $validated['is_reccomended'] = $request->has('is_reccomended');

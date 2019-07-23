@@ -76,6 +76,7 @@ class ImageDNK
         ];
     }
 
+    //TODO: Не удаляются файли с диска при удалении из галереи продукта
     public static function delete($filename){
         // if $filename is path to image and the image exists
         if(file_exists($filename) && is_file($filename)){

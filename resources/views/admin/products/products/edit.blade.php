@@ -274,11 +274,12 @@
                             attachment_id: attachment_id,
                         },
                         success: function(data){
+                            console.log( 'data', data );
                             if(data){
                                 alert("Изображение удалено");
                                 location.reload();
                             } else {
-                                alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                                alertify.error("При удалении произошла ошибка. Попробуйте позжеcccc.");
                             }
                         },
                         error: function(){

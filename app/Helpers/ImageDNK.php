@@ -91,8 +91,8 @@ class ImageDNK
                     File::delete($image_path);
                     return true;
                 }
-                return false;
             }
+            return false;
         }
 
     }

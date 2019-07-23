@@ -50,6 +50,7 @@ class ImageDNK
 
             return [
                 'full' => $newImageNameFullWithExtension,
+                'error' => '',
             ];
         }
 
@@ -63,14 +64,15 @@ class ImageDNK
 
         $saved = $image->move(public_path($itemRelativPath), $newImageNameFullWithExtension);
 
-        if($saved){
+        if(!$saved){
             return [
-                'full' => $newImageNameFullWithExtension,
+                'error' => 'При сохранении ' . __('validation.attributes.' . $fieldName) . ' произошла ошибка. Попробуйте ещё раз.',
             ];
         }
 
         return [
-            'error' => 'При сохранении ' . __('validation.attributes.' . $fieldName) . ' произошла ошибка. Попробуйте ещё раз.',
+            'full' => $newImageNameFullWithExtension,
+            'error' => '',
         ];
     }
 

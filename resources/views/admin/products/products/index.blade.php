@@ -53,7 +53,7 @@
                         <td>{{ $product->currency }}</td>
                         <td>
                         @if($product->image)
-                            <img src="{{ $product->image }}" alt="" style="width: 100px; height: auto;">
+                            <img src="/imagecache/small-120/{{ $product->image }}" alt="" style="width: 100px; height: auto;">
                         @endif
                         </td>
                         <td>{!! $product->is_reccomended ? '<input type="checkbox" checked disabled>' : '<input type="checkbox" disabled>' !!}</td>
@@ -62,7 +62,7 @@
                         <td>{!! $product->product_usage_tab_content !!}</td>
                         <td>
                         @if($product->tab_bg)
-                            <img src="{{ $product->tab_bg }}" alt="" style="width: 100px; height: auto;">
+                            <img src="/imagecache/small-120/{{ $product->tab_bg }}" alt="" style="width: 100px; height: auto;">
                         @endif
                         </td>
                         <td>{{$product->created_at->format('d-m-Y H:i')}}</td>

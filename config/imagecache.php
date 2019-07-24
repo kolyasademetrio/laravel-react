@@ -60,7 +60,8 @@ return [
         'small' => 'Intervention\Image\Templates\Small',
         'medium' => 'Intervention\Image\Templates\Medium',
         'large' => 'Intervention\Image\Templates\Large',
-        'normal' => 'App\Filter\Image\Xlarge',
+        'normal' => 'App\Filter\Image\Normal',
+        'small-120' => 'App\Filter\Image\Small120',
     ],
 
     /*

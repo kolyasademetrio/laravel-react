@@ -94,6 +94,5 @@ class ImageDNK
             }
             return false;
         }
-
     }
 }

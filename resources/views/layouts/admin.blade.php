@@ -170,6 +170,12 @@
             }
         });
 
+        $('body').on('change', 'input[name*="attachment_video"]', function(e){
+            var $hiddenBox = $(this).parents('.container-field-hidden').find('.field-hidden');
+            $hiddenBox.slideDown();
+
+        });
+
         $('.previewimage').imgAreaSelect({
             handles: true,
             onSelectEnd: function (img, selection) {

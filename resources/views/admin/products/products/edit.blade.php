@@ -122,6 +122,8 @@
                 <div class="form-group w-49">
                     <label for="image">{!! UcfirstCyr::trans('products.form.image') !!}:</label>
                     <input type="file" class="form-control" id="image" name="image" placeholder="{!! trans('products.form.image') !!}" value="">
+                    {{-- if item exist place it to value to remove it from disk(not database) when old value changed --}}
+                    {{-- $fieldNameExist = $fieldName.'_exists'; --}}
                     <input type="hidden" name="image_exists" value="{{ $product->image }}">
                     <input type="hidden" name="x1" value="" />
                     <input type="hidden" name="y1" value="" />
@@ -138,7 +140,9 @@
 
                 <div class="form-group w-49 last">
                     <label for="tab_bg">{!! UcfirstCyr::trans('products.form.tab_bg') !!}:</label>
-                    <input type="file" class="form-control" id="tab_bg" name="tab_bg" placeholder="{!! trans('products.form.tab_bg') !!}" value="{!! $product->tab_bg !!}">
+                    <input type="file" class="form-control" id="tab_bg" name="tab_bg" placeholder="{!! trans('products.form.tab_bg') !!}" value="">
+                    {{-- if item exist place it to value to remove it from disk(not database) when old value changed --}}
+                    {{-- $fieldNameExist = $fieldName.'_exists'; --}}
                     <input type="hidden" name="tab_bg_exists" value="{{ $product->tab_bg }}">
                     <input type="hidden" name="x1" value="" />
                     <input type="hidden" name="y1" value="" />
@@ -156,8 +160,8 @@
 
                 {{-- Добавить галерею изображений: --}}
                 <div class="form-group w-100 last">
-                    <label for="image">Добавить галерею изображений:</label>
-                    <input type="file" class="form-control" id="attachment" name="attachment[]" placeholder="{!! trans('products.form.image') !!}" value="{!! $product->image !!}" multiple>
+                    <label for="image">{!! UcfirstCyr::trans('products.form.attachment') !!}:</label>
+                    <input type="file" class="form-control" id="attachment" name="attachment[]" placeholder="{!! trans('products.form.attachment') !!}" value="" multiple>
                     <input type="hidden" name="x1" value="" />
                     <input type="hidden" name="y1" value="" />
                     <input type="hidden" name="w" value="" />
@@ -173,6 +177,31 @@
                                     </div>
                                 @endif
                             @endforeach
+                        @endif
+                    </div>
+                </div>
+
+                <div class="container-field-hidden row-flex w-100 last">
+                    <div class="form-group w-49">
+                        <label for="attachment_video">{!! UcfirstCyr::trans('products.form.attachment_video') !!}:</label>
+                        <input type="text" class="form-control" id="attachment_video" name="attachment_video" placeholder="{!! trans('products.form.attachment_video') !!}" value="{!! optional($video)->attachment !!}">
+                    </div>
+                    <div class="form-group w-49 last{{ optional($video)->attachment ? '' : ' field-hidden' }}">
+                        <label for="attachment_preview">{!! UcfirstCyr::trans('products.form.attachment_preview') !!}:</label>
+                        <input type="file" class="form-control" id="attachment_preview" name="attachment_preview" placeholder="{!! trans('products.form.attachment_preview') !!}" value="{!! $product->attachment_preview !!}">
+                         {{-- if item exist place it to value to remove it from disk(not database) when old value changed --}}
+                         {{-- $fieldNameExist = $fieldName.'_exists'; --}}
+                        <input type="hidden" name="attachment_preview_exists" value="{{ optional($video)->attachment_preview }}">
+                        <input type="hidden" name="x1" value="" />
+                        <input type="hidden" name="y1" value="" />
+                        <input type="hidden" name="w" value="" />
+                        <input type="hidden" name="h" value="" />
+
+                        @if(optional($video)->attachment_preview)
+                            <img src="/imagecache/normal/{{ optional($video)->attachment_preview }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
+                            <a href="" imagename="{{ optional($video)->attachment_preview }}" name="attachment_preview" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
+                        @else
+                            <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                         @endif
                     </div>
                 </div>

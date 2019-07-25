@@ -9,17 +9,17 @@ use File;
 
 class ImageDNK
 {
-    private static function getMiddleWidth($img){
-        $fullWidth = $img->width();
-        return (int) ($fullWidth / 2);
+    private $errors = [];
+
+    private function pushError($error){
+        array_push($this->errors, $error);
     }
 
-    private static function getMiddleHeight($img){
-        $fullHeight = $img->height();
-        return (int) ($fullHeight / 2);
+    public function getErrors(){
+        return $this->errors;
     }
 
-    public static function save (Request $request, string $fieldName, string $rootFolderName, string $itemFolderName, string $imageType = '') {
+    public function save (Request $request, string $fieldName, string $rootFolderName, string $itemFolderName, array $errors = []) {
         if($request->hasfile($fieldName)){
             $image = $request->file($fieldName);
             $newImageNameFullWithExtension = md5(microtime()) . '.' . $image->getClientOriginalExtension();
@@ -38,9 +38,9 @@ class ImageDNK
             }
 
             if(!$saved){
-                return [
-                    'error' => 'При сохранении ' . __('validation.attributes.' . $fieldName) . ' произошла ошибка. Попробуйте ещё раз.',
-                ];
+                $error = 'При сохранении ' . __('validation.attributes.' . $fieldName) . ' произошла ошибка. Попробуйте ещё раз.';
+                $this->pushError($error);
+                return false;
             }
 
             $fieldNameExist = $fieldName.'_exists';
@@ -48,16 +48,13 @@ class ImageDNK
                 self::delete($request->$fieldNameExist);
             }
 
-            return [
-                'full' => $newImageNameFullWithExtension,
-                'error' => '',
-            ];
+            return $newImageNameFullWithExtension;
         }
 
         return null;
     }
 
-    public static function saveMultiple ($image, string $fieldName, string $rootFolderName, string $itemFolderName, string $imageType = '') {
+    public function saveMultiple ($image, string $fieldName, string $rootFolderName, string $itemFolderName) {
         $newImageNameFullWithExtension = md5(microtime()) . '.' . $image->getClientOriginalExtension();
 
         $itemRelativPath = 'uploads/'.$rootFolderName.'/'.$itemFolderName;
@@ -65,18 +62,14 @@ class ImageDNK
         $saved = $image->move(public_path($itemRelativPath), $newImageNameFullWithExtension);
 
         if(!$saved){
-            return [
-                'error' => 'При сохранении ' . __('validation.attributes.' . $fieldName) . ' произошла ошибка. Попробуйте ещё раз.',
-            ];
+            $error = 'При сохранении ' . __('validation.attributes.' . $fieldName) . ' произошла ошибка. Попробуйте ещё раз.';
+            $this->pushError($error);
+            return null;
         }
 
-        return [
-            'full' => $newImageNameFullWithExtension,
-            'error' => '',
-        ];
+        return  $newImageNameFullWithExtension;
     }
 
-    //TODO: Не удаляются файли с диска при удалении из галереи продукта
     public static function delete($filename){
         // if $filename is path to image and the image exists
         if(file_exists($filename) && is_file($filename)){

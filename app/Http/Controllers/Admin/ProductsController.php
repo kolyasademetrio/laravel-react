@@ -42,46 +42,35 @@ class ProductsController extends Controller
 
         $objProduct = $objProduct->create($validated);
 
-        $errors = [];
-
         if(!$objProduct){
             return back()->with('error', 'Товар не создан. Попробуйте ещё раз');
         }
 
         $images = [];
+        $ImageDNK = new ImageDNK();
 
-        $image = ImageDNK::save($request, 'image', 'products', $objProduct->id);
-        if($image['full']){
-            $images['image'] = $image['full'];
-        }
-        if($image['error']){
-            array_push($errors, $image['error']);
+        $image = $ImageDNK->save($request, 'image', 'products', $objProduct->id);
+        if($image){
+            $images['image'] = $image;
         }
 
-        $tab_bg = ImageDNK::save($request, 'tab_bg', 'products', $objProduct->id);
-        if( $tab_bg['full'] ){
-            $images['tab_bg'] = $tab_bg['full'];
-        }
-        if($tab_bg['error']){
-            array_push($errors, $tab_bg['error']);
+        $tab_bg = $ImageDNK->save($request, 'tab_bg', 'products', $objProduct->id);
+        if( $tab_bg ){
+            $images['tab_bg'] = $tab_bg;
         }
 
         if($request->attachment){
             foreach($request->attachment as $image){
-                $attachment = ImageDNK::saveMultiple($image, 'attachment', 'products', $objProduct->id);
-                if( $attachment['full'] ){
+                $attachment = $ImageDNK->saveMultiple($image, 'attachment', 'products', $objProduct->id);
+                if( $attachment ){
                     $objProductAttachments = new ProductAttachments();
                     $objProductAttachments->create([
                         'product_slug' => $request->slug,
                         'product_id' => $objProduct->id,
-                        'attachment_name' => $attachment['full'],
-                        'attachment' => $attachment['full'],
+                        'attachment' => $attachment,
+                        'attachment_preview' => $attachment,
                         'type' => 'image',
                     ]);
-                }
-
-                if($attachment['error']){
-                    array_push($errors, $attachment['error']);
                 }
             }
         }
@@ -93,6 +82,8 @@ class ProductsController extends Controller
         }
 
         $hasCategory = $request->input('product_category') != 0;
+
+        $errors = $ImageDNK->getErrors();
 
         if($hasCategory){
             $objCatsRels = new CategoriesRelationship();
@@ -109,14 +100,13 @@ class ProductsController extends Controller
         if($objProduct){
             return redirect(route('admin.products.edit', ['id' => $objProduct->id]))->with('success', trans('messages.products.successCreated'))->withErrors($errors);
         }
-
-        //return back();
     }
 
     public function editProduct(int $id){
         $product = Products::findOrFail($id);
 
         $attachments = ProductAttachments::where(['product_id' => $id])->get();
+        $video = ProductAttachments::where(['product_id' => $id, 'type' => 'video' ])->first();
 
         $objCategories = new Categories();
         $categories = $objCategories->get();
@@ -127,6 +117,7 @@ class ProductsController extends Controller
         return view('admin.products.products.edit', [
             'product' => $product,
             'attachments' => $attachments,
+            'video' => $video,
             'categories' => $categories,
             'productCategoriesRelationship' => $productCategoriesRelationship,
             'productCategories' => GetArrayOf::ids($productCategoriesRelationship),
@@ -139,6 +130,7 @@ class ProductsController extends Controller
         $objProducts = Products::findOrFail($id);
 
         // TODO: Добавить возможность добавлять видео к product_attachments
+        // TODO: Доделать загрузку и удаление attachment_preview с диска и из базы данных
 
         $validated['is_reccomended'] = $request->has('is_reccomended');
 
@@ -149,47 +141,63 @@ class ProductsController extends Controller
         }
 
         // Здесь сохраняем изображения на диск и в БД
-        $errors = [];
+        $ImageDNK = new ImageDNK();
 
-        $image = ImageDNK::save($request, 'image', 'products', $request->productid);
-        if($image['full']){
-            $objProducts->image = $image['full'];
+        $image = $ImageDNK->save($request, 'image', 'products', $request->productid);
+        if($image){
+            $objProducts->image = $image;
             $objProducts->save();
         }
-        if($image['error']){
-            array_push($errors, $image['error']);
-        }
 
-        $tab_bg = ImageDNK::save($request, 'tab_bg', 'products', $request->productid);
-        if( $tab_bg['full'] ){
-            $objProducts->tab_bg = $tab_bg['full'];
+        $tab_bg = $ImageDNK->save($request, 'tab_bg', 'products', $request->productid);
+        if( $tab_bg ){
+            $objProducts->tab_bg = $tab_bg;
             $objProducts->save();
-        }
-        if($tab_bg['error']){
-            array_push($errors, $tab_bg['error']);
         }
 
         if($request->attachment){
             foreach($request->attachment as $image){
-                $attachment = ImageDNK::saveMultiple($image, 'attachment', 'products', $request->productid);
-                if( $attachment['full'] ){
+                $attachment = $ImageDNK->saveMultiple($image, 'attachment', 'products', $request->productid);
+                if( $attachment ){
                     $objProductAttachments = new ProductAttachments();
                     $objProductAttachments->create([
                         'product_slug' => $request->slug,
                         'product_id' => $id,
-                        'attachment_name' => $attachment['full'],
-                        'attachment' => $attachment['full'],
+                        'attachment' => $attachment,
+                        'attachment_preview' => $attachment,
                         'type' => 'image',
                     ]);
-                }
-
-                if($attachment['error']){
-                    array_push($errors, $attachment['error']);
                 }
             }
         }
 
+        if($request->attachment_video){
+            //ProductAttachments::where('product_id', $id)->where('type', 'video')->update(['attachment' => $request->attachment_video]);
+
+            ProductAttachments::updateOrCreate(
+                ['product_id' => $id, 'type' => 'video'],
+                [
+                    'attachment' => $request->attachment_video,
+                    'product_slug' => $objProducts->slug,
+                ]
+            );
+        }
+
+
+        $attachment_preview = $ImageDNK->save($request, 'attachment_preview', 'products', $request->productid);
+
+        if($attachment_preview){
+            ProductAttachments::updateOrCreate(
+                ['product_id' => $id, 'type' => 'video', 'product_slug' => $objProducts->slug,],
+                [
+                    'attachment_preview' => $attachment_preview,
+                ]
+            );
+        }
+
         $hasCategory = $request->input('product_category') != 0;
+
+        $errors = $ImageDNK->getErrors();
 
         if($hasCategory){
             $objCatsRels = new CategoriesRelationship();
@@ -206,8 +214,6 @@ class ProductsController extends Controller
         if($objProducts){
             return back()->with('success', trans('messages.products.successUpdated'))->withErrors($errors);
         }
-
-        //return back()->with('error', 'Товар не изменен. Попробуйте ещё раз');
     }
 
     public function deleteProduct(Request $request){
@@ -262,5 +268,4 @@ class ProductsController extends Controller
             echo $imageDeleted;
         }
     }
-
 }

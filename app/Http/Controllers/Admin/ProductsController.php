@@ -131,7 +131,6 @@ class ProductsController extends Controller
 
         // TODO: Добавить возможность добавлять видео к product_attachments
         // TODO: Доделать загрузку и удаление attachment_preview с диска и из базы данных
-
         $validated['is_reccomended'] = $request->has('is_reccomended');
 
         $objProducts->fill($validated);
@@ -175,10 +174,9 @@ class ProductsController extends Controller
             //ProductAttachments::where('product_id', $id)->where('type', 'video')->update(['attachment' => $request->attachment_video]);
 
             ProductAttachments::updateOrCreate(
-                ['product_id' => $id, 'type' => 'video'],
+                ['product_id' => $id, 'type' => 'video', 'product_slug' => $objProducts->slug,],
                 [
                     'attachment' => $request->attachment_video,
-                    'product_slug' => $objProducts->slug,
                 ]
             );
         }
@@ -254,11 +252,16 @@ class ProductsController extends Controller
 
                 $objProductAttachments =  new ProductAttachments();
                 $deleted = $objProductAttachments->where('product_id', $product_id)->where('id', $id)->delete();
-            } else if($request->input('name')){ // if is the products table image
-                $name = $request->input('name');
+            } else if($request->input('fieldname')){ // if is the products table image
+                $fieldname = $request->input('fieldname');
 
                 $objProduct = new Products();
-                $deleted = $objProduct->where('id', $product_id)->update([$name => '',]);
+                $deleted = $objProduct->where('id', $product_id)->update([$fieldname => '',]);
+            } else if ((int)$request->input('attachmentpreview')){
+                $id = (int)$request->input('attachmentpreview');
+
+                $objProductAttachments =  new ProductAttachments();
+                $deleted = $objProductAttachments->where('product_id', $product_id)->where('id', $id)->update(['attachment_preview' => '',]);
             }
 
             if($deleted){

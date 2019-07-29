@@ -132,7 +132,7 @@
 
                     @if($product->image)
                         <img sss src="/imagecache/normal/{{ $product->image }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
-                        <a href="" imagename="{{ $product->image }}" name="image" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
+                        <a href="" imagename="{{ $product->image }}" fieldname="image" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                     @else
                         <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                     @endif
@@ -151,7 +151,7 @@
 
                     @if($product->tab_bg)
                         <img src="/imagecache/normal/{{ $product->tab_bg }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
-                        <a href="" imagename="{{ $product->tab_bg }}" name="tab_bg" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
+                        <a href="" imagename="{{ $product->tab_bg }}" fieldname="tab_bg" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                     @else
                         <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                     @endif
@@ -199,7 +199,7 @@
 
                         @if(optional($video)->attachment_preview)
                             <img src="/imagecache/normal/{{ optional($video)->attachment_preview }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
-                            <a href="" imagename="{{ optional($video)->attachment_preview }}" name="attachment_preview" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
+                            <a href="" attachmentpreview="{{ optional($video)->id }}" imagename="{{ optional($video)->attachment_preview }}" fieldname="" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                         @else
                             <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                         @endif
@@ -287,34 +287,45 @@
             $('.delete-product-image').on('click', function(e){
                 e.preventDefault();
                 if(confirm('Вы действительно хотите удалить изображение?')){
+                    // TODO: Доделать добавление всех атрибутов и обработку их в контроллере
                     let product_id = $(this).attr('productid'),
                         imagename = $(this).attr('imagename'),
-                        name = $(this).attr('name'),
-                        attachment_id = $(this).attr('attachmentid');
+                        fieldname = $(this).attr('fieldname'),
+                        attachment_id = $(this).attr('attachmentid'),
+                        attachmentpreview = $(this).attr('attachmentpreview'),
+                        data = {_token:"{{ csrf_token() }}"};
+
+                    $(this).each(function() {
+                        $.each(this.attributes, function() {
+                            // this.attributes is not a plain object, but an array
+                            // of attribute nodes, which contain both the name and value
+                            if(this.specified && this.name !== 'href' && this.name !== 'class') {
+                                console.log(this.name, this.value);
+
+                                data[this.name] = this.value;
+                            }
+                        });
+                    });
+
+                    console.log( data );
 
                     $.ajax({
                         type: "DELETE",
-                        url: "{!! route('admin.products.productimage.delete') !!}",
-                        data: {
-                            _token:"{{ csrf_token() }}",
-                            product_id: product_id,
-                            imagename: imagename,
-                            name: name,
-                            attachment_id: attachment_id,
-                        },
+                        url: "{{--{!! route('admin.products.productimage.delete') !!}--}}",
+                        data: data,
                         success: function(data){
                             console.log( 'data', data );
                             if(data){
                                 alert("Изображение удалено");
                                 location.reload();
                             } else {
-                                alertify.error("При удалении произошла ошибка. Попробуйте позжеcccc.");
+                                alertify.error("При удалении произошла ошибка. Попробуйте позже.");
                             }
                         },
                         error: function(){
-                            alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                            alertify.error("При удалении произошла ошибка. Попробуйте позже(error).");
                         }
-                    })
+                    });
                 } else {
                     alertify.error("Действие отменено пользователем.");
                 }

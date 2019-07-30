@@ -309,22 +309,24 @@
                         route = "{!! route('admin.products.productfileld.delete') !!}";
                     }
 
-                    $.ajax({
-                        type: "DELETE",
-                        url: route,
-                        data: data,
-                        success: function(result){
-                            if(result){
-                                alert("Изображение удалено");
-                                location.reload();
-                            } else {
-                                alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                    if(route !== ''){
+                        $.ajax({
+                            type: "DELETE",
+                            url: route,
+                            data: data,
+                            success: function(result){
+                                if(result){
+                                    alert("Изображение удалено");
+                                    location.reload();
+                                } else {
+                                    alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                                }
+                            },
+                            error: function(){
+                                alertify.error("При удалении произошла ошибка. Попробуйте позже(error).");
                             }
-                        },
-                        error: function(){
-                            alertify.error("При удалении произошла ошибка. Попробуйте позже(error).");
-                        }
-                    });
+                        });
+                    }
                 } else {
                     alertify.error("Действие отменено пользователем.");
                 }

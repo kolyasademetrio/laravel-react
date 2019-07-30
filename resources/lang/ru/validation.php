@@ -198,6 +198,8 @@ return [
         'image'                           => 'Изображение',
         'tab_bg'                          => 'Фоновое изображение вкладок',
         'attachment'                      => 'Изображение галереи товара',
+        'attachment_preview'              => 'Превью для видео товара',
+        'attachment_video'                => 'Ссылка для видео товара',
         'is_reccomended'                  => 'показывать в рекомендованых',
         'product_description_tab_content' => 'Контент вкладки "Описание"',
         'product_ingredients_tab_content' => 'Контент вкладки "Ингридиенты"',

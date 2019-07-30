@@ -158,7 +158,7 @@
                 </div>
 
 
-                {{-- Добавить галерею изображений: --}}
+                {{-- Adding gallery images: --}}
                 <div class="form-group w-100 last">
                     <label for="image">{!! UcfirstCyr::trans('products.form.attachment') !!}:</label>
                     <input type="file" class="form-control" id="attachment" name="attachment[]" placeholder="{!! trans('products.form.attachment') !!}" value="" multiple>
@@ -254,7 +254,7 @@
             // Product categories deleting
             $('.delete-product-category').on('click', function(e){
                 e.preventDefault();
-                if(confirm('Вы действительно хотите удалить категорию у товара?')){
+                if(confirm('{!! trans('messages.productsCategories.confirmRemoving') !!}')){
                     let product_id = $(this).attr('productId'),
                         category_id = $(this).attr('catId');
 
@@ -268,26 +268,25 @@
                         },
                         success: function(data){
                             if(data){
-                                alert("Категория товара удалена.");
+                                alert("{!! trans('messages.productsCategories.successDeleting') !!}");
                                 location.reload();
                             } else {
-                                alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                                alertify.error("{!! trans('messages.productsCategories.failedDeleting') !!}");
                             }
                         },
                         error: function () {
-                            alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                            alertify.error("{!! trans('messages.productsCategories.failedDeleting') !!}");
                         }
                     });
                 } else {
-                    alertify.error("Действие отменено пользователем.");
+                    alertify.error("{!! trans('commons.actionCanceledByUser') !!}");
                 }
             });
 
             // Product images deleting
             $('.delete-product-image').on('click', function(e){
                 e.preventDefault();
-                if(confirm('Вы действительно хотите удалить изображение?')){
-                    // TODO: Доделать добавление всех атрибутов и обработку их в контроллере
+                if(confirm('{!! trans('messages.images.confirmRemoving') !!}')){
                     let data = {_token:"{{ csrf_token() }}"},
                         route = '';
 
@@ -316,19 +315,19 @@
                             data: data,
                             success: function(result){
                                 if(result){
-                                    alert("Изображение удалено");
+                                    alert("{!! trans('messages.images.successDeleting') !!}");
                                     location.reload();
                                 } else {
-                                    alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                                    alertify.error("{!! trans('messages.images.failedDeleting') !!}");
                                 }
                             },
                             error: function(){
-                                alertify.error("При удалении произошла ошибка. Попробуйте позже(error).");
+                                alertify.error("{!! trans('messages.images.failedDeleting') !!}");
                             }
                         });
                     }
                 } else {
-                    alertify.error("Действие отменено пользователем.");
+                    alertify.error("{!! trans('commons.actionCanceledByUser') !!}");
                 }
             });
         });

@@ -271,4 +271,55 @@ class ProductsController extends Controller
             echo $imageDeleted;
         }
     }
+
+    public function deleteProductAttachment(Request $request){
+        if($request->ajax()){
+            $productId = (int)$request->productid;
+            $imageName = $request->imagename;
+            $attachmentId = (int)$request->attachmentid;
+
+            $objProductAttachments = new ProductAttachments();
+            $deleted = $objProductAttachments->where('product_id', $productId)->where('id', $attachmentId)->delete();
+
+            if($deleted){
+                $imageDeleted = ImageDNK::delete($imageName);
+            }
+
+            echo $imageDeleted;
+        }
+    }
+
+    public function deleteProductAttachmentPreview(Request $request){
+        if($request->ajax()){
+            $productId = (int)$request->productid;
+            $imageName = $request->imagename;
+            $attachmentId = (int)$request->attachmentpreview;
+
+            $objProductAttachments = new ProductAttachments();
+            $deleted = $objProductAttachments->where('product_id', $productId)->where('id', $attachmentId)->update(['attachment_preview' => '',]);
+
+            if($deleted){
+                $imageDeleted = ImageDNK::delete($imageName);
+            }
+
+            echo $imageDeleted;
+        }
+    }
+
+    public function deleteProductField(Request $request){
+        if($request->ajax()){
+            $productId = (int)$request->productid;
+            $imageName = $request->imagename;
+            $fieldname = $request->input('fieldname');
+
+            $objProduct = new Products();
+            $deleted = $objProduct->where('id', $productId)->update([$fieldname => '']);
+
+            if($deleted){
+                $imageDeleted = ImageDNK::delete($imageName);
+            }
+
+            echo $imageDeleted;
+        }
+    }
 }

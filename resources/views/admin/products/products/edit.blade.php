@@ -288,34 +288,33 @@
                 e.preventDefault();
                 if(confirm('Вы действительно хотите удалить изображение?')){
                     // TODO: Доделать добавление всех атрибутов и обработку их в контроллере
-                    let product_id = $(this).attr('productid'),
-                        imagename = $(this).attr('imagename'),
-                        fieldname = $(this).attr('fieldname'),
-                        attachment_id = $(this).attr('attachmentid'),
-                        attachmentpreview = $(this).attr('attachmentpreview'),
-                        data = {_token:"{{ csrf_token() }}"};
+                    let data = {_token:"{{ csrf_token() }}"},
+                        route = '';
 
                     $(this).each(function() {
                         $.each(this.attributes, function() {
                             // this.attributes is not a plain object, but an array
                             // of attribute nodes, which contain both the name and value
                             if(this.specified && this.name !== 'href' && this.name !== 'class') {
-                                console.log(this.name, this.value);
-
                                 data[this.name] = this.value;
                             }
                         });
                     });
 
-                    console.log( data );
+                    if(data.attachmentid){
+                        route = "{!! route('admin.products.productattachment.delete') !!}";
+                    } else if(data.attachmentpreview){
+                        route = "{!! route('admin.products.productattachmentpreview.delete') !!}";
+                    } else if(data.fieldname){
+                        route = "{!! route('admin.products.productfileld.delete') !!}";
+                    }
 
                     $.ajax({
                         type: "DELETE",
-                        url: "{{--{!! route('admin.products.productimage.delete') !!}--}}",
+                        url: route,
                         data: data,
-                        success: function(data){
-                            console.log( 'data', data );
-                            if(data){
+                        success: function(result){
+                            if(result){
                                 alert("Изображение удалено");
                                 location.reload();
                             } else {

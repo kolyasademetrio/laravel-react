@@ -19,7 +19,7 @@ class ImageDNK
         return $this->errors;
     }
 
-    public function save (Request $request, string $fieldName, string $rootFolderName, string $itemFolderName, array $errors = []) {
+    public function save (Request $request, string $fieldName, string $rootFolderName, string $itemFolderName) {
         if($request->hasfile($fieldName)){
             $image = $request->file($fieldName);
             $newImageNameFullWithExtension = md5(microtime()) . '.' . $image->getClientOriginalExtension();

@@ -84,10 +84,7 @@
                     <input type="hidden" name="w" value="" />
                     <input type="hidden" name="h" value="" />
 
-                    <img class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5" style="display:none;"/>
-                    @if(session('path'))
-                        <img src="{{ session('path') }}" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5"/>
-                    @endif
+                    <img class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display:none;"/>
                 </div>
 
                 <div class="form-group w-49 last">
@@ -98,10 +95,7 @@
                     <input type="hidden" name="w" value="" />
                     <input type="hidden" name="h" value="" />
 
-                    <img class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5" style="display:none;"/>
-                    @if(session('path'))
-                        <img src="{{ session('path') }}" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-23-5"/>
-                    @endif
+                    <img class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display:none;"/>
                 </div>
 
                 {{-- Добавить галерею изображений: --}}
@@ -115,6 +109,23 @@
 
                     <div class="product-attachments-wrapper row-flex row-flex-4">
 
+                    </div>
+                </div>
+
+                <div class="container-field-hidden row-flex w-100 last">
+                    <div class="form-group w-49">
+                        <label for="attachment_video">{!! UcfirstCyr::trans('products.form.attachment_video') !!}:</label>
+                        <input type="text" class="form-control" id="attachment_video" name="attachment_video" placeholder="{!! trans('products.form.attachment_video') !!}" value="">
+                    </div>
+                    <div class="form-group w-49 last field-hidden">
+                        <label for="attachment_preview">{!! UcfirstCyr::trans('products.form.attachment_preview') !!}:</label>
+                        <input type="file" class="form-control" id="attachment_preview" name="attachment_preview" placeholder="{!! trans('products.form.attachment_preview') !!}" value="">
+                        <input type="hidden" name="x1" value="" />
+                        <input type="hidden" name="y1" value="" />
+                        <input type="hidden" name="w" value="" />
+                        <input type="hidden" name="h" value="" />
+
+                        <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                     </div>
                 </div>
 

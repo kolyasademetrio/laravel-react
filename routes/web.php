@@ -44,7 +44,10 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/products/edit/{id}', 'Admin\ProductsController@editRequestProduct')->where('id', '\d+');
         Route::delete('/products/delete', 'Admin\ProductsController@deleteProduct')->name('admin.products.delete');
         Route::delete('/products/productcategory/delete', 'Admin\ProductsController@deleteProductCategory')->name('admin.products.productcategory.delete');
-        Route::delete('/products/productimage/delete', 'Admin\ProductsController@deleteProductImage')->name('admin.products.productimage.delete');
+
+        Route::delete('/products/productattachment/delete', 'Admin\ProductsController@deleteProductAttachment')->name('admin.products.productattachment.delete');
+        Route::delete('/products/productattachmentpreview/delete', 'Admin\ProductsController@deleteProductAttachmentPreview')->name('admin.products.productattachmentpreview.delete');
+        Route::delete('/products/productfileld/delete', 'Admin\ProductsController@deleteProductField')->name('admin.products.productfileld.delete');
 
         /** Products Attachments */
         Route::delete('/products/attachment/delete', 'Admin\ProductAttachmentsController@destroy')->name('admin.products.attachment.delete');

@@ -34,6 +34,7 @@ class ProductsController extends Controller
     }
 
     public function addRequestProduct(ProductsRequest $request){
+        // TODO: Проверить удаляется ли все из связанных таблиц при удалении товара
         $validated = $request->validated();
 
         $objProduct = new Products();
@@ -43,7 +44,7 @@ class ProductsController extends Controller
         $objProduct = $objProduct->create($validated);
 
         if(!$objProduct){
-            return back()->with('error', 'Товар не создан. Попробуйте ещё раз');
+            return back()->with('error', trans('messages.products.failedCreated'));
         }
 
         $images = [];
@@ -75,6 +76,28 @@ class ProductsController extends Controller
             }
         }
 
+        if($request->attachment_video){
+            $objProductAttachments = new ProductAttachments();
+
+            $objProductAttachments->create([
+                'product_slug' => $request->slug,
+                'product_id' => $objProduct->id,
+                'attachment' => $request->attachment_video,
+                'attachment_preview' => '',
+                'type' => 'video',
+            ]);
+        }
+
+        $attachment_preview = $ImageDNK->save($request, 'attachment_preview', 'products', $objProduct->id);
+        if($attachment_preview){
+            ProductAttachments::updateOrCreate(
+                ['product_id' => $objProduct->id, 'type' => 'video', 'product_slug' => $request->slug,],
+                [
+                    'attachment_preview' => $attachment_preview,
+                ]
+            );
+        }
+
         if(!empty($images)){
             $product = Products::findOrFail($objProduct->id);
             $product->fill($images);
@@ -93,7 +116,7 @@ class ProductsController extends Controller
             ]);
 
             if(!$objCatsRels){
-                array_push($errors, 'При создании категории товара произошла ошибка. Попробуйте ещё раз.');
+                array_push($errors, trans('messages.productsCategories.failedCreated'));
             }
         }
 
@@ -129,15 +152,12 @@ class ProductsController extends Controller
 
         $objProducts = Products::findOrFail($id);
 
-        // TODO: Добавить возможность добавлять видео к product_attachments
-        // TODO: Доделать загрузку и удаление attachment_preview с диска и из базы данных
-
         $validated['is_reccomended'] = $request->has('is_reccomended');
 
         $objProducts->fill($validated);
 
         if(!$objProducts->save()){
-            return back()->with('error', 'Товар не изменен. Попробуйте ещё раз');
+            return back()->with('error', trans('messages.products.failedUpdated'));
         }
 
         // Здесь сохраняем изображения на диск и в БД
@@ -174,11 +194,11 @@ class ProductsController extends Controller
         if($request->attachment_video){
             //ProductAttachments::where('product_id', $id)->where('type', 'video')->update(['attachment' => $request->attachment_video]);
 
+            // TODO: Проверить создасться ли запись если её нет ( при обновлении записи все работает нормально )
             ProductAttachments::updateOrCreate(
-                ['product_id' => $id, 'type' => 'video'],
+                ['product_id' => $id, 'type' => 'video', 'product_slug' => $objProducts->slug,],
                 [
                     'attachment' => $request->attachment_video,
-                    'product_slug' => $objProducts->slug,
                 ]
             );
         }
@@ -207,7 +227,7 @@ class ProductsController extends Controller
             ]);
 
             if(!$objCatsRels){
-                array_push($errors, 'При создании категории товара произошла ошибка. Попробуйте ещё раз.');
+                array_push($errors, trans('messages.productsCategories.failedCreated'));
             }
         }
 
@@ -244,25 +264,51 @@ class ProductsController extends Controller
         }
     }
 
-    public function deleteProductImage(Request $request){
+    public function deleteProductAttachment(Request $request){
         if($request->ajax()){
-            $product_id = (int)$request->input('product_id');
-            $image_name = $request->input('imagename');
+            $productId = (int)$request->productid;
+            $imageName = $request->imagename;
+            $attachmentId = (int)$request->attachmentid;
 
-            if((int)$request->input('attachment_id')){ // if is the product_attachments table image
-                $id = (int)$request->input('attachment_id');
-
-                $objProductAttachments =  new ProductAttachments();
-                $deleted = $objProductAttachments->where('product_id', $product_id)->where('id', $id)->delete();
-            } else if($request->input('name')){ // if is the products table image
-                $name = $request->input('name');
-
-                $objProduct = new Products();
-                $deleted = $objProduct->where('id', $product_id)->update([$name => '',]);
-            }
+            $objProductAttachments = new ProductAttachments();
+            $deleted = $objProductAttachments->where('product_id', $productId)->where('id', $attachmentId)->delete();
 
             if($deleted){
-                $imageDeleted = ImageDNK::delete($image_name);
+                $imageDeleted = ImageDNK::delete($imageName);
+            }
+
+            echo $imageDeleted;
+        }
+    }
+
+    public function deleteProductAttachmentPreview(Request $request){
+        if($request->ajax()){
+            $productId = (int)$request->productid;
+            $imageName = $request->imagename;
+            $attachmentId = (int)$request->attachmentpreview;
+
+            $objProductAttachments = new ProductAttachments();
+            $deleted = $objProductAttachments->where('product_id', $productId)->where('id', $attachmentId)->update(['attachment_preview' => '',]);
+
+            if($deleted){
+                $imageDeleted = ImageDNK::delete($imageName);
+            }
+
+            echo $imageDeleted;
+        }
+    }
+
+    public function deleteProductField(Request $request){
+        if($request->ajax()){
+            $productId = (int)$request->productid;
+            $imageName = $request->imagename;
+            $fieldname = $request->input('fieldname');
+
+            $objProduct = new Products();
+            $deleted = $objProduct->where('id', $productId)->update([$fieldname => '']);
+
+            if($deleted){
+                $imageDeleted = ImageDNK::delete($imageName);
             }
 
             echo $imageDeleted;

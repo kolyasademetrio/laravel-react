@@ -132,7 +132,7 @@
 
                     @if($product->image)
                         <img sss src="/imagecache/normal/{{ $product->image }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
-                        <a href="" imagename="{{ $product->image }}" name="image" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
+                        <a href="" imagename="{{ $product->image }}" fieldname="image" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                     @else
                         <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                     @endif
@@ -151,14 +151,14 @@
 
                     @if($product->tab_bg)
                         <img src="/imagecache/normal/{{ $product->tab_bg }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
-                        <a href="" imagename="{{ $product->tab_bg }}" name="tab_bg" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
+                        <a href="" imagename="{{ $product->tab_bg }}" fieldname="tab_bg" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                     @else
                         <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                     @endif
                 </div>
 
 
-                {{-- Добавить галерею изображений: --}}
+                {{-- Adding gallery images: --}}
                 <div class="form-group w-100 last">
                     <label for="image">{!! UcfirstCyr::trans('products.form.attachment') !!}:</label>
                     <input type="file" class="form-control" id="attachment" name="attachment[]" placeholder="{!! trans('products.form.attachment') !!}" value="" multiple>
@@ -199,7 +199,7 @@
 
                         @if(optional($video)->attachment_preview)
                             <img src="/imagecache/normal/{{ optional($video)->attachment_preview }}" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50">
-                            <a href="" imagename="{{ optional($video)->attachment_preview }}" name="attachment_preview" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
+                            <a href="" attachmentpreview="{{ optional($video)->id }}" imagename="{{ optional($video)->attachment_preview }}" fieldname="" productid="{{ $product->id }}" class="badge badge-danger delete-product-image">×</a>
                         @else
                             <img src="" alt="" class="previewimage img-fluid img-thumbnail rounded p-2 mt-2 mb-2 w-50" style="display: none;">
                         @endif
@@ -254,7 +254,7 @@
             // Product categories deleting
             $('.delete-product-category').on('click', function(e){
                 e.preventDefault();
-                if(confirm('Вы действительно хотите удалить категорию у товара?')){
+                if(confirm('{!! trans('messages.productsCategories.confirmRemoving') !!}')){
                     let product_id = $(this).attr('productId'),
                         category_id = $(this).attr('catId');
 
@@ -268,55 +268,66 @@
                         },
                         success: function(data){
                             if(data){
-                                alert("Категория товара удалена.");
+                                alert("{!! trans('messages.productsCategories.successDeleting') !!}");
                                 location.reload();
                             } else {
-                                alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                                alertify.error("{!! trans('messages.productsCategories.failedDeleting') !!}");
                             }
                         },
                         error: function () {
-                            alertify.error("При удалении произошла ошибка. Попробуйте позже.");
+                            alertify.error("{!! trans('messages.productsCategories.failedDeleting') !!}");
                         }
                     });
                 } else {
-                    alertify.error("Действие отменено пользователем.");
+                    alertify.error("{!! trans('commons.actionCanceledByUser') !!}");
                 }
             });
 
             // Product images deleting
             $('.delete-product-image').on('click', function(e){
                 e.preventDefault();
-                if(confirm('Вы действительно хотите удалить изображение?')){
-                    let product_id = $(this).attr('productid'),
-                        imagename = $(this).attr('imagename'),
-                        name = $(this).attr('name'),
-                        attachment_id = $(this).attr('attachmentid');
+                if(confirm('{!! trans('messages.images.confirmRemoving') !!}')){
+                    let data = {_token:"{{ csrf_token() }}"},
+                        route = '';
 
-                    $.ajax({
-                        type: "DELETE",
-                        url: "{!! route('admin.products.productimage.delete') !!}",
-                        data: {
-                            _token:"{{ csrf_token() }}",
-                            product_id: product_id,
-                            imagename: imagename,
-                            name: name,
-                            attachment_id: attachment_id,
-                        },
-                        success: function(data){
-                            console.log( 'data', data );
-                            if(data){
-                                alert("Изображение удалено");
-                                location.reload();
-                            } else {
-                                alertify.error("При удалении произошла ошибка. Попробуйте позжеcccc.");
+                    $(this).each(function() {
+                        $.each(this.attributes, function() {
+                            // this.attributes is not a plain object, but an array
+                            // of attribute nodes, which contain both the name and value
+                            if(this.specified && this.name !== 'href' && this.name !== 'class') {
+                                data[this.name] = this.value;
                             }
-                        },
-                        error: function(){
-                            alertify.error("При удалении произошла ошибка. Попробуйте позже.");
-                        }
-                    })
+                        });
+                    });
+
+                    if(data.attachmentid){
+                        route = "{!! route('admin.products.productattachment.delete') !!}";
+                    } else if(data.attachmentpreview){
+                        route = "{!! route('admin.products.productattachmentpreview.delete') !!}";
+                    } else if(data.fieldname){
+                        route = "{!! route('admin.products.productfileld.delete') !!}";
+                    }
+
+                    if(route !== ''){
+                        $.ajax({
+                            type: "DELETE",
+                            url: route,
+                            data: data,
+                            success: function(result){
+                                if(result){
+                                    alert("{!! trans('messages.images.successDeleting') !!}");
+                                    location.reload();
+                                } else {
+                                    alertify.error("{!! trans('messages.images.failedDeleting') !!}");
+                                }
+                            },
+                            error: function(){
+                                alertify.error("{!! trans('messages.images.failedDeleting') !!}");
+                            }
+                        });
+                    }
                 } else {
-                    alertify.error("Действие отменено пользователем.");
+                    alertify.error("{!! trans('commons.actionCanceledByUser') !!}");
                 }
             });
         });

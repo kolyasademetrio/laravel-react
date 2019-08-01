@@ -17,31 +17,27 @@ use App\Helpers\ImageDNK;
 class ProductsController extends Controller
 {
     public function index(){
-        $objProducts = new Products();
-        $products = $objProducts->get();
+        $products = Products::get();
 
         return view('admin.products.products.index', ['products' => $products]);
     }
 
     public function addProduct(){
-        $objCategories = new Categories();
-        $categories = $objCategories->get();
+        $categories = Categories::get();
+        $currencyBase = Currencies::where('base', true)->first();
 
-        $objCurrencies = new Currencies();
-        $currencyBase = $objCurrencies->where('base', true)->first();
-
-        return view('admin.products.products.add', ['categories' => $categories, 'currency' => $currencyBase]);
+        return view('admin.products.products.add', [
+            'categories' => $categories,
+            'currency' => $currencyBase
+        ]);
     }
 
     public function addRequestProduct(ProductsRequest $request){
-        // TODO: Проверить удаляется ли все из связанных таблиц при удалении товара
         $validated = $request->validated();
-
-        $objProduct = new Products();
 
         $validated['is_reccomended'] = $request->has('is_reccomended');
 
-        $objProduct = $objProduct->create($validated);
+        $objProduct = Products::create($validated);
 
         if(!$objProduct){
             return back()->with('error', trans('messages.products.failedCreated'));
@@ -64,8 +60,7 @@ class ProductsController extends Controller
             foreach($request->attachment as $image){
                 $attachment = $ImageDNK->saveMultiple($image, 'attachment', 'products', $objProduct->id);
                 if( $attachment ){
-                    $objProductAttachments = new ProductAttachments();
-                    $objProductAttachments->create([
+                    ProductAttachments::create([
                         'product_slug' => $request->slug,
                         'product_id' => $objProduct->id,
                         'attachment' => $attachment,
@@ -77,9 +72,7 @@ class ProductsController extends Controller
         }
 
         if($request->attachment_video){
-            $objProductAttachments = new ProductAttachments();
-
-            $objProductAttachments->create([
+            ProductAttachments::create([
                 'product_slug' => $request->slug,
                 'product_id' => $objProduct->id,
                 'attachment' => $request->attachment_video,
@@ -109,8 +102,7 @@ class ProductsController extends Controller
         $errors = $ImageDNK->getErrors();
 
         if($hasCategory){
-            $objCatsRels = new CategoriesRelationship();
-            $objCatsRels = $objCatsRels->create([
+            $objCatsRels = CategoriesRelationship::create([
                 'object_id' => $objProduct->id,
                 'category_id' => $request->input('product_category'),
             ]);
@@ -127,15 +119,10 @@ class ProductsController extends Controller
 
     public function editProduct(int $id){
         $product = Products::findOrFail($id);
-
         $attachments = ProductAttachments::where(['product_id' => $id])->get();
         $video = ProductAttachments::where(['product_id' => $id, 'type' => 'video' ])->first();
-
-        $objCategories = new Categories();
-        $categories = $objCategories->get();
-
-        $objCategoriesRelationship = new CategoriesRelationship();
-        $productCategoriesRelationship = $objCategoriesRelationship->where('object_id', $id)->get();
+        $categories = Categories::get();
+        $productCategoriesRelationship = CategoriesRelationship::where('object_id', $id)->get();
 
         return view('admin.products.products.edit', [
             'product' => $product,
@@ -179,8 +166,7 @@ class ProductsController extends Controller
             foreach($request->attachment as $image){
                 $attachment = $ImageDNK->saveMultiple($image, 'attachment', 'products', $request->productid);
                 if( $attachment ){
-                    $objProductAttachments = new ProductAttachments();
-                    $objProductAttachments->create([
+                    ProductAttachments::create([
                         'product_slug' => $request->slug,
                         'product_id' => $id,
                         'attachment' => $attachment,
@@ -192,9 +178,6 @@ class ProductsController extends Controller
         }
 
         if($request->attachment_video){
-            //ProductAttachments::where('product_id', $id)->where('type', 'video')->update(['attachment' => $request->attachment_video]);
-
-            // TODO: Проверить создасться ли запись если её нет ( при обновлении записи все работает нормально )
             ProductAttachments::updateOrCreate(
                 ['product_id' => $id, 'type' => 'video', 'product_slug' => $objProducts->slug,],
                 [
@@ -220,8 +203,7 @@ class ProductsController extends Controller
         $errors = $ImageDNK->getErrors();
 
         if($hasCategory){
-            $objCatsRels = new CategoriesRelationship();
-            $objCatsRels = $objCatsRels->create([
+            $objCatsRels = CategoriesRelationship::create([
                 'object_id' => $id,
                 'category_id' => $request->input('product_category'),
             ]);
@@ -240,15 +222,15 @@ class ProductsController extends Controller
         if($request->ajax()){
             $id = (int)$request->input('id');
 
-            $objProduct = new Products();
-            $productDeleted = $objProduct->where('id', $id)->delete();
+            $productDeleted = Products::where('id', $id)->delete();
 
             if($productDeleted){
-                $objCategoriesRelationship = new CategoriesRelationship();
-                $productRelationsCatsDeleted = $objCategoriesRelationship->where('object_id', $id)->delete();
+                CategoriesRelationship::where('object_id', $id)->delete();
+                ProductAttachments::where('product_id', $id)->delete();
+                ImageDNK::deleteFolder('products', $id);
             }
 
-            echo ($productDeleted && $productRelationsCatsDeleted) ? true : false;
+            echo $productDeleted;
         }
     }
 
@@ -257,8 +239,7 @@ class ProductsController extends Controller
             $product_id = (int)$request->input('product_id');
             $category_id = (int)$request->input('category_id');
 
-            $objCategoriesRelationship = new CategoriesRelationship();
-            $relationDeleted = $objCategoriesRelationship->where('object_id', $product_id)->where('category_id', $category_id)->delete();
+            $relationDeleted = CategoriesRelationship::where('object_id', $product_id)->where('category_id', $category_id)->delete();
 
             echo $relationDeleted ? true : false;
         }
@@ -270,8 +251,7 @@ class ProductsController extends Controller
             $imageName = $request->imagename;
             $attachmentId = (int)$request->attachmentid;
 
-            $objProductAttachments = new ProductAttachments();
-            $deleted = $objProductAttachments->where('product_id', $productId)->where('id', $attachmentId)->delete();
+            $deleted = ProductAttachments::where('product_id', $productId)->where('id', $attachmentId)->delete();
 
             if($deleted){
                 $imageDeleted = ImageDNK::delete($imageName);
@@ -287,8 +267,7 @@ class ProductsController extends Controller
             $imageName = $request->imagename;
             $attachmentId = (int)$request->attachmentpreview;
 
-            $objProductAttachments = new ProductAttachments();
-            $deleted = $objProductAttachments->where('product_id', $productId)->where('id', $attachmentId)->update(['attachment_preview' => '',]);
+            $deleted = ProductAttachments::where('product_id', $productId)->where('id', $attachmentId)->update(['attachment_preview' => '',]);
 
             if($deleted){
                 $imageDeleted = ImageDNK::delete($imageName);
@@ -304,8 +283,7 @@ class ProductsController extends Controller
             $imageName = $request->imagename;
             $fieldname = $request->input('fieldname');
 
-            $objProduct = new Products();
-            $deleted = $objProduct->where('id', $productId)->update([$fieldname => '']);
+            $deleted = Products::where('id', $productId)->update([$fieldname => '']);
 
             if($deleted){
                 $imageDeleted = ImageDNK::delete($imageName);

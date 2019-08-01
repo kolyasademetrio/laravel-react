@@ -57,7 +57,7 @@ class ProductsRequest extends FormRequest
             'tab_bg' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'attachment.*' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'attachment_preview' => 'mimes:jpeg,jpg,png,gif|max:10000',
-            'attachment_video' => 'string',
+            'attachment_video' => '',
             'product_description_tab_content' => 'max:10000',
             'product_ingredients_tab_content' => 'max:10000',
             'product_usage_tab_content' => 'max:10000',

@@ -50,7 +50,6 @@ class ImageDNK
 
             return $newImageNameFullWithExtension;
         }
-
         return null;
     }
 
@@ -66,7 +65,6 @@ class ImageDNK
             $this->pushError($error);
             return null;
         }
-
         return  $newImageNameFullWithExtension;
     }
 
@@ -87,5 +85,14 @@ class ImageDNK
             }
             return false;
         }
+    }
+
+    public static function deleteFolder(string $rootFolderName, string $itemFolderName){
+        $folderPath = 'uploads/'.$rootFolderName.'/'.$itemFolderName;
+        if(File::exists($folderPath)){
+           File::deleteDirectory($folderPath);
+           return true;
+        }
+        return false;
     }
 }

@@ -37,10 +37,10 @@ class ProductsRequest extends FormRequest
 
             ],
             'excerpt' => 'required|string|min:4|max:100',
-            'content' => 'required|string|min:4|max:300',
+            'content' => 'max:300',
+            'descr' => 'max:300',
             'descrtitle' => 'required|string|min:4|max:100',
             'descrtext' => 'required|string|min:4|max:300',
-            'descr' => 'required|string|min:4|max:300',
             'regular_price' => [
                 'required',
                 'regex:/\d+/',

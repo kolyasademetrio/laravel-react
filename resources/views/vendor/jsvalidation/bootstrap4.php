@@ -1,3 +1,5 @@
+<?php //dd($validator); ?>
+
 <script>
     jQuery(document).ready(function(){
         $("<?= $validator['selector']; ?>").each(function(index) {
@@ -17,6 +19,9 @@
                 },
 
                 showErrors: function(errorMap, errorList){
+                    console.log( 'errorList', errorList.length );
+                    console.log( 'errorMap', Object.keys(errorMap).length );
+
                     if ( errorList.length ) {
                         if ( $('.alertify-logs').length  ) {
                             $('.alertify-logs').remove();
@@ -26,6 +31,8 @@
                             const errorsWrapper = $('<div class="alertify-logs dnk-errors" id="alertify-logs"></div>').appendTo('body');
 
                             errorList.forEach(function(el, index){
+                                $(el.element).parent().removeClass('is-valid').addClass('has-danger');
+
                                 let $elem = $('<article class="alertify-log alertify-log-error">' + el.message + '</article>').appendTo(errorsWrapper);
                                 setTimeout(function(){
                                     $elem.addClass('alertify-log-show');

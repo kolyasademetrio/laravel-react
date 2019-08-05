@@ -122,7 +122,11 @@
 <!-- ImgAreaSelect -->
 <script type="text/javascript" src="{{ asset('vendor/jquery.imgareaselect-0.9.10/js/jquery.imgareaselect.min.js') }}"></script>
 
-<script type="text/javascript" src="{{ asset('js/custom-js/admin.js') }}"></script>
+<script>
+    window.translations = {!! Cache::get('translations') !!};
+</script>
+
+<script type="text/javascript" src="{{ asset('js/admin/admin.js') }}"></script>
 
 @yield('js')
 

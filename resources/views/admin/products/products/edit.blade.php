@@ -232,25 +232,6 @@
 @section('js')
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#regular_price, #discount').on('input propertychange', function(e){
-                let valueChanged = false;
-
-                if (e.type=='propertychange') {
-                    valueChanged = e.originalEvent.propertyName=='value';
-                } else {
-                    valueChanged = true;
-                }
-                if (valueChanged) {
-                    if($('#discount').val() > 0){
-                        let sale_price = ($('#regular_price').val() * $('#discount').val()) / 100;
-
-                        $('input[name="sale_price"]').val($('#regular_price').val() - sale_price.toFixed(0));
-                    } else {
-                        $('input[name="sale_price"]').val(0);
-                    }
-                }
-            });
-
             // Product categories deleting
             $('.delete-product-category').on('click', function(e){
                 e.preventDefault();
@@ -286,7 +267,7 @@
             // Product images deleting
             $('.delete-product-image').on('click', function(e){
                 e.preventDefault();
-                if(confirm('{!! trans('messages.images.confirmRemoving') !!}')){
+                if(confirm(trans_choice('messages.images.confirmRemoving'))){
                     let data = {_token:"{{ csrf_token() }}"},
                         route = '';
 

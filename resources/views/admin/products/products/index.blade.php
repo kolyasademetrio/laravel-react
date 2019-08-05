@@ -8,6 +8,7 @@
             <div class="card-block">
                 <a href="{!! route('admin.products.add') !!}" class="btn btn-success">Добавить товар</a>
             </div>
+            {{ resource_path('test') }}
             <table class="table table-bordered">
                 <tr>
                     <th>#</th>

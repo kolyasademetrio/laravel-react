@@ -1,3 +1,15 @@
+function trans_choice(key, count = 1, replace = {}) {
+    let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations).split('|');
+
+    translation = count > 1 ? translation[1] : translation[0];
+
+    for (var placeholder in replace) {
+        translation = translation.replace(`:${placeholder}`, replace[placeholder]);
+    }
+
+    return translation;
+}
+
 jQuery(function($) {
     $("body").on('change', 'input[type="file"]', function(){
         var multiple = $(this).attr('multiple'),
@@ -59,6 +71,25 @@ jQuery(function($) {
             $('input[name="y1"]').val(selection.y1);
             $('input[name="w"]').val(selection.width);
             $('input[name="h"]').val(selection.height);
+        }
+    });
+
+    $('#regular_price, #discount').on('input propertychange', function(e){
+        let valueChanged = false;
+
+        if (e.type=='propertychange') {
+            valueChanged = e.originalEvent.propertyName=='value';
+        } else {
+            valueChanged = true;
+        }
+        if (valueChanged) {
+            if($('#discount').val() > 0){
+                let sale_price = ($('#regular_price').val() * $('#discount').val()) / 100;
+
+                $('input[name="sale_price"]').val($('#regular_price').val() - sale_price.toFixed(0));
+            } else {
+                $('input[name="sale_price"]').val(0);
+            }
         }
     });
 });

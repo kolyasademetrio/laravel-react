@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="_token" content="{{ csrf_token() }}">
 
     <title>Админ панель</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
@@ -43,6 +44,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Help</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Frontend</a>
+            </li>
         </ul>
         <form class="form-inline mt-2 mt-md-0">
             <input class="form-control mr-sm-2" type="text" placeholder="Search">
@@ -62,7 +66,7 @@
                     <a class="nav-link {{ active(['admin.products.categories', 'admin.products.categories.*']) }}" href="{!! route('admin.products.categories') !!}">Категории товаров <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Analytics</a>
+                    <a class="nav-link {{ active(['admin.videotips', 'admin.videotips.*']) }}" href="{!! route('admin.videotips') !!}">Видеосоветы</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Export</a>

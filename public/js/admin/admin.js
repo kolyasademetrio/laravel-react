@@ -1,3 +1,5 @@
+// return translated string on front like on backend
+// it uses app/Providers/TranslationServiceProvider.php
 function trans_choice(key, count = 1, replace = {}) {
     let translation = key.split('.').reduce((t, i) => t[i] || null, window.translations).split('|');
 
@@ -11,6 +13,8 @@ function trans_choice(key, count = 1, replace = {}) {
 }
 
 jQuery(function($) {
+    // Adding preview of the photo/image that added with input[type="file"]
+    // both single and multiple/gallery
     $("body").on('change', 'input[type="file"]', function(){
         var multiple = $(this).attr('multiple'),
             filesExt  = ['jpeg','jpg','png','gif'];
@@ -58,12 +62,15 @@ jQuery(function($) {
         }
     });
 
-    $('body').on('change', 'input[name*="attachment_video"]', function(e){
+    // showing the hidden field after adding preview image for "attachment_video" field
+    // for the product
+    $('body').on('change', '.hidden-field-control', function(e){
         var $hiddenBox = $(this).parents('.container-field-hidden').find('.field-hidden');
         $hiddenBox.slideDown();
 
     });
 
+    // imgAreaSelect initialization
     $('.previewimage').imgAreaSelect({
         handles: true,
         onSelectEnd: function (img, selection) {
@@ -74,6 +81,7 @@ jQuery(function($) {
         }
     });
 
+    // calculating and showing the "sale_price" after discount value changed
     $('#regular_price, #discount').on('input propertychange', function(e){
         let valueChanged = false;
 

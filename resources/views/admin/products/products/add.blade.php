@@ -115,7 +115,7 @@
                 <div class="container-field-hidden row-flex w-100 last">
                     <div class="form-group w-49">
                         <label for="attachment_video">{!! UcfirstCyr::trans('products.form.attachment_video') !!}:</label>
-                        <input type="text" class="form-control" id="attachment_video" name="attachment_video" placeholder="{!! trans('products.form.attachment_video') !!}" value="">
+                        <input type="text" class="form-control hidden-field-control" id="attachment_video" name="attachment_video" placeholder="{!! trans('products.form.attachment_video') !!}" value="">
                     </div>
                     <div class="form-group w-49 last field-hidden">
                         <label for="attachment_preview">{!! UcfirstCyr::trans('products.form.attachment_preview') !!}:</label>

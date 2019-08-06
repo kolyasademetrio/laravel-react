@@ -267,7 +267,7 @@
             // Product images deleting
             $('.delete-product-image').on('click', function(e){
                 e.preventDefault();
-                if(confirm(trans_choice('messages.images.confirmRemoving'))){
+                if(confirm("{!! trans('messages.images.confirmRemoving') !!}")){
                     let data = {_token:"{{ csrf_token() }}"},
                         route = '';
 

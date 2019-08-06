@@ -51,6 +51,15 @@ Route::group(['middleware' => 'auth'], function(){
 
         /** Products Attachments */
         Route::delete('/products/attachment/delete', 'Admin\ProductAttachmentsController@destroy')->name('admin.products.attachment.delete');
+
+        /** Videotips */
+        Route::get('/videotips', 'Admin\VideotipsController@index')->name('admin.videotips');
+        Route::get('/videotips/add', 'Admin\VideotipsController@create')->name('admin.videotips.add');
+        Route::post('/videotips/add', 'Admin\VideotipsController@store');
+        Route::get('/videotips/edit/{id}', 'Admin\VideotipsController@edit')->name('admin.videotips.edit');
+        Route::post('videotips/edit/{id}', 'Admin\VideotipsController@update');
+        Route::delete('/videotips/delete', 'Admin\VideotipsController@destroy')->name('admin.videotips.delete');
+        Route::delete('/videotips/videotipfileld/delete', 'Admin\VideotipsController@deleteVideotipField')->name('admin.videotips.videotipfileld.delete');
     });
 });
 

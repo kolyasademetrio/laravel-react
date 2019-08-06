@@ -6,9 +6,8 @@
         <div>Всего товаров: {{ $products ? count($products) : 0 }}</div>
         <section>
             <div class="card-block">
-                <a href="{!! route('admin.products.add') !!}" class="btn btn-success">Добавить товар</a>
+                <a href="{!! route('admin.products.add') !!}" class="btn btn-success">{!! trans('buttons.products.add') !!}</a>
             </div>
-            {{ resource_path('test') }}
             <table class="table table-bordered">
                 <tr>
                     <th>#</th>
@@ -75,6 +74,9 @@
                 @endforeach
 
             </table>
+            <div class="card-block">
+                <a href="{!! route('admin.products.add') !!}" class="btn btn-success">{!! trans('buttons.products.add') !!}</a>
+            </div>
         </section>
     </main>
 @stop

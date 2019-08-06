@@ -3,7 +3,7 @@
 use App\Helpers\SubfoldersRecursive;
 
 $defaultPaths = [
-    public_path('uploads/products'),
+    public_path('uploads'),
     //public_path('images')
 ];
 

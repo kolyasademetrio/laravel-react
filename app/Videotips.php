@@ -12,6 +12,6 @@ class Videotips extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'image', 'video', 'slug',
+        'title', 'image', 'video', 'slug', 'show_on_homepage',
     ];
 }

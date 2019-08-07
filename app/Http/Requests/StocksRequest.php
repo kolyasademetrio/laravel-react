@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class VideotipsRequest extends FormRequest
+class StocksRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class VideotipsRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return false;
     }
 
     /**
@@ -34,9 +34,11 @@ class VideotipsRequest extends FormRequest
                 'regex:/^[a-z0-9а-яё-]+$/u',
                 Rule::unique('videotips')->ignore($this->id),
             ],
-            'show_on_homepage' => '',
-            'image' => 'mimes:jpeg,jpg,png,gif|max:10000',
-            'video' => '',
+            'excerpt' => 'required|string|min:4|max:100',
+            'content' => 'max:300',
+            'use_as_featured' => '',
+            'thumbnail' => 'mimes:jpeg,jpg,png,gif|max:10000',
+            'attachment' => '',
         ];
     }
 }

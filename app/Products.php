@@ -8,14 +8,16 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Products extends Authenticatable
 {
+    // TODO: Сделать админку для Stocks
     use Notifiable;
 
     public $timestamps = true;
+
     protected $table = 'products';
+
     protected $primaryKey = 'id';
 
     protected $fillable = [
-//        'id',
         'slug',
         'title',
         'excerpt',

@@ -30,6 +30,8 @@
                         if ( !$('.alertify-logs').length ) {
                             const errorsWrapper = $('<div class="alertify-logs dnk-errors" id="alertify-logs"></div>').appendTo('body');
 
+                            $('form .has-danger').removeClass('has-danger');
+
                             errorList.forEach(function(el, index){
                                 $(el.element).parent().removeClass('is-valid').addClass('has-danger');
 

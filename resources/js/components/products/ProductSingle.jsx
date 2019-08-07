@@ -10,7 +10,7 @@ const ProductSingle = (props) => {
         <div className="good__itemInner">
             <div className="good__itemContent">
                 <div className="good__itemHeader">
-                    <img className="good__itemImage" src={image} data-id={id} alt=""/>
+                    <img className="good__itemImage" src={`/imagecache/normal/${image}`} data-id={id} alt=""/>
                 </div>
                 <div className="good__itemTitle">{ReactHtmlParser(title)}</div>
                 <div className="good__itemExcerpt">{ReactHtmlParser(excerpt)}</div>

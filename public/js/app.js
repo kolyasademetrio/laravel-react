@@ -69090,7 +69090,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87800,6 +87800,7 @@ function (_Component) {
       var _this$props = this.props,
           productAttachments = _this$props.productAttachments,
           hasGalleryNav = _this$props.hasGalleryNav;
+      console.log('productAttachments', productAttachments);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "good_gallery"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -88593,7 +88594,7 @@ var ProductSingle = function ProductSingle(props) {
     className: "good__itemHeader"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     className: "good__itemImage",
-    src: image,
+    src: "/imagecache/normal/".concat(image),
     "data-id": id,
     alt: ""
   })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

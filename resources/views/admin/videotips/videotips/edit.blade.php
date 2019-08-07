@@ -20,13 +20,12 @@
                     <input type="checkbox" class="form-check-input" id="show_on_homepage" name="show_on_homepage" {{ $videotip->show_on_homepage == 1 ? 'checked' : '' }}>
                     <label class="form-check-label" for="show_on_homepage">{!! UcfirstCyr::trans('videotips.form.show_on_homepage') !!}</label>
                 </div>
-                {{-- TODO: После изменения поля с ссылкой на видео не открывается поле с картинкой --}}
                 <div class="container-field-hidden row-flex w-100 last">
                     <div class="form-group w-49">
                         <label for="video">{!! UcfirstCyr::trans('videotips.form.video') !!}:</label>
                         <input type="text" class="form-control hidden-field-control" id="video" name="video" placeholder="{!! trans('videotips.form.video') !!}" value="{!! $videotip->video !!}">
                     </div>
-                    <div class="form-group w-49 last{{ optional($videotip)->image ? '' : ' field-hidden' }}">
+                    <div class="form-group w-49 last{{ optional($videotip)->video ? '' : ' field-hidden' }}">
                         <label for="image">{!! UcfirstCyr::trans('videotips.form.image') !!}:</label>
                         <input type="file" class="form-control" id="image" name="image" placeholder="{!! trans('videotips.form.image') !!}" value="{!! $videotip->image !!}">
                         <input type="hidden" name="x1" value="" />

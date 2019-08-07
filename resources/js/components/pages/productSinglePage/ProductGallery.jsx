@@ -27,6 +27,8 @@ class ProductGallery extends Component {
     render(){
         const {productAttachments, hasGalleryNav} = this.props;
 
+        console.log( 'productAttachments', productAttachments );
+
         return (
             <div className="good_gallery">
                 <div className={`good_galleryWrap ${hasGalleryNav ? 'has_galleryNav' : 'hasnot_galleryNav'}`}>

@@ -2,8 +2,8 @@
 
 @section('content')
     <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-        <h2>Список товаров</h2>
-        <div>Всего товаров: {{ $videotips ? count($videotips) : 0 }}</div>
+        <h2>Список видеосоветов</h2>
+        <div>Всего видеосоветов: {{ $videotips ? count($videotips) : 0 }}</div>
         <section>
             <div class="card-block">
                 <a href="{!! route('admin.videotips.add') !!}" class="btn btn-success">{!! trans('buttons.videotips.add') !!}</a>

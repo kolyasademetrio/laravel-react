@@ -4,7 +4,7 @@ namespace App\Http\Controllers\api;
 
 use DB;
 use App\Stocks;
-use App\StockAttachment;
+use App\StockAttachments;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -18,7 +18,7 @@ class StocksController extends Controller
     public function index()
     {
         $stocks = Stocks::all();
-        $stock_attachment = StockAttachment::all();
+        $stock_attachment = StockAttachments::all();
 
         return response()->json([
             'stocksList' => $stocks,

@@ -64,7 +64,7 @@ jQuery(function($) {
 
     // showing the hidden field after adding preview image for "attachment_video" field
     // for the product
-    $('body').on('change', '.hidden-field-control', function(e){
+    $('body').on('change, input', '.hidden-field-control', function(e){
         var $hiddenBox = $(this).parents('.container-field-hidden').find('.field-hidden');
         $hiddenBox.slideDown();
 

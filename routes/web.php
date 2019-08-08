@@ -60,6 +60,14 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('videotips/edit/{id}', 'Admin\VideotipsController@update');
         Route::delete('/videotips/delete', 'Admin\VideotipsController@destroy')->name('admin.videotips.delete');
         Route::delete('/videotips/videotipfileld/delete', 'Admin\VideotipsController@deleteVideotipField')->name('admin.videotips.videotipfileld.delete');
+
+        /** Stocks */
+        Route::get('/stocks', 'Admin\StocksController@index')->name('admin.stocks');
+        Route::get('/stocks/add', 'Admin\StocksController@create')->name('admin.stocks.add');
+        Route::post('/stocks/add', 'Admin\StocksController@store');
+        Route::get('/stocks/edit/{id}', 'Admin\StocksController@edit')->name('admin.stocks.edit');
+        Route::post('/stocks/edit/{id}', 'Admin\StockController@update');
+        Route::delete('/stocks/delete', 'Admin\StocksController@destroy')->name('admin.stocks.delete');
     });
 });
 

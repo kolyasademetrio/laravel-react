@@ -13,7 +13,10 @@ class Stocks extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'slug', 'title', 'excerpt', 'content',
+        'slug',
+        'title',
+        'excerpt',
+        'content',
     ];
 
     protected $casts = [];

@@ -8,7 +8,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Products extends Authenticatable
 {
-    // TODO: Сделать админку для Stocks
     use Notifiable;
 
     public $timestamps = true;

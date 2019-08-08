@@ -69,7 +69,7 @@
                     <a class="nav-link {{ active(['admin.videotips', 'admin.videotips.*']) }}" href="{!! route('admin.videotips') !!}">Видеосоветы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Export</a>
+                    <a class="nav-link {{ active(['admin.stocks', 'admin.stoks.*']) }}" href="{!! route('admin.stocks') !!}">Акции</a>
                 </li>
             </ul>
 

@@ -4,23 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ProductAttachments extends Model
+class StockAttachments extends Model
 {
     public $timestamps = true;
 
-    protected $table = 'product_attachments';
+    protected $table = 'stock_attachments';
 
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'product_slug',
-        'product_id',
+        'id',
+        'stock_id',
+        'thumbnail',
         'attachment',
-        'attachment_preview',
         'type',
+        'use_as_featured',
     ];
 
-    protected $casts = [];
+    protected $casts = [
+        'use_as_featured' => 'boolean',
+    ];
 
     protected $guarded = [];
 

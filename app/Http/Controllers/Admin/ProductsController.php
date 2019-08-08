@@ -220,7 +220,7 @@ class ProductsController extends Controller
 
     public function deleteProduct(Request $request){
         if($request->ajax()){
-            $id = (int)$request->input('id');
+            $id = (int)$request->id;
 
             $productDeleted = Products::where('id', $id)->delete();
 
@@ -236,8 +236,8 @@ class ProductsController extends Controller
 
     public function deleteProductCategory(Request $request){
         if($request->ajax()){
-            $product_id = (int)$request->input('product_id');
-            $category_id = (int)$request->input('category_id');
+            $product_id = (int)$request->product_id;
+            $category_id = (int)$request->category_id;
 
             $relationDeleted = CategoriesRelationship::where('object_id', $product_id)->where('category_id', $category_id)->delete();
 

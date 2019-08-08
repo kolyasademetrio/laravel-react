@@ -42,6 +42,7 @@ class StocksController extends Controller
      */
     public function store(StocksRequest $request)
     {
+        // TODO: Доделать создание Акции
         $validated = $request->validated();
 
         $objStock = Stocks::create($validated);

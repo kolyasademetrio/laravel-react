@@ -17,13 +17,27 @@
                 </div>
 
                 <div class="form-group w-49">
-                    <label for="excerpt">{!! UcfirstCyr::trans('products.form.excerpt') !!}:</label>
-                    <textarea type="text" class="form-control" id="excerpt" name="excerpt" placeholder='{!! UcfirstCyr::trans('products.form.excerpt') !!}'></textarea>
+                    <label for="excerpt">{!! UcfirstCyr::trans('stocks.form.excerpt') !!}:</label>
+                    <textarea type="text" class="form-control" id="excerpt" name="excerpt" placeholder='{!! UcfirstCyr::trans('stocks.form.excerpt') !!}'></textarea>
                 </div>
 
                 <div class="form-group w-49 last">
-                    <label for="content">{!! UcfirstCyr::trans('products.form.content') !!}:</label>
-                    <textarea type="text" class="form-control" id="content" name="content" placeholder='{!! UcfirstCyr::trans('products.form.content') !!}'></textarea>
+                    <label for="content">{!! UcfirstCyr::trans('stocks.form.content') !!}:</label>
+                    <textarea type="text" class="form-control" id="content" name="content" placeholder='{!! UcfirstCyr::trans('stocks.form.content') !!}'></textarea>
+                </div>
+
+                {{-- Добавить галерею изображений: --}}
+                <div class="form-group w-100 last">
+                    <label for="attachments">Добавить галерею изображений:</label>
+                    <input type="file" class="form-control" id="attachments" name="attachments[]" placeholder="{!! trans('stocks.form.image') !!}" value="" multiple>
+                    <input type="hidden" name="x1" value="" />
+                    <input type="hidden" name="y1" value="" />
+                    <input type="hidden" name="w" value="" />
+                    <input type="hidden" name="h" value="" />
+
+                    <div class="attachments-wrapper row-flex row-flex-4">
+
+                    </div>
                 </div>
 
                 <div class="container-field-hidden row-flex w-100 last">

@@ -66,8 +66,11 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/stocks/add', 'Admin\StocksController@create')->name('admin.stocks.add');
         Route::post('/stocks/add', 'Admin\StocksController@store');
         Route::get('/stocks/edit/{id}', 'Admin\StocksController@edit')->name('admin.stocks.edit');
-        Route::post('/stocks/edit/{id}', 'Admin\StockController@update');
+        Route::post('/stocks/edit/{id}', 'Admin\StocksController@update');
         Route::delete('/stocks/delete', 'Admin\StocksController@destroy')->name('admin.stocks.delete');
+
+        Route::delete('/stocks/stockattachment/delete', 'Admin\StocksController@deleteStockAttachment')->name('admin.stocks.stockattachment.delete');
+        Route::delete('/stocks/stockattachmentpreview/delete', 'Admin\StocksController@deleteStockAttachmentPreview')->name('admin.stocks.stockattachmentpreview.delete');
     });
 });
 

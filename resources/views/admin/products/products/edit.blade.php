@@ -167,7 +167,7 @@
                     <input type="hidden" name="w" value="" />
                     <input type="hidden" name="h" value="" />
 
-                    <div class="product-attachments-wrapper row-flex row-flex-4">
+                    <div class="attachments-wrapper row-flex row-flex-4">
                         @if($attachments)
                             @foreach($attachments as $key=>$attachment)
                                 @if($attachment->type == 'image')
@@ -188,7 +188,7 @@
                     </div>
                     <div class="form-group w-49 last{{ optional($video)->attachment ? '' : ' field-hidden' }}">
                         <label for="attachment_preview">{!! UcfirstCyr::trans('products.form.attachment_preview') !!}:</label>
-                        <input type="file" class="form-control" id="attachment_preview" name="attachment_preview" placeholder="{!! trans('products.form.attachment_preview') !!}" value="{!! $product->attachment_preview !!}">
+                        <input type="file" class="form-control" id="attachment_preview" name="attachment_preview" placeholder="{!! trans('products.form.attachment_preview') !!}" value="">
                          {{-- if item exist place it to value to remove it from disk(not database) when old value changed --}}
                          {{-- $fieldNameExist = $fieldName.'_exists'; --}}
                         <input type="hidden" name="attachment_preview_exists" value="{{ optional($video)->attachment_preview }}">

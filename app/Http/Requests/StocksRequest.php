@@ -14,7 +14,7 @@ class StocksRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -32,13 +32,14 @@ class StocksRequest extends FormRequest
                 'min:4',
                 'max:25',
                 'regex:/^[a-z0-9а-яё-]+$/u',
-                Rule::unique('videotips')->ignore($this->id),
+                Rule::unique('stocks')->ignore($this->id),
             ],
             'excerpt' => 'required|string|min:4|max:100',
             'content' => 'max:300',
             'use_as_featured' => '',
             'thumbnail' => 'mimes:jpeg,jpg,png,gif|max:10000',
             'attachment' => '',
+            'attachments.*' => 'mimes:jpeg,jpg,png,gif|max:10000',
         ];
     }
 }

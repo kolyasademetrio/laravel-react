@@ -107,7 +107,7 @@
                     <input type="hidden" name="w" value="" />
                     <input type="hidden" name="h" value="" />
 
-                    <div class="product-attachments-wrapper row-flex row-flex-4">
+                    <div class="attachments-wrapper row-flex row-flex-4">
 
                     </div>
                 </div>

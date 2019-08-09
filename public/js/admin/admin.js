@@ -47,8 +47,8 @@ jQuery(function($) {
             }
 
             if(this.files.length){
-                var $exists = $(this).parent().find('.product-attachments-wrapper').find('.exists').detach(),
-                    $wrapper = $(this).parent().find('.product-attachments-wrapper').empty();
+                var $exists = $(this).parent().find('.attachments-wrapper').find('.exists').detach(),
+                    $wrapper = $(this).parent().find('.attachments-wrapper').empty();
 
                 $wrapper.append($exists);
 

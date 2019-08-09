@@ -31,7 +31,7 @@ class StocksController extends Controller
      */
     public function create()
     {
-        return view('admin.stocks.add', []);
+        return view('admin.stocks.add');
     }
 
     /**
@@ -42,7 +42,6 @@ class StocksController extends Controller
      */
     public function store(StocksRequest $request)
     {
-        // TODO: Доделать создание Акции
         $validated = $request->validated();
 
         $objStock = Stocks::create($validated);
@@ -51,10 +50,9 @@ class StocksController extends Controller
             return back()->with('error', trans('messages.stocks.failedCreated'));
         }
 
-        if($request->thumbnail || $request->attachment){
-            $images = [];
-            $ImageDNK = new ImageDNK();
+        $ImageDNK = new ImageDNK();
 
+        if($request->thumbnail || $request->attachment){
             $thumbnail = $ImageDNK->save($request, 'thumbnail', 'stocks', $objStock->id);
 
             StockAttachments::create([
@@ -62,11 +60,25 @@ class StocksController extends Controller
                 'type' => $request->attachment ? 'video' : 'image',
                 'attachment' => $request->attachment,
                 'thumbnail' => $thumbnail,
-                'use_us_featured' => $request->use_as_featured
+                'use_us_featured' => $request->use_as_featured,
             ]);
-
-            $errors = $ImageDNK->getErrors();
         }
+
+        if($request->attachments){
+            foreach($request->attachments as $image){
+                $attachment = $ImageDNK->saveMultiple($image, 'attachments', 'stocks', $objStock->id);
+                if( $attachment ){
+                    StockAttachments::create([
+                        'stock_id' => $objStock->id,
+                        'attachment' => $attachment,
+                        'thumbnail' => $attachment,
+                        'type' => 'image',
+                    ]);
+                }
+            }
+        }
+
+        $errors = $ImageDNK->getErrors();
 
         if($objStock){
             return redirect(route('admin.stocks.edit', ['id' => $objStock->id]))->with('success', trans('messages.stocks.successCreated'))->withErrors($errors);
@@ -92,7 +104,11 @@ class StocksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $stock = Stocks::findOrFail($id);
+        $attachments = StockAttachments::where('stock_id', $id)->get();
+        $video = StockAttachments::where(['stock_id' => $id, 'type' => 'video'])->first();
+
+        return view('admin.stocks.edit', ['stock' => $stock, 'attachments' => $attachments, 'video' => $video]);
     }
 
     /**
@@ -102,9 +118,60 @@ class StocksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StocksRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+
+        $objStock = Stocks::findOrFail($id);
+
+        $objStock->fill($validated);
+
+        if(!$objStock->save()){
+            return back()->with('error', trans('messages.stocks.failedUpdated'));
+        }
+
+        // TODO: Доделать обновление Акции
+        if($request->attachment){
+            StockAttachments::updateOrCreate(
+                ['stock_id' => $id, 'type' => 'video'],
+                [
+                    'attachment' => $request->attachment,
+                ]
+            );
+        }
+
+        $ImageDNK = new ImageDNK();
+
+        $thumbnail = $ImageDNK->save($request, 'thumbnail', 'stocks', $request->stockid);
+
+        if($thumbnail){
+            StockAttachments::updateOrCreate(
+                ['stock_id' => $id, 'type' => 'video'],
+                [
+                    'thumbnail' => $thumbnail,
+                ]
+            );
+        }
+
+        if($request->attachments){
+            foreach($request->attachments as $image){
+                $attachment = $ImageDNK->saveMultiple($image, 'attachments', 'stocks', $objStock->id);
+                if( $attachment ){
+                    StockAttachments::create([
+                        'stock_id' => $objStock->id,
+                        'attachment' => $attachment,
+                        'thumbnail' => $attachment,
+                        'type' => 'image',
+                    ]);
+                }
+            }
+        }
+
+        $errors = $ImageDNK->getErrors();
+
+        if($objStock){
+            return redirect(route('admin.stocks.edit', ['id' => $objStock->id]))->with('success', trans('messages.stocks.successUpdated'))->withErrors($errors);
+        }
     }
 
     /**
@@ -126,6 +193,38 @@ class StocksController extends Controller
             }
 
             echo $stockDeleted;
+        }
+    }
+
+    public function deleteStockAttachment(Request $request){
+        if($request->ajax()){
+            $stockId = (int)$request->stockid;
+            $imageName = $request->imagename;
+            $attachmentId = (int)$request->attachmentid;
+
+            $deleted = StockAttachments::where('stock_id', $stockId)->where('id', $attachmentId)->delete();
+
+            if($deleted){
+                $imageDeleted = ImageDNK::delete($imageName);
+            }
+
+            echo $imageDeleted;
+        }
+    }
+
+    public function deleteStockAttachmentPreview(Request $request){
+        if($request->ajax()){
+            $stockId = (int)$request->stockid;
+            $imageName = $request->imagename;
+            $attachmentId = (int)$request->attachmentpreview;
+
+            $deleted = StockAttachments::where('stock_id', $stockId)->where('id', $attachmentId)->update(['thumbnail' => '',]);
+
+            if($deleted){
+                $imageDeleted = ImageDNK::delete($imageName);
+            }
+
+            echo $imageDeleted;
         }
     }
 }

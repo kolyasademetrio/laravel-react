@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="form-group w-100 last">
-                    <label for="attachments">{!! UcfirstCyr::trans('stocks.form.attachment') !!}:</label>
+                    <label for="attachments">{!! UcfirstCyr::trans('commons.addImagesGallery') !!}:</label>
                     <input type="file" class="form-control" id="attachments" name="attachments[]" placeholder="{!! trans('stocks.form.attachment') !!}" value="" multiple>
                     <input type="hidden" name="x1" value="" />
                     <input type="hidden" name="y1" value="" />

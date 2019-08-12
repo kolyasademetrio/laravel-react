@@ -100,7 +100,7 @@
 
                 {{-- Добавить галерею изображений: --}}
                 <div class="form-group w-100 last">
-                    <label for="image">Добавить галерею изображений:</label>
+                    <label for="image">{!! trans('commons.addImagesGallery') !!}:</label>
                     <input type="file" class="form-control" id="attachment" name="attachment[]" placeholder="{!! trans('products.form.image') !!}" value="" multiple>
                     <input type="hidden" name="x1" value="" />
                     <input type="hidden" name="y1" value="" />

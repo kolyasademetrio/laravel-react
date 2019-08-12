@@ -30,7 +30,7 @@ class ProductsCategoriesRequest extends FormRequest
                 'required',
                 'string',
                 'min:4',
-                'max:25',
+                'max:35',
                 'regex:/^[a-z0-9а-яё-]+$/u',
                 Rule::unique('categories')->ignore($this->category_id),
             ],

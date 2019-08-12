@@ -12,7 +12,7 @@ class StockPage extends Component {
     render(){
         const {isStocksReady, isStocksLoading, stocksErrors, stocksList, stockAttachment} = this.props;
         const {matchPath, pageName} = getPageNameSlug(this, this.props.isPagesReady, this.props.pages);
-        
+
         return (
             <Fragment>
                 <div className="container">
@@ -31,7 +31,7 @@ class StockPage extends Component {
                     isReady={isStocksReady}
                     errors={stocksErrors}
                     list={stocksList}
-                    attachment={stockAttachment}
+                    attachments={stockAttachment}
                     matchPath={matchPath}
                     noMessage='Акций пока нет.'
                     popupInit={stocksPageMagnificPopupInit}

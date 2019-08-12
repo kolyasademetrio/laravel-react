@@ -17,8 +17,8 @@ class StocksController extends Controller
      */
     public function index()
     {
-        $stocks = Stocks::all();
-        $stock_attachment = StockAttachments::all();
+        $stocks = Stocks::get();
+        $stock_attachment = StockAttachments::get();
 
         return response()->json([
             'stocksList' => $stocks,

@@ -13,7 +13,8 @@ class GridList extends Component {
     }
 
     render(){
-        const {isLoading, isReady, list, attachment, matchPath, noMessage, errors} = this.props;
+        const {isLoading, isReady, list, attachments, matchPath, noMessage, errors} = this.props;
+
         return (
             <div className="container">
                 <div className="row">
@@ -27,7 +28,7 @@ class GridList extends Component {
                                             list.map(item => (
                                                 <GridItem
                                                     item={item}
-                                                    attachments={attachment[item.id]}
+                                                    attachments={attachments[item.id]}
                                                     matchPath={matchPath}
                                                     key={item.id}
                                                 />

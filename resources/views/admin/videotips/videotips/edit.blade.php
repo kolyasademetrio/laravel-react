@@ -25,7 +25,7 @@
                         <label for="video">{!! UcfirstCyr::trans('videotips.form.video') !!}:</label>
                         <input type="text" class="form-control hidden-field-control" id="video" name="video" placeholder="{!! trans('videotips.form.video') !!}" value="{!! $videotip->video !!}">
                     </div>
-                    <div class="form-group w-49 last{{ optional($videotip)->video ? '' : ' field-hidden' }}">
+                    <div class="form-group w-49 last{{ optional($videotip)->video || optional($videotip)->image ? '' : ' field-hidden' }}">
                         <label for="image">{!! UcfirstCyr::trans('videotips.form.image') !!}:</label>
                         <input type="file" class="form-control" id="image" name="image" placeholder="{!! trans('videotips.form.image') !!}" value="{!! $videotip->image !!}">
                         <input type="hidden" name="x1" value="" />

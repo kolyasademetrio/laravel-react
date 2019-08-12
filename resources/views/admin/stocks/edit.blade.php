@@ -30,11 +30,11 @@
                 <div class="container-field-hidden row-flex w-100 last">
                     <div class="form-group w-49">
                         <label for="attachment">{!! UcfirstCyr::trans('stocks.form.attachment') !!}:</label>
-                        <input type="text" class="form-control hidden-field-control" id="attachment" name="attachment" placeholder="{!! trans('stocks.form.attachment') !!}" value="{!! $video->attachment !!}">
+                        <input type="text" class="form-control hidden-field-control" id="attachment" name="attachment" placeholder="{!! trans('stocks.form.attachment') !!}" value="{!! optional($video)->attachment !!}">
                     </div>
-                    <div class="form-group w-49 last{{ optional($video)->attachment ? '' : ' field-hidden' }}">
+                    <div class="form-group w-49 last{{ optional($video)->attachment || optional($video)->thumbnail ? '' : ' field-hidden' }}">
                         <label for="thumbnail">{!! UcfirstCyr::trans('stocks.form.thumbnail') !!}:</label>
-                        <input type="file" class="form-control" id="thumbnail" name="thumbnail" placeholder="{!! trans('stocks.form.thumbnail') !!}" value="{!! $video->thumbnail !!}">
+                        <input type="file" class="form-control" id="thumbnail" name="thumbnail" placeholder="{!! trans('stocks.form.thumbnail') !!}" value="{!! optional($video)->thumbnail !!}">
                         {{-- if item exist place it to value to remove it from disk(not database) when old value changed --}}
                         {{-- $fieldNameExist = $fieldName.'_exists'; --}}
                         <input type="hidden" name="thumbnail_exists" value="{{ optional($video)->thumbnail }}">
@@ -53,13 +53,13 @@
                 </div>
 
                 <div class="form-group form-check w-100 last">
-                    <input type="checkbox" class="form-check-input" id="use_as_featured" name="use_as_featured">
+                    <input type="checkbox" class="form-check-input" id="use_as_featured" name="use_as_featured" {{ optional($video)->use_as_featured ? 'checked' : '' }}>
                     <label class="form-check-label" for="use_as_featured">{!! UcfirstCyr::trans('stocks.form.use_as_featured') !!}</label>
                 </div>
 
                 <div class="form-group w-100 last">
-                    <label for="image">{!! UcfirstCyr::trans('stocks.form.attachment') !!}:</label>
-                    <input type="file" class="form-control" id="attachment" name="attachment[]" placeholder="{!! trans('stocks.form.attachment') !!}" value="" multiple>
+                    <label for="attachments">{!! UcfirstCyr::trans('stocks.form.attachment') !!}:</label>
+                    <input type="file" class="form-control" id="attachments" name="attachments[]" placeholder="{!! trans('stocks.form.attachment') !!}" value="" multiple>
                     <input type="hidden" name="x1" value="" />
                     <input type="hidden" name="y1" value="" />
                     <input type="hidden" name="w" value="" />

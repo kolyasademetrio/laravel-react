@@ -15,6 +15,7 @@ export const setAllStocks = () => {
         dispatch({type: SET_STOCKS});
         axios.get('/api/stocks').then(({data: {stocksList, stockAttachment}}) => {
             const stockAttachmentList = stockAttachment && sortArrayByKey(stockAttachment,'stock_id');
+
             const stocksData = {
                 stocksList,
                 stockAttachment: stockAttachmentList,

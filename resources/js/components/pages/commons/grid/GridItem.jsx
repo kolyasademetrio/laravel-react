@@ -10,11 +10,19 @@ const GridItem = ({item, attachments, matchPath}) => {
     let attachment, date, time;
 
     if (attachments) {
-        const attachmentsList = attachments.filter(a => a.use_as_featured === 1 );
-        attachment = attachmentsList[0];
-        const dateTime = attachment['updated_at'].split(' ', 2);
+        const attachmentsList = attachments && attachments.filter(a => {
+            return a.use_as_featured === true;
+        } );
+
+        attachment = attachmentsList.length && attachmentsList[0];
+
+        const dateTime = attachment && attachment['updated_at'].split(' ', 2);
+
         date = dateTime[0];
         time = dateTime[1];
+
+        console.log( date );
+        console.log( time );
     }
 
     return (

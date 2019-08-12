@@ -177,15 +177,12 @@ class ProductsController extends Controller
             }
         }
 
-        if($request->attachment_video){
-            ProductAttachments::updateOrCreate(
-                ['product_id' => $id, 'type' => 'video', 'product_slug' => $objProducts->slug,],
-                [
-                    'attachment' => $request->attachment_video,
-                ]
-            );
-        }
-
+        ProductAttachments::updateOrCreate(
+            ['product_id' => $id, 'type' => 'video', 'product_slug' => $objProducts->slug,],
+            [
+                'attachment' => $request->attachment_video ? $request->attachment_video : '',
+            ]
+        );
 
         $attachment_preview = $ImageDNK->save($request, 'attachment_preview', 'products', $request->productid);
 

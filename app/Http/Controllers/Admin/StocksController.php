@@ -131,14 +131,13 @@ class StocksController extends Controller
         }
 
         // TODO: Доделать обновление Акции
-        if($request->attachment){
-            StockAttachments::updateOrCreate(
-                ['stock_id' => $id, 'type' => 'video'],
-                [
-                    'attachment' => $request->attachment,
-                ]
-            );
-        }
+        StockAttachments::updateOrCreate(
+            ['stock_id' => $id, 'type' => 'video'],
+            [
+                'attachment' => $request->attachment,
+                'use_as_featured' => $request->has('use_as_featured'),
+            ]
+        );
 
         $ImageDNK = new ImageDNK();
 

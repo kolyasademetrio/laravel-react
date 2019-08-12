@@ -69090,7 +69090,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -85865,7 +85865,7 @@ function (_Component) {
         isReady: isStocksReady,
         errors: stocksErrors,
         list: stocksList,
-        attachment: stockAttachment,
+        attachments: stockAttachment,
         matchPath: matchPath,
         noMessage: "\u0410\u043A\u0446\u0438\u0439 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.",
         popupInit: _stocksPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -87181,13 +87181,15 @@ var GridItem = function GridItem(_ref) {
   var attachment, date, time;
 
   if (attachments) {
-    var attachmentsList = attachments.filter(function (a) {
-      return a.use_as_featured === 1;
+    var attachmentsList = attachments && attachments.filter(function (a) {
+      return a.use_as_featured === true;
     });
-    attachment = attachmentsList[0];
-    var dateTime = attachment['updated_at'].split(' ', 2);
+    attachment = attachmentsList.length && attachmentsList[0];
+    var dateTime = attachment && attachment['updated_at'].split(' ', 2);
     date = dateTime[0];
     time = dateTime[1];
+    console.log(date);
+    console.log(time);
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -87296,7 +87298,7 @@ function (_Component) {
           isLoading = _this$props.isLoading,
           isReady = _this$props.isReady,
           list = _this$props.list,
-          attachment = _this$props.attachment,
+          attachments = _this$props.attachments,
           matchPath = _this$props.matchPath,
           noMessage = _this$props.noMessage,
           errors = _this$props.errors;
@@ -87315,7 +87317,7 @@ function (_Component) {
       }, isLoading && !isReady && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_helpers_preloader__WEBPACK_IMPORTED_MODULE_1__["default"], null), isReady && (list.length ? list.map(function (item) {
         return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_GridItem__WEBPACK_IMPORTED_MODULE_2__["default"], {
           item: item,
-          attachments: attachment[item.id],
+          attachments: attachments[item.id],
           matchPath: matchPath,
           key: item.id
         });

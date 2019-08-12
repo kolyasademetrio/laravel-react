@@ -186,7 +186,7 @@
                         <label for="attachment_video">{!! UcfirstCyr::trans('products.form.attachment_video') !!}:</label>
                         <input type="text" class="form-control" id="attachment_video" name="attachment_video" placeholder="{!! trans('products.form.attachment_video') !!}" value="{!! optional($video)->attachment !!}">
                     </div>
-                    <div class="form-group w-49 last{{ optional($video)->attachment ? '' : ' field-hidden' }}">
+                    <div class="form-group w-49 last{{ optional($video)->attachment || optional($video)->attachment_preview ? '' : ' field-hidden' }}">
                         <label for="attachment_preview">{!! UcfirstCyr::trans('products.form.attachment_preview') !!}:</label>
                         <input type="file" class="form-control" id="attachment_preview" name="attachment_preview" placeholder="{!! trans('products.form.attachment_preview') !!}" value="">
                          {{-- if item exist place it to value to remove it from disk(not database) when old value changed --}}

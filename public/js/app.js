@@ -87142,7 +87142,7 @@ var GridImageWrap = function GridImageWrap(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "offers_date"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, date), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, time)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: thumbnail,
+    src: "/imagecache/original/".concat(thumbnail),
     alt: "dewr"
   }));
 };
@@ -87185,11 +87185,10 @@ var GridItem = function GridItem(_ref) {
       return a.use_as_featured === true;
     });
     attachment = attachmentsList.length && attachmentsList[0];
-    var dateTime = attachment && attachment['updated_at'].split(' ', 2);
+    var dateTime = item && item['updated_at'].split(' ', 2);
     date = dateTime[0];
     time = dateTime[1];
-    console.log(date);
-    console.log(time);
+    console.log('dateTime', dateTime);
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -87357,7 +87356,7 @@ var GridVideoWrap = function GridVideoWrap(_ref) {
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "offers_date"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, date), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, time)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-    src: thumbnail,
+    src: "/imagecache/original/".concat(thumbnail),
     alt: "dewr"
   }));
 };

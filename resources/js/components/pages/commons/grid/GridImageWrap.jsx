@@ -8,7 +8,7 @@ const GridImageWrap = ({thumbnail, path, date, time}) => {
                 <span>{date}</span>
                 <span>{time}</span>
             </span>
-            <img src={thumbnail} alt="dewr"/>
+            <img src={`/imagecache/original/${thumbnail}`} alt="dewr"/>
         </Link>
     );
 };

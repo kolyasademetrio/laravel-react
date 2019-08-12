@@ -16,13 +16,12 @@ const GridItem = ({item, attachments, matchPath}) => {
 
         attachment = attachmentsList.length && attachmentsList[0];
 
-        const dateTime = attachment && attachment['updated_at'].split(' ', 2);
+        const dateTime = item && item['updated_at'].split(' ', 2);
 
         date = dateTime[0];
         time = dateTime[1];
 
-        console.log( date );
-        console.log( time );
+        console.log( 'dateTime', dateTime );
     }
 
     return (

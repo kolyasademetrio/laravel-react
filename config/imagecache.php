@@ -62,6 +62,7 @@ return [
         'large' => 'Intervention\Image\Templates\Large',
         'normal' => 'App\Filter\Image\Normal',
         'small-120' => 'App\Filter\Image\Small120',
+        'small-290' => 'App\Filter\Image\Small290',
     ],
 
     /*

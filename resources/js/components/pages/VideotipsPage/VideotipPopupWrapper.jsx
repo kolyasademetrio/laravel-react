@@ -14,7 +14,7 @@ class VideotipPopupWrapper extends Component {
             <div className="movietiphome_single__inner">
                 <div className="movietiphome_single__item">
                     <a href={video} title={title} className="movietiphome_single__link">
-                        <img src={image} alt={title} className="movietiphome_single__img" />
+                        <img src={`/imagecache/original/${image}`} alt={title} className="movietiphome_single__img" />
                         <span className="movietiphome_single__play"></span>
                     </a>
                 </div>

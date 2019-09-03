@@ -66,10 +66,13 @@
                     <a class="nav-link {{ active(['admin.products.categories', 'admin.products.categories.*']) }}" href="{!! route('admin.products.categories') !!}">Категории товаров <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link {{ active(['admin.stocks', 'admin.stoks.*']) }}" href="{!! route('admin.stocks') !!}">Акции</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link {{ active(['admin.videotips', 'admin.videotips.*']) }}" href="{!! route('admin.videotips') !!}">Видеосоветы</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ active(['admin.stocks', 'admin.stoks.*']) }}" href="{!! route('admin.stocks') !!}">Акции</a>
+                    <a class="nav-link {{ active(['admin.doyouknows', 'admin.doyouknows.*']) }}" href="{!! route('admin.doyouknows') !!}">А вы знали?</a>
                 </li>
             </ul>
 

@@ -4,6 +4,7 @@ import SinglePagePopupWrapper from "../../../pages/commons/SinglePagePopupWrappe
 
 const SinglePage = ({item: {title, content}, attachments, initPopup}) => {
     const hasAttachments = attachments.length > 0;
+
     return (
         <Fragment>
             <div className="offers_single">

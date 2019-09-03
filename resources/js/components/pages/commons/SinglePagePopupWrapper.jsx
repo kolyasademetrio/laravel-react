@@ -10,16 +10,19 @@ class SinglePagePopupWrapper extends Component {
 
     render(){
         const {attachments} = this.props;
+
+        console.log( 'attachments', attachments );
+
         return (
             <div className="offers_single__header">
                 {attachments.map(a => (
                         <a
                             key={a.id}
-                            href={a.attachment}
+                            href={a.type == 'image' ? `/imagecache/normal/${a.attachment}` : a.attachment}
                             className={`offers_single_${a.type}Link offers_single_js ${a.type}`}
                             data-type={a.type}
                         >
-                            <img src={a.thumbnail} alt="" className={a.type} />
+                            <img src={`/imagecache/normal/${a.thumbnail}`} alt="" className={a.type} />
                         </a>
                     ))
                 }

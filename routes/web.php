@@ -71,6 +71,17 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::delete('/stocks/stockattachment/delete', 'Admin\StocksController@deleteStockAttachment')->name('admin.stocks.stockattachment.delete');
         Route::delete('/stocks/stockattachmentpreview/delete', 'Admin\StocksController@deleteStockAttachmentPreview')->name('admin.stocks.stockattachmentpreview.delete');
+
+        /** Doyouknow */
+        Route::get('/doyouknows', 'Admin\DoyouknowController@index')->name('admin.doyouknows');
+        Route::get('/doyouknows/add', 'Admin\DoyouknowController@create')->name('admin.doyouknows.add');
+        Route::post('/doyouknows/add', 'Admin\DoyouknowController@store');
+        Route::get('/doyouknows/edit/{id}', 'Admin\DoyouknowController@edit')->name('admin.doyouknows.edit');
+        Route::post('/doyouknows/edit/{id}', 'Admin\DoyouknowController@update');
+        Route::delete('/doyouknows/delete', 'Admin\DoyouknowController@destroy')->name('admin.doyouknows.delete');
+
+        Route::delete('/doyouknows/doyouknowattachment/delete', 'Admin\DoyouknowController@deleteDoyouknowAttachment')->name('admin.doyouknows.doyouknowattachment.delete');
+        Route::delete('/doyouknows/doyouknowattachmentpreview/delete', 'Admin\DoyouknowController@deleteDoyouknowAttachmentPreview')->name('admin.doyouknows.doyouknowattachmentpreview.delete');
     });
 });
 

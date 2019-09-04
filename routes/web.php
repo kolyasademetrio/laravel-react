@@ -82,6 +82,10 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::delete('/doyouknows/doyouknowattachment/delete', 'Admin\DoyouknowController@deleteDoyouknowAttachment')->name('admin.doyouknows.doyouknowattachment.delete');
         Route::delete('/doyouknows/doyouknowattachmentpreview/delete', 'Admin\DoyouknowController@deleteDoyouknowAttachmentPreview')->name('admin.doyouknows.doyouknowattachmentpreview.delete');
+
+        /** About */
+        Route::get('/about/edit', 'Admin\AboutController@edit')->name('admin.about.edit');
+        Route::post('/about/edit', 'Admin\AboutController@update');
     });
 });
 

@@ -11,7 +11,7 @@ const GridItem = ({item, attachments, matchPath}) => {
 
     if (attachments) {
         const attachmentsList = attachments && attachments.filter(a => {
-            return a.use_as_featured === true;
+            return a.use_as_featured == true;
         } );
 
         attachment = attachmentsList.length && attachmentsList[0];
@@ -20,8 +20,6 @@ const GridItem = ({item, attachments, matchPath}) => {
 
         date = dateTime[0];
         time = dateTime[1];
-
-        console.log( 'dateTime', dateTime );
     }
 
     return (

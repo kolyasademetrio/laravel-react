@@ -25,14 +25,14 @@ class GridList extends Component {
                                     {isLoading && !isReady && <Preloader />}
                                     {isReady && (
                                         list.length ? (
-                                            list.map(item => (
-                                                <GridItem
+                                            list.map(item => {
+                                                return <GridItem
                                                     item={item}
                                                     attachments={attachments[item.id]}
                                                     matchPath={matchPath}
                                                     key={item.id}
                                                 />
-                                            ))
+                                            })
                                         ) : (
                                             <NoMessage>{noMessage}</NoMessage>
                                         )

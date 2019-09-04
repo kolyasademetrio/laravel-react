@@ -84970,7 +84970,7 @@ function (_Component) {
         isReady: isDoyouknowsReady,
         errors: doyouknowsErrors,
         list: doyouknowsList,
-        attachment: doyouknowsAttachment,
+        attachments: doyouknowsAttachment,
         matchPath: matchPath,
         noMessage: "\u041D\u043E\u0432\u043E\u0441\u0442\u0435\u0439 \u043F\u043E\u043A\u0430 \u043D\u0435\u0442.",
         popupInit: _DoyouknowPage_doyouknowPageMagnificPopupInit__WEBPACK_IMPORTED_MODULE_1__["default"]
@@ -87183,13 +87183,12 @@ var GridItem = function GridItem(_ref) {
 
   if (attachments) {
     var attachmentsList = attachments && attachments.filter(function (a) {
-      return a.use_as_featured === true;
+      return a.use_as_featured == true;
     });
     attachment = attachmentsList.length && attachmentsList[0];
     var dateTime = item && item['updated_at'].split(' ', 2);
     date = dateTime[0];
     time = dateTime[1];
-    console.log('dateTime', dateTime);
   }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

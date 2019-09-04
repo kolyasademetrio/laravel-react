@@ -39,7 +39,7 @@ class DoyouknowPage extends Component {
                     isReady={isDoyouknowsReady}
                     errors={doyouknowsErrors}
                     list={doyouknowsList}
-                    attachment={doyouknowsAttachment}
+                    attachments={doyouknowsAttachment}
                     matchPath={matchPath}
                     noMessage='Новостей пока нет.'
                     popupInit={doyouknowPageMagnificPopupInit}
